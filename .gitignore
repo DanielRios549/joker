@@ -1,5 +1,9 @@
 .vscode/
 node_modules/
 bower_components/
-media/
+media/movies/*
+media/series/*
+images/media/movies/*
+images/media/series/*
+images/user/*
 _fontIcon.txt
