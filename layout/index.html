@@ -1,0 +1,177 @@
+<!-- Index -->
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+	elseif($loginCheck == false) {
+?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(this).on('scroll', function() {
+			parallaxExternalHome();
+		});
+
+		tabSelect(true);
+	});
+</script>
+<?php } elseif($loginCheck == true) {?>
+<script type="text/javascript">
+	$(window).on('resize', function() {
+		sliderSroll('.contentDivScroll', '.contentDivScroll > .contentGroupScroll');
+	});
+	$(document).ready(function() {
+
+		if($('#contentSlider #changeDiv').length) {
+			intervalId = setInterval(slideIndex, 5000);
+			
+			changeIndex('#contentSlider');
+		}
+
+		$(this).on('scroll', function() {
+			parallaxInternalHome();
+		});
+
+		//Scroll contentDiv
+	
+		sliderSroll('.contentDivScroll', '.contentDivScroll > .contentGroupScroll');
+
+		$('#imageDiv div').on('click', '.addWatchList', addWatchListIndex);
+    	$('#imageDiv div').on('click', '.removeWatchList', removeWatchListIndex);
+
+		$('.contentFigure').on('click', '.addWatchList', addWatchListIndex);
+        $('.contentFigure').on('click', '.removeWatchList', removeWatchListIndex);
+	});
+</script>
+<?php }?>
+<section class="interface">
+	<?php if($loginCheck == false) {?>
+	<div class="containerDiv">
+		<div id="coverImage"></div>
+		<div id="descImage">
+			<img src="<?php echo $imageDir . 'moviesGrid.jpg';?>"/>
+		</div>
+	</div>
+	<div class="containerDiv">
+		<div id="tabHeader">
+			<div class="tabSelected"><div class="tabIcon"></div><span class="tabSpan"><?php echo langCode('movies');?></span></div>
+			<div class="tab"><div class="tabIcon"></div><span class="tabSpan"><?php echo langCode('series');?></span></div>
+			<div class="tab"><div class="tabIcon"></div><span class="tabSpan"><?php echo langCode('follow');?></span></div>
+		</div>
+		<div id="tabContents">
+			<div class="contentShow">
+			aba 1
+			</div>
+			<div class="contentHide">
+			aba 2
+			</div>
+			<div class="contentHide">
+			aba 3
+			</div>
+		</div>
+	</div>
+	<?php } elseif($loginCheck == true) { $contentArray = array('contentCategory' => 'feature', 'dateAdd' => false, 'querySearch' => false, 'page' => false); require $contentDir . 'showContent.php'; if($contentClass -> contentHide == false){?>
+	<div id="contentSlider">
+		<div id="imageDiv">
+		<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($contentNumber > 1){$imageShow = 'imageHide';}else{$imageShow = 'imageShow';}?>
+			<div class="<?php echo $imageShow;?>">
+				<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
+				<span class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>">
+					
+				</span>
+				<a href="<?php echo $contentPagesLink . $key['content_id'];?>" class="sliderLink">
+					<span class="linkSpan">
+						<?php echo langCode('details');?>
+					</span>
+				</a>
+				<?php $contentFolder = getDynamicFolder($key['type'], $mediaImageFolder);?>
+				<img src="<?php echo $contentFolder . $key['content_id'] . '/background.jpg';?>"/>
+			</div>
+		<?php $contentNumber ++;}?>
+		</div>
+		<?php if($totalSearch > 1) {?>
+		<div id="previousImage"></div>
+		<div id="nextImage"></div>
+
+		<div id="changeDiv">
+		<?php $pointerNumber = 1; do {if($pointerNumber > 1){$changeShow = 'changeHide';}else{$changeShow = 'changeShow';}?>
+			<div class="<?php echo $changeShow;?>"></div>
+		<?php $pointerNumber ++;} while($pointerNumber <= $totalSearch);?>
+		</div>
+		<?php }?>
+	</div>
+	<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-1300679758954215" data-ad-slot="9991840684"></ins>
+	<?php } foreach($allSections as $allSections => $categoryContent) {
+		if($categoryContent == 'watchlist') {
+			$contentArray = array(
+				'contentCategory' => 'watchlist',
+				'dateAdd' => false,
+				'querySearch' => false,
+				'page' => false
+			);
+			$watchListId = true;
+		}
+		elseif($categoryContent == 'recent_add') {
+			$contentArray = array(
+				'contentCategory' => false,
+				'dateAdd' => true,
+				'querySearch' => false,
+				'page' => false
+			);
+			$watchListId = false;
+		}
+		else {
+			$contentArray = array(
+				'contentCategory' => $categoryContent,
+				'dateAdd' => false,
+				'querySearch' => false,
+				'page' => false
+			);
+			$watchListId = false;
+		}
+		require $contentDir . 'showContent.php';
+		if($contentClass -> contentHide == false) {
+			if($categoryContent == 'watchlist') {
+	?>
+	<p class="contentDivHeader"><?php echo ucfirst(langCode('my')) . ' ' . langCode('watch_list');?></p>
+	<?php } elseif($categoryContent == 'recent_add') {?>
+	<p class="contentDivHeader"><?php echo langCode('recent_add');?></p>
+	<?php } else {?>
+	<p class="contentDivHeader"><?php echo langCode($categoryContent);?><span><a href="<?php echo $baseUrl . langCode('category_link') . '?c=' . categoryId($categoryContent);?>"><?php echo langCode('view_more');?></a></span></p>
+	<?php }?>
+	<div <?php if($watchListId == true) {echo 'id="watchListDiv"';}?> class="contentDiv contentDivScroll">
+		<div class="contentGroup contentGroupScroll">
+		<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
+			<div class="content contentScroll">
+				<div class="contentLink">
+					<figure class="contentFigure">
+						<?php $contentFolder = getDynamicFolder($key['type'], $mediaImageFolder);?>
+						<img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>
+						<figcaption>
+							<?php if($key['type'] == 'movie') {?>
+							<a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']);?>"></a>
+							<?php } elseif($key['type'] == 'serie') {?>
+							<a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']) . '&e=' . $firstEpisode['episode_id'];?>"></a>
+							<?php }?>
+							<a class="figLink" href="<?php echo $contentPagesLink . $key['content_id'];?>">
+								<span class="figSpan"><?php echo langCode('details');?></span>
+							</a>
+							<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
+							<div class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>"></div>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		<?php $contentNumber ++;}?>
+		</div>
+		<div class="previousHide"></div>
+		<div class="nextHide"></div>
+	</div>
+	<?php }}}?>
+</section>

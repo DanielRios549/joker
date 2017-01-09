@@ -1,0 +1,30 @@
+{
+  "name": "PIBSI",
+  "version": "1.0.0",
+  "description": "Site da PIB em Santa Izabel",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.0.0",
+    "watch": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://DanielRios549@bitbucket.org/DanielRios549/pibsi.git"
+  },
+  "keywords": [
+    "igreja",
+    "batista",
+    "São",
+    "Gonçalo"
+  ],
+  "author": "Daniel Rios",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/DanielRios549/pibsi#readme"
+}

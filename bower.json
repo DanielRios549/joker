@@ -1,0 +1,20 @@
+{
+  "name": "PIBSI",
+  "description": "Site da PIB em Santa Izabel",
+  "main": "index.php",
+  "authors": [
+    "Daniel Rios"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "igreja",
+    "batista",
+    "São",
+    "Gonçalo"
+  ],
+  "homepage": "https://bitbucket.org/DanielRios549/pibsi#readme",
+  "dependencies": {
+    "jquery": "2.1.4",
+    "font-awesome": "fontawesome#4.4.0"
+  }
+}

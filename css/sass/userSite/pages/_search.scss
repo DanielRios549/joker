@@ -1,0 +1,62 @@
+@mixin search() {
+	.searchOther {
+		position: relative;
+		top: 10px;
+		left: 2.5%;
+		display: inline-block;
+
+		.otherSpan {
+			position: relative;
+			display: inline-block;
+			font: 2em Calibri, sans-serif;
+			color: $colorBlue;
+		}
+		.otherUl {
+			position: relative;
+			display: inline-block;
+
+			.otherItem {
+				border-right: 1px solid $colorGray;
+				padding: 0 10px;
+				display: inline-block;
+
+				&:last-child {
+					border-right: none;
+				}
+				.itemSpan {
+					font: 2em Calibri, sans-serif;
+					color: $colorBlack;
+
+					&:hover {
+						color: $colorBlue;
+					}
+				}
+			}
+		}
+	}
+	.searchContent {
+		position: relative;
+		top: 10px;
+		left: 0;
+		width: 100%;
+		min-height: 320px;
+	
+		.searchResult {
+			position: relative;
+			top: 10px;
+			left: 2.5%;
+			height: 50px;
+			width: 97.5%;
+			font-size: 2em;
+			color: $colorGray;
+			display: block;
+			
+			.searchSpan {
+				color: $colorBlue;
+				font-size: 1.5em;
+			}
+		}
+	
+		@include allContentStyle();
+	}
+}

@@ -1,0 +1,135 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" . $base . "404");
+	}
+    elseif($adminCheck == true) {
+?>
+<div id="managerOptions">
+	<div id="advancedClose" class="searchAdvancedClose"><?php echo langCode('admin_advanced_search');?></div>
+	<a class="managerLink" href="<?php echo $adminDir . langCode('admin_users_add_link');?>"><?php echo langCode('admin_add');?></a>
+</div>
+<div id="advancedSearchDiv" class="advancedSearchHide">
+	<input type="text" placeholder="Pesquisar por palavra"/>
+</div>
+<div id="showContents">
+<h2 id="contentTotal"><?php echo $foundHeaderText . ' ' . $totalRows . ' ' . $pageType;?></h2>
+	<?php require 'managerOption.html';?>
+	<div id="contentTable">
+		<div id="tableHead">
+			<div id="headRow">
+				<div id="contentId"><span class="contentSpan"><?php echo '#';?></span></div>
+				<div id="contentDetails"><span class="contentSpan"><?php echo 'Details';?></span></div>
+				<div id="contentOptions"><span class="contentSpan"><?php echo 'More';?></span></div>
+			</div>
+		</div>
+		<div id="tableBody">
+			<?php 
+			foreach($addRow as $addRow => $key) {
+				if($divisorData == true) {
+					$episodeDivisor = strpos($key[$cookieLang], "|");
+					$thisShowName = substr($key[$cookieLang], 0, $episodeDivisor);
+					$thisShowSyn = substr($key[$cookieLang], $episodeDivisor + 1);
+
+					$episodeDivisorUS = strpos($key['en_US'], "|");
+					$thisShowNameUS = substr($key['en_US'], 0, $episodeDivisorUS);
+					$thisShowSynUS = substr($key['en_US'], $episodeDivisorUS + 1);
+					
+					$episodeDivisorBR = strpos($key['pt_BR'], "|");
+					$thisShowNameBR = substr($key['pt_BR'], 0, $episodeDivisorBR);
+					$thisShowSynBR = substr($key['pt_BR'], $episodeDivisorBR + 1);
+				}
+				else {
+					$thisShowName = $key[$current2];
+				}
+				if ($key[$current1] == $editRow) {
+			?>
+			<div id="contentRowEdit">
+				<div id="closeEditDiv"><a href="<?php echo $setNewUrl;?>" title="Close"></a></div>
+				<form class="formAdd" method="post" action="?edited=<?php echo $key[$current1];?>" enctype="multipart/form-data">
+					<fieldset class="formFieldset">
+        				<?php require $selectFormFile;?>
+					</fieldset>
+					<fieldset class="formFieldset">
+						<?php if(THIS_PAGE == 'admin_users_manager') {?>
+						<input type="text" id="editName" name="editName" class="inputText" value="<?php echo $key[$current2];?>"/>
+						<label for="editName" id="dateLabel" class="inputLabel"></label>
+						
+						<input type="text" id="editUserName" name="editUserName" class="inputText" value="<?php echo $key[$current3];?>"/>
+						<label for="editUserName" id="dateLabel" class="inputLabel"></label>
+						
+						<input type="text" id="editEmail" name="editEmail" class="inputText" value="<?php echo $key[$current4];?>"/>
+						<label for="editEmail" id="dateLabel" class="inputLabel"></label>
+						<?php } elseif(THIS_PAGE != 'admin_episodes_manager') {?>
+						<input type="text" id="editProcuder" name="editProcuder" class="inputText" value="<?php echo $key[$current2];?>"/>
+						<label for="editProcuder" id="dateLabel" class="inputLabel"></label>
+						
+						<input type="text" id="editDirector" name="editDirector" class="inputText" value="<?php echo $key[$current3];?>"/>
+						<label for="editDirector" id="dateLabel" class="inputLabel"></label>
+
+						<input type="text" id="editDate" name="editDate" class="inputText" value="<?php echo $key[$getKeys[9]];?>"/>
+						<label for="editDate" id="dateLabel" class="inputLabel"></label>
+
+						<input type="text" id="editTitleUS" name="editTitleUS" class="inputText" value="<?php echo $thisShowNameUS;?>"/>
+						<label for="editTitleUS" id="dateLabel" class="inputLabel"></label>
+
+						<input type="text" id="editSynUS" name="editSynUS" class="inputText" value="<?php echo $thisShowSynUS;?>"/>
+						<label for="editSynUS" id="dateLabel" class="inputLabel"></label>
+
+						<input type="text" id="editTitleBR" name="editTitleBR" class="inputText" value="<?php echo $thisShowNameBR;?>"/>
+						<label for="editTitleBR" id="dateLabel" class="inputLabel"></label>
+
+						<input type="text" id="editSynBR" name="editSynBR" class="inputText" value="<?php echo $thisShowSynBR;?>"/>
+						<label for="editSynBR" id="dateLabel" class="inputLabel"></label>
+						<?php } else {?>
+						<input type="text" id="editTitleUS" name="editTitleUS" class="inputText" value="<?php echo $thisShowNameUS;?>"/>
+						<label for="editTitleUS" id="dateLabel" class="inputLabel"></label>
+
+						<input type="text" id="editSynUS" name="editSynUS" class="inputText" value="<?php echo $thisShowSynUS;?>"/>
+						<label for="editSynUS" id="dateLabel" class="inputLabel"></label>
+
+						<input type="text" id="editTitleBR" name="editTitleBR" class="inputText" value="<?php echo $thisShowNameBR;?>"/>
+						<label for="editTitleBR" id="dateLabel" class="inputLabel"></label>
+
+						<input type="text" id="editSynBR" name="editSynBR" class="inputText" value="<?php echo $thisShowSynBR;?>"/>
+						<label for="editSynBR" id="dateLabel" class="inputLabel"></label>
+						<?php }?>
+						<button type="submit" class="submitButton"><span class="submitSpan">Save</span></button>
+					</fieldset>
+				</form>
+			</div>
+			<?php } else {?>
+			<div class="contentRow">
+				<div class="contentId">
+					<span class="contentSpan">
+						<?php echo $key[$current1];?>
+					</span>
+				</div>
+				<div class="contentDetails">
+					<span class="contentSpan">
+						<?php echo $thisShowName . " / " . $key[$current3] . " / " . $key[$current4];?>
+					</span>
+				</div>
+				<div class="contentOptions">
+					<div class="contentEdit">
+						<a href="<?php echo $linkEdit . $key[$current1];?>" data-id="<?php echo $key[$current1];?>" class="contentLink">
+							<span>
+								<?php echo langCode('admin_edit');?>
+							</span>
+						</a>
+						<div class="moreOptions"></div>
+					</div>
+				</div>
+			</div>
+			<?php }}?>
+		</div>
+	</div>
+	<?php require 'managerOption.html';?>
+</div>
+<?php }?>

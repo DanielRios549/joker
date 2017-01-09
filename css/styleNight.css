@@ -1,0 +1,19 @@
+html > body > section {
+    background-color: #141414 !important;
+    color: #f1f1f1 !important;
+}
+#settingsInterface .menuLi .menuLink {
+    background-color: transparent !important;
+}
+#settingsInterface .menuLi .menuLink:before {
+    color: #f1f1f1 !important;
+}
+#settingsInterface .menuLi .menuLink .menuLinkSpan {
+    color: #f1f1f1 !important;
+}
+#settingsOptions .settingsOption .section .linkInfo {
+    background-color: #141414 !important;
+}
+#settingsOptions .settingsOption .section .formSettings {
+    background-color: #141414 !important;
+}

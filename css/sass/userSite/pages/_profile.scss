@@ -1,0 +1,214 @@
+@mixin profile() {
+	//first div
+
+	#profileHeaderDiv {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 300px;
+
+		.userHeader, .userHeaderFixed {
+			z-index: 99;
+			
+			.userButtonDiv {
+				border-radius: 5px;
+				background: $colorGray;
+				position: absolute;
+				right: 5%;
+				bottom: 25px;
+				height: 40px;
+				
+				@include transition(all, 300ms, linear);
+				
+				&:hover {
+					background: $colorBlue;
+				}
+				.buttonSpan {
+					box-sizing: border-box;
+					border-radius: 5px;
+					position: relative;
+					top: 0;
+					left: 0;
+					height: 100%;
+					width: 100%;
+					font-size: 2em;
+					display: block;
+					text-decoration: none;
+					color: $colorLightGray;
+					line-height: 28px;
+					padding: 5px;
+					cursor: pointer;
+				}
+			}
+			#userNameDiv {
+				position: absolute;
+				bottom: 25px;
+				height: 40px;
+				
+				#userName {
+					text-shadow: 5px 5px 5px rgba(0,0,0,.9);
+					font-size: 3em;
+					color: $colorLightGray;
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.userNameDiv {
+				left: 220px;
+			}
+			.userNameDivFixed {
+				left: 164px !important;
+			}
+		}
+		.userHeader {
+			position: relative;
+			top: 0;
+			left: 0;
+			height: 300px;
+			width: 100%;
+			overflow: hidden;
+			
+			#userHeaderImg {
+				position: relative;
+				left: 0;
+				width: 100%;
+			}
+		}
+		.userHeaderFixed {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 150px !important;
+			width: 100%;
+			overflow: hidden;
+			
+			#userHeaderImg {
+				position: relative;
+				top: -70px !important;
+				left: 0;
+				width: 100%;
+			}
+		}
+		.userImgFigure {
+			border-radius: 50%;
+			position: relative;
+			top: -120px;
+			left: 0;
+			height: 150px;
+			width: 150px;
+			overflow: hidden;
+			z-index: 99;
+			padding: 10px;
+			
+			&:hover {
+				cursor: pointer;
+
+				#userImgCaption {
+					display: block;
+				}
+			}
+			#userImgCaption {
+				display: none;
+			}
+			#userImg {
+				border-radius: 50%;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.userImgFigureFixed {
+			border-radius: 50%;
+			position: fixed;
+			top: 70px !important;
+			left: 50px !important;
+			height: 50px !important;
+			width: 50px !important;
+			overflow: hidden;
+			z-index: 100;
+			padding: 10px;
+			
+			&:hover {
+				cursor: pointer;
+			}
+			#userImgCaption {
+				display: none;
+			}
+			#userImg {
+				border-radius: 50%;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+	//Second div
+
+	#profileInfoDiv {
+		position: relative;
+		width: 100%;
+		height: 600px;
+		margin: 60px 0 30px 0;
+
+		#followersDiv {
+			position: relative;
+			width: 840px;
+
+			.follower {
+				position: relative;
+				display: inline-block;
+				margin-left: 10px;
+				width: 400px;
+				height: 100px;
+
+				.followerLeft {
+					position: relative;
+					height: 100%;
+					width: 100px;
+					float: left;
+					
+					.followerLink {
+						position: relative;
+						height: 100%;
+						width: 100%;
+						display: block;
+						
+						.followerImage {
+							position: relative;
+							height: 100%;
+							width: 100%;
+						}
+					}
+				}
+				.followerRight {
+					position: relative;
+					height: 100%;
+					width: calc(100% - 100px);
+					float: right;
+
+					.followerLink {
+						--height: 30px;
+						position: absolute;
+						top: calc(50% - var(--height) / 2);
+						left: 10px;
+						height: 100%;
+						height: var(--height);
+						text-decoration: none;
+
+						&:hover {
+							text-decoration: underline;
+						}
+						.followerSpan {
+							position: relative;
+							height: 100%;
+							width: 100%;
+							font: 2em Calibri, sans-serif;
+							color: $colorGray;
+							display: block;
+						}
+					}
+				}
+			}
+		}
+	}
+}

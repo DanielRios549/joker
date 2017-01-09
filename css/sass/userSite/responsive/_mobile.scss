@@ -1,0 +1,20 @@
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+
+$responsiveVariables: (
+    --testResponsive: 50%
+);
+
+@media (max-width: $mobile + 'px') {
+	@if($css4 == true) {
+        :root {
+            @each $variable, $value in $responsiveVariables {
+                #{$variable}: $value;
+            }
+        }
+    }
+}

@@ -1,0 +1,504 @@
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+@charset "UTF-8";
+
+$css4: true;
+$compatibility: true;
+
+@import '../config/config';
+
+@import 'responsive/desktop';
+
+@import 'responsive/tablet';
+
+@import 'responsive/mobile';
+
+#header {
+    border-bottom: 1px solid $colorLightGray;
+    background: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 101;
+    
+    .closeMenu {
+        &:after {
+            content: '\f03b';
+        }
+    }
+    .openMenu {
+        &:after {
+            content: '\f03c';
+        }
+    }
+    .closeMenu,
+    .openMenu {
+        border-left: 1px solid $colorLightGray;
+        position: relative;
+        float: left;
+        left: 80px;
+        height: 100%;
+        width: 50px;
+        cursor: pointer;
+
+        &:after {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            font: 2.5em FontAwesome;
+            color: $colorGray;
+        }
+    }
+    #adminHome {
+        border-left: 1px solid $colorLightGray;
+        border-right: 1px solid $colorLightGray;
+        position: relative;
+        float: left;
+        top: 0;
+        left: 80px;
+        list-style: none;
+        width: 140px;
+        height: 50px;
+        
+        a {
+            background: url($imageDir + 'streamovie.png') no-repeat 0%;
+            background-size: 140px 50px;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    #userHome {
+        border-left: 1px solid $colorLightGray;
+        border-right: 1px solid $colorLightGray;
+        position: absolute;
+        top: 0;
+        right: 300px;
+        list-style: none;
+        width: 50px;
+        height: 50px;
+        
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            
+            &:after {
+                content: '\f015';
+                font: 4em FontAwesome;
+                color: $colorGray;
+                position: absolute;
+                top: 5px;
+                left: 7px;
+            }
+        }
+    }
+    #adminUser {
+        position: absolute;
+        right: 80px;
+        top: 0;
+        height: 50px;
+        width: 190px;
+        
+        #adminUserUl {
+            list-style: none;
+            width: 100%;
+            height: 100%;
+            
+            #adminUserLi {
+                box-sizing: border-box;
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                font: 2em Calibri, san-serif;
+                color: $colorGray;
+                line-height: 45px;
+                padding-left: 70px;
+                
+                &:after {
+                    content: '\f107';
+                    font: 1.8em FontAwesome;
+                    color: $colorGray;
+                    position: absolute;
+                    right: 5px;
+                    top: 5px;
+                    
+                    @include transition(all, 300ms, linear);
+                }
+                &:hover {
+                    &:after {
+                        @include transform(rotate(180deg));
+                    }
+                    #adminUserSub {
+                        height: 70px;
+                    }
+                }
+                img {
+                    position: absolute;
+                    float: left;
+                    left: 0;
+                    top: 2px;
+                    border-radius: 50%;
+                    height: 90%;
+                }
+                #adminName {
+                    position: relative;
+                    float: right;
+                    line-height: 45px;
+                    width: 80%;
+                    text-align: right;
+                    padding-right: 30px;
+                }
+                #adminUserSub {
+                    box-shadow: 3px 3px 12px rgba(0,0,0,.5);
+                    list-style: none;
+                    display: block;
+                    position: absolute;
+                    top: 50px;
+                    right: 0;
+                    width: 200px;
+                    height: 0;
+                    text-align: right;
+                    overflow: hidden;
+                    
+                    @include transition(height, 0.2s, ease);
+                    
+                    .adminUserSubLink{
+                        box-sizing: border-box;
+                        background: #f6f6f6;
+                        display: block;
+                        width: 100%;
+                        height: 35px;
+                        font: 1.2em Calibri, san-serif;
+                        text-decoration: none;
+                        color: $colorGray;
+                        padding-right: 10px;
+                        
+                        @include transition(all, 0.2s, ease);
+                        
+                        &:hover {
+                            background: $colorBlue;
+                            color: #f5f5f5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.menuOpened {
+    width: 17%;
+
+    #ulMenu {
+        background: $colorGray;
+        list-style: none;
+        width: 100%;
+        padding-left: 0;
+
+        .itemMenuClose,
+        .itemMenuOpen {
+            .itemMenuSpan {
+                &:after {
+                    content: '\f107';
+                    font: 2.2em FontAwesome;
+                    color: $colorLightGray;
+                    position: absolute;
+                    right: 10px;
+                    top: 0;
+                    
+                    @include transition(all, 200ms, linear);
+                }
+            }
+            .subMenuItems {
+                height: 0;
+            }
+        }
+        .itemMenuOpen {
+            .itemMenuSpan {
+                &:after {
+                    @include transform(rotate(180deg));
+                }
+            }
+            .subMenuItems {
+                height: 100%;
+            }
+        }
+        .itemMenu,
+        .itemMenuActive {
+            box-sizing: border-box;
+            background: $colorGray;
+            position: relative;
+            top: 0;
+            left: 0;
+            display: block;
+            font: 1.5em Calibri, san-serif;
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+            line-height: 40px;
+            
+            #menuHome {
+                box-sizing: border-box;
+                font: 1.5em Calibri, san-serif;
+                color: $colorLightGray;
+                text-decoration: none;
+                height: 50px;
+                width: 100%;
+                display: block;
+                
+                #menuSpan {
+                    box-sizing: border-box;
+                    height: 100%;
+                    width: 100%;
+                    cursor: pointer;
+                    padding: 0 0 0 50px;
+                    line-height: 50px;
+                    display: block;
+                }
+            }
+            &:before {
+                position: relative;
+                font-family: FontAwesome;
+                color: $colorLightGray;
+                float: left;
+                
+                @include transition(all, 200ms, linear);
+            }
+            &:nth-of-type(1) {
+                &:before {
+                    content: '\f0e4';
+                    font-size: 1.5em;
+                    top: 3px;
+                    left: 15px;
+                }
+            }
+            &:nth-of-type(2) {
+                &:before {
+                    content: '\f09e';
+                    font-size: 1.5em;
+                    top: 0px;
+                    left: 17px;
+                }
+            }
+            &:nth-of-type(3) {
+                &:before {
+                    content: '\f007';
+                    font-size: 1.5em;
+                    top: 0px;
+                    left: 16px;
+                }
+            }
+            &:nth-of-type(4) {
+                &:before {
+                    content: '\f008';
+                    font-size: 1.5em;
+                    top: 0px;
+                    left: 14px;
+                }
+            }
+            &:nth-of-type(5) {
+                &:before {
+                    content: '\f1c8';
+                    font-size: 1.5em;
+                    top: 0px;
+                    left: 16px;
+                }
+            }
+            .itemMenuSpan {
+                border-bottom: 1px solid #565656;
+                box-sizing: border-box;
+                display: block;
+                height: 100%;
+                width: 100%;
+                cursor: pointer;
+                padding: 0 0 0 50px;
+            }
+            .subMenuItems {
+                background: #565656 url($imageDir + 'menuSubIndicator.png') repeat-y 15px 0;
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 100%;
+                list-style: none;
+                overflow: hidden;
+                
+                //@include transition(height, 300ms, linear);
+                
+                .subMenuItem {
+                    position: relative;
+                    top: 0;
+                    width: 100%;
+                    height: 40px;
+                    
+                    .allMenus {
+                        text-decoration: none;
+                        display: block;
+                        height: 100%;
+                        width: 100%;
+                        
+                        .menuSpan {
+                            display: block;
+                            height: 100%;
+                            line-height: 38px;
+                            width: 100%;
+                            cursor: pointer;
+                            padding: 0 0 0 60px;
+                            color: #bdbdbd;
+                                
+                            @include transition(all, 200ms, linear);
+                            
+                            &:hover {
+                                color: #ffffff;
+                            }
+                        }
+                        .menuSpanSelected {
+                            display: block;
+                            height: 100%;
+                            line-height: 38px;
+                            width: 100%;
+                            cursor: pointer;
+                            padding: 0 0 0 60px;
+                        }
+                    }
+                }
+            }
+        }
+        .itemMenu {
+            #menuHome {
+                border-left: 3px solid transparent;
+                
+                @include transition(all, 200ms, linear);
+                
+                &:hover {
+                    border-left: 3px solid $colorBlue;
+                }
+                #menuSpan {
+                    color: #bdbdbd;
+                    
+                    @include transition(all, 200ms, linear);
+                
+                    &:hover {
+                        color: #ffffff;
+                    }
+                }
+            }
+            .itemMenuSpan {
+                border-left: 3px solid transparent;
+                color: #bdbdbd;
+                
+                @include transition(all, 200ms, linear);
+                
+                &:hover {
+                    border-left: 3px solid $colorBlue;
+                    color: #ffffff;
+                }
+            }
+        }
+        .itemMenuActive {
+            &:before {
+                color: #ffffff;
+            }
+            #menuHome {
+                border-left: 3px solid $colorBlue;
+                
+                #menuSpan {
+                    color: #ffffff;
+                }
+            }
+            .itemMenuSpan {
+                border-left: 3px solid $colorBlue;
+                color: #ffffff;
+                
+                @include transition(all, 200ms, linear);
+                
+                &:after {
+                    color: #ffffff;
+                }
+            }
+            .subMenuItems{
+                .subMenuItem {
+                    .allMenus {
+                        .menuSpanSelected {
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.menuClosed {
+    width: 50px;
+
+    #ulMenu {
+        position: relative;
+        float: right;
+    }
+}
+.menuOpened,
+.menuClosed {
+    box-sizing: border-box;
+    background: $colorGray;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    float: left;
+    padding-top: 60px;
+    z-index: 99;
+    overflow-y: auto;
+
+    #ulMenu {
+        
+    }
+}
+.bodyMenuOpened {
+    width: 83%;
+}
+.bodyMenuClosed {
+    width: calc(100% - 50px);
+}
+
+.interface {
+    box-shadow: -5px 0 3px rgba(0,0,0,.6);
+    position: relative;
+    top: 50px;
+    right: 0;
+    float: right;
+    z-index: 100;
+    padding-bottom: 50px;
+
+    @include index();
+
+    @include addInterface();
+
+    @include managerInterface();
+}
+
+#footer {
+    border-top: 1px solid $colorLightGray;
+    background: #ffffff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    z-index: 100;
+    
+    #footerCopy {
+        position: absolute;
+        right: 10px;
+        bottom: 6px;
+        
+        #spanCopy {
+            font: 1.5em Calibri, san-serif;
+            color: $colorGray;
+        }
+    }
+}

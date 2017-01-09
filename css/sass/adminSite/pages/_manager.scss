@@ -1,0 +1,405 @@
+@mixin managerInterface() {
+	@include pageAddress();
+	
+	#managerOptions {
+        position: relative;
+        top: 20px;
+        height: 50px;
+        width: 100%;
+        
+        .managerLink,
+        #advancedClose {
+            box-sizing: border-box;
+            background: $colorBlue;
+            border-radius: 3px;
+            position: relative;
+            float: right;
+            top: 0;
+            height: 40px;
+            width: auto;
+            font: 2em Calibri, sans-serif;
+            color: $colorLightGray;
+            text-decoration: none;
+            padding: 5px;
+            
+            &:after {
+                top: 3px;
+                left: 3px;
+                position: relative;
+                font-family: FontAwesome;
+                color: $colorLightGray;
+            }
+        }
+        .managerLink {
+            right: 20px;
+            
+            &:after {
+                content: '\f067';
+                font-size: 1em;
+            }
+        }
+        #advancedClose {
+            right: 10px;
+            cursor: pointer;
+            line-height: 20px;
+            
+            &:after {
+                content: '\f107';
+                font-size: 1.5em;
+                font-weight: bold;
+                position: relative;
+                float: right;
+                right: 0;
+                top: 0;
+                
+                @include transition(all, 300ms, linear);
+            }
+        }
+        .searchAdvancedClose {
+            border: 3px solid transparent;
+        }
+        .searchAdvancedOpen {
+            border: 3px solid rgba(0,0,0,0.5);
+            
+            &:after {
+                @include transform(rotate(180deg));
+            }
+        }
+    }
+    #advancedSearchDiv {
+        position: relative;
+        top: 30px;
+        overflow: hidden;
+        
+        @include transition(height, 300ms, linear);
+    }
+    .advancedSearchHide {
+        height: 0;
+    }
+    .advancedSearchShow {
+        height: 200px;
+    }
+    #usersManagerInterface {
+        box-shadow: -5px 0 3px rgba(0,0,0,0.6);
+        position: relative;
+        top: 50px;
+        right: 0;
+        float: right;
+        min-height: 600px;
+        width: 83%;
+        z-index: 100;
+        padding-bottom: 50px;
+    }
+	
+	#showContents {
+		width: 100%;
+		margin-top: 30px;
+
+		#contentTotal {
+			font-size: 2em;
+			color: $colorGray;
+			font-weight: bold;
+			padding-left: 1%;
+		}
+		#selectDiv {
+			position: relative;
+			float: left;
+			top: 10px;
+			left: 1%;
+			height: 30px;
+			width: 140px;
+
+			#selectForm {
+				position: relative;
+				height: 100%;
+				width: 100%;
+
+				select {
+					position: relative;
+					height: 100%;
+					width: 60px;
+				}
+			}
+		}
+		.indexPageDiv {
+			position: relative;
+			float: right;
+			top: 10px;
+			right: 1%;
+			height: 60px;
+			text-align: right;
+			overflow: hidden;
+
+			#pageInfo {
+				position: relative;
+				float: left;
+				margin-right: 30px;
+				line-height: 30px;
+			}
+			#buttonDiv {
+				position: relative;
+				float: right;
+
+				.pageInactive {
+					background: $colorLightGray;
+					
+					.pageSpan {
+						color: $colorGray;
+					}
+				}
+				.pageActive {
+					background: $colorBlue;
+					
+					.pageSpan {
+						color: $colorLightGray;
+					}
+				}
+				.pageButton {
+					border-radius: 50%;
+					position: relative;
+					top: 0;
+					left: 0;
+					height: 30px;
+					width: 30px;
+					display: inline-block;
+					text-align: center;
+					
+					.pageSpan {
+						position: relative;
+						top: 0;
+						left: 0;
+						outline: none;
+						display: block;
+						height: 100%;
+						width: 100%;
+						font: 2em Calibri, sans-serif;
+						text-decoration: none;
+						line-height: 29px;
+					}
+				}
+			}
+		}
+		#contentTable {
+			box-sizing: border-box;
+			position: relative;
+			outline: 1px solid $colorLightGray;
+			width: 98%;
+			height: 100%;
+			margin: 50px auto 0 auto;
+			padding: 3px;
+			
+			#tableHead {
+				position: relative;
+				display: block;
+				height: 40px;
+				width: 100%;
+				
+				#headRow {
+					background: $colorLightGray;
+					position: absolute;
+					height: 100%;
+					width: 100%;
+					float: left;
+					padding: 3px 0;
+					
+					#contentId,
+					#contentDetails,
+					#contentOptions {
+						float: left;
+
+						.contentSpan {
+							display: block;
+							height: 100%;
+							width: 100%;
+							font-size: 2em;
+							color: #484848;
+							line-height: 36px;
+							text-align: center;
+							font-weight: bold;
+						}
+					}
+					#contentId {
+						box-sizing: border-box;
+						position: relative;
+						height: 100%;
+						width: 15%;
+					}
+					#contentDetails {
+						box-sizing: border-box;
+						position: relative;
+						height: 100%;
+						width: 70%;
+					}
+					#contentOptions {
+						box-sizing: border-box;
+						position: relative;
+						height: 100%;
+						width: 15%;
+					}
+				}
+			}
+			#tableBody {
+				position: relative;
+				display: block;
+				height: 100%;
+				width: 100%;
+
+				#contentRowEdit,
+				.contentRow {
+					position: relative;
+					box-sizing: border-box;
+					border-bottom: 1px solid $colorLightGray;
+					background: #ffffff;
+					display: block;
+					width: 100%;
+					padding: 10px 0 10px 0;
+				}
+				#contentRowEdit {
+					position: relative;
+					width: 100%;
+					height: 100%;
+					min-height: 200px;
+					padding-bottom: 30px;
+
+					#closeEditDiv {
+						position: absolute;
+						right: 10px;
+						height: 40px;
+						width: 40px;
+						cursor: pointer;
+
+						a {
+							position: relative;
+							height: 100%;
+							width: 100%;
+							display: block;
+							text-decoration: none;
+
+							&:after {
+								content: '\e900';
+								font: 4em PlayerIcon;
+								color: $colorGray;
+							}
+						}
+					}
+
+					@include addContent(0);
+				}
+				.contentRow {
+					height: 60px;
+					
+					.contentId,
+					.contentDetails,
+					.contentOptions {
+						.contentSpan {
+							display: block;
+							height: 100%;
+							width: 100%;
+							font-size: 1.6em;
+							color: #484848;
+							line-height: 40px;
+						}
+					}
+					.contentId {
+						box-sizing: border-box;
+						border-right: 1px solid $colorLightGray;
+						position: relative;
+						top: 0;
+						left: 0;
+						float: left;
+						height: 40px;
+						width: 15%;
+						text-align: center;
+					}
+					.contentDetails {
+						box-sizing: border-box;
+						border-right: 1px solid $colorLightGray;
+						position: relative;
+						top: 0;
+						left: 0;
+						float: left;
+						height: 40px;
+						width: 70%;
+						text-indent: 20px;
+					}
+					.contentOptions {
+						box-sizing: border-box;
+						position: relative;
+						top: 0;
+						left: 0;
+						float: left;
+						width: 15%;
+						height: 40px;
+						
+						.contentEdit {
+							box-sizing: border-box;
+							border-radius: 3px;
+							background: $colorBlue;
+							width: 100px;
+							height: 100%;
+							margin: 0 auto;
+							padding: 3px;
+							
+							.contentLink {
+								border-right: 1px solid #f1f1f1;
+								float: left;
+								width: 70%;
+								height: 100%;
+								text-decoration: none;
+
+								&:before {
+									content: '\f044';
+									font: 1.2em FontAwesome;
+									color: $colorWhite;
+									position: relative;
+									top: 12px;
+									left: 10px;
+									opacity: 0;
+								}
+								&:hover {
+									color: #f1f1f1;
+
+									&:before {
+										opacity: 1;
+									}
+									span {
+										text-decoration: underline;
+									}
+								}
+								span {
+									position: relative;
+									text-align: center;
+									line-height: 32px;
+									color: #f1f1f1;
+									font-size: 1.6em;
+									display: block;
+									width: 80%;
+									height: 100%;
+									float: right;
+								}
+							}
+							.moreOptions {
+								position: relative;
+								float: right;
+								right: 0;
+								top: 0;
+								width: 25%;
+								height: 100%;
+								cursor: pointer;
+
+								&:after {
+									content: '\f142';
+									font: 2em FontAwesome;
+									color: $colorWhite;
+									position: relative;
+									top: 7px;
+									left: 8px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

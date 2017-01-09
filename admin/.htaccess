@@ -1,0 +1,68 @@
+RewriteEngine on
+
+#Admin home Page
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^home()$ index.php [NC,L]
+
+#Admin feedback Page
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^feedback/manager()$ feedbackManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^feedback/gerenciar()$ feedbackManager.php [NC,L]
+
+#Admin User Pages
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^users/manager()$ usersManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^usuarios/gerenciar()$ usersManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^users/add()$ usersAdd.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^usuarios/adicionar()$ usersAdd.php [NC,L]
+
+#Admin Movies Pages
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^movies/manager()$ moviesManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^filmes/gerenciar()$ moviesManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^movies/add()$ moviesAdd.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^filmes/adicionar()$ moviesAdd.php [NC,L]
+
+#Admin Series Pages
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^series/manager()$ seriesManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^series/gerenciar()$ seriesManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^episodes/manager()$ episodesManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^episodios/gerenciar()$ episodesManager.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^series/add()$ seriesAdd.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^series/adicionar()$ seriesAdd.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^episodes/add()$ episodesAdd.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^episodios/adicionar()$ episodesAdd.php [NC,L]

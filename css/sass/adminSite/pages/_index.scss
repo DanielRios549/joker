@@ -1,0 +1,72 @@
+@mixin index() {	
+    @include pageAddress();
+    
+    #tabHeader{
+        box-sizing: border-box;
+        background: transparent;
+        position: relative;
+        top: 10px;
+        left: 0;
+        height: 40px;
+        width: 95%;
+        margin: 0 auto;
+        z-index: 98;
+            
+        .tabs {
+            display: block;
+            width: 100%;
+            height: 100%;
+            
+            .tab,
+            .tabSelected {
+                background: transparent;
+                width: 80px;
+                height: 30px;
+                text-align: center;
+                padding: 5px 0 0 0;
+                cursor: pointer;
+                float: left;
+                
+                @include transition(border, 300ms, ease);
+                
+                &:hover {
+                    border-bottom: 4px solid $colorBlue;
+                }
+                span {
+                    font-size: 1.5em;
+                    color: $colorGray;
+                }
+            }
+            .tab {
+                border-bottom: 4px solid transparent;
+            }
+            .tabSelected {
+                border-bottom: 4px solid $colorBlue;
+            }
+        }
+    }
+    #tabContents {
+        background: transparent;
+        box-sizing: border-box;
+        position: relative;
+        top: 50px;
+        width: 95%;
+        height: 400px;
+        margin: 0 auto;
+        
+        .contentShow,
+        .contentHide {
+            height: 100%;
+            width: 100%;
+            color: $colorGray;
+        }
+        .contentShow {
+            opacity: 1;
+            display: block;
+        }
+        .contentHide {
+            opacity: 0;
+            display: none;
+        }
+    }
+}

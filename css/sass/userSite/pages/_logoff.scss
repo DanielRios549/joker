@@ -1,0 +1,13 @@
+@mixin logoff() {
+	.logoffText {
+		border-radius: 5px;
+		background: $colorBlue;
+		position: relative;
+		top: 200px;
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+		font: 4em Calibri, sans-serif;
+		color: $colorLightGray;
+	}
+}

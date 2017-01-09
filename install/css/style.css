@@ -1,0 +1,44 @@
+/* 
+ ***************************************************************
+ | Copyright (c) 2015-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+
+@Charset "UTF-8";
+@font-face {
+  font-family: Arial;
+  src: url("../../fonts/arial.ttf");
+}
+@font-face {
+  font-family: Bubblegum;
+  src: url("../../fonts/bubblegum-sans-regular.otf");
+}
+@font-face {
+  font-family: Calibri;
+  src: url("../../fonts/calibri.ttf");
+}
+@font-face {
+  font-family: CalibriItatic;
+  src: url("../../fonts/calibrii.ttf");
+}
+@font-face {
+  font-family: Agency;
+  src: url("../../fonts/agencyb.ttf");
+}
+::selection {
+  background-color: #d6d6d6;
+  color: #2cafec;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #2cafec;
+}
+body {
+  font-size: 62.5%;
+  background-color: #ffffff;
+  margin: 0 0 0 0;
+}

@@ -1,0 +1,48 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" . $base . "404");
+	}
+    elseif($adminCheck == true) {
+?>
+<script lang="text/javascript">
+	$(document).ready(function() {
+		closeMessage('.userError', '#errorMsgClose');
+
+		showSelectedFile('.selectDivFile');
+	});
+</script>
+<section class="interface addInterface bodyMenuOpened">
+	<div id="pageAddress"><span class="pageLink"><a href="<?php echo $baseUrl . 'admin';?>"><?php echo langCode('admin_home');?></a></span><span class="pageLink"><?php echo langCode('episodes');?></span><span id="activePage"><?php echo langCode('admin_add');?></span></div>
+    <?php if(isset($_GET['go'])) {?>
+    <div id="<?php echo $showError;?>" class="userError">
+        <div id="errorMsg">
+            <span id="spanUserError"><?php echo $errorMsg?></span>
+        </div>
+        <div id="errorMsgClose"></div>
+    </div>
+    <?php }?>
+    <form method="post" action="?go=create" class="formAdd" enctype="multipart/form-data">
+        <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Select the serie and the visibility';?></legend>
+            <?php require 'episodeSelect.html';?>
+        </fieldset>
+        <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Select the serie and episode numbers';?></legend>
+            <label for="seasonNumber">Season</label>
+            <input type="number" name="seasonNumber" min="1" max="30"/>
+
+            <label for="episodeNumber">Episode</label>
+            <input type="number" name="episodeNumber" min="1" max="200"/>
+        </fieldset>
+        <?php require 'episodesForm.html';?>
+        <fieldset class="formFieldset">
+            <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add Episode';?></span></button>
+        </fieldset>
+    </form>
+</section>
+<?php }?>

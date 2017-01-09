@@ -1,0 +1,27 @@
+<!-- Admin Users Manager -->
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+	elseif($adminCheck == true) {
+?>
+<script lang="text/javascript">
+	//User tabs
+    $(document).ready(function() {
+		//Advanced Search
+    
+		advancedOptions($("#managerOptions"), $("#advancedSearchDiv"));
+	});
+</script>
+<section class="interface managerInterface bodyMenuOpened">
+	<div id="pageAddress"><span class="pageLink"><a href="<?php echo $baseUrl . 'admin';?>"><?php echo langCode('admin_home');?></a></span><span class="pageLink"><?php echo langCode('admin_users');?></span><span id="activePage"><?php echo langCode('admin_manager');?></span></div>
+	<?php require 'showTable.html';?>
+</section>
+<?php }?>

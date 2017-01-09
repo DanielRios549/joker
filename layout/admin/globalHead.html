@@ -1,0 +1,33 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+	
+	//Style
+	
+	$styleFile = 'adminStyle.css';
+	$scriptFile = 'adminScript.js';
+	$libraryFile = 'jquery.js';
+	
+	if($adminCheck == true) {
+?>
+<!DOCTYPE html>
+<html lang="<?php echo langCode('lang');?>">
+<head>
+	<meta charset="<?php echo langCode('charset');?>"/>
+	<meta name="description" content="Atomo.com, seu mundo de informação da Atomo."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<title><?php echo $titleFile . @$titleComplete;?></title>
+	<link rel="icon" href="<?php echo $imageDir . 'favicon.png';?>"/>
+	<link rel="stylesheet" href="<?php echo $styleDir . $styleFile;?>"/>
+	<script lang="text/javascript" src="<?php echo $scriptDir . 'libraries/' . $libraryFile;?>"></script>
+    <?php echo '<script lang="text/javascript">var baseUrl = "' . $baseUrl . '";</script>';?>
+</head>
+<?php }?>

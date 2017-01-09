@@ -1,0 +1,93 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+    if($adminCheck == true) {
+?>
+<?php if(isset($_GET['go'])) {?>
+<div id="<?php echo $showError;?>" class="userError">
+    <div id="errorMsg">
+        <span id="spanUserError"><?php echo $errorMsg?></span>
+    </div>
+    <div id="errorMsgClose"></div>
+</div>
+<?php }?>
+<form method="post" action="?go=create" class="formAdd" enctype="multipart/form-data">
+    <fieldset class="formFieldset">
+        <?php require $selectFormFile;?>
+    </fieldset>
+    <?php if(MENU_GROUP == 'users') {?>
+    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this user';?></legend>
+        <div class="selectDivFile">
+            <input type="file" name="userImage" class="fileInput inputImage" accept="image/jpeg" title="Add a image"/>
+        </div>
+        <div class="selectDivFile">
+            <input type="file" name="userCoverImage" class="fileInput inputImage" accept="image/jpeg" title="Add a cover image"/>
+        </div>
+    </fieldset>
+    <fieldset id="userFieldset" class="formFieldset">
+        <input type="text" name="firstName" id="firstName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_first_name_placeholder');?>" required/>
+        <label for="firstName" id="firstNameLabel" class="inputLabel"></label>
+        
+        <input type="text" name="lastName" id="lastName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_last_name_placeholder');?>" required/>
+        <label for="lastName" id="lastNameLabel" class="inputLabel"></label>
+        
+        <input type="text" name="userName" id="userName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_username_placeholder');?>" required/>
+        <label for="userName" id="siginUserNameLabel" class="inputLabel"></label>
+        
+        <input type="email" name="email" id="email" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_email_placeholder');?>" required/>
+        <label for="email" id="emailLabel" class="inputLabel"></label>
+        
+        <input type="password" name="password" id="password" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder');?>" required/>
+        <label for="password" id="passwordLabel" class="inputLabel"></label>
+        
+        <input type="password" name="password2" id="password2" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder_2');?>" required/>
+        <label for="password2" id="passwordLabel2" class="inputLabel"></label>
+        
+        <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo langCode('sigin_submit');?></span></button>
+    </fieldset>
+    <?php } else {?>
+    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this content';?></legend>
+        <div class="selectDivFile">
+            <input type="file" name="contentImage" class="fileInput inputImage" accept="image/jpeg" title="Add an image"/>
+        </div>
+        <div class="selectDivFile">
+            <input type="file" name="backImage" class="fileInput inputImage" accept="image/jpeg" title="Add a background image"/>
+        </div>
+        <?php if(THIS_PAGE == 'admin_movies_add'){?>
+        <div class="selectDivFile">
+            <input type="file" name="contentVideo" class="fileInput inputVideo" accept="video/mp4" title="Add a video"/>
+        </div>
+        <?php }?>
+    </fieldset>
+    <?php if(THIS_PAGE == 'admin_series_add') {require 'episodesForm.html';}?>
+    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Title and Synopsis for this content';?></legend>
+        <input type="text" name="producerName" id="producerName" class="inputText" placeholder="<?php echo 'Producer Name';?>" required/>
+        <label for="producerName" id="producerNameLabel" class="inputLabel"></label>
+        
+        <input type="text" name="directorName" id="directorName" class="inputText" placeholder="<?php echo 'Director Name';?>" required/>
+        <label for="directorName" id="directorNameLabel" class="inputLabel"></label>
+        
+        <input type="text" name="date" id="date" class="inputText" placeholder="<?php echo 'Date';?>" required/>
+        <label for="date" id="dateLabel" class="inputLabel"></label>
+        
+        <input type="text" name="titleEn" id="titleEn" class="inputText" placeholder="<?php echo 'English Name';?>" required/>
+        <label for="titleEn" id="titleEnLabel" class="inputLabel"></label>
+        
+        <input type="text" name="synEn" id="synEn" class="inputText" placeholder="<?php echo 'English Synopsis';?>" required/>
+        <label for="synEn" id="synEnLabel" class="inputLabel"></label>
+
+        <input type="text" name="titlePt" id="titlePt" class="inputText" placeholder="<?php echo 'English Name';?>" required/>
+        <label for="titlePt" id="titlePtLabel" class="inputLabel"></label>
+        
+        <input type="text" name="synPt" id="synPt" class="inputText" placeholder="<?php echo 'English Synopsis';?>" required/>
+        <label for="synPt" id="synPtLabel" class="inputLabel"></label>
+        
+        <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add Content';?></span></button>
+    </fieldset>
+    <?php }?>
+</form>
+<?php }?>

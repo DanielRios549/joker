@@ -1,0 +1,57 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+    
+    if($loginCheck == true) {
+        if($userStyleMode == 'day') {
+            $userStyle = 'styleDay.css';
+        }
+        elseif($userStyleMode == 'night') {
+            $userStyle = 'styleNight.css';
+        }
+    }
+    else {
+        $userStyle = 'styleDay.css';
+    }
+?>
+<!DOCTYPE html>
+<html lang="<?php echo langCode('lang');?>">
+<head>
+	<meta charset="<?php echo langCode('charset');?>"/>
+    <title><?php echo $titleFile;?></title>
+	<meta name="description" content="<?php echo langCode('meta_description');?>"/>
+    <meta name="keywords" content="<?php echo 'streamovie'. ',' . langCode('watch_link') . ', ' . strtolower(langCode('movies'));?>"/>
+	
+    <meta property="og:site_name" content="StreaMovie"/>
+    <meta property="og:title" content="<?php echo $titleFile;?>"/>
+    <meta property="og:description" content="<?php echo langCode('meta_description');?>"/>
+    <meta property="og:image" content="<?php echo $imageDir . 'streamovie.png';?>"/>
+    <meta property="og:url" content="<?php echo $thisUrl;?>"/>
+    
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:title" content="<?php echo $titleFile;?>">
+    <meta name="twitter:description" content="<?php echo langCode('meta_description');?>">
+    <meta name="twitter:image" content="<?php echo $imageDir . 'streamovie.png';?>">
+    <meta name="twitter:url" content="<?php echo $thisUrl;?>">
+    
+    <meta itemprop="name" content="<?php echo $titleFile;?>">
+    <meta itemprop="description" content="<?php echo langCode('meta_description');?>">
+    <meta itemprop="image" content="<?php echo $imageDir . 'streamovie.png';?>">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="icon" href="<?php echo $imageDir . 'favicon.png';?>"/>
+    <link rel="stylesheet" id="styleMode" href="<?php echo $styleDir . $userStyle;?>"/>
+	<link rel="stylesheet" href="<?php echo $styleDir . 'userStyle.css';?>"/>
+    <script type="text/javascript" src="<?php echo $scriptDir . 'libraries/jquery.js';?>"></script>
+    <?php //<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>?>
+    <?php echo '<script lang="text/javascript">var baseUrl = "' . $baseUrl . '";</script>';?>
+</head>
+<body>

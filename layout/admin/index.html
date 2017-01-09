@@ -1,0 +1,46 @@
+<!-- Admin Index -->
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+	if($adminCheck == true) {
+?>
+<script lang="text/javascript">
+    $(document).ready(function() {
+		//User tabs
+		tabSelect();
+	});
+</script>
+<section class="interface bodyMenuOpened">
+	<pre style="font-size: 2.2em;"><?php //print_r($_SESSION);?></pre>
+	<div id="tabHeader" class="tabHeader">
+		<div class="tabs">
+			<div class="tab"><span><?php echo langCode('about');?></span></div>
+			<div class="tab tabSelected"><span><?php echo langCode('accounts');?></span></div>
+			<div class="tab"><span><?php echo langCode('movies');?></span></div>
+			<div class="tab"><span><?php echo langCode('series');?></span></div>
+		</div>
+	</div>
+	<div id="tabContents">
+		<div class="contentHide">
+			Conteúdo da aba 1
+		</div>
+		<div class="contentShow">
+			Conteúdo da aba 2
+		</div>
+		<div class="contentHide">
+			Conteúdo da aba 3
+		</div>
+		<div class="contentHide">
+			Conteúdo da aba 4
+		</div>
+	</div>
+</section>
+<?php }?>

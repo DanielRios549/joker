@@ -1,0 +1,194 @@
+<!-- Title -->
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+if($contentVerify -> rowCount() == 1) {
+?>
+<script lang="text/javascript">
+	$(window).on('resize', function() {
+		sliderSroll('#episodeDiv', '#episodeDiv .contentGroupScroll');
+	});
+	$(window).ready(function() {
+		tabSelect();
+
+		//Scroll contentDiv
+	
+		sliderSroll('#episodeDiv', '#episodeDiv .contentGroupScroll');
+		hideReply(".commentGroup");
+		episodeSelect("#seasonBrowse");
+		
+		$('#contentSortcuts').on('click', '.addWatchList', addWatchList);
+		$('#contentSortcuts').on('click', '.removeWatchList', removeWatchList);
+
+		$('#commentFormDiv').on('click', '#commentSubmit', makeComment);
+		$('#commentOptionsDiv').on('click', '#buttonEdit', editComment);
+		$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
+
+		disableEnable();
+	});
+</script>
+<section class="interface">
+	<div id="imageBack">
+		<img src="<?php echo $imageBackground;?>"/>
+	</div>
+	<div id="titleContent">
+		<div id="divLeft">
+			<div id="contentImage">
+				<figure class="contentPlayFigure">
+					<img src="<?php echo $imageContent;?>"/>
+				</figure>
+			</div>
+		</div>
+		<div id="divRight">
+			<h1 id="infoHeader"><?php echo @CONTENT_TITLE;?></h1>
+			<div id="tabHeader">
+				<div class="tabSelected"><span><?php echo langCode('about');?></span></div>
+				<?php if($contentType == 'serie') {?>
+				<div class="tab"><span><?php echo langCode('episodes');?></span></div>
+				<?php }?>
+				<div class="tab"><span><?php echo ucfirst(langCode('comments'));?></span></div>
+				<div class="tab"><span><?php echo langCode('related');?></span></div>
+			</div>
+			<div id="tabContents">
+				<div class="contentShow">
+					<div id="contentInfo">
+						<div id="infoGeneral">
+							<span id="<?php echo $ageStyle;?>" class="infoSpan"><?php echo $contentAge;?></span>
+							<span class="infoSpan"><?php echo $contentTime;?></span>
+							<span class="infoSpan"><?php echo $contentProducer;?></span>
+							<a href="<?php echo getLink('category', $contentData['category']);?>" class="infoLink"><?php echo $contentCategory;?></a>
+							<span class="infoSpan"><?php echo $contentYear;?></span>
+						</div>
+					</div>
+					<div id="contentSynopsis">
+						<span id="synopsisSpan"><?php echo $contentSynopsis;?></span>
+					</div>
+					<div id="contentSortcuts">
+						<?php if($contentType == 'movie') {?>
+						<div id="startBtn" class="contentBtn"><a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId?>"><span class="btnSpan"><?php echo langCode('play');?></span></a></div>
+						<?php } elseif($contentType == 'serie') {?>
+						<div id="startBtn" class="contentBtn"><a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId . '&e=' . $firstEpisode['episode_id'];?>"><span class="btnSpan"><?php echo langCode('play');?></span></a></div>
+						<?php } if(@$adminCheck == true) {?>
+						<div id="playTrayler" class="contentBtn"><span class="btnSpan"><?php echo langCode('trailer');?></span></div>
+						<?php }?>
+						<div id="actionBtn" data-id="<?php echo $contentData['content_id'];?>" class="contentBtn <?php echo $watchList;?>"><span class="btnSpan"><?php echo langCode('watch_list');?></span></div>
+					</div>
+				</div>
+				<?php if($contentType == 'serie') {?>
+				<div class="contentHide">
+					<div id="seasonBrowse">
+						<div id="seasonDiv">
+							<div id="seasonHeader">
+								<span id="seasonSpan"><?php echo langCode('season');?></span>
+							</div>
+							<div id="seasonSelect" class="seasonSelect">
+								<?php foreach($episodesList as $getEpisodes => $key){if($getEpisodes < 2){$seasonDisplay = 'Show';}else{$seasonDisplay = 'Hide';}if($contentTime == 1) {?>
+								<span id="seasonSimple"><?php echo $getEpisodes;?></span>
+								<?php } else {?>
+								<div id="season<?php echo $getEpisodes;?>" class="season<?php echo $seasonDisplay;?>">
+									<span class="seasonSpan"><?php echo $getEpisodes;?></span>
+								</div>
+								<?php }}?>
+							</div>
+						</div>
+						<div id="episodeDiv">
+							<?php foreach($episodesList as $getEpisodes => $key){if($getEpisodes < 2){$seasonGroupDisplay = 'Show';}else{$seasonGroupDisplay = 'Hide';}?>
+								<div id="seasonGroup<?php echo $getEpisodes;?>" class="contentGroupScroll seasonGroup<?php echo $seasonGroupDisplay;?>">
+									<?php foreach($key as $key => $episode){$episodeDivisor = strpos($episode[$cookieLang], "|");?>
+									<div class="episode<?php echo $episode['episode'];?> episode contentScroll">
+										<figure class="episodeFigure">
+											<img src="<?php echo $contentFolder . $key['content_id'] . '/season' . $getEpisodes . '/episode' . $episode['episode'] . '/image.jpg';?>"/>
+											<a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId . '&e=' . $episode['episode_id'];?>">
+												<img src="<?php echo $contentFolder . '/season' . $getEpisodes . '/episode' . $episode['episode'] . '/image.jpg';?>"/>
+												<figcaption>
+													
+												</figcaption>
+											</a>
+										</figure>
+										<span class="episodeNumber"><?php echo $episode['episode'];?></span>
+										<h2 class="episodeTitle"><?php echo substr($episode[$cookieLang], 0, $episodeDivisor);?></h2>
+										<p class="episodeSynopsis"><?php echo substr($episode[$cookieLang], $episodeDivisor + 1);?><p>
+									</div>
+									<?php }?>
+								</div>
+							<?php }?>
+							<div class="previousHide"></div>
+							<div class="nextHide"></div>
+						</div>
+					</div>
+				</div>
+				<?php }?>
+				<div class="contentHide">
+					<div id="commentsDiv">
+						<?php if($userComment == false) {?>
+						<div id="commentFormDiv">
+							<textarea cols="10" rows="3" max-cols="10" id="commentInput" placeholder="Leave your comment"></textarea>
+							<div id="buttonsDiv">
+								<button id="commentSubmit" data-userid="<?php echo $userId;?>" data-id="<?php echo $contentData['content_id'];?>" disabled="disabled">Comentar</button>
+							</div>
+						</div>
+						<?php } elseif($userComment == true) {?>
+						<div id="userComment">
+							<img src="<?php echo getLink('userImage', $userId);?>"/>
+							<div id="rightDiv">
+								<div id="commentSpanDiv">
+									<span id="commentSpan"><?php echo $showUserComment['comment'];?></span>
+								</div>
+								<div id="commentOptionsDiv">
+									<?php if($adminCheck == true) {?>
+									<div id="buttonEdit" class="button" alt="Editar" data-id="<?php echo $contentData['content_id'];?>"></div>
+									<?php }?>
+									<div id="buttonDelete" class="button" data-userid="<?php echo $userId;?>" data-id="<?php echo $contentData['content_id'];?>"></div>
+								</div>
+							</div>
+						</div>
+						<?php } if($existsComments == true) { foreach($comments as $getComment => $key) {?>
+						<div class="commentGroup">
+							<div class="comment">
+								<div class="imageDiv">
+									<img src="<?php echo getLink('userImage', $key[0]['user_comment']);?>"/>
+								</div>
+								<div class="commentInfo">
+									<a href="<?php echo getLink('userProfile', $key[0]['user_comment']);?>" class="commentName"><?php echo $key[0]['comment_name'];?></a>
+									<span class="commentSpan"><?php echo $key[0]['comment'];?></span>
+								</div>
+							</div>
+							<?php $replyNumber = 0; foreach($key as $key => $reply) { if($reply['reply'] != '') {$replyNumber ++; if($replyNumber == 1) {?>
+							<div class="replyHide hide">
+								<span class="spanHide"><?php echo ucfirst(langCode('replies'));?></span>
+							</div>
+							<?php }?>
+							<div class="reply">
+								<div class="imageDiv">
+									<img src="<?php echo getLink('userImage', $reply['user_reply']);?>"/>
+								</div>
+								<div class="replyInfo">
+									<a href="<?php echo getLink('userProfile', $reply['user_reply']);?>" class="replyName"><?php echo $reply['reply_name'];?></a>
+									<span class="replySpan"><?php echo $reply['reply'];?></span>
+								</div>
+							</div>
+							<?php }}?>
+						</div>
+						<?php }} else {?>
+							Não há comentários.
+						<?php }?>
+					</div>
+				</div>
+				<div class="contentHide">
+					<div class="info">
+						<p class="alert"><?php echo langCode('coming_soon');?></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<?php }?>

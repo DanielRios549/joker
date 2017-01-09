@@ -1,0 +1,47 @@
+﻿/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ****************************************************************
+*/
+
+/*using on various styles.*/
+
+@mixin transition($t1, $t2, $t3) {
+	//element, duration, type
+
+	-webkit-transition: $t1 $t2 $t3;
+	-moz-transition: $t1 $t2 $t3;
+	-ms-transition: $t1 $t2 $t3;
+	transition: $t1 $t2 $t3;
+}
+
+/*using on various styles.*/
+
+@mixin transform($t1) {
+	//scale, rotate, translate3d, translateZ,translateX, etc...
+
+	-webkit-transform: $t1;
+	-moz-transform: $t1;
+	-ms-transform: $t1;
+	transform: $t1;
+}
+
+/*using on various styles.*/
+
+@mixin animation($t1, $t2, $t3, $t4, $t5) {
+	//name, duration, timing-function, iteration-count, direction
+
+	-webkit-animation: $t1 $t2 $t3 $t4 $t5;
+	-moz-animation: $t1 $t2 $t3 $t4 $t5;
+	-ms-animation: $t1 $t2 $t3 $t4 $t5;
+	animation: $t1 $t2 $t3 $t4 $t5;
+}
+
+/*using on various styles.*/
+
+@mixin flex() {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}

@@ -1,0 +1,96 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+?>
+<footer id="footer">
+	<div id="footerAtomo">
+		<div id="atomoLinks">
+			<a id="menuAbout" class="atomoLink" title="<?php echo langCode('about_hover');?>" href="<?php echo $atomoBaseUrl . langCode('about_link');?>" target="_blank">
+				<span class="atomoLinkSpan"><?php echo langCode('about');?></span>
+			</a>
+			<a id="menuAdvertise" class="atomoLink" title="<?php echo langCode('advertise_hover');?>" href="<?php echo $atomoBaseUrl . langCode('advertise_link');?>" target="_blank">
+				<span class="atomoLinkSpan"><?php echo langCode('advertise');?></span>
+			</a>
+			<a id="menuJobs" class="atomoLink" title="<?php echo langCode('jobs_hover');?>" href="<?php echo $atomoBaseUrl . langCode('jobs_link');?>" target="_blank">
+				<span class="atomoLinkSpan"><?php echo langCode('job');?></span>
+			</a>
+			<a id="menuContact" class="atomoLink" title="<?php echo langCode('contact_hover');?>" href="<?php echo $atomoBaseUrl . langCode('contact_link');?>" target="_blank">
+				<span class="atomoLinkSpan"><?php echo langCode('contact');?></span>
+			</a>
+		</div>
+	</div>
+	<?php if($adminCheck == true) {?>
+		<div id="footerAdmin">
+			<a id="adminLink" href="<?php echo $adminDir?>">
+				<span id="adminSpan"><?php echo 'Admin'?></span>
+			</a>
+		</div>
+	<?php } if($loginCheck == false) {?>
+	<div id="langChanger">
+		<div id="langForm">
+			<form method="post" action="">
+				<select name="langSelect" onchange="this.form.submit()">
+					<optgroup label="<?php echo langCode('langs');?>">
+						<option value="en_US"<?php echo $selectedEn;?>><span><?php echo langCode('en');?></span></option>
+						<option value="pt_BR"<?php echo $selectedPt;?>><span><?php echo langCode('pt');?></span></option>
+					</optgroup>
+				</select>
+			</form>
+		</div>
+		<div id="langDiv">
+			<ul id="langSelect" class="langSelectOff">
+				<li id="langSelected"><span><?php echo $setLang;?></span>
+					<ul id="langOptions">
+						<li class="langOption"><?php echo langCode('en');?></li>
+						<li class="langOption"><?php echo langCode('pt');?></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<?php }?>
+	<div id="footerImg">
+		<div id="footerImgCenter">
+			<a href="<?php echo $atomoBaseUrl;?>" id="imgLink" target="_blank">
+				<img src="<?php echo $imageDir . 'atomoLogoMedio.png'?>"/>
+			</a>
+		</div>
+	</div>
+	<div id="footerSocial">
+		<div id="socialLinks">
+			<a href="#" class="socialLink" target="_blank">
+				<span class="socialLinkSpan"><?php echo 'Facebook'?></span>
+			</a>
+			<a href="#" class="socialLink" target="_blank">
+				<span class="socialLinkSpan"><?php echo 'Twitter'?></span>
+			</a>
+			<a href="#" class="socialLink" target="_blank">
+				<span class="socialLinkSpan"><?php echo 'Google +'?></span>
+			</a>
+		</div>
+	</div>
+	<div id="footerCopy">
+		<span id="spanCopy"><?php echo '&copy Copyright 2015 - Atomo Inc. ' . langCode('footer_right');?></span>
+	</div>
+</footer>
+</body>
+
+<script type="text/javascript" src="<?php echo $scriptDir . 'userScript.js';?>"></script>
+<script type="text/javascript" src="<?php echo $scriptDir . 'userAjax.js';?>"></script>
+<?php /*if($loginCheck == true) {?>
+<script lang="text/javascript">
+	intervalCookieId = setInterval(secureLogoff, 500);
+	(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<?php }*/
+//<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script> 
+?>
+</html>

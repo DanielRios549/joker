@@ -1,0 +1,24 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+	if($adminCheck == true) {
+?>
+
+<footer id="footer">
+	<div id="footerCopy" class="paragrafoRodape">
+		<span id="spanCopy"><?php echo '&copy Copyright 2015 - Atomo Inc.' . ' ' . langCode('footer_right');?></span>
+	</div>
+</footer>
+<script type="text/javascript" src="<?php echo $scriptDir . 'userScript.js';?>"></script>
+<script lang="text/javascript" src="<?php echo $scriptDir . $scriptFile;?>"></script>
+</body>
+</html>
+<?php }?>

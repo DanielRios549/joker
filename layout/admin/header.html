@@ -1,0 +1,104 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+	if($adminCheck == true) {
+?>
+<body>
+<header id="header">
+	<div class="closeMenu"></div>
+	<div id="adminHome">
+		<a title="<?php echo langCode('admin_home_hover');?>" href="<?php echo $adminDir;?>"></a>
+	</div>
+	<div id="userHome">
+		<a title="<?php echo langCode('home_hover');?>" href="<?php echo $baseUrl;?>"></a>
+	</div>
+	<div id="adminUser">
+		<ul id="adminUserUl">
+			<li id="adminUserLi"><img src="<?php echo $_SESSION['image'];?>"/><span id="adminName"><?php echo $firstName;?></span>
+				<ul id="adminUserSub">
+					<li class="adminUserOption"><a href="<?php echo $baseUrl . langCode('settings_link');?>" class="adminUserSubLink"><?php echo langCode('settings');?></a></li>
+					<li class="adminUserOption"><a href="<?php echo $baseUrl . langCode('logoff_link');?>" class="adminUserSubLink"><?php echo langCode('logoff');?></a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</header>
+<nav class="menuOpened">
+	<ul id="ulMenu">
+		<li class="<?php echo 'itemMenu' . $menu0;?>">
+			<a id="menuHome" title="<?php echo langCode('admin_home_hover');?>" href="<?php echo $adminDir;?>">
+				<span id="menuSpan"><?php echo langCode('admin_home');?></span>
+			</a>
+		</li>
+		<li class="<?php echo 'itemMenu' . $menu1 . " itemMenu" . $menuGroup1;?>"><span class="itemMenuSpan"><?php echo langCode('admin_feedback');?></span>
+			<ul class="subMenuItems">
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_feedback_manager_hover');?>" href="<?php echo $adminDir . langCode('admin_feedback_manager_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu1_1;?>"><?php echo langCode('admin_manage') . ' ' . langCode('admin_feedback');?></span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="<?php echo 'itemMenu' . $menu2 . " itemMenu" . $menuGroup2;?>"><span class="itemMenuSpan"><?php echo langCode('admin_users');?></span>
+			<ul class="subMenuItems">
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_users_manager_hover');?>" href="<?php echo $adminDir . langCode('admin_users_manager_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu2_1;?>"><?php echo langCode('admin_manage') . ' ' . langCode('admin_users');?></span>
+					</a>
+				</li>
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_users_add_hover');?>" href="<?php echo $adminDir . langCode('admin_users_add_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu2_2;?>"><?php echo langCode('admin_add') . ' ' . langCode('admin_users');?></span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="<?php echo 'itemMenu' . $menu3 . " itemMenu" . $menuGroup3;?>"><span class="itemMenuSpan"><?php echo langCode('movies');?></span>
+			<ul class="subMenuItems">
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_movies_manager_hover');?>" href="<?php echo $adminDir . langCode('admin_movies_manager_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu3_1;?>"><?php echo langCode('admin_manage') . ' ' . langCode('movies');?></span>
+					</a>
+				</li>
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_movies_add_hover');?>" href="<?php echo $adminDir . langCode('admin_movies_add_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu3_2;?>"><?php echo langCode('admin_add') . ' ' . langCode('movies');?></span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="<?php echo 'itemMenu' . $menu4 . " itemMenu" . $menuGroup4;?>"><span class="itemMenuSpan"><?php echo langCode('series');?></span>
+			<ul class="subMenuItems">
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_series_manager_hover');?>" href="<?php echo $adminDir . langCode('admin_series_manager_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu4_1;?>"><?php echo langCode('admin_manage') . ' ' . langCode('series');?></span>
+					</a>
+				</li>
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_episodes_manager_hover');?>" href="<?php echo $adminDir . langCode('admin_episodes_manager_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu4_2;?>"><?php echo langCode('admin_manage') . ' ' . langCode('episodes');?></span>
+					</a>
+				</li>
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_series_add_hover');?>" href="<?php echo $adminDir . langCode('admin_series_add_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu4_3;?>"><?php echo langCode('admin_add') . ' ' . langCode('series');?></span>
+					</a>
+				</li>
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_episodes_add_hover');?>" href="<?php echo $adminDir . langCode('admin_episodes_add_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu4_4;?>"><?php echo langCode('admin_add') . ' ' . langCode('episodes');?></span>
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+<?php }?>

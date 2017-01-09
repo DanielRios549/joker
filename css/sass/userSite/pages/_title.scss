@@ -1,0 +1,833 @@
+@mixin title() {
+	#imageBack {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 97;
+		width: 100%;
+		height: 400px;
+		overflow: hidden;
+		
+		img {
+			position: relative;
+			float: right;
+			right: 0;
+			top: 0;
+			width: 100%;
+		}
+	}
+	#titleContent {
+		background-color: rgba(0,0,0,.4);
+		position: relative;
+		top: 0;
+		left: 0;
+		min-height: 400px;
+		width: 100%;
+		z-index: 98;
+
+		#divLeft {
+			position: relative;
+			height: 100%;
+			width: 25%;
+			float: left;
+			
+			#contentImage {
+				width: 160px;
+				height: 240px;
+				margin: 10px auto 0 auto;
+				
+				.contentPlayFigure {
+					margin: 0;
+					height: 100%;
+					width: 100%;
+					
+					img {
+						height: 100%;
+						width: 100%;
+					}
+				}
+			}
+		}
+		#divRight {
+			position: relative;
+			float: right;
+			height: 100%;
+			width: 75%;
+			
+			#infoHeader {
+				position: relative;
+				top: 5px;
+				font-size: 2.5em;
+				color: $colorLightGray;
+				font-weight: bold;
+			}
+			#tabHeader {
+				box-sizing: border-box;
+				background: transparent;
+				position: relative;
+				top: 10px;
+				left: 0;
+				height: 30px;
+				width: 95%;
+				margin: 0 auto;
+				z-index: 98;
+					
+				.tab, 
+				.tabSelected {
+					position: relative;
+					background: transparent;
+					height: 30px;
+					text-align: center;
+					cursor: pointer;
+					float: left;
+					list-style: none;
+					margin: 0 5px 0 0;
+					padding: 0 20px;
+					
+					@include transition(border, 300ms, ease);
+					
+					&:after {
+						content: '';
+						background: $colorBlue;
+						position: absolute;
+						left: 0;
+						bottom: 0;
+						width: 100%;
+						
+						@include transition(height, 200ms, linear);
+					}
+					span {
+						font-size: 1.5em;
+						color: $colorLightGray;
+					}
+				}
+				.tab {
+					&:after {
+						height: 0;
+					}
+					&:hover {
+						&:after {
+							height: 4px;
+						}
+					}
+				}
+				.tabSelected {
+					&:after {
+						background: $colorBlue;
+						height: 4px;
+					}
+				}
+			}
+			#tabContents {
+				background: transparent;
+				position: relative;
+				top: 10px;
+				width: 95%;
+				margin: 0 auto;
+				min-height: 300px;
+				
+				.contentShow,
+				.contentHide {
+					height: 100%;
+					width: 100%;
+					color: $colorGray;
+				}
+				.contentShow {
+					opacity: 1;
+					display: block;
+				}
+				.contentHide {
+					opacity: 0;
+					display: none;
+				}
+				#contentInfo {
+					box-sizing: border-box;
+					position: relative;
+					top: 10px;
+					width: 95%;
+					height: 30px;
+					margin: 0 auto;
+					padding-left: 10px;
+					
+					#infoGeneral {
+						#ageFree,
+						#age10,
+						#age12,
+						#age14,
+						#age16,
+						#age18 {
+							border-radius: 4px;
+							color: $colorWhite;
+							min-width: 17px;
+							padding: 0 5px;
+						}
+						#ageFree {
+							background: #59d224;
+						}
+						#age10 {
+							background: $colorBlue;
+						}
+						#age12 {
+							background: #fff722;
+						}
+						#age14 {
+							background: #ff9f22;
+						}
+						#age16 {
+							background: #ff0000;
+						}
+						#age18 {
+							background: #000000;
+						}
+						.infoSpan,
+						.infoLink {
+							box-sizing: border-box;
+							font-size: 1.5em;
+							color: $colorLightGray;
+							font-weight: bold;
+							margin-right: 15px;
+							display: inline-block;
+							text-decoration: none;
+						}
+						.infoLink {
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+					}
+				}
+				#contentSynopsis {
+					position: relative;
+					top: 10px;
+					left: 30px;
+					width: 90%;
+					max-height: 150px;
+					overflow-y: hidden;
+					
+					#synopsisSpan {
+						font: 2em Calibri, sans-serif;
+						color: $colorLightGray;
+						text-shadow: 2px 2px 2px rbga(0,0,0,.5);
+					}
+				}
+				#contentSortcuts {
+					position: relative;
+					top: 20px;
+					left: 30px;
+					height: 50px;
+					width: 330px;
+					
+					.addWatchList {
+						&:after {
+							content:"\f055";
+							font-size: 3em;
+							top: 10px;
+							left: 38px;
+						}
+					}
+					.removeWatchList {
+						&:after {
+							content:"\f058";
+							font-size: 3em;
+							top: 10px;
+							left: 38px;
+						}
+						&:hover {
+							&:after {
+								content:"\f056";
+							}
+						}
+					}
+					#startBtn {
+						a {
+							display: block;
+							height: 100%;
+							text-decoration: none;
+							
+							&:after {
+								content: "\f144";
+								font-size: 3em;
+								top: 10px;
+								left: 38px;
+							}
+						}
+					}
+					#playTrayler {
+						&:after {
+							content: "\f008";
+							font-size: 2.8em;
+							top: 10px;
+							left: 35px;
+						}
+					}
+					.contentBtn,
+					.contentBtn a  {
+						border-radius: 3px;
+					}
+					.contentBtn {
+						background: $colorButtonGray;
+						position: relative;
+						top: 0;
+						float: left;
+						height: 100%;
+						width: 100px;
+						margin-right: 10px;
+						cursor: pointer;
+						
+						@include transition(all, 200ms, linear);
+						
+						&:after,
+						a:after {
+							position: absolute;
+							font-family: FontAwesome;
+							color: $colorWhite;
+							
+							@include transition(color, 300ms, linear);
+						}
+						&:hover,
+						a:hover {
+							background: #f1f1f1;
+							height: 110%;
+							top: -10%;
+							
+							&:after {
+								color: $colorGray;
+							}
+							.btnSpan {
+								color: #f1f1f1;
+							}
+						}
+						&:active {
+							@include transform(scale(0.9));
+						}
+						.btnSpan {
+							position: relative;
+							top: 100%;
+							display: block;
+							height: 18px;
+							width: 100%;
+							text-align: center;
+							font-size: 1.5em;
+							color: $colorButtonGray;
+							line-height: 20px;
+							
+							@include transition(color, 200ms, linear);
+							
+							&:hover {
+								color: #f1f1f1;
+							}
+						}
+					}
+				}
+				#seasonBrowse {
+					position: relative;
+					top: 10px;
+					left: 0;
+					width: 90%;
+					min-height: 40px;
+					
+					#seasonDiv {
+						position: relative;
+						top: 0;
+						z-index: 98;
+						height: 50px;
+						width: 220px;
+					
+						#seasonHeader {
+							position: relative;
+							top: 3px;
+							height: 30px;
+							left: 10px;
+							float: left;
+							line-height: 30px;
+							
+							#seasonSpan {
+								font-size: 3em;
+								color: $colorLightGray;
+								text-shadow: 2px 2px 2px rgba(0,0,0,.5);
+							}
+						}
+						.seasonSelect {
+							background: $colorBlue;
+							height: 20px;
+
+							#seasonSimple {
+								position: relative;
+								font: 2em Calibri, sans-serif;
+								color: $colorWhite;
+								text-align: center;
+								margin: 0 auto;
+								height: 100%;
+								width: 20px;
+								display: block;
+								line-height: 20px;
+							}
+							.seasonHide,
+							.seasonShow {
+								.seasonSpan {
+									color: $colorLightGray;
+									
+									&:after {
+										content: '\f107';
+										font: 1em FontAwesome;
+										color: $colorLightGray;
+										position: absolute;
+										float: right;
+										top: 2px;
+										right: 5px;
+									}
+								}
+							}
+						}
+						.seasonSelectOpen {
+							background: $colorWhite;
+							
+							.seasonHide,
+							.seasonShow {
+								.seasonSpan {
+									color: $colorGray;
+
+									@include transition(all, 200ms, linear);
+									
+									&:hover {
+										background: $colorBlue;
+										color: $colorLightGray;
+									}
+								}
+							}
+						}
+						#seasonSelect {
+							box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+							border-radius: 0 5px 5px 0;
+							outline: none;
+							position: relative;
+							top: 10px;
+							left: 10px;
+							width: 50px;
+							margin-left: 10px;
+							float: left;
+							overflow-y: hidden;
+
+							@include transition(height, 200ms, linear);
+							
+							.seasonHide {
+								opacity: 0;
+								display: none;
+							}
+							.seasonShow {
+								opacity: 1;
+								display: block;
+							}
+							.seasonHide,
+							.seasonShow {
+								position: relative;
+								background: transparent;
+								height: 20px;
+								cursor: pointer;
+
+								.seasonSpan {
+									display: block;
+									font-size: 1.8em;
+									height: 100%;
+									width: 100%;
+									text-align: center;
+									line-height: 20px;
+								}
+							}
+						}
+					}
+					#episodeDiv {
+						background: transparent;
+						position: relative;
+						top: 10px;
+						height: 200px;
+						width: 100%;
+						overflow-x: hidden;
+						z-index: 97;
+
+						@include scrollContent(-30px);
+
+						.seasonGroupHide {
+							display: none;
+						}
+						.seasonGroupShow {
+							display: block;
+						}
+						.seasonGroupHide,
+						.seasonGroupShow {
+							position: absolute;
+							height: 100%;
+							overflow-y: hidden;
+							overflow-x: auto;
+
+							@include transform(translete3d(0, 0, 0));
+
+							@include transition(transform, 400ms, linear);
+
+							.episode {
+								width: 200px;
+								height: 170px;
+								float: left;
+								margin-left: 10px;
+
+								&:hover {
+									.episodeFigure {
+										figcaption {
+											opacity: 1;
+										}
+									}
+								}
+								.episodeFigure {
+									box-shadow: 5px 5px 4px rgba(0,0,0,.7);
+									position: relative;
+									width: 100%;
+									height: 100px;
+
+									a {
+										position: absolute;
+										top: 0;
+										left: 0;
+										width: 100%;
+										height: 100%;
+									}
+									img {
+										position: absolute;
+										width: 100%;
+										height: 100px;
+									}
+									figcaption {
+										background: rgba(0,0,0,.6);
+										position: absolute;
+										width: 100%;
+										height: 100px;
+										opacity: 0;
+										cursor: pointer;
+
+										@include transition(opacity, 200ms, linear);
+
+										&:hover {
+											&:before {
+												color: $colorBlue;												
+												@include transform(scale(1.2));
+											}
+										}
+										&:before {
+											content: '\f144';
+											font: 6em FontAwesome;
+											color: $colorLightGray;
+											position: absolute;
+											top: 20px;
+											left: 74px;
+
+											@include transition(all, 200ms, linear);
+										}
+									}
+								}
+								.episodeNumber {
+									border-radius: 50%;
+									background: $colorGray;
+									position: relative;
+									top: -40px;
+									left: 10px;
+									font: bold 2em Calibri, sans-serif;
+									color: $colorLightGray;
+									display: block;
+									height: 25px;
+									width: 25px;
+									text-align: center;
+									line-height: 23px;
+								}
+								.episodeTitle,
+								.episodeSynopsis {
+									position: relative;
+									top: -20px;
+									left: 0;
+									font-family: Calibri, sans-serif;
+									color: $colorLightGray;
+									text-shadow: 5px 5px 4px rgba(0,0,0,.7);
+								}
+								.episodeTitle {
+									font-size: 2em;
+								}
+								.episodeSynopsis {
+									font-size: 2em;
+								}
+							}
+						}
+					}
+				}
+				#commentsDiv {
+					position: relative;
+					width: 100%;
+					height: 300px;
+					overflow-y: auto;
+					overflow-x: hidden;
+
+					#commentFormDiv {
+						position: relative;
+						top: 10px;
+						width: 90%;
+						min-height: 120px;
+						max-height: 230px;
+						
+						#commentInput {
+							box-sizing: border-box;
+							outline: none;
+							border-radius: 3px;
+							border: 3px solid transparent;
+							background: $colorDarkGray;
+							position: relative;
+							width: 90% !important;
+							max-height: 200px;
+							color: $colorLightGray;
+							font: 1.5em Clibri, sans-serif;
+							padding: 5px 5px 15px 5px;
+							text-align: left;
+
+							&:focus {
+								border: 3px solid $colorBlue;
+							}
+						}
+						#buttonsDiv {
+							position: relative;
+							width: 90%;
+							height: 30px;
+							margin: 10px 0 0 0;
+
+							#commentSubmit {
+								--width: 80px;
+								background: $colorLightGray;
+								border-radius: 3px;
+								border: none;
+								outline: none;
+								position: relative;
+								left: calc(100% - var(--width));
+								width: var(--width);
+								height: 100%;
+								cursor: pointer;
+								font: 1.5em Calibri, sans-serif;
+								color: $colorDarkGray;
+								line-height: 30px;
+								text-align: center;
+							}
+							#commentSubmit[disabled] {
+								opacity: 0.5;
+								cursor: initial;
+							}
+						}
+					}
+					#userComment {
+						position: relative;
+						height: 100px;
+
+						img {
+							border-radius: 4px;
+							position: relative;
+							top: 5px;
+							height: 100%;
+							width: 100px;
+							float: left;
+						}
+						#rightDiv {
+							position: relative;
+							float: left;
+							height: 100%;
+							width: calc(100% - 100px);
+
+							#commentSpanDiv {
+								position: relative;
+								height: 60%;
+								width: 100%;
+
+								#commentSpan {
+									position: absolute;
+									top: 10px;
+									left: 10px;
+									font: 2.5em Calibri, sans-serif;
+									color: $colorLightGray;
+								}
+							}
+							#commentOptionsDiv {
+								position: relative;
+								height: 40%;
+								width: 100%;
+
+								#buttonEdit {
+									&:after {
+										content: '\f040';
+									}
+								}
+								#buttonDelete {
+									&:after {
+										content: '\f1f8';
+									}
+								}
+								.button {
+									background: $colorButtonGray; 
+									border-radius: 4px;
+									position: relative;
+									float: left;
+									height: 40px;
+									width: 40px;
+									margin-left: 10px;
+									cursor: pointer;
+
+									@include transition(all, 400ms, linear);
+
+									&:hover {
+										background: $colorWhite;
+
+										&:after {
+											color: $colorDarkGray;
+										}
+									}
+									&:after {
+										position: absolute;
+										top: 5px;
+										left: 8px;
+										font: 3em FontAwesome;
+										color: $colorWhite;
+
+										@include transition(all, 400ms, linear);
+									}
+								}
+							}
+						}
+					}
+					.commentGroup {
+						position: relative;
+						top: 30px;
+						left: 0;
+
+						.replyHide {
+							&:after {
+								position: relative;
+								left: 5px;
+								top: 2px;
+								font: 1.5em FontAwesome;
+								color: $colorLightGray;
+							}
+						}
+						.replyHide {
+							margin: 0 0 20px 60px;
+							width: 60px;
+							cursor: pointer;
+
+							.spanHide {
+								font: 1.5em Calibri, sans-serif;
+								color: $colorLightGray;
+							}
+						}
+						.noHide {
+							&:after {
+								content: '\f147';
+							}
+							~ .reply {
+								height: 100%;
+							}
+						}
+						.hide {
+							&:after {
+								content: '\f196';
+							}
+							~ .reply {
+								height: 0%;
+								display: none;
+							}
+						}
+						.comment,
+						.reply {
+							position: relative;
+							top: 0;
+							left: 0;
+							margin-bottom: 20px;
+
+							.imageDiv {
+								position: relative;
+								left: 0;
+								top: 0;
+								height: 100%;
+								float: left;
+
+								img {
+									border-radius: 4px;
+									position: relative;
+									left: 0;
+									top: 0;
+									float: left;
+								}
+							}
+							.commentInfo,
+							.replyInfo {
+								position: relative;
+								top: 0;
+								left: 10px;
+
+								.commentName,
+								.replyName {
+									position: relative;
+									top: 0;
+									left: 0;
+									font: 2em Calibri, sans-serif;
+									color: $colorBlue;
+									text-decoration: none;
+
+									&:hover {
+										text-decoration: underline;
+									}
+								}
+								.commentSpan,
+								.replySpan {
+									position: relative;
+									top: 0;
+									left: 35px;
+									font: 2em Calibri, sans-serif;
+									color: $colorLightGray;
+									display: block;
+									text-align: left;
+									width: 80%;
+									text-indent: -35px;
+								}
+							}
+						}
+						.comment {
+							.imageDiv {
+								height: 100%;
+
+								img {
+									height: 45px;
+									width: 45px;
+								}
+							}
+						}
+						.reply {
+							padding-left: 60px;
+
+							@include transition(height, 200ms, linear);
+
+							.imageDiv {
+								height: 100%;
+
+								img {
+									height: 30px;
+									width: 30px;
+								}
+							}
+						}
+					}
+				}
+				.info {
+					position: relative;
+					top: 10px;
+					left: 0;
+					
+					.alert {
+						text-shadow: 2px 2px 2px rgba(0,0,0,.5);
+						font: 4em Calibri, sans-serif;
+						color: $colorLightGray;
+					}
+				}
+			}
+		}
+	}
+}

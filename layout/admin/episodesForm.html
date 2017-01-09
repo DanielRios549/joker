@@ -1,0 +1,31 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+    if($adminCheck == true) {
+?>
+<fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this episode';?></legend>
+    <div class="selectDivFile">
+        <input type="file" name="firstImage" class="fileInput inputImage" accept="image/jpeg" title="Add a image for the first episode"/>
+    </div>
+    <div class="selectDivFile">
+        <input type="file" name="firstVideo" class="fileInput inputVideo" accept="video/mp4" title="Add a video for the first episode"/>
+    </div>
+</fieldset>
+<fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Title and Synopsis for the first episode';?></legend>
+    <input type="text" name="episodeTitleUS" id="episodeTitleUS" class="inputText" placeholder="<?php echo 'Title Episode English';?>" required/>
+    <label for="episodeTitleUS" id="episodeTitleUSLabel" class="inputLabel"></label>
+    
+    <input type="text" name="episodeSynUS" id="episodeSynUS" class="inputText" placeholder="<?php echo 'Synopsis Episode English';?>" required/>
+    <label for="episodeSynUS" id="episodeSynUSLabel" class="inputLabel"></label>
+
+    <input type="text" name="episodeTitleBR" id="episodeTitleBR" class="inputText" placeholder="<?php echo 'Title Episode Portuguese';?>" required/>
+    <label for="episodeTitleBR" id="episodeTitleBRLabel" class="inputLabel"></label>
+
+    <input type="text" name="episodeSynBR" id="episodeSynBR" class="inputText" placeholder="<?php echo 'Synopsis Episode Portuguese';?>" required/>
+    <label for="episodeSynBR" id="episodeSynBRLabel" class="inputLabel"></label>
+</fieldset>
+<?php }?>

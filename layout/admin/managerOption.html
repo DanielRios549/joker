@@ -1,0 +1,43 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" . $base . "404");
+	}
+    elseif($adminCheck == true) {
+?>
+    <div id="selectDiv">
+		<form id="selectForm" method="get" action="">
+			<select name="l" onchange="this.form.submit()">
+				<option value="1"<?php echo @$selectedPageLimit1;?>><span>1</span></option>
+				<option value="2"<?php echo @$selectedPageLimit2;?>><span>2</span></option>
+				<option value="3"<?php echo @$selectedPageLimit3;?>><span>3</span></option>
+				<option value="10"<?php echo @$selectedPageLimit10;?>><span>10</span></option>
+				<option value="20"<?php echo @$selectedPageLimit20;?>><span>20</span></option>
+				<option value="50"<?php echo @$selectedPageLimit50;?>><span>50</span></option>
+				<option value="100"<?php echo @$selectedPageLimit100;?>><span>100</span></option>
+			</select>
+			<select name="o" onchange="this.form.submit()">
+				<option value="1"<?php echo @$selectedOrder1;?>><span>Id ASC</span></option>
+				<option value="2"<?php echo @$selectedOrder2;?>><span>Id DESC</span></option>
+				<option value="3"<?php echo @$selectedOrder3;?>><span>Name ASC</span></option>
+				<option value="4"<?php echo @$selectedOrder4;?>><span>Name DESC</span></option>
+			</select>
+		</form>
+	</div>
+	<div class="indexPageDiv">
+		<div id="pageInfo"><h2><?php echo "Page " . $pageActive . " of " . $totalPages . "</h2>";?></div>
+		<div id="buttonDiv">
+			<?php for($counter = 1; $counter <= $totalPages; $counter++) {if($counter == $pageActive) {$pageStatus = 'Active';} else{$pageStatus = 'Inactive';} if($pageStatus == 'Inactive'){?>
+			<div class="pageButton page<?php echo $pageStatus;?>"><a class="pageSpan" href="<?php echo $completeLink . $counter;?>"><?php echo $counter;?></a></div>
+			<?php } else {?>
+			<div class="pageButton page<?php echo $pageStatus;?>"><span  class="pageSpan"><?php echo $counter;?></span></div>
+			<?php }}?>
+		</div>
+	</div>
+<?php }?>

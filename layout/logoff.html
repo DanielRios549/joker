@@ -1,0 +1,23 @@
+<!-- Logoff -->
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+?>
+<script lang="text/javascript">
+	$(document).ready(function() {
+		setTimeout(function() {
+			window.location.replace(baseUrl);
+		}, 3000);
+	});
+</script>
+<section class="interface">
+    <p class="logoffText"><?php echo langCode('logoff_info');?></p>
+</section>

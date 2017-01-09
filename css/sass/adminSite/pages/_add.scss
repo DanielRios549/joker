@@ -1,0 +1,5 @@
+@mixin addInterface() {
+	@include pageAddress();
+	
+	@include addContent(50px);
+}

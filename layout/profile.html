@@ -1,0 +1,75 @@
+<!-- Profile -->
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+?>
+<script>
+	$(window).ready(function(){
+		$(this).on('scroll', function(){
+			parallaxHeaderUser();
+			parallaxImg();
+			parallaxName();
+		});
+		
+		$('#userHeader').on('click', '#followUser', followUser);
+		$('#userHeader').on('click', '#unfollowUser', unfollowUser);
+	});
+</script>
+<section class="interface">
+	<div id="profileHeaderDiv">
+		<div id="userHeader" class="userHeader">
+			<img src="<?php echo $imageCover;?>" id="userHeaderImg" class="userHeaderImg"/>
+			<div id="userNameDiv" class="userNameDiv">
+				<p id="userName"><?php echo $userName;?></p>
+			</div>
+			<?php if($loginCheck == true) { if($loggedUserPage == false) {?>
+			<div id="<?php echo $buttonFollowAction;?>" class="userButtonDiv" data-id="<?php echo $userPage;?>">
+				<span class="buttonSpan"><?php echo $buttonText;?></span>
+			</div>
+			<?php } elseif($loggedUserPage == true) {?>
+			<div class="userButtonDiv">
+				<a class="buttonSpan" href="<?php echo $baseUrl . langCode('settings_link');?>"><?php echo langCode('settings');?></a>
+			</div>
+			<?php }}?>
+		</div>
+		<figure id="userImgFigure" class="userImgFigure">
+		<?php if($loginCheck == true) { if($loggedUserPage == true) {?>
+			<figcaption id="userImgCaption"> 
+				<a href="#" id="changeAvatarImgLink"><span id="changeAvatarImgLinkSpan">Mudar Foto</span></a>
+			</figcaption>
+		<?php }}?>
+			<img src="<?php echo $imageProfile;?>" id="userImg"/>
+		</figure>
+	</div>
+	<?php if($loginCheck == true) {?>
+	<div id="profileInfoDiv">
+		<div id="followersDiv">
+			<?php foreach($followersFound as $getFollowers => $key) {if($loggedUserPage == false) { $followId = $key['user_id']; require $contentDir . 'verifyFollow.php';}?>
+			<div class="follower">
+				<div class="followerLeft">
+					<a class="followerLink" href="<?php echo $baseUrl . langCode('profile_link')  . '?id=' . $key['user_id'];?>">
+						<img class="followerImage"  src="<?php echo $baseUrl . 'images/user/' . $key['user_id'] . '/profile.jpg';?>"/>
+					</a>
+				</div>
+				<div class="followerRight">
+					<a class="followerLink" href="<?php echo $baseUrl . langCode('profile_link')  . '?id=' . $key['user_id'];?>">	
+						<span class="followerSpan"><?php echo $key['name'];?></span>
+					</a>
+					<div class="followAction">
+						<span><?php echo $followAction;?></span>
+					</div>
+				</div>
+			</div>
+			<?php }?>
+		</div>
+	</div>
+	<?php }?>
+</section>

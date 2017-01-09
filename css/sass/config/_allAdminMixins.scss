@@ -1,0 +1,340 @@
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ****************************************************************
+*/
+
+//Using on all admin pages
+
+@mixin pageAddress() {
+	#pageAddress {
+		position: relative;
+		top: 10px;
+		left: 0;
+		height: 40px;
+		
+		.pageLink,
+		#activePage	{
+			position: relative;
+			float: left;
+			font-size: 1.6em;
+			text-decoration: none;
+			height: 100%;
+			width: 100px;
+			line-height: 38px;
+			text-align: center;
+		}
+		.pageLink {
+			background: $colorLightGray;
+			margin: 0 .5em 0 1em;
+			color: $colorGray;
+			
+			a {
+				text-decoration: none;
+				color: $colorGray;
+				display: block;
+			}
+			
+			&:nth-of-type(1) {
+				border-radius: 3px 0 0 3px;
+			}
+			
+			&:nth-of-type(2):before,
+			&:nth-of-type(3):before,
+			&:nth-of-type(4):before,
+			&:nth-of-type(5):before,{
+				content: "";
+				position: absolute;
+				top: 50%; 
+				margin-top: -1.25em;
+				border-width: 1.25em 0 1.25em 1em;
+				border-style: solid;
+				border-color: $colorLightGray $colorLightGray $colorLightGray transparent;
+				left: -1em;
+			}
+			&:after{
+				content: "";
+				position: absolute;
+				top: 50%; 
+				margin-top: -1.25em;
+				border-top: 1.25em solid transparent;
+				border-bottom: 1.25em solid transparent;
+				border-left: 1em solid $colorLightGray;
+				right: -1em;
+			}
+		}
+		#activePage  {
+			background: $colorBlue;
+			color: #f1f1f1;
+			margin: 0 .5em 0 1em;
+			
+			&:before{
+				content: "";
+				position: absolute;
+				top: 50%; 
+				margin-top: -1.25em;   
+				border-width: 1.25em 0 1.25em 1em;
+				border-style: solid;
+				border-color: $colorBlue $colorBlue $colorBlue transparent;
+				left: -1em;
+			}
+			&:after{
+				content: "";
+				position: absolute;
+				top: 50%; 
+				margin-top: -1.25em;
+				border-top: 1.25em solid transparent;
+				border-bottom: 1.25em solid transparent;
+				border-left: 1em solid $colorBlue;
+				right: -1em;
+			}
+		}
+	}
+}
+
+//Using on all admin add pages
+
+@mixin addContent($topForm) {
+	#userErrorNone {
+		display: none;
+	}
+	#userErrorDisplay {
+		background: #fd0b3e;
+	}
+	#newAccountCreatedDisplay {
+		background: $colorBlue;
+	}
+	.userError {
+		box-sizing: border-box;
+        position: fixed;
+		top: 115px;
+		height: 40px;
+		width: 73%;
+		border-radius: 5px;
+		margin: 0 0 0 5%;
+		display: block;
+		z-index: 100;
+		
+		#errorMsg {
+			width: 80%;
+			height: 100%;
+			margin: 0 auto;
+			text-align: center;
+			line-height: 43px;
+			
+			#spanUserError {
+				font-size: 2em;
+				color: $colorLightGray;
+			}
+		}
+		#errorMsgClose {
+			position: absolute;
+			right: 10px;
+			top: 0;
+			height: 40px;
+			width: 40px;
+			cursor: pointer;
+
+			&:after {
+				content: '\f00d';
+				font: 5em FontAwesome;
+				color: $colorLightGray;
+				position: absolute;
+				top: -6px;
+				left: 0;
+			}
+		}
+	}
+	.formAdd {
+		position: relative;
+		top: $topForm;
+		width: 80%;
+		margin: 0 auto;
+
+		.formFieldset,
+		.seasonDiv {
+			border: none;
+			position: relative;
+			margin-bottom: 10px;
+
+			.fieldsetLegend {
+				position: relative;
+				font: 2em Calibri, sans-serif;
+				color: $colorGray;
+			}
+			.selectDiv {
+				position: relative;
+				float: left;
+				margin-right: 20px;
+
+				.selectLabel {
+					position: relative;
+				}
+				.select {
+					position: relative;
+				}
+			}
+			.selectDivFile {
+				width: 40px;
+				height: 40px;
+
+				.fileInput {
+					top: -30px;
+					width: 100%;
+				}
+			}
+			.selectedDivFile {
+				width: 180px;
+				height: 40px;
+				z-index: 95;
+
+				&:after {
+					content: '';
+					background: $colorGray;
+					position: absolute;
+					height: 100%;
+				}
+				.fileInput {
+					top: 10px;
+					left: -88px;
+					z-index: 96;
+
+					&:after {
+						content: '';
+						opacity: 0;
+					}
+				}
+			}
+			.selectDivFile,
+			.selectedDivFile {
+				border: 1px solid black;
+				position: relative;
+				float: left;
+				margin-right: 10px;
+				overflow: hidden;
+
+				@include transition(width, 400ms, linear);
+
+				.inputImage {
+					&:after {
+						content: '\f1c5';
+					}
+				}
+				.inputVideo {
+					&:after {
+						content: '\f1c8';
+					}
+				}
+				.fileInput {
+					outline: none;
+					position: absolute;
+					height: calc(100% + 30px);
+					cursor: pointer;
+					display: block;
+
+					&:after {
+						font: 2em FontAwesome;
+						color: $colorDarkGray;
+						position: relative;
+						top: 14px;
+						left: 9px;
+					}
+				}
+			}
+			.inputText,
+			.inputTextError {
+				box-sizing: border-box;
+				outline: none;
+				border-radius: 3px;
+				border: 3px solid $colorLightGray;
+				position: relative;
+				top: 20px;
+				height: 60px;
+				width: 100%;
+				padding-left: 70px;
+				color: $colorGray;
+				font-size: 1.6em;
+				
+				@include transition(border, 300ms, linear);
+			}
+			.inputText {
+				+ .inputLabel {
+					background: $colorLightGray;
+					
+					&:before {
+						color: $colorGray;
+					}
+				}
+				&:hover,
+				&:focus {
+					border: 3px solid $colorBlue;
+					color: $colorGray;
+					
+					+ .inputLabel {
+						background: $colorBlue;
+						
+						&:before {
+							color: #f1f1f1;
+						}
+					}
+				}
+			}
+			.inputTextError {
+				border: 3px solid #fd0b3e;
+				
+				+ .inputLabel {
+					background: #fd0b3e;
+					
+					&:before {
+						color: #f1f1f1;
+					}
+				}
+			}
+			.inputLabel {
+				border-radius: 3px 0 0 3px;
+				position: relative;
+				left: 0;
+				display: block;
+				height: 60px;
+				width: 60px;
+				margin-top: -40px;
+				
+				@include transition(background, 300ms, linear);
+				
+				&:before {
+					position: relative;
+					font-family: FontAwesome;
+					
+					@include transition(color, 300ms, linear);
+				}
+			}
+			.submitButton {
+				position: relative;
+				top: 20px;
+				box-sizing: border-box;
+				border: none;
+				outline: none;
+				border-radius: 3px;
+				height: 50px;
+				width: 100%;
+				
+				@include transition(all, 200ms, linear);
+				
+				&:hover, &:focus {
+					background: $colorBlue;
+					color: #ffffff;
+				}
+				.submitSpan {
+					display: block;
+					color: $colorGray;
+					margin-bottom: 20px;
+					cursor: pointer;
+					font-size: 1.6em;
+					height: 100%;
+					padding: 10px;
+				}
+			}
+		}
+	}
+}
