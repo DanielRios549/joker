@@ -23,9 +23,6 @@
 </script>
 <?php } elseif($loginCheck == true) {?>
 <script type="text/javascript">
-	$(window).on('resize', function() {
-		sliderSroll('.contentDivScroll', '.contentDivScroll > .contentGroupScroll');
-	});
 	$(document).ready(function() {
 
 		if($('#contentSlider #changeDiv').length) {
@@ -37,10 +34,6 @@
 		$(this).on('scroll', function() {
 			parallaxInternalHome();
 		});
-
-		//Scroll contentDiv
-	
-		sliderSroll('.contentDivScroll', '.contentDivScroll > .contentGroupScroll');
 
 		$('#imageDiv div').on('click', '.addWatchList', addWatchListIndex);
     	$('#imageDiv div').on('click', '.removeWatchList', removeWatchListIndex);
@@ -106,7 +99,6 @@
 		</div>
 		<?php }?>
 	</div>
-	<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-1300679758954215" data-ad-slot="9991840684"></ins>
 	<?php } foreach($allSections as $allSections => $categoryContent) {
 		if($categoryContent == 'watchlist') {
 			$contentArray = array(
@@ -146,7 +138,7 @@
 	<p class="contentDivHeader"><?php echo langCode($categoryContent);?><span><a href="<?php echo $baseUrl . langCode('category_link') . '?c=' . categoryId($categoryContent);?>"><?php echo langCode('view_more');?></a></span></p>
 	<?php }?>
 	<div <?php if($watchListId == true) {echo 'id="watchListDiv"';}?> class="contentDiv contentDivScroll">
-		<div class="contentGroup contentGroupScroll">
+		<div class="contentGroup">
 		<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
 			<div class="content contentScroll">
 				<div class="contentLink">
@@ -170,8 +162,6 @@
 			</div>
 		<?php $contentNumber ++;}?>
 		</div>
-		<div class="previousHide"></div>
-		<div class="nextHide"></div>
 	</div>
 	<?php }}}?>
 </section>

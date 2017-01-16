@@ -13,15 +13,9 @@
 if($contentVerify -> rowCount() == 1) {
 ?>
 <script lang="text/javascript">
-	$(window).on('resize', function() {
-		sliderSroll('#episodeDiv', '#episodeDiv .contentGroupScroll');
-	});
 	$(window).ready(function() {
 		tabSelect();
-
-		//Scroll contentDiv
-	
-		sliderSroll('#episodeDiv', '#episodeDiv .contentGroupScroll');
+		
 		hideReply(".commentGroup");
 		episodeSelect("#seasonBrowse");
 		
@@ -101,9 +95,9 @@ if($contentVerify -> rowCount() == 1) {
 						</div>
 						<div id="episodeDiv">
 							<?php foreach($episodesList as $getEpisodes => $key){if($getEpisodes < 2){$seasonGroupDisplay = 'Show';}else{$seasonGroupDisplay = 'Hide';}?>
-								<div id="seasonGroup<?php echo $getEpisodes;?>" class="contentGroupScroll seasonGroup<?php echo $seasonGroupDisplay;?>">
+								<div id="seasonGroup<?php echo $getEpisodes;?>" class="contentGroup seasonGroup<?php echo $seasonGroupDisplay;?>">
 									<?php foreach($key as $key => $episode){$episodeDivisor = strpos($episode[$cookieLang], "|");?>
-									<div class="episode<?php echo $episode['episode'];?> episode contentScroll">
+									<div class="episode<?php echo $episode['episode'];?> episode">
 										<figure class="episodeFigure">
 											<img src="<?php echo $contentFolder . $key['content_id'] . '/season' . $getEpisodes . '/episode' . $episode['episode'] . '/image.jpg';?>"/>
 											<a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId . '&e=' . $episode['episode_id'];?>">

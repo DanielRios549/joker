@@ -11,45 +11,25 @@
 	}
 	
 	class Connect {
-		private $host;
-		private $user;
-		private $pass;
 		private $name;
-		private $type;
 		private $connection;
 		
 		public function __construct() {
-			/*
-			$dbHost = 'mysql.hostinger.com.br';
-			$dbUser = 'u886954183_atomo';
-			$dbPassword = '93982984';
-			$dbName = 'u886954183_movie';
-			$dbType = 'mysql';
-			*/
-			$dbHost = '127.0.0.1';
-			$dbUser = 'root';
-			$dbPassword = 'cftwy';
-			$dbName = 'joker';
-			$dbType = 'mysql';
+			$name = 'joker';
+			$user = 'root';
+			$pass = 'cftwy';
+			$host = '127.0.0.1';
 
-			$this -> host = $dbHost;
-			$this -> user = $dbUser;
-			$this -> pass = $dbPassword;
-			$this -> name = $dbName;
-			$this -> type = $dbType;
-
-			$this -> connectionPDO($this -> host, $this -> user, $this -> pass, $this -> name, $this -> type);
-		}
-		private function connectionPDO($host, $user, $pass, $name, $type) {
 			try {
-				$selectDb = $type . ":host=" . $host . ";dbname=" . $name;
+				$selectDb = "mysql:host=" . $host . ";dbname=" . $name;
 				$con = new PDO($selectDb, $user, $pass);
 				$con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				$con -> exec("SET CHARACTER SET utf8");
-				
+
 				$this -> connection = $con;
+				$this -> name = $name;
 				
-				//var_dump($con);
+				//print_r($con);
 			}
 			catch(PDOException $error) {
 				echo 'error';
@@ -58,7 +38,6 @@
 				. $host . "</span></p></body><html>";
 			}
 		}
-		
 		public function getConnection() {
 			return $this -> connection;
 		}

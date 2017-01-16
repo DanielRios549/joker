@@ -6,7 +6,11 @@
 */
 
 $responsiveVariables: (
-    --testResponsive: 50%
+    --titleContentAlign: column wrap,
+    --titleDivLeftWidth: 100%,
+    --titleDivLeftJustify: center,
+    --titleDivRightWidth: 100%,
+    --titleTabHeaderJustify: center
 );
 
 @media (max-width: $mobile + 'px') {

@@ -6,7 +6,11 @@
 */
 
 $responsiveVariables: (
-    --testResponsive: 100%
+    --titleContentAlign: row nowrap,
+    --titleDivLeftWidth: 25%,
+    --titleDivLeftJustify: center,
+    --titleDivRightWidth: 100%,
+    --titleTabHeaderJustify: flex-start,
 );
 
 @media (min-width: $tablet + 1 + 'px') {

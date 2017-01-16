@@ -108,9 +108,9 @@ function episodeSelect(episodeSlider) {
 		indiceShow ++;
 		
 		$("#episodeDiv .seasonGroupShow").removeClass("seasonGroupShow").addClass("seasonGroupHide");
-		$("#episodeDiv .contentGroupScroll:nth-of-type(" + indiceShow + ")").removeClass("seasonGroupHide").addClass("seasonGroupShow");
+		$("#episodeDiv .contentGroup:nth-of-type(" + indiceShow + ")").removeClass("seasonGroupHide").addClass("seasonGroupShow");
 		
-		if($("#episodeDiv .contentGroupScroll:nth-of-type(" + indiceShow + ")").width() > $("#episodeDiv").width()) {
+		if($("#episodeDiv .contentGroup:nth-of-type(" + indiceShow + ")").width() > $("#episodeDiv").width()) {
 			$("#episodeDiv").find('.nextHide').removeClass('nextHide').addClass('nextShow');
 		}
 		else {
@@ -127,53 +127,6 @@ function episodeSelect(episodeSlider) {
 		$("#seasonSelect").removeClass("seasonSelectOpen").addClass("seasonSelect");
 		$(".seasonShow").removeClass("seasonShow").addClass("seasonHide");
 		$(".seasonHide:nth-of-type(" + indexClose + ")").removeClass("seasonHide").addClass("seasonShow");
-	});
-}
-
-//Slider scroll content
-
-function sliderSroll(div, group) {
-	$(group).each(function() {
-		var width = 0;
-		var content = $('.contentScroll');
-
-		$(this).children(content).each(function() {
-			width += $(content).outerWidth(true);
-			$(this).parent().css('width', width);
-		});
-
-		if($(this).width() > $(this).parent().width()) {
-			$(this).parent().find('.nextHide').removeClass('nextHide').addClass('nextShow');
-		}
-		else {
-			$(this).parent().find('.nextShow').removeClass('nextShow').addClass('nextHide');
-		}
-	});
-
-	$(div).each(function() {
-		var left = 0;
-
-		$(this).on('click', '> .nextShow', function() {
-			left -= $(this).parent().width() - 160;
-
-			$(this).parent().find('> .contentGroupScroll').css({"transform":"translate3d(" + left + "px, 0, 0)"});
-			$(this).parent().find('> .previousHide').removeClass('previousHide').addClass('previousShow');
-			
-			if(-left >= $(this).parent().find('.contentGroupScroll').width() - $(this).parent().width()) {
-				$(this).removeClass('nextShow').addClass('nextHide');
-			}
-		})
-
-		.on('click', '> .previousShow', function() {
-			left += $(this).parent().width() - 160;
-
-			$(this).parent().find('> .contentGroupScroll').css({"transform":"translate3d(" + left + "px, 0, 0)"});
-			$(this).parent().find('> .nextHide').removeClass('nextHide').addClass('nextShow');
-
-			if(left >= 0) {
-				$(this).removeClass('previousShow').addClass('previousHide');
-			}
-		});
 	});
 }
 

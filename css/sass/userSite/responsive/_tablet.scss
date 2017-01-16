@@ -5,7 +5,11 @@
  ***************************************************************
 */
 $responsiveVariables: (
-    --testResponsive: 80%
+    --titleContentAlign: row wrap,
+    --titleDivLeftWidth: 100%,
+    --titleDivLeftJustify: center,
+    --titleDivRightWidth: 100%,
+    --titleTabHeaderJustify: center
 );
 
 @media (min-width: $mobile + 1 + 'px') and (max-width: $tablet + 'px') {

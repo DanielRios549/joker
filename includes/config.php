@@ -5,17 +5,6 @@
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
-
-/*
-sass --no-cache css/sass/userSite/style.scss:css/userStyle.css --style compressed
-																	   compact
-																	   expanded
-
-sass --no-cache css/sass/adminSite/style.scss:css/adminStyle.css --style compressed
-																		 compact
-																		 expanded
-	
-*/
 	if(!defined('THIS_PAGE')) {
 		require '../_redirect.php';
 		header("Location:" . $base . "404");

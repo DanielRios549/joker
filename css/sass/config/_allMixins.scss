@@ -44,4 +44,23 @@
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+
+    //Default values
+
+    display: flex; //inline-flex
+    flex-direction: row; //row-reverse, column, column-reverse
+    flex-wrap: nowrap; //wrap, wrap-reverse
+    flex-flow: row nowrap; //shorthand for direction and wrap
+    justify-content: flex-start; //flex-end, center, space-between, space-around
+    align-items: stretch; //flex-end, center, baseline
+    align-content: flex-start; //flex-end, center, space-between, space-around, stretch
+
+    //Only for flex items
+
+    order: 1; //Just a number to appear on render
+    align-self: flex-start; //All align-items values
+    flex: 0 1 auto; //shorthand for grow, shrink and basis
+    flex-grow: 0; //1+
+    flex-shrink: 1;
+    flex-basis: auto;
 }
