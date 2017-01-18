@@ -6,6 +6,10 @@
 */
 
 $responsiveVariables: (
+    --loginAlign: column wrap,
+    --loginMiddleBorderLeft: 0,
+    --loginMiddleBorderTop: 3px dashed $colorGray,
+    --loginDivWidth: 100%,
     --titleContentAlign: column wrap,
     --titleDivLeftWidth: 100%,
     --titleDivLeftJustify: center,

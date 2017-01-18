@@ -28,53 +28,55 @@
 		<div id="errorMsgClose"></div>
 	</div>
 	<?php } ?>
-	<div id="loginDiv" class="userDiv">
-		<form method="post" action="" id="loginForm" class="userFrom">
-			<fieldset id="loginFieldset" class="userFieldset"><legend id="loginLegend" class="userLegend"><?php echo langCode('login_legend');?></legend>
-				<input type="text" name="loginUser" id="loginUser" class="inputText" maxlength="60" placeholder="<?php echo langCode('login_user_placeholder');?>" required/>
-				<label for="loginUser" id="loginUserLabel" class="inputLabel"></label>
-				
-				<input type="password" name="loginPassword" id="loginPassword" class="inputText" maxlength="60" placeholder="<?php echo langCode('login_password_placeholder');?>" required/>
-				<label for="loginPassword" id="loginPasswordLabel" class="inputLabel"></label>
+	<div class="userContainer">
+		<div id="loginDiv" class="userDiv">
+			<form method="post" action="" id="loginForm" class="userFrom">
+				<fieldset id="loginFieldset" class="userFieldset"><legend id="loginLegend" class="userLegend"><?php echo langCode('login_legend');?></legend>
+					<input type="text" name="loginUser" id="loginUser" class="inputText" maxlength="60" placeholder="<?php echo langCode('login_user_placeholder');?>" required/>
+					<label for="loginUser" id="loginUserLabel" class="inputLabel"></label>
+					
+					<input type="password" name="loginPassword" id="loginPassword" class="inputText" maxlength="60" placeholder="<?php echo langCode('login_password_placeholder');?>" required/>
+					<label for="loginPassword" id="loginPasswordLabel" class="inputLabel"></label>
 
-				<?php if($allowRestoreLogin == true) {?>
-				<input type="checkbox" name="loginRestore" id="loginRestore"/>
-				<label for="loginRestore" id="loginRestoreLabel"><span></span><?php echo langCode('remember_login');?></label>
-				<?php }?>
-				<button type="submit" name="loginSubmit" id="loginSubmit" class="submitButton"><span class="submitSpan"><?php echo langCode('login_submit');?></span></button>
-			</fieldset>
-		</form>
-	</div>
-	<?php if($allowNewUser == 'true') {?>
-	<div id="siginDiv" class="userDiv">
-		<form method="post" action="" id="siginForm" class="userFrom">
-			<fieldset id="siginFieldset" class="userFieldset"><legend id="siginLegend" class="userLegend"><?php echo langCode('sigin_legend');?></legend>
-				<input type="text" name="siginFirstName" id="siginFirstName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_first_name_placeholder');?>" required/>
-				<label for="siginFirstName" id="siginFirstNameLabel" class="inputLabel"></label>
-				
-				<input type="text" name="siginLastName" id="siginLastName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_last_name_placeholder');?>" required/>
-				<label for="siginLastName" id="siginLastNameLabel" class="inputLabel"></label>
-				
-				<input type="text" name="siginUserName" id="siginUserName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_username_placeholder');?>" required/>
-				<label for="siginUserName" id="siginUserNameLabel" class="inputLabel"></label>
-				
-				<input type="email" name="siginEmail" id="siginEmail" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_email_placeholder');?>" required/>
-				<label for="siginEmail" id="siginEmailLabel" class="inputLabel"></label>
-				
-				<input type="password" name="siginPassword" id="siginPassword" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder');?>" required/>
-				<label for="siginPassword" id="siginPasswordLabel" class="inputLabel"></label>
-				
-				<input type="password" name="siginPassword2" id="siginPassword2" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder_2');?>" required/>
-				<label for="siginPassword2" id="siginPasswordLabel2" class="inputLabel"></label>
-				
-				<button type="submit" name="siginSubmit" id="siginSubmit" class="submitButton"><span class="submitSpan"><?php echo langCode('sigin_submit');?></span></button>
-			</fieldset>
-		</form>
-	</div>
-	<?php }?>
-	<?php if($allowNewUser == 'false') {?>
-	<div id="siginDiv" class="userDiv">
-		<p style="font-size: 3em;"><?php echo langCode('block_sigin');?></p>
+					<?php if($allowRestoreLogin == true) {?>
+					<input type="checkbox" name="loginRestore" id="loginRestore"/>
+					<label for="loginRestore" id="loginRestoreLabel"><span></span><?php echo langCode('remember_login');?></label>
+					<?php }?>
+					<button type="submit" name="loginSubmit" id="loginSubmit" class="submitButton"><span class="submitSpan"><?php echo langCode('login_submit');?></span></button>
+				</fieldset>
+			</form>
+		</div>
+		<?php if($allowNewUser == 'true') {?>
+		<div id="siginDiv" class="userDiv">
+			<form method="post" action="" id="siginForm" class="userFrom">
+				<fieldset id="siginFieldset" class="userFieldset"><legend id="siginLegend" class="userLegend"><?php echo langCode('sigin_legend');?></legend>
+					<input type="text" name="siginFirstName" id="siginFirstName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_first_name_placeholder');?>" required/>
+					<label for="siginFirstName" id="siginFirstNameLabel" class="inputLabel"></label>
+					
+					<input type="text" name="siginLastName" id="siginLastName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_last_name_placeholder');?>" required/>
+					<label for="siginLastName" id="siginLastNameLabel" class="inputLabel"></label>
+					
+					<input type="text" name="siginUserName" id="siginUserName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_username_placeholder');?>" required/>
+					<label for="siginUserName" id="siginUserNameLabel" class="inputLabel"></label>
+					
+					<input type="email" name="siginEmail" id="siginEmail" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_email_placeholder');?>" required/>
+					<label for="siginEmail" id="siginEmailLabel" class="inputLabel"></label>
+					
+					<input type="password" name="siginPassword" id="siginPassword" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder');?>" required/>
+					<label for="siginPassword" id="siginPasswordLabel" class="inputLabel"></label>
+					
+					<input type="password" name="siginPassword2" id="siginPassword2" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder_2');?>" required/>
+					<label for="siginPassword2" id="siginPasswordLabel2" class="inputLabel"></label>
+					
+					<button type="submit" name="siginSubmit" id="siginSubmit" class="submitButton"><span class="submitSpan"><?php echo langCode('sigin_submit');?></span></button>
+				</fieldset>
+			</form>
+		</div>
+		<?php }?>
+		<?php if($allowNewUser == 'false') {?>
+		<div id="siginDiv" class="userDiv">
+			<p style="font-size: 3em;"><?php echo langCode('block_sigin');?></p>
+		</div>
 	</div>
 	<?php }?>
 </section>
