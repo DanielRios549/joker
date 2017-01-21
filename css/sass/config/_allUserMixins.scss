@@ -265,7 +265,7 @@
 
 //using on desktop absolute and fixed header, mobile and tablet styles.
 
-@mixin allUser($connectedUserUlHeight, $connectedUserLinkBackground, $connectedUserNameLineHeight, $connectedUserNameColor) {
+@mixin allUser() {
 	#userDiv {
 		background: transparent;
 		position: absolute;
@@ -316,7 +316,7 @@
 			position: absolute;
 			right: 10px;
 			top: 0;
-			height: $connectedUserUlHeight;
+			height: 60px;
 			width: 160px;
 			
 			&:hover {
@@ -341,7 +341,7 @@
 				width: 100%;
 				
 				#userLink {
-					background: $connectedUserLinkBackground;
+					background: $colorGray;
 					display: block;
 					height: 100%;
 					width: 100%;
@@ -360,10 +360,10 @@
 						top: 0;
 						right: 10px;
 						font-size: 2em;
-						color: $connectedUserNameColor;
+						color: $colorLightGray;
 						float: right;
 						height: 100%;
-						line-height: $connectedUserNameLineHeight;
+						line-height: 57px;
 						
 						&:after {
 							content: '\f0d7';
@@ -496,7 +496,7 @@
 
 //using on mobile and tablet styles.
 
-@mixin touchMenu(){
+@mixin touchMenu() {
 	#menuBtInput {
 		position: absolute;
 		top: -100%;
@@ -533,129 +533,25 @@
 	}
 }
 
-//figcaption of index, categories and search pages
+//Using on categories and search pages
 
-@mixin contentFigcaption() {
-	figcaption {
-		box-sizing: border-box;
-		background: rgba(0,0,0,.5);
-		position: relative;
-		top: -233px;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 0;
-		
-		@include transition(all, 300ms, linear);
-
-		.figLink,
-		.figLinkWatch {
-			display: block;
-			position: absolute;
-			text-align: center;
-		}
-		.figLinkWatch {
-			border-radius: 50%;
-			top: 80px;
-			left: 45px;
-			width: 60px;
-			height: 60px;
-			overflow: hidden;
-			z-index: 96;
-
-			@include transition(all, 200ms, linear);
-
-			&:hover {
-				@include transform(scale(1.2));
-
-				&:before {
-					color: $colorBlue;
-				}
-			}
-			&:before {
-				border-radius: 50%;
-				content: '\f144';
-				font: 7em FontAwesome;
-				color: $colorLightGray;
-				position: absolute;
-				top: -5px;
-				left: 0;
-				z-index: 95;
-
-				@include transition(all, 200ms, linear);
-			}
-		}
-		.figLink {
-			border-radius: 3px;
-			background: $colorLightGray;
-			color: $colorBlue;
-			bottom: 10px;
-			left: 45px;
-			width: 60px;
-			height: 20px;
-			font-size: 1.5em;
-
-			@include transition(all, 200ms, linear);
-
-			&:hover {
-				background: $colorBlue;
-				color: $colorLightGray;
-			}
-			
-			.figSpan {
-				position: absolute;
-				left: 0;
-				top: 0;
-				height: 100%;
-				width: 100%;	
-			}
-		}
-		.addWatchList,
-		.removeWatchList {
-			position: absolute;
-			bottom: 10px;
-			right: 10px;
-			float: right;
-			display: block;
-			cursor: pointer;
-			
-			&:after {
-				font: 2em FontAwesome;
-				color: $colorLightGray;
-			}
-		}
-		.addWatchList {
-			&:after {
-				content: '\f055';
-			}
-		}
-		.removeWatchList {
-			&:hover {
-				&:after {
-					content: '\f056';
-				}
-			}
-			&:after {
-				content: '\f058';
-			}
-		}
-	}
-}
-
-//Using on all index Styles
-
-@mixin indexStyle() {
+@mixin contentStyle() {
 	.contentDiv {
 		position: relative;
 		top: 10px;
 		min-height: 270px;
-		width: 95%;
-		margin: 0 auto;
-		overflow-x: hidden;
+		width: 100%;
+		overflow: auto;
 
-		.contentGroup {
+		.contentGroupScroll {
             position: absolute;
-			height: 100%;
+		}
+		.contentGroup {
+			position: relative;
+			flex-flow: row wrap;
+		}
+		.contentGroup,
+		.contentGroupScroll {
 			display: flex;
 			
 			@include transform(translate3d(0, 0, 0));
@@ -697,67 +593,120 @@
 							height: 100%;
 							width: 100%;
 						}
-						
-						@include contentFigcaption();
+						figcaption {
+							box-sizing: border-box;
+							background: rgba(0,0,0,.5);
+							position: relative;
+							top: -233px;
+							left: 0;
+							height: 100%;
+							width: 100%;
+							opacity: 0;
+							
+							@include transition(all, 300ms, linear);
+
+							.figLink,
+							.figLinkWatch {
+								display: block;
+								position: absolute;
+								text-align: center;
+							}
+							.figLinkWatch {
+								border-radius: 50%;
+								top: 80px;
+								left: 45px;
+								width: 60px;
+								height: 60px;
+								overflow: hidden;
+								z-index: 96;
+
+								@include transition(all, 200ms, linear);
+
+								&:hover {
+									@include transform(scale(1.2));
+
+									&:before {
+										color: $colorBlue;
+									}
+								}
+								&:before {
+									border-radius: 50%;
+									content: '\f144';
+									font: 7em FontAwesome;
+									color: $colorLightGray;
+									position: absolute;
+									top: -5px;
+									left: 0;
+									z-index: 95;
+
+									@include transition(all, 200ms, linear);
+								}
+							}
+							.figLink {
+								border-radius: 3px;
+								background: $colorLightGray;
+								color: $colorBlue;
+								bottom: 10px;
+								left: 45px;
+								width: 60px;
+								height: 20px;
+								font-size: 1.5em;
+
+								@include transition(all, 200ms, linear);
+
+								&:hover {
+									background: $colorBlue;
+									color: $colorLightGray;
+								}
+								
+								.figSpan {
+									position: absolute;
+									left: 0;
+									top: 0;
+									height: 100%;
+									width: 100%;	
+								}
+							}
+							.addWatchList,
+							.removeWatchList {
+								position: absolute;
+								bottom: 10px;
+								right: 10px;
+								float: right;
+								display: block;
+								cursor: pointer;
+								
+								&:after {
+									font: 2em FontAwesome;
+									color: $colorLightGray;
+								}
+							}
+							.addWatchList {
+								&:after {
+									content: '\f055';
+								}
+							}
+							.removeWatchList {
+								&:hover {
+									&:after {
+										content: '\f056';
+									}
+								}
+								&:after {
+									content: '\f058';
+								}
+							}
+						}
 					}
 				}
 			}
 		}
 	}
-	.contentDivScroll {
-		overflow-x: auto !important;
-	}
-}
-
-//Using on categories and search pages
-
-@mixin allContentStyle() {
-	.contentDiv {
+	.titleDetails {
+		border: 1px solid red;
 		position: relative;
+		min-height: 230px;
 		width: 100%;
-		min-height: 270px;
-		margin: 0 auto;
-		padding-bottom: 30px;
-			
-		.content {
-			display: inline-block;
-			width: 160px;
-			height: 240px;
-			margin: 0 0 10px 10px;
-			
-			&:hover {
-				.contentLink {
-					border: 5px solid $colorBlue;
-					
-					.contentFigure figcaption {
-						opacity: 1;
-					}
-				}
-			}
-			.contentLink {
-				box-sizing: border-box;
-				border-radius: 5px;
-				border: 5px solid transparent;
-				display: block;
-				height: 100%;
-				width: 100%;
-				text-decoration: none;
-				
-				@include transition(all, 300ms, linear);
-				
-				.contentFigure {
-					height: 100%;
-					width: 100%;
-					
-					img {
-						height: 100%;
-						width: 100%;
-					}
-					
-					@include contentFigcaption();
-				}
-			}
-		}
 	}
 }
 

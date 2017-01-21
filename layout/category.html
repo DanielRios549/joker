@@ -17,35 +17,42 @@
 	$(document).ready(function() {
 		$('.contentFigure').on('click', '.addWatchList', addWatchList);
         $('.contentFigure').on('click', '.removeWatchList', removeWatchList);
+
+		//$('.contentFigure').on('click', '.figLink', showDetails);
 	});
 </script>
-<section class="interface">
-	<div id="categoryContent">
-		<?php $contentArray = array('contentCategory' => $categoryQuery, 'dateAdd' => false, 'querySearch' => false, 'page' => THIS_PAGE); require $contentDir . 'showContent.php';?>
-		<p id="categoryResult"><?php echo $movieFoundText . '<span class="searchSpan"> ' . $totalSearch . ' </span>' . $movieText . ' ' . langCode('in_category') . ' ' . lcfirst($categoryName);?></p>			
-		<div class="contentDiv">
-			<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
-				<div class="content">
-					<div class="contentLink">
-						<figure class="contentFigure">
-							<?php $contentFolder = getDynamicFolder($addRow[$contentNumber - 1]['type'], $mediaImageFolder);?>
-							<img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>
-							<figcaption>
-								<?php if($key['type'] == 'movie') {?>
-								<a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']);?>"></a>
-								<?php } elseif($key['type'] == 'serie') {?>
-								<a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']) . '&e=' . $firstEpisode['episode_id'];?>"></a>
-								<?php }?>
-								<a class="figLink" href="<?php echo getLink('title', $key['content_id']);?>">
-									<span class="figSpan"><?php echo langCode('details');?></span>
-								</a>
-								<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
-								<div class="<?php echo $watchListAction;?>" data-id="<?php echo $watchId;?>"></div>
-							</figcaption>
-						</figure>
+<main class="interface">
+	<section id="categoryContent">
+		<div class="contentContainer">
+			<?php $contentArray = array('contentCategory' => $categoryQuery, 'dateAdd' => false, 'querySearch' => false, 'page' => THIS_PAGE); require $contentDir . 'showContent.php';?>
+			<p id="categoryResult"><?php echo $movieFoundText . '<span class="searchSpan"> ' . $totalSearch . ' </span>' . $movieText . ' ' . langCode('in_category') . ' ' . lcfirst($categoryName);?></p>
+				<div class="contentDiv">
+					<div class="contentGroup">
+					<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
+						<div class="content">
+							<div class="contentLink">
+								<figure class="contentFigure">
+									<?php $contentFolder = getDynamicFolder($addRow[$contentNumber - 1]['type'], $mediaImageFolder);?>
+									<img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>
+									<figcaption>
+										<?php if($key['type'] == 'movie') {?>
+										<a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']);?>"></a>
+										<?php } elseif($key['type'] == 'serie') {?>
+										<a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']) . '&e=' . $firstEpisode['episode_id'];?>"></a>
+										<?php }?>
+										<a class="figLink" href="<?php echo getLink('title', $key['content_id']);?>">
+											<span class="figSpan"><?php echo langCode('details');?></span>
+										</a>
+										<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
+										<div class="<?php echo $watchListAction;?>" data-id="<?php echo $watchId;?>"></div>
+									</figcaption>
+								</figure>
+							</div>
+						</div>
+					<?php $contentNumber ++;}?>
 					</div>
 				</div>
-			<?php $contentNumber ++;}?>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</main>

@@ -150,8 +150,6 @@ function parallaxInternalHome() {
 	}
 }
 
-//Slide of index
-
 function slideIndex() {
 	if($(this).scrollTop() < 200) {
 		if($('.imageShow').next().size()) {
@@ -339,3 +337,19 @@ function disableEnable() {
 		}
 	});
 }
+
+function showDetails(event) {
+	event.preventDefault();
+	
+	var parentDiv = $(this).parent().parent().parent().parent().parent().parent().parent();
+	var detailsDiv = $(parentDiv).find('.titleDetails');
+	parentDiv.toggleClass('open');
+
+	if(!$(detailsDiv).length) {
+		parentDiv.append('<div class="titleDetails"></div');
+	}
+	else {
+		detailsDiv.remove();
+	}
+}
+	

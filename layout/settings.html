@@ -11,144 +11,148 @@
 		header("Location:" .  $base . "404");
 	}
 ?>
-<section class="interface">
-	<div id="settingsMenu">
-		<ul id="menuUl">
-			<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=info';?>" class="<?php echo $menuLink1Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_info');?></span></a></li>
-			<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=lang';?>" class="<?php echo $menuLink2Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_lang');?></span></a></li>
-			<?php if($adminCheck == true) {?>
-			<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=delete';?>" class="<?php echo $menuLink3Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_delete');?></span></a></li>
+<section class="interface settings">
+	<article class="divLeft">
+		<div id="settingsMenu">
+			<ul id="menuUl">
+				<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=info';?>" class="<?php echo $menuLink1Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_info');?></span></a></li>
+				<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=lang';?>" class="<?php echo $menuLink2Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_lang');?></span></a></li>
+				<?php if($adminCheck == true) {?>
+				<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=delete';?>" class="<?php echo $menuLink3Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_delete');?></span></a></li>
+				<?php }?>
+			</ul>
+		</div>
+	</article>
+	<article class="divRight">
+		<h2 id="sectionHeader"><?php echo $sectionHeader;?></h2>
+		<div id="settingsOptions">
+			<?php if((@$_GET['tab'] == 'info') or (@$tab01 == true)) {?>
+				<div id="settingsOptionInfo" class="settingsOption">
+					<div id="section1" class="section">
+						<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'name')) {?>
+							<a href="<?php echo $userSettingsPage . '?tab=info&section=name'?>" id="<?php echo $linkInfoName;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_name');?></span><span class="linkUserInfo"><?php echo $userConf['name'];?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanName;?></span></a>
+							<?php } elseif(@$_GET['section'] == 'name') {?>
+							<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=name&go=setName'?>" id="formSettings1" class="formSettings">
+								<fieldset id="fieldSettings1" class="fieldSettings"><legend id="legendSettings1" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_name');?></legend>
+									<div class="inputsAera">
+										<label for="setNameFirst" id="inputLabel1_1" class="inputLabel"><?php echo langCode('settings_first');?></label>
+										<input type="text" name="setNameFirst" id="setNameFirst" class="setInput" value="<?php echo $userConf['first-name'];?>" placeholder="<?php echo langCode('settings_first') . ' ' .  langCode('settings_name');?>" autocomplete="off" required/>
+										
+										<label for="setNameLast" id="inputLabel1_2" class="inputLabel"><?php echo langCode('settings_last');?></label>
+										<input type="text" name="setNameLast" id="setNameLast" class="setInput" value="<?php echo $userConf['last-name'];?>" placeholder="<?php echo langCode('settings_last') . ' ' . langCode('settings_name');?>" autocomplete="off" required/>
+									</div>
+									
+									<button type="submit" id="setSubmit1" class="setSubmit"><?php echo $btnChange;?></button>
+									<a id="linkBack1" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
+								</fieldset>
+							</form>
+						<?php }?>
+					</div>
+					<div id="section2" class="section">
+						<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'username')) {?>
+							<a href="<?php echo $userSettingsPage . '?tab=info&section=username'?>" id="<?php echo $linkInfoUserName;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_username');?></span><span class="linkUserInfo"><?php echo $userConf['username'];;?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanUserName;?></span></a>
+							<?php } elseif(@$_GET['section'] == 'username') {?>
+							<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=username&go=setUserName'?>" id="formSettings2" class="formSettings">
+								<fieldset id="fieldSettings2" class="fieldSettings"><legend id="legendSettings2" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_username');?></legend>
+									<div class="inputsAera">
+										<label for="setUserName" id="inputLabel2_1" class="inputLabel"><?php echo langCode('settings_username');?></label>
+										<input type="text" name="setUserName" id="setUserName" class="setInput" value="<?php echo $userConf['username'];?>" placeholder="<?php echo langCode('settings_change') . ' ' . langCode('settings_username');?>" autocomplete="off" required/>
+									</div>
+									
+									<button type="submit" id="setSubmit2" class="setSubmit"><?php echo $btnChange;?></button>
+									<a id="linkBack2" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
+								</fieldset>
+							</form>
+						<?php }?>
+					</div>
+					<?php if($adminCheck == true) {?>
+					<div id="section3" class="section">
+						<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'email')) {?>
+							<a href="<?php echo $userSettingsPage . '?tab=info&section=email'?>" id="<?php echo $linkInfoEmail;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_email');?></span><span class="linkUserInfo"><?php echo $userConf['email'];?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanEmail;?></span></a>
+							<?php } elseif(@$_GET['section'] == 'email') {?>
+							<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=email&go=setEmail'?>" id="formSettings3" class="formSettings">
+								<fieldset id="fieldSettings3" class="fieldSettings"><legend id="legendSettings3" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_email');?></legend>
+									<div class="inputsAera">
+										<label for="setEmail" id="inputLabel3_1" class="inputLabel"><?php echo langCode('settings_email');?></label>
+										<input type="email" name="setEmail" id="setEmail" class="setInput" value="<?php echo $userConf['email'];?>" placeholder="<?php echo langCode('settings_change') . ' ' . langCode('settings_email');?>" autocomplete="off" required/>
+									</div>
+									
+									<button type="submit" id="setSubmit3" class="setSubmit"><?php echo $btnChange;?></button>
+									<a id="linkBack3" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
+								</fieldset>
+							</form>
+						<?php }?>
+					</div>
+					<?php }?>
+					<div id="section4" class="section">
+						<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'password')) {?>
+							<a href="<?php echo $userSettingsPage . '?tab=info&section=password'?>" id="<?php echo $linkInfoPassword;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_password');?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanPassword;?></span></a>
+						<?php } elseif(@$_GET['section'] == 'password') {?>
+							<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=password&go=setPassword'?>" id="formSettings4" class="formSettings">
+								<fieldset id="fieldSettings4" class="fieldSettings"><legend id="legendSettings4" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_password');?></legend>
+									<div class="inputsAera">
+										<label for="setSenha" id="inputLabel4_1" class="inputLabel"><?php echo langCode('settings_current_password');?></label>
+										<input type="password" name="setSenha" id="setSenha" class="setInput" placeholder="<?php echo '';?>" autocomplete="off" required/>
+										
+										<label for="setSenha2" id="inputLabel4_2" class="inputLabel"><?php echo langCode('settings_new_password');?></label>
+										<input type="password" name="setSenha2" id="setSenha2" class="setInput" placeholder="<?php echo '';?>" autocomplete="off" required/>
+										
+										<label for="setSenha3" id="inputLabel4_3" class="inputLabel"><?php echo langCode('settings_repeat_new_password');?></label>
+										<input type="password" name="setSenha3" id="setSenha3" class="setInput" placeholder="<?php echo '';?>" autocomplete="off" required/>
+									</div>
+									
+									<button type="submit" id="setSubmit4" class="setSubmit"><?php echo $btnChange;?></button>
+									<a id="linkBack4" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
+								</fieldset>
+							</form>
+						<?php }?>
+					</div>
+				</div>
+			<?php } elseif(@$_GET['tab'] == 'lang') {?>
+				<div id="settingsOptionLang" class="settingsOption">
+					<div id="section5" class="section">
+						<?php if(!isset($_GET['section'])) {?>
+							<a href="<?php echo $userSettingsPage . '?tab=lang&section=userLang'?>" id="<?php echo $linkInfoLang;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_account_lang');?></span><span class="linkUserInfo"><?php echo langCode('lang_name');?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanLang;?></span></a>
+						<?php } elseif(@$_GET['section'] == 'userLang') {?>
+							<form method="post" action="<?php echo $userSettingsPage . '?tab=lang&section=userLang&go=setLang'?>" id="formSettings5" class="formSettings">
+								<fieldset id="fieldSettings5" class="fieldSettings"><legend id="legendSettings5" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_account_lang');?></legend>
+										<div class="inputsAera">
+											<select name="langSelectUser">
+												<option value="en_US"<?php echo $userLangEn;?>><span><?php echo langCode('en');?></span></option>
+												<option value="pt_BR"<?php echo $userLangPt;?>><span><?php echo langCode('pt');?></span></option>
+											</select>
+										</div>
+										
+										<button type="submit" id="setSubmit5" class="setSubmit"><?php echo $btnChange;?></button>
+										<a id="linkBack5" class="linkBack" href="<?php echo $userSettingsPage . '?tab=lang'?>"><?php echo $btnCancel;?></a>
+								</fieldset>
+							</form>
+						<?php }?>
+					</div>
+				</div>
+			<?php } elseif(@$_GET['tab'] == 'delete') { if($adminCheck == true) {?>
+				<div id="settingsOptionDelete" class="settingsOption">
+					<div id="section6" class="section">
+						<?php if(!isset($_GET['section'])) {?>
+							<a href="<?php echo $userSettingsPage . '?tab=delete&section=deleteUser'?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_delete_account');?></span><span class="linkInfoSpan"><?php echo langCode('settings_edit');?></span></a>
+						<?php } elseif(@$_GET['section'] == 'deleteUser') {?>
+							<form method="post" action="<?php echo $userSettingsPage . '?tab=delete&section=deleteUser&go=setDelete'?>" id="formSettings6" class="formSettings">
+								<fieldset id="fieldSettings6" class="fieldSettings"><legend id="legendSettings6" class="legendSettings"><?php echo langCode('settings_delete_account');?></legend>
+										<div class="inputsAera">
+											<select name="langSelectUser">
+												<option value="delFalse" selected><span><?php echo 'Select';?></span></option>
+												<option value="delTrue"><span><?php echo 'deletar minha conta';?></span></option>
+											</select>
+										</div>
+										
+										<button type="submit" id="setSubmit6" class="setSubmit"><?php echo $btnChange;?></button>
+										<a id="linkBack6" class="linkBack" href="<?php echo $userSettingsPage . '?tab=delete'?>"><?php echo $btnCancel;?></a>
+								</fieldset>
+							</form>
+						<?php }}?>
+					</div>
+				</div>
 			<?php }?>
-		</ul>
-	</div>
-	<h2 id="sectionHeader"><?php echo $sectionHeader;?></h2>
-	<div id="settingsOptions">
-		<?php if((@$_GET['tab'] == 'info') or (@$tab01 == true)) {?>
-			<div id="settingsOptionInfo" class="settingsOption">
-				<div id="section1" class="section">
-					<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'name')) {?>
-						<a href="<?php echo $userSettingsPage . '?tab=info&section=name'?>" id="<?php echo $linkInfoName;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_name');?></span><span class="linkUserInfo"><?php echo $userConf['name'];?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanName;?></span></a>
-						<?php } elseif(@$_GET['section'] == 'name') {?>
-						<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=name&go=setName'?>" id="formSettings1" class="formSettings">
-							<fieldset id="fieldSettings1" class="fieldSettings"><legend id="legendSettings1" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_name');?></legend>
-								<div class="inputsAera">
-									<label for="setNameFirst" id="inputLabel1_1" class="inputLabel"><?php echo langCode('settings_first');?></label>
-									<input type="text" name="setNameFirst" id="setNameFirst" class="setInput" value="<?php echo $userConf['first-name'];?>" placeholder="<?php echo langCode('settings_first') . ' ' .  langCode('settings_name');?>" autocomplete="off" required/>
-									
-									<label for="setNameLast" id="inputLabel1_2" class="inputLabel"><?php echo langCode('settings_last');?></label>
-									<input type="text" name="setNameLast" id="setNameLast" class="setInput" value="<?php echo $userConf['last-name'];?>" placeholder="<?php echo langCode('settings_last') . ' ' . langCode('settings_name');?>" autocomplete="off" required/>
-								</div>
-								
-								<button type="submit" id="setSubmit1" class="setSubmit"><?php echo $btnChange;?></button>
-								<a id="linkBack1" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
-							</fieldset>
-						</form>
-					<?php }?>
-				</div>
-				<div id="section2" class="section">
-					<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'username')) {?>
-						<a href="<?php echo $userSettingsPage . '?tab=info&section=username'?>" id="<?php echo $linkInfoUserName;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_username');?></span><span class="linkUserInfo"><?php echo $userConf['username'];;?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanUserName;?></span></a>
-						<?php } elseif(@$_GET['section'] == 'username') {?>
-						<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=username&go=setUserName'?>" id="formSettings2" class="formSettings">
-							<fieldset id="fieldSettings2" class="fieldSettings"><legend id="legendSettings2" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_username');?></legend>
-								<div class="inputsAera">
-									<label for="setUserName" id="inputLabel2_1" class="inputLabel"><?php echo langCode('settings_username');?></label>
-									<input type="text" name="setUserName" id="setUserName" class="setInput" value="<?php echo $userConf['username'];?>" placeholder="<?php echo langCode('settings_change') . ' ' . langCode('settings_username');?>" autocomplete="off" required/>
-								</div>
-								
-								<button type="submit" id="setSubmit2" class="setSubmit"><?php echo $btnChange;?></button>
-								<a id="linkBack2" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
-							</fieldset>
-						</form>
-					<?php }?>
-				</div>
-                <?php if($adminCheck == true) {?>
-				<div id="section3" class="section">
-					<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'email')) {?>
-						<a href="<?php echo $userSettingsPage . '?tab=info&section=email'?>" id="<?php echo $linkInfoEmail;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_email');?></span><span class="linkUserInfo"><?php echo $userConf['email'];?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanEmail;?></span></a>
-						<?php } elseif(@$_GET['section'] == 'email') {?>
-						<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=email&go=setEmail'?>" id="formSettings3" class="formSettings">
-							<fieldset id="fieldSettings3" class="fieldSettings"><legend id="legendSettings3" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_email');?></legend>
-								<div class="inputsAera">
-									<label for="setEmail" id="inputLabel3_1" class="inputLabel"><?php echo langCode('settings_email');?></label>
-									<input type="email" name="setEmail" id="setEmail" class="setInput" value="<?php echo $userConf['email'];?>" placeholder="<?php echo langCode('settings_change') . ' ' . langCode('settings_email');?>" autocomplete="off" required/>
-								</div>
-								
-								<button type="submit" id="setSubmit3" class="setSubmit"><?php echo $btnChange;?></button>
-								<a id="linkBack3" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
-							</fieldset>
-						</form>
-					<?php }?>
-				</div>
-                <?php }?>
-				<div id="section4" class="section">
-					<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'password')) {?>
-						<a href="<?php echo $userSettingsPage . '?tab=info&section=password'?>" id="<?php echo $linkInfoPassword;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_password');?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanPassword;?></span></a>
-					<?php } elseif(@$_GET['section'] == 'password') {?>
-						<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=password&go=setPassword'?>" id="formSettings4" class="formSettings">
-							<fieldset id="fieldSettings4" class="fieldSettings"><legend id="legendSettings4" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_password');?></legend>
-								<div class="inputsAera">
-									<label for="setSenha" id="inputLabel4_1" class="inputLabel"><?php echo langCode('settings_current_password');?></label>
-									<input type="password" name="setSenha" id="setSenha" class="setInput" placeholder="<?php echo '';?>" autocomplete="off" required/>
-									
-									<label for="setSenha2" id="inputLabel4_2" class="inputLabel"><?php echo langCode('settings_new_password');?></label>
-									<input type="password" name="setSenha2" id="setSenha2" class="setInput" placeholder="<?php echo '';?>" autocomplete="off" required/>
-									
-									<label for="setSenha3" id="inputLabel4_3" class="inputLabel"><?php echo langCode('settings_repeat_new_password');?></label>
-									<input type="password" name="setSenha3" id="setSenha3" class="setInput" placeholder="<?php echo '';?>" autocomplete="off" required/>
-								</div>
-								
-								<button type="submit" id="setSubmit4" class="setSubmit"><?php echo $btnChange;?></button>
-								<a id="linkBack4" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
-							</fieldset>
-						</form>
-					<?php }?>
-				</div>
-			</div>
-		<?php } elseif(@$_GET['tab'] == 'lang') {?>
-			<div id="settingsOptionLang" class="settingsOption">
-				<div id="section5" class="section">
-					<?php if(!isset($_GET['section'])) {?>
-						<a href="<?php echo $userSettingsPage . '?tab=lang&section=userLang'?>" id="<?php echo $linkInfoLang;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_account_lang');?></span><span class="linkUserInfo"><?php echo langCode('lang_name');?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanLang;?></span></a>
-					<?php } elseif(@$_GET['section'] == 'userLang') {?>
-						<form method="post" action="<?php echo $userSettingsPage . '?tab=lang&section=userLang&go=setLang'?>" id="formSettings5" class="formSettings">
-							<fieldset id="fieldSettings5" class="fieldSettings"><legend id="legendSettings5" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_account_lang');?></legend>
-									<div class="inputsAera">
-										<select name="langSelectUser">
-											<option value="en_US"<?php echo $userLangEn;?>><span><?php echo langCode('en');?></span></option>
-											<option value="pt_BR"<?php echo $userLangPt;?>><span><?php echo langCode('pt');?></span></option>
-										</select>
-									</div>
-									
-									<button type="submit" id="setSubmit5" class="setSubmit"><?php echo $btnChange;?></button>
-									<a id="linkBack5" class="linkBack" href="<?php echo $userSettingsPage . '?tab=lang'?>"><?php echo $btnCancel;?></a>
-							</fieldset>
-						</form>
-					<?php }?>
-				</div>
-			</div>
-		<?php } elseif(@$_GET['tab'] == 'delete') { if($adminCheck == true) {?>
-			<div id="settingsOptionDelete" class="settingsOption">
-				<div id="section6" class="section">
-					<?php if(!isset($_GET['section'])) {?>
-						<a href="<?php echo $userSettingsPage . '?tab=delete&section=deleteUser'?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_delete_account');?></span><span class="linkInfoSpan"><?php echo langCode('settings_edit');?></span></a>
-					<?php } elseif(@$_GET['section'] == 'deleteUser') {?>
-						<form method="post" action="<?php echo $userSettingsPage . '?tab=delete&section=deleteUser&go=setDelete'?>" id="formSettings6" class="formSettings">
-							<fieldset id="fieldSettings6" class="fieldSettings"><legend id="legendSettings6" class="legendSettings"><?php echo langCode('settings_delete_account');?></legend>
-									<div class="inputsAera">
-										<select name="langSelectUser">
-											<option value="delFalse" selected><span><?php echo 'Select';?></span></option>
-											<option value="delTrue"><span><?php echo 'deletar minha conta';?></span></option>
-										</select>
-									</div>
-									
-									<button type="submit" id="setSubmit6" class="setSubmit"><?php echo $btnChange;?></button>
-									<a id="linkBack6" class="linkBack" href="<?php echo $userSettingsPage . '?tab=delete'?>"><?php echo $btnCancel;?></a>
-							</fieldset>
-						</form>
-					<?php }}?>
-				</div>
-			</div>
-		<?php }?>
-	</div>
+		</div>
+		</article>
 </section>

@@ -16,9 +16,11 @@
 	$(document).ready(function() {
 		$('.contentFigure').on('click', '.addWatchList', addWatchList);
         $('.contentFigure').on('click', '.removeWatchList', removeWatchList);
+
+		//$('.contentFigure').on('click', '.figLink', showDetails);
 	});
 </script>
-<section class="interface">
+<main class="interface">
 	<?php $contentArray = array('contentCategory' => 'producer', 'dateAdd' => false, 'querySearch' => $searchQuery, 'page' => false); require $contentDir . 'showContent.php'; if($contentClass -> contentHide == false){?>
 	<div class="searchOther">
 		<span class="otherSpan"><?php echo ucfirst(langcode('people')) . ":";?></span>
@@ -34,32 +36,36 @@
 	</div>
 	<?php } $contentArray = array('contentCategory' => 'name', 'dateAdd' => false, 'querySearch' => $searchQuery, 'page' => false); require $contentDir . 'showContent.php';?>
 	<div class="searchContent">
-		<p class="searchResult"><?php echo langCode('search_title') . '<span class="searchSpan"> ' . $totalSearch . ' </span>' . langCode('results') .  ' ' . langCode('for')  . '<span class="searchSpan"> ' . $searchQuery . ' </span>';?></p>	
-		<?php if($totalSearch >= 1) {?>
-		<div class="contentDiv">
-			<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
-				<div class="content">
-					<div class="contentLink">
-						<figure class="contentFigure">
-							<?php $contentFolder = getDynamicFolder($addRow[$contentNumber - 1]['type'], $mediaImageFolder);?>
-							<img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>
-							<figcaption>
-								<?php if($key['type'] == 'movie') {?>
-								<a class="figLinkWatch" href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $key['content_id'];?>"></a>
-								<?php } elseif($key['type'] == 'serie') {?>
-								<a class="figLinkWatch" href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $key['content_id'] . '&e=' . $firstEpisode['episode_id'];?>"></a>
-								<?php }?>
-								<a class="figLink" href="<?php echo $baseUrl . langCode('title_link') . '?id=' . $key['content_id'];?>">
-									<span class="figSpan"><?php echo langCode('details');?></span>
-								</a>
-								<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
-								<div class="<?php echo $watchListAction;?>" data-id="<?php echo $watchId;?>"></div>
-							</figcaption>
-						</figure>
+		<div class="contentContainer">
+			<p class="searchResult"><?php echo langCode('search_title') . '<span class="searchSpan"> ' . $totalSearch . ' </span>' . langCode('results') .  ' ' . langCode('for')  . '<span class="searchSpan"> ' . $searchQuery . ' </span>';?></p>	
+			<?php if($totalSearch >= 1) {?>
+				<div class="contentDiv">
+					<div class="contentGroup">
+					<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
+						<div class="content">
+							<div class="contentLink">
+								<figure class="contentFigure">
+									<?php $contentFolder = getDynamicFolder($addRow[$contentNumber - 1]['type'], $mediaImageFolder);?>
+									<img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>
+									<figcaption>
+										<?php if($key['type'] == 'movie') {?>
+										<a class="figLinkWatch" href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $key['content_id'];?>"></a>
+										<?php } elseif($key['type'] == 'serie') {?>
+										<a class="figLinkWatch" href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $key['content_id'] . '&e=' . $firstEpisode['episode_id'];?>"></a>
+										<?php }?>
+										<a class="figLink" href="<?php echo $baseUrl . langCode('title_link') . '?id=' . $key['content_id'];?>">
+											<span class="figSpan"><?php echo langCode('details');?></span>
+										</a>
+										<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
+										<div class="<?php echo $watchListAction;?>" data-id="<?php echo $watchId;?>"></div>
+									</figcaption>
+								</figure>
+							</div>
+						</div>
+					<?php $contentNumber ++;}?>
 					</div>
 				</div>
-			<?php $contentNumber ++;}?>
+			<?php }?>
 		</div>
-		<?php }?>
 	</div>
-</section>
+</main>

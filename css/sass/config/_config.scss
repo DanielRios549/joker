@@ -5,7 +5,7 @@
  ****************************************************************
 */
 
-$baseUrl: 'http://127.0.0.1/Joker/';
+$baseUrl: 'http://127.0.0.1/joker/';
 $imageDir: $baseUrl + 'images/';
 $fontDir: $baseUrl + 'fonts/';
 
@@ -19,9 +19,6 @@ $fontDir: $baseUrl + 'fonts/';
 }
 
 //it is nessesary to define the variables in sass map instead of :root, for compatibility reasons.
-
-$baseUrl: 'http://127.0.0.1/Andre/PIBSI/';
-$templateUrl: $baseUrl + 'wp-content/themes/pibsi/';
 
 //75em 61.5625em 56.875em 48.9375em 44.375em
 

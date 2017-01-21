@@ -34,7 +34,7 @@ gulp.task('bower', function() {
 
 gulp.task('sass', function() {
     return gulp.src(['css/sass/userSite/userStyle.scss', 'css/sass/adminSite/adminStyle.scss'])
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
     .pipe(gulp.dest('css/'));
 });
 

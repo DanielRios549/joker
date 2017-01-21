@@ -15,6 +15,11 @@ $responsiveVariables: (
     --titleDivLeftJustify: center,
     --titleDivRightWidth: 100%,
     --titleTabHeaderJustify: flex-start,
+    --settingsDivLeftWidth: 30%,
+    --settingsDivRightWidth: 65%,
+    --settingsGroupAlign: column wrap,
+    --settingsAlignOptions: row nowrap,
+    --settingsAlign: space-around
 );
 
 @media (min-width: $tablet + 1 + 'px') {
@@ -24,5 +29,8 @@ $responsiveVariables: (
                 #{$variable}: $value;
             }
         }
+    }
+    #header {
+        @include header();
     }
 }

@@ -14,8 +14,19 @@ $responsiveVariables: (
     --titleDivLeftWidth: 100%,
     --titleDivLeftJustify: center,
     --titleDivRightWidth: 100%,
-    --titleTabHeaderJustify: center
+    --titleTabHeaderJustify: center,
+    --settingsDivLeftWidth: 90%,
+    --settingsDivRightWidth: 90%,
+    --settingsGroupAlign: row wrap,
+    --settingsAlignOptions: column wrap,
+    --settingsAlign: center
 );
+
+@media (max-width: $tablet + 'px') {
+    #header {
+        @include touchMenu();
+    }
+}
 
 @media (min-width: $mobile + 1 + 'px') and (max-width: $tablet + 'px') {
 	@if($css4 == true) {

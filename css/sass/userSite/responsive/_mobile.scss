@@ -14,7 +14,12 @@ $responsiveVariables: (
     --titleDivLeftWidth: 100%,
     --titleDivLeftJustify: center,
     --titleDivRightWidth: 100%,
-    --titleTabHeaderJustify: center
+    --titleTabHeaderJustify: center,
+    --settingsDivLeftWidth: 100%,
+    --settingsDivRightWidth: 100%,
+    --settingsGroupAlign: column wrap,
+    --settingsAlignOptions: column wrap,
+    --settingsAlign: center
 );
 
 @media (max-width: $mobile + 'px') {
