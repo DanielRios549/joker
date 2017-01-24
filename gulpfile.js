@@ -18,11 +18,11 @@ gulp.task('prod', function() {
 gulp.task('bower', function() {
     gulp.src('bower_components/jquery/dist/jquery.min.js')
     .pipe(rename('jquery.js'))
-    .pipe(gulp.dest('./js/lib/'));
+    .pipe(gulp.dest('./javascript/libraries/'));
 
     gulp.src('bower_components/font-awesome/fonts/FontAwesome.otf')
     .pipe(rename('fontAwesome.otf'))
-    .pipe(gulp.dest('./font/icons/'));
+    .pipe(gulp.dest('./fonts/icons/'));
 
     gulp.src('bower_components/font-awesome/scss/_variables.scss')
     .pipe(rename('_fontIcon.txt'))

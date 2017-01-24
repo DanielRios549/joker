@@ -39,19 +39,27 @@
 
         #tabHeader {
             position: relative;
-            width: 80%;
+            width: 90%;
             height: 150px;
             margin: 0 auto;
             z-index: 99;
+            display: flex;
 
+            .tab {
+                border-bottom: 5px solid transparent;
+            }
+            .tabSelected {
+                border-bottom: 5px solid $colorGray;
+            }
             .tab,
             .tabSelected {
                 position: relative;
-                display: inline-block;
                 height: 100%;
-                width: 33%;
+                width: 100%;
                 text-align: center;
                 cursor: pointer;
+                display: flex;
+                flex-direction: column;
 
                 &:nth-of-type(1) {
                     .tabIcon {
@@ -76,7 +84,7 @@
                 }
                 .tabIcon {
                     position: relative;
-                    top: 0;
+                    width: 100%;
                     height: 80%;
 
                     &:after {
@@ -87,26 +95,11 @@
                     }
                 }
                 .tabSpan {
-                    position: absolute;
-                    bottom: 0;
+                    position: relative;
                     font: 2em Calibri, sans-serif;
                     text-align: center;
-                    display: block;
                     width: 100%;
                     height: 20%;
-                }
-            }
-            .tab {
-                border-bottom: 5px solid transparent;
-
-                span {
-                    color: $colorBlack;
-                }
-            }
-            .tabSelected {
-                border-bottom: 5px solid $colorGray;
-
-                span {
                     color: $colorBlack;
                 }
             }
@@ -130,214 +123,5 @@
     
     //If the user is logged
     
-    #contentSlider {
-        background: #000000;
-        position: relative;
-        left: 0;
-        width: 100%;
-        height: 300px;
-        overflow: hidden;
-        
-        #imageDiv {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            
-            .imageHide,
-            .imageShow {
-                float: left;
-                position: relative;
-                
-                @include transition(opacity, 500ms, ease);
-                
-                .addWatchList,
-                .removeWatchList {
-                    border-radius: 4px;
-                    background: $colorGray;
-                    position: absolute;
-                    top: 250px;
-                    right: 150px;
-                    display: block;
-                    height: 40px;
-                    width: 40px;
-                    z-index: 99;
-                    text-decoration: none;
-                    color: $colorLightGray;
-                    font-size: 1.5em;
-                    text-align: center;
-                    line-height: 38px;
-                    cursor: pointer;
-                    
-                    @include transition(all, 300ms, linear);
-                    
-                    &:hover {
-                        background: $colorBlue;
-                    }
-                    &:after {
-                        font: 2em FontAwesome;
-                        color: $colorLightGray;
-                        position: absolute;
-                        left: 7px;
-                        top: 4px;
-                    }
-                }
-                .addWatchList {
-                    &:after {
-                        content: '\f055';
-                    }
-                }
-                .removeWatchList {
-                    &:hover {
-                        &:after {
-                            content: '\f056';
-                        }
-                    }
-                    &:after {
-                        content: '\f058';
-                    }
-                }
-                .sliderLink {
-                    border-radius: 4px;
-                    background: $colorGray;
-                    position: absolute;
-                    top: 250px;
-                    right: 50px;
-                    display: block;
-                    height: 40px;
-                    width: 80px;
-                    z-index: 99;
-                    text-decoration: none;
-                    
-                    @include transition(all, 300ms, linear);
-                    
-                    &:hover {
-                        background: $colorBlue;
-                    }
-                    .linkSpan {
-                        display: block;
-                        position: relative;
-                        color: $colorLightGray;
-                        width: 100%;
-                        height: 100%;
-                        font-size: 1.5em;
-                        text-align: center;
-                        line-height: 38px;
-                    }
-                }
-                img {
-                    position: relative;
-                    width: 100%;
-                    opacity: 1;
-                }
-            }
-            .imageHide {
-                width: 0;
-                opacity: 0;
-            }
-            .imageShow {
-                width: 100%;
-                opacity: 1;
-            }
-        }
-        #previousImage,
-        #nextImage {
-            position: absolute;
-            top: 110px;
-            height: 70px;
-            width: 40px;
-            cursor: pointer;
-            z-index: 97;
-            
-            @include transition(all, 150ms, linear);
-            
-            &:after {
-                font: 10em FontAwesome;
-                color: $colorLightGray;
-                text-shadow: 2px 2px 2px rgba(0,0,0,.5);
-                position: absolute;
-                top: -20px;
-            }
-            &:hover {
-                @include transform(scale(1.3));
-            }
-        }
-        #previousImage {
-            left: 10px;
-            
-            &:after {
-                content: '\f104';
-                left: 0;
-            }
-        }
-        #nextImage {
-            right: 10px;
-            
-            &:after {
-                content: '\f105';
-                right: 0;
-            }
-        }
-        #changeDiv {
-            position: absolute;
-            bottom: 15px;
-            height: 20px;
-            width: 50%;
-            margin: 0 25%;
-            text-align: center;
-            text-shadow: 2px 2px 2px rgba(0,0,0,.5);
-            
-            .changeHide,
-            .changeShow {
-                position: relative;
-                top: 0;
-                display: inline-block;
-                height: 100%;
-                width: 20px;
-                cursor: pointer;
-                margin: 0 2px;
-                
-                &:after {
-                    content: '\f111';
-                    font: 1.8em FontAwesome;
-                    position: absolute;
-                    left: 0;
-                    width: 100%;
-                }
-            }
-            .changeHide {
-                &:after {
-                    color: $colorLightGray;
-                }
-            }
-            .changeShow {
-                &:after {
-                    color: $colorBlue;color: -webkit-linear-gradient(45deg, $colorBlue 0%,#2cafec 31%,#2cafec 31%,#2cafec 50%,$colorLightGray 100%);
-                }
-            }
-        }
-    }
-    .contentDivHeader {
-        position: relative;
-        top: 10px;
-        font-size: 2em;
-        color: $colorGray;
-        margin-left: 50px;
-        
-        > span {
-            position: relative;
-            float: right;
-            right: 2.5%;
-            
-            > a {
-                text-decoration: none;
-                color: $colorGray;
-                
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
-    
-    @include contentStyle();
+    @extend %contentStyle;
 }

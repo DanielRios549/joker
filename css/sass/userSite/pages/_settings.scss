@@ -19,19 +19,12 @@
 				};
 				.menuLi {
 					position: relative;
-					top: 0;
-					left: 0;
 					width: 100%;
-					
+
 					&:nth-of-type(1) {
 						a {
 							&:before {
 								content: '\f085';
-								font: 3em FontAwesome;
-								position: relative;
-								top: 10px;
-								left: 27px;
-								float: left;
 							}
 						}
 					}
@@ -39,11 +32,6 @@
 						a {
 							&:before {
 								content: '\f1ab';
-								font: 3em FontAwesome;
-								position: relative;
-								top: 10px;
-								left: 30px;
-								float: left;
 							}
 						}
 					}
@@ -51,18 +39,30 @@
 						a {
 							&:before {
 								content: '\f1f8';
-								font: 3em FontAwesome;
-								position: relative;
-								top: 10px;
-								left: 31px;
-								float: left;
 							}
+						}
+					}
+					.menuLink,
+					.menuLinkSelected {
+						display: flex;
+						align-items: center;
+
+						&:before {
+							font: 3em FontAwesome;
+							position: relative;
+							left: 30px;
+							width: 30px;
+						}
+						.menuLinkSpan {
+							position: relative;
+							left: 60px;
+							font-size: 2em;
+							line-height: 50px;
+							height: 100%;
 						}
 					}
 					.menuLink {
 						background-color: #ffffff;
-						text-decoration: none;
-						display: block;
 						height: 50px;
 						width: 100%;
 						
@@ -70,22 +70,11 @@
 							color: $colorGray;
 						}
 						.menuLinkSpan {
-							position: relative;
-							top: 0;
-							left: 0;
-							font-size: 2em;
 							color: $colorGray;
-							padding-left: 90px;
-							line-height: 50px;
-							height: 100%;
-							width: 100%;
-							display: block;
 						}
 					}
 					.menuLinkSelected {
 						background-color: $colorBlue;
-						text-decoration: none;
-						display: block;
 						height: 50px;
 						width: 100%;
 						
@@ -95,24 +84,15 @@
 						&:after{
 							content: "";
 							position: absolute;
-							top: 50%; 
+							top: 25px;
+							right: -20px;
 							margin-top: -2.5em;
 							border-top: 2.5em solid transparent;
 							border-bottom: 2.5em solid transparent;
 							border-left: 2em solid $colorBlue;
-							right: -2em;
 						}
 						.menuLinkSpan {
-							position: relative;
-							top: 0;
-							left: 0;
-							font-size: 2em;
 							color: #f6f6f6;
-							padding-left: 90px;
-							line-height: 50px;
-							height: 100%;
-							width: 100%;
-							display: block;
 						}
 					}
 				}
@@ -127,7 +107,6 @@
 		};
 		#sectionHeader {
 			position: relative;
-			top: 0;
 			font-size: 2.5em;
 			font-weight: bold;
 			width: 100%;
@@ -142,17 +121,19 @@
 			
 			.linkInfo {
 				background: #ffffff;
-				display: block;
 				padding: 10px;
-				text-decoration: none;
 				margin-bottom: 1px;
+				display: flex;
+				justify-content: space-between;
 				
 				&:after {
+					position: absolute;
+					right: 50px;
 					content: '\f044';
 					font: 1.2em FontAwesome;
 					color: transparent;
-					float: right;
-					margin: 5px 10px 0 0;
+					margin-top: 3px;
+					order: 3;
 				}
 				&:hover {
 					&:after {
@@ -166,17 +147,22 @@
 					font-size: 1.5em;
 					font-weight: bold;
 					color: $colorGray;
+					width: 100%;
+					order: 1;
 				}
 				.linkUserInfo {
-					position: absolute;
-					left: 200px;
+					position: relative;
 					font-size: 1.5em;
 					color: #969696;
+					width: 100%;
+					order: 2;
 				}
 				.linkInfoSpan {
 					font-size: 1.5em;
-					float: right;
 					color: $colorBlue;
+					width: 100%;
+					order: 4;
+					text-align: right;
 				}
 			}
 			#linkInfo {
@@ -192,8 +178,11 @@
 					color: #f6f6f6;
 				}
 			}
-			.section{
+			.section {
+				position: relative;
+
 				.formSettings {
+					position: relative;
 					border-bottom: 1px solid $colorLightGray;
 					background: #ffffff;
 					padding: 10px;
@@ -202,14 +191,17 @@
 						border: none;
 						
 						.legendSettings {
+							position: relative;
 							font-size: 2em;
 							font-weight: bold;
 							color: $colorGray;
+							width: 100%;
 						}
 						.inputsAera {
+							position: relative;
 							width: 300px;
-							margin: 5px auto;
 							padding: 10px;
+							margin: 0 auto;
 							
 							.inputLabel {
 								font-size: 1.5em;
@@ -239,13 +231,12 @@
 						.linkBack {
 							border-radius: 3px;
 							position: relative;
-							top: 0;
 							height: 30px;
 							font-size: 1.6em;
 							display: inline-block;
-							float: left;
 							padding: 5px;
 							line-height: 16px;
+							width: 100px;
 							
 							@include transition(all, 200ms, linear);
 						}
@@ -266,6 +257,7 @@
 							border: 2px solid $colorLightGray;
 							background: $colorLightGray;
 							text-decoration: none;
+							text-align: center;
 							color: $colorGray;
 							
 							&:hover,

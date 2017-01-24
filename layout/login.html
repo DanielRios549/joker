@@ -19,17 +19,17 @@
 		closeMessage('.userError', '#errorMsgClose');
 	});
 </script>
-<section class="interface">
-	<?php if((isset($_POST['loginSubmit'])) or (isset($_POST['siginSubmit']))) {?>
-	<div id="<?php echo $showError;?>" class="userError">
-		<div id="errorMsg">
-			<span id="spanUserError"><?php echo $errorMsg?></span>
-		</div>
-		<div id="errorMsgClose"></div>
-	</div>
-	<?php } ?>
-	<div class="userContainer">
-		<div id="loginDiv" class="userDiv">
+<main class="interface">
+	<section class="login mainSection">
+		<?php if((isset($_POST['loginSubmit'])) or (isset($_POST['siginSubmit']))) {?>
+		<article id="<?php echo $showError;?>" class="userError">
+			<div id="errorMsg">
+				<span id="spanUserError"><?php echo $errorMsg?></span>
+			</div>
+			<div id="errorMsgClose"></div>
+		</article>
+		<?php } ?>
+		<article id="loginDiv" class="userDiv">
 			<form method="post" action="" id="loginForm" class="userFrom">
 				<fieldset id="loginFieldset" class="userFieldset"><legend id="loginLegend" class="userLegend"><?php echo langCode('login_legend');?></legend>
 					<input type="text" name="loginUser" id="loginUser" class="inputText" maxlength="60" placeholder="<?php echo langCode('login_user_placeholder');?>" required/>
@@ -40,14 +40,14 @@
 
 					<?php if($allowRestoreLogin == true) {?>
 					<input type="checkbox" name="loginRestore" id="loginRestore"/>
-					<label for="loginRestore" id="loginRestoreLabel"><span></span><?php echo langCode('remember_login');?></label>
+					<label for="loginRestore" id="loginRestoreLabel"><span class="checkIcon"></span><span class="spanText"><?php echo langCode('remember_login');?></span></label>
 					<?php }?>
 					<button type="submit" name="loginSubmit" id="loginSubmit" class="submitButton"><span class="submitSpan"><?php echo langCode('login_submit');?></span></button>
 				</fieldset>
 			</form>
-		</div>
+		</article>
 		<?php if($allowNewUser == 'true') {?>
-		<div id="siginDiv" class="userDiv">
+		<article id="siginDiv" class="userDiv">
 			<form method="post" action="" id="siginForm" class="userFrom">
 				<fieldset id="siginFieldset" class="userFieldset"><legend id="siginLegend" class="userLegend"><?php echo langCode('sigin_legend');?></legend>
 					<input type="text" name="siginFirstName" id="siginFirstName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_first_name_placeholder');?>" required/>
@@ -71,12 +71,12 @@
 					<button type="submit" name="siginSubmit" id="siginSubmit" class="submitButton"><span class="submitSpan"><?php echo langCode('sigin_submit');?></span></button>
 				</fieldset>
 			</form>
-		</div>
+		</article>
 		<?php }?>
 		<?php if($allowNewUser == 'false') {?>
-		<div id="siginDiv" class="userDiv">
+		<article id="siginDiv" class="userDiv">
 			<p style="font-size: 3em;"><?php echo langCode('block_sigin');?></p>
-		</div>
-	</div>
-	<?php }?>
-</section>
+		</article>
+		<?php }?>
+	</section>
+</main>

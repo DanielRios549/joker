@@ -1,17 +1,13 @@
 @mixin watch() {
 	.playerBoxShow {
 		background: rgba(0,0,0,.8) !important;
-		box-sizing: border-box;
-		position: fixed;
-		top: 0;
-		left: 0;
+		position: relative;
 		height: 100%;
 		width: 100%;
 		z-index: 110;
 		
 		#browserBack {
 			position: absolute;
-			float: left;
 			top: 60px;
 			left: 10px;
 			cursor: pointer;
@@ -19,9 +15,6 @@
 			width: 50px;
 			
 			#backButton {
-				display: block;
-				text-decoration: none;
-				
 				&:before {
 					content: '\f190';
 					font: 3em FontAwesome;
@@ -39,7 +32,6 @@
 		}
 		#mediaHolder {
 			position: relative;
-			top: 0;
 			width: 90%;
 			height: 100%;
 			margin: 0 auto;
@@ -47,8 +39,8 @@
 			#videoTag {
 				background: #000000;
 				position: relative;
+				max-width: 1080px;
 				width: 100%;
-				height: 100%;
 			}
 		}
 		.loading,
@@ -69,10 +61,7 @@
 	}
 	.playerBoxShowFull {
 		background: rgba(0,0,0,.8);
-		box-sizing: border-box;
 		position: relative;
-		top: 0;
-		left: 0;
 		height: 100%;
 		width: 100%;
 		
@@ -175,15 +164,15 @@
 			opacity: 1;
 		}
 		#controlsDiv {
-			box-sizing: border-box;
 			background: $colorGray;
 			position: relative;
 			bottom: 50px;
-			padding: 0;
 			height: 40px;
 			width: 800px;
 			color: $colorLightGray;
 			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
 			
 			@include transition(all, 300ms, ease);
 			
@@ -205,12 +194,10 @@
 				}
 			}
 			#leftControls {
-				position: absolute;
-				left: 0;
-				top: 0;
+				position: relative;
 				width: 80%;
-				height: 40px;
-				float: left;
+				display: flex;
+				justify-content: center;
 				
 				.playBtn {
 					&:before {
@@ -224,27 +211,25 @@
 				}
 				#playBtn {
 					border-right: 1px solid #262626;
-					position: absolute;
-					left: 0;
-					height: 40px;
+					position: relative;
 					width: 40px;
-					float: left;
 					cursor: pointer;
 				}
 				#videoTime {
-					position: absolute;
-					right: 10px;
-					top: 5px;
-					width: 90%;
-					height: 50px;
-					float: right;
+					position: relative;
+					width: 100%;
+					position: relative;
+					display: flex;
+					flex-flow: column wrap;
 					
 					#seekSliderDiv {
-						top: 0;
+						position: relative;
+						width: 100%;
+						display: flex;
+						justify-content: space-between;
 						
 						#seekSlider {
-							outline: none;
-							width: 100%;
+							width: 90%;
 							height: 4px;
 							cursor: pointer;
 							-webkit-appearance: none !important;
@@ -269,45 +254,39 @@
 							}
 						}
 					}
-					#currentVideoTime {
-						position: relative;
-						left: 10px;
-						top: 5px;
-						float: left;
-						height: 20px;
-						width: 60px;
-						font-size: 1.5em;
-						color: $colorLightGray;
-					}
-					#timeSeparator {
-						position: relative;
-						left: 10px;
-						top: 5px;
-						float: left;
-						height: 20px;
-						width: 20px;
-						font-size: 1.5em;
-						color: $colorLightGray;
-					}
-					#totalVideoTime {
-						position: relative;
-						left: 10px;
-						top: 5px;
-						float: left;
-						height: 20px;
-						width: 60px;
-						font-size: 1.5em;
-						color: $colorLightGray;
+					#videoTimeCounter {
+						display: flex;
+						justify-content: flex-start;
+
+						#currentVideoTime {
+							position: relative;
+							height: 20px;
+							width: 60px;
+							font-size: 1.5em;
+							color: $colorLightGray;
+						}
+						#timeSeparator {
+							position: relative;
+							height: 20px;
+							width: 20px;
+							font-size: 1.5em;
+							color: $colorLightGray;
+						}
+						#totalVideoTime {
+							position: relative;
+							height: 20px;
+							width: 60px;
+							font-size: 1.5em;
+							color: $colorLightGray;
+						}
 					}
 				}
 			}
 			#rightControls {
-				position: absolute;
-				right: 0;
-				top: 0;
-				width: 20%;
+				position: relative;
+				width: 120px;
 				height: 40px;
-				float: right;
+				display: flex;
 				
 				.sound2{
 					&:before {
@@ -328,16 +307,14 @@
 					border-left: 1px solid #262626;
 					border-right: 1px solid #262626;
 					position: relative;
-					left: 36px;
-					top: 0;
 					width: 40px;
 					height: 100%;
 					cursor: pointer;
 					
 					&:hover {
 						+ #volumeSliderDiv{
-							top: -105px;
-							left: 6px;
+							top: -65px;
+							left: -30px;
 							width: 100px;
 							
 							@include transition(all, 300ms, ease);
@@ -346,9 +323,9 @@
 				}
 				#volumeSliderDiv {
 					background: $colorGray;
-					position: relative;
-					top: -53px;
-					left: 56px;
+					position: absolute;
+					top: -10px;
+					left: 20px;
 					height: 30px;
 					width: 0;
 					overflow: hidden;
@@ -358,8 +335,8 @@
 					@include transition(all, 300ms, ease);
 					
 					&:hover {
-						top: -105px;
-						left: 6px;
+						top: -65px;
+						left: -30px;
 						width: 100px;
 					}
 					#volumeSlider {
@@ -391,9 +368,7 @@
 					}
 				}
 				#episodesButton {
-					position: absolute;
-					top: 0;
-					right: 40px;
+					position: relative;
 					height: 100%;
 					width: 40px;
 					cursor: pointer;
@@ -406,7 +381,6 @@
 						left: 7px;
 						top: 5px;
 					}
-					
 					&:hover {
 						+ #episodesDiv {
 							height: 320px;
@@ -417,10 +391,11 @@
 					background: $colorGray;
 					position: absolute;
 					bottom: 40px;
-					left: -90px;
+					right: 0;
 					width: 250px;
-					height: 0px;
+					height: 320px;
 					overflow: hidden;
+					display: flex;
 
 					@include transition(height, 200ms, linear);
 
@@ -428,26 +403,27 @@
 						height: 320px;
 					}
 					.seasonSelectHide {
-						display: none;
+						width: 0;
 					}
 					.seasonSelectShow {
-						display: block;
+						width: 100%;
 					}
 					#seasonSelect {
+						flex: 0 0 auto;
 						position: relative;
 						height: 100%;
-						width: 100%;
-						overflow-y: auto;
+						overflow: auto;
 						z-index: 96;
+						display: flex;
+						flex-flow: column wrap;
 
-						@include transition(height, 200ms, linear);
+						@include transition(width, 200ms, linear);
 
 						.season {
 							border-bottom: 1px solid #262626;
 							position: relative;
 							height: 40px;
 							width: 100%;
-							display: block;
 							cursor: pointer;
 							
 							@include transition(all, 200ms, linear);
@@ -471,30 +447,32 @@
 								font: 1.5em Calibri, sans-serif;
 								color: $colorLightGray;
 								line-height: 40px;
-								display: block;
 							}
 						}
 					}
 					#episodeSelect {
+						flex: 0 0 auto;
 						position: relative;
-						top: 0;
-						left: 0;
 						height: 100%;
+						width: 100%;
+						display: flex;
+						flex-flow: column wrap;
+
+						@include transition(width, 200ms, linear);
 
 						#episodeSelectHeader {
 							background: $colorGray;
 							border-bottom: 1px solid #262626;
 							position: relative;
-							top: 0;
-							left: 0;
 							width: 100%;
 							height: 13%;
 							z-index: 95;
+							display: flex;
 
 							#openSelector {
+								flex: 0 0 auto;
 								border-right: 1px solid #262626;
-								position: absolute;
-								float: left;
+								position: relative;
 								width: 40px;
 								height: 100%;
 
@@ -524,10 +502,10 @@
 							}
 							.seasonNameHide,
 							.seasonNameShow {
+								flex: 0 0 auto;
 								position: relative;
-								float: right;
-								width: 209px;
 								height: 100%;
+								width: calc(100% - 40px);
 
 								.seasonNameSpan {
 									position: relative;
@@ -543,54 +521,64 @@
 								}
 							}
 							.seasonNameHide {
-								display: none;
+								order: 3;
 							}
 							.seasonNameShow {
-								display: block;
+								order: 2;
 							}
 						}
 						#episodeList {
 							position: relative;
-							top: 0;
-							left: 0;
 							height: 87%;
 							width: 100%;
 							overflow-y: auto;
+							overflow-x: hidden;
+							display: flex;
+							flex-flow: row nowrap;
 
 							.seasonGroupHide {
-								display: none;
+								order: 2;
 							}
 							.seasonGroupShow {
-								display: block;
+								order: 1;
 							}
 							.seasonGroupHide,
 							.seasonGroupShow {
+								flex: 1 0 auto;
 								position: relative;
-								top: 0;
 								min-height: 100%;
 								width: 100%;
 								z-index: 94;
+								display: flex;
+								flex-flow: column wrap;
 								
 								.episodeClose,
 								.episodeOpen {
 									border-bottom: 1px solid #262626;
 									position: relative;
-									top: 0;
 									width: 100%;
-									overflow-y: hidden;
+									overflow: hidden;
+									display: flex;
 
 									@include transition(all, 200ms, linear);
 
-									.episodeNumber,
-									.episodeTitle,
-									.episodeSynopsis {
-										font: 1.5em Calibri, sans-serif;
-										color: $colorLightGray;
+									.epidodeHeader,
+									.episodeContent {
+										flex: 0 0 auto;
+
+										.episodeNumber,
+										.episodeTitle,
+										.episodeSynopsis {
+											font: 1.5em Calibri, sans-serif;
+											color: $colorLightGray;
+										}
 									}
 								}
 								.episodeClose {
 									height: 40px;
 									cursor: pointer;
+									display: flex;
+									flex-flow: column wrap;
 
 									&:hover {
 										background: #323232;
@@ -610,102 +598,77 @@
 
 										@include transition(all, 200ms, linear);
 									}
-									figure,
-									.episodeSynopsis {
-										display: none;
-									}
-									.episodeNumber,
-									.episodeTitle {
+									.episodeHeader {
 										position: relative;
-										float: left;
-										line-height: 40px;
 										height: 100%;
-									}
-									.episodeNumber {
-										width: 10%;
-										left: 5%;
-									}
-									.episodeTitle {
-										width: 80%;
-										left: 5%;
+										width: 100%;
+										display: flex;
+										flex-flow: row nowrap;
+										align-items: center;
+
+										.episodeNumber,
+										.episodeTitle {
+											margin-left: 10px;
+										}
 									}
 								}
 								.episodeOpen {
 									background: #161616;
 									height: 120px;
+									flex-flow: row wrap;
 
-									figure {
+									.episodeHeader {
 										position: relative;
-										top: 30px;
-										left: 10px;
-										height: 60px;
-										width: 100px;
-										
-										a {
-											position: relative;
-											top: 0;
-											left: 0;
-											height: 100%;
-											width: 100%;
-											display: block;
+										width: 100%;
+										height: 40px;
+										display: flex;
+										flex-flow: row wrap;
+										align-items: center;
 
-											&:hover {
-												figcaption {
-													opacity: 1;
+										.episodeNumber,
+										.episodeTitle {
+											position: relative;
+											height: 20px;
+											line-height: 20px;
+											margin-left: 10px;
+										}
+									}
+									.episodeContent {
+										position: relative;
+										width: 100%;
+										display: flex;
+										flex-flow: row wrap;
+										justify-content: space-between;
+
+										.episodeFigure {
+											position: relative;
+											height: 60px;
+											width: 50%;
+
+											a {
+												&:hover {
+													&:after {
+														color: $colorBlue;
+													}
+												}
+												&:after {
+													content: '\f144';
+													font: 4em FontAwesome;
+													position: absolute;
+													top: 10px;
+													left: 40%;
 												}
 											}
-										}
-										img {
-											position: relative;
-											top: 0;
-											left: 0;
-											height: 100%;
-											width: 100%;
-										}
-										figcaption {
-											position: absolute;
-											top: 0;
-											left: 0;
-											height: 100%;
-											width: 100%;
-											opacity: 0;
-
-											@include transition(opacity, 200ms, linear);
-
-											&:after {
-												content: '\f144';
-												font: 2em FontAwesome;
-												color: $colorBlue;
-												position: absolute;
-												top: 20px;
-												left: 40px;
+											img {
+												position: relative;
+												width: 100%;
 											}
 										}
-									}
-									.episodeNumber,
-									.episodeTitle {
-										position: absolute;
-										top: 0;
-										line-height: 20px;
-										height: 20px;
-									}
-									.episodeNumber {
-										float: left;
-										left: 10px;
-										width: 15%;
-									}
-									.episodeTitle {
-										float: right;
-										right: 10px;
-										width: 75%;
-									}
-									.episodeSynopsis {
-										position: absolute;
-										float: right;
-										top: 30px;
-										right: 0;
-										height: 90px;
-										width: 120px;
+										.episodeSynopsis {
+											position: relative;
+											height: 100%;
+											width: 50%;
+										}
 									}
 								}
 							}
@@ -714,10 +677,7 @@
 				}
 				#fullScreenButton {
 					border-left: 1px solid #262626;
-					position: absolute;
-					top: 0;
-					right: 0;
-					float: left;
+					position: relative;
 					height: 100%;
 					width: 40px;
 					cursor: pointer;

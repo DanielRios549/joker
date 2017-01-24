@@ -49,260 +49,253 @@
 			}
 		}
 	}
-	.userContainer {
-		display: flex;
+	.userDiv {
+		box-sizing: border-box;
+		position: relative;
+		padding: 10px;
+		height: 100%;
 
 		@include css4 {
-			flex-flow: var(--loginAlign);
+			width: var(--loginDivWidth);
 		};
-
-		.userDiv {
+		
+		.userFrom {
 			box-sizing: border-box;
-			position: relative;
-			top: 0;
-			padding: 10px;
-
-			@include css4 {
-				width: var(--loginDivWidth);
-			};
+			width: 100%;
 			
-			.userFrom {
-				box-sizing: border-box;
-				width: 100%;
+			.userLegend {
+				font: 2em Calibri, san-serif;
+				margin: 0 0 40px 20px;
+			}
+			.userFieldset {
+				border: none;
 				
-				.userLegend {
-					font: 2em Calibri, san-serif;
-					margin: 0 0 40px 20px;
-				}
-				.userFieldset {
-					border: none;
+				.inputText,
+				.inputTextError {
+					box-sizing: border-box;
+					outline: none;
+					border-radius: 3px;
+					border: 3px solid $colorLightGray;
+					height: 60px;
+					width: 100%;
+					padding-left: 70px;
+					color: $colorGray;
+					margin: -20px 0;
+					font-size: 1.6em;
 					
-					.inputText,
-					.inputTextError {
-						box-sizing: border-box;
-						outline: none;
-						border-radius: 3px;
-						border: 3px solid $colorLightGray;
-						height: 60px;
-						width: 100%;
-						padding-left: 70px;
-						color: $colorGray;
-						margin: -20px 0;
-						font-size: 1.6em;
+					@include transition(border, 300ms, linear);
+				}
+				.inputText {
+					+ .inputLabel {
+						background: $colorLightGray;
 						
-						@include transition(border, 300ms, linear);
-					}
-					.inputText {
-						+ .inputLabel {
-							background: $colorLightGray;
-							
-							&:before {
-								color: $colorGray;
-							}
-						}
-						&:hover,
-						&:focus {
-							border: 3px solid $colorBlue;
+						&:before {
 							color: $colorGray;
-							
-							+ .inputLabel {
-								background: $colorBlue;
-								
-								&:before {
-									color: #f1f1f1;
-								}
-							}
 						}
 					}
-					.inputTextError {
-						border: 3px solid #fd0b3e;
+					&:hover,
+					&:focus {
+						border: 3px solid $colorBlue;
+						color: $colorGray;
 						
 						+ .inputLabel {
-							background: #fd0b3e;
+							background: $colorBlue;
 							
 							&:before {
 								color: #f1f1f1;
 							}
 						}
 					}
-					.inputLabel {
-						border-radius: 3px 0 0 3px;
-						position: relative;
-						top: -40px;
-						left: 0;
-						display: block;
-						height: 60px;
-						width: 60px;
-						
-						@include transition(background, 300ms, linear);
+				}
+				.inputTextError {
+					border: 3px solid #fd0b3e;
+					
+					+ .inputLabel {
+						background: #fd0b3e;
 						
 						&:before {
-							position: relative;
-							font-family: FontAwesome;
-							
-							@include transition(color, 300ms, linear);
+							color: #f1f1f1;
 						}
 					}
-					.submitButton {
-						box-sizing: border-box;
-						border: none;
-						outline: none;
-						border-radius: 3px;
-						height: 50px;
-						width: 100%;
+				}
+				.inputLabel {
+					border-radius: 3px 0 0 3px;
+					position: relative;
+					top: -40px;
+					left: 0;
+					display: block;
+					height: 60px;
+					width: 60px;
+					
+					@include transition(background, 300ms, linear);
+					
+					&:before {
+						position: relative;
+						font-family: FontAwesome;
 						
-						@include transition(all, 200ms, linear);
-						
-						&:hover, &:focus {
-							background: $colorBlue;
-							color: #ffffff;
-						}
-						.submitSpan {
-							display: block;
-							color: $colorGray;
-							margin-bottom: 20px;
-							cursor: pointer;
-							font-size: 1.6em;
-							height: 100%;
-							padding: 10px;
-						}
+						@include transition(color, 300ms, linear);
+					}
+				}
+				.submitButton {
+					box-sizing: border-box;
+					border: none;
+					outline: none;
+					border-radius: 3px;
+					height: 50px;
+					width: 100%;
+					
+					@include transition(all, 200ms, linear);
+					
+					&:hover, &:focus {
+						background: $colorBlue;
+						color: #ffffff;
+					}
+					.submitSpan {
+						display: block;
+						color: $colorGray;
+						margin-bottom: 20px;
+						cursor: pointer;
+						font-size: 1.6em;
+						height: 100%;
+						padding: 10px;
 					}
 				}
 			}
 		}
-		#loginDiv {
-			.userFrom {
-				.userFieldset {
-					label {
-						&:nth-of-type(1) {
-							&:before {
-								content: '\f1fa';
-								font-size: 3em;
-								top: 15px;
-								left: 18px;
-							}
+	}
+	#loginDiv {
+		.userFrom {
+			.userFieldset {
+				label {
+					&:nth-of-type(1) {
+						&:before {
+							content: '\f1fa';
+							font-size: 3em;
+							top: 15px;
+							left: 18px;
 						}
-						&:nth-of-type(2) {
+					}
+					&:nth-of-type(2) {
+						&:before {
+							content: '\f13e';
+							font-size: 3em;
+							top: 17px;
+							left: 20px;
+						}
+					}
+				}
+				#loginRestore {
+					position: fixed;
+					top: -100%;
+					left: -100%;
+
+					&:checked + #loginRestoreLabel {
+						.checkIcon {
+							background: $colorBlue;
+
 							&:before {
-								content: '\f13e';
-								font-size: 3em;
-								top: 17px;
-								left: 20px;
+								left: 0;
+								opacity: 1;
 							}
 						}
 					}
-					#loginRestore {
-						position: absolute;
-						top: -100%;
-						left: -100%;
+				}
+				#loginRestoreLabel {
+					position: relative;
+					top: -20px;
+					cursor: pointer;
+					height: 20px;
+					display: flex;
+					align-items: center;
 
-						&:checked + #loginRestoreLabel {
-							span {
-								background: $colorBlue;
-
-								&:before {
-									left: 0;
-									opacity: 1;
-								}
-							}
-						}
-					}
-					#loginRestoreLabel {
+					.checkIcon {
+						background: $colorLightGray;
+						border-radius: 4px;
 						position: relative;
-						top: -20px;
-						left: 40px;
-						font: 1.5em Calibri, sans-serif;
-						color: $colorGray;
-						cursor: pointer;
+						height: 100%;
+						width: 20px;
+						overflow: hidden;
 
-						span {
-							background: $colorLightGray;
-							border-radius: 4px;
-							display: inline-block;
-							position: absolute;
-							top: 0;
+						@include transition(all, 300ms, linear);
+
+						&:before {
+							content: '\f00c';
+							position: relative;
 							left: -30px;
-							height: 20px;
-							width: 20px;
-							overflow: hidden;
+							font: 1.8em FontAwesome;
+							color: #ffffff;
+							opacity: 0;
 
 							@include transition(all, 300ms, linear);
-
-							&:before {
-								content: '\f00c';
-								position: relative;
-								top: 0;
-								left: -30px;
-								font: 1.3em FontAwesome;
-								color: #ffffff;
-								opacity: 0;
-
-								@include transition(all, 300ms, linear);
-							}
 						}
+					}
+					.spanText {
+						font: 1.5em Calibri, sans-serif;
+						color: $colorGray;
+						padding-left: 10px;
 					}
 				}
 			}
 		}
-		#siginDiv {
-			border-top: none;
-			padding-top: 0;
+	}
+	#siginDiv {
+		border-top: none;
+		padding-top: 0;
 
-			@include css4 {
-				border-top: var(--loginMiddleBorderTop);
-				border-left: var(--loginMiddleBorderLeft);
-			};
-			
-			.userFrom {
-				.userFieldset {
-					label {
-						&:nth-of-type(1) {
-							&:before {
-								content: '\f007';
-								font-size: 3em;
-								top: 14px;
-								left: 17px;
-							}
+		@include css4 {
+			border-top: var(--loginMiddleBorderTop);
+			border-left: var(--loginMiddleBorderLeft);
+		};
+		
+		.userFrom {
+			.userFieldset {
+				label {
+					&:nth-of-type(1) {
+						&:before {
+							content: '\f007';
+							font-size: 3em;
+							top: 14px;
+							left: 17px;
 						}
-						&:nth-of-type(2) {
-							&:before {
-								content: '\f007';
-								font-size: 3em;
-								top: 14px;
-								left: 17px;
-							}
+					}
+					&:nth-of-type(2) {
+						&:before {
+							content: '\f007';
+							font-size: 3em;
+							top: 14px;
+							left: 17px;
 						}
-						&:nth-of-type(3) {
-							&:before {
-								content: '\f007';
-								font-size: 3em;
-								top: 14px;
-								left: 17px;
-							}
+					}
+					&:nth-of-type(3) {
+						&:before {
+							content: '\f007';
+							font-size: 3em;
+							top: 14px;
+							left: 17px;
 						}
-						&:nth-of-type(4) {
-							&:before {
-								content: '\f1fa';
-								font-size: 3em;
-								top: 15px;
-								left: 18px;
-							}
+					}
+					&:nth-of-type(4) {
+						&:before {
+							content: '\f1fa';
+							font-size: 3em;
+							top: 15px;
+							left: 18px;
 						}
-						&:nth-of-type(5) {
-							&:before {
-								content: '\f13e';
-								font-size: 3em;
-								top: 17px;
-								left: 20px;
-							}
+					}
+					&:nth-of-type(5) {
+						&:before {
+							content: '\f13e';
+							font-size: 3em;
+							top: 17px;
+							left: 20px;
 						}
-						&:nth-of-type(6) {
-							&:before {
-								content: '\f13e';
-								font-size: 3em;
-								top: 17px;
-								left: 20px;
-							}
+					}
+					&:nth-of-type(6) {
+						&:before {
+							content: '\f13e';
+							font-size: 3em;
+							top: 17px;
+							left: 20px;
 						}
 					}
 				}

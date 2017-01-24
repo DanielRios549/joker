@@ -29,19 +29,21 @@ if($contentVerify -> rowCount() == 1) {
 		disableEnable();
 	});
 </script>
-<section class="interface">
-	<div id="imageBack">
-		<img src="<?php echo $imageBackground;?>"/>
-	</div>
-	<div id="titleContent">
-		<div id="divLeft">
+<main class="interface">
+	<section class="mainSection">
+		<article id="imageBack">
+			<img src="<?php echo $imageBackground;?>"/>
+		</article>
+	</section>
+	<section class="title mainSection">
+		<article id="divLeft">
 			<div id="contentImage">
 				<figure class="contentPlayFigure">
 					<img src="<?php echo $imageContent;?>"/>
 				</figure>
 			</div>
-		</div>
-		<div id="divRight">
+		</article>
+		<article id="divRight">
 			<h1 id="infoHeader"><?php echo @CONTENT_TITLE;?></h1>
 			<div id="tabHeader">
 				<div class="tabSelected"><span><?php echo langCode('about');?></span></div>
@@ -182,7 +184,7 @@ if($contentVerify -> rowCount() == 1) {
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
+		</article>
+	</section>
+</main>
 <?php }?>

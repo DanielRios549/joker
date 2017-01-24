@@ -340,16 +340,16 @@ function disableEnable() {
 
 function showDetails(event) {
 	event.preventDefault();
+	$('.contentContainer .titleDetails').remove();
 	
-	var parentDiv = $(this).parent().parent().parent().parent().parent().parent().parent();
+	var parentDiv = $(this).parent().parent().parent().parent().parent().parent();
+	var content = $(this).parent().parent().parent().parent();
 	var detailsDiv = $(parentDiv).find('.titleDetails');
-	parentDiv.toggleClass('open');
 
-	if(!$(detailsDiv).length) {
-		parentDiv.append('<div class="titleDetails"></div');
-	}
-	else {
-		detailsDiv.remove();
-	}
+	parentDiv.css({
+		'height': '500px',
+	});
+
+	content.addClass('open').append('<div class="titleDetails"></div');
 }
 	

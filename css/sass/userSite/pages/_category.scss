@@ -1,27 +1,27 @@
 @mixin category() {
-	#categoryContent {
+	#headerContainer {
 		position: relative;
-		top: 0;
-		left: 0;
+		height: 50px;
 		width: 100%;
-		min-height: 320px;
-	
-		#categoryResult {
+		font-size: 2em;
+
+		#categoryHeader {
 			position: relative;
-			top: 10px;
-			left: 2.5%;
-			height: 50px;
-			width: 97.5%;
-			font-size: 2em;
-			color: $colorGray;
-			display: block;
-			
-			.searchSpan {
-				color: $colorBlue;
-				font-size: 1.5em;
+
+			#categoryResult {
+				position: relative;
+				font-size: 1.3em;
+				color: $colorGray;
+				font-weight: normal;
+				
+				.searchSpan {
+					color: $colorBlue;
+					font-size: 1.2em;
+					font-weight: bolder;
+				}
 			}
 		}
-	
-		@include contentStyle();
 	}
+
+	@extend %contentStyle;
 }

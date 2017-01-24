@@ -18,16 +18,26 @@
 		$('.contentFigure').on('click', '.addWatchList', addWatchList);
         $('.contentFigure').on('click', '.removeWatchList', removeWatchList);
 
-		//$('.contentFigure').on('click', '.figLink', showDetails);
+		$('.contentFigure').on('click', '.figLink', showDetails);
 	});
 </script>
 <main class="interface">
-	<section id="categoryContent">
-		<div class="contentContainer">
-			<?php $contentArray = array('contentCategory' => $categoryQuery, 'dateAdd' => false, 'querySearch' => false, 'page' => THIS_PAGE); require $contentDir . 'showContent.php';?>
-			<p id="categoryResult"><?php echo $movieFoundText . '<span class="searchSpan"> ' . $totalSearch . ' </span>' . $movieText . ' ' . langCode('in_category') . ' ' . lcfirst($categoryName);?></p>
-				<div class="contentDiv">
-					<div class="contentGroup">
+	<?php $contentArray = array('contentCategory' => $categoryQuery, 'dateAdd' => false, 'querySearch' => false, 'page' => THIS_PAGE); require $contentDir . 'showContent.php';?>
+	<section class="category mainSection">
+		<article id="headerContainer">
+			<header id="categoryHeader">
+				<h2 id="categoryResult">
+					<?php echo $movieFoundText;?>
+					<span class="searchSpan">
+						<?php echo $totalSearch;?>
+					</span>
+					<?php echo $movieText . ' ' . langCode('in_category') . ' ' . lcfirst($categoryName);;?>
+					</h2>
+			</header>
+		</article>
+		<article class="contentContainer">
+			<div class="contentDiv">
+				<div class="contentGroup">
 					<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
 						<div class="content">
 							<div class="contentLink">
@@ -50,9 +60,8 @@
 							</div>
 						</div>
 					<?php $contentNumber ++;}?>
-					</div>
 				</div>
 			</div>
-		</div>
+		</article>
 	</section>
 </main>

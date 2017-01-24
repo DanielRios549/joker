@@ -40,7 +40,6 @@ html {
         box-sizing: border-box;
     }
     body {
-        padding-top: 60px;
         font-size: 62.5%;
         background-color: #ffffff;
 
@@ -51,6 +50,8 @@ html {
         a {
             display: block;
             text-decoration: none;
+			//height: 100%;
+			//width: 100%;
 
             @include css4 {
                 color: var(--gray);
@@ -58,6 +59,10 @@ html {
         }
         li {
             list-style: none;
+        }
+        input {
+            outline: none;
+			border: none;
         }
         .header {
             #searchDiv {
@@ -78,7 +83,7 @@ html {
                 right: 350px;
             }
             #userDiv {
-                right: 150px;
+                right: 150px !important;
             }
             #topDiv {
                 background: #363636;
@@ -110,17 +115,10 @@ html {
             height: 60px;
             width: 100%;
 
-            @include allUser();
+            @extend %userDiv;
         }
-        .settings {
-            padding: 20px 0;
-            display: flex;
-            justify-content: space-around;
-
-            @include css4 {
-                flex-flow: var(--settingsAlignOptions);
-                align-items: var(--settingsAlign);
-            };  
+        #watchInterface {
+            padding-top: 0 !important;
         }
         .interface {
             position: relative;
@@ -128,30 +126,70 @@ html {
             width: 100%;
             z-index: 98;
             overflow: hidden;
+            padding-top: 60px;
 
-            .errorImage {
-                display: block;
-                width: 90%;
-                margin: 0 auto;
+            @extend %slider;
+
+            .login {
+                display: flex;
+
+                @include css4 {
+                    flex-flow: var(--loginAlign);
+                };
             }
-            
-            @include home();
+            .settings {
+                display: flex;
+                justify-content: space-around;
+                padding-bottom: 20px;
 
-            @include login();
+                @include css4 {
+                    flex-flow: var(--settingsAlignOptions);
+                    align-items: var(--settingsAlign);
+                };  
+            }
+            .category,
+            .search,
+            .settings {
+                min-height: 320px;
+                padding: 20px 0;
+            }
+            .title {
+                background-color: rgba(0,0,0,.8);
+                position: relative;
+                min-height: 400px;
+                width: 100%;
+                z-index: 98;
+                display: flex;
+                padding-bottom: 30px;
 
-            @include logoff();
+                @include css4 {
+                    flex-flow: var(--titleContentAlign);
+                };
+            }
+            .mainSection {
+                .errorImage {
+                    width: 90%;
+                    margin: 0 auto;
+                }
+                
+                @include home();
 
-            @include category();
+                @include login();
 
-            @include profile();
+                @include logoff();
 
-            @include settings();
+                @include category();
 
-            @include search();
+                @include profile();
 
-            @include title();
+                @include settings();
 
-            @include watch();
+                @include search();
+
+                @include title();
+
+                @include watch();
+            }
         }
         #footer {
             background: $colorGray;
@@ -169,17 +207,14 @@ html {
                 
                 #atomoLinks {
                     position: relative;
-                    top: 0;
-                    left: 0;
                     height: 100%;
                     width: 400px;
                     margin: 0 auto;
                     text-align: center;
+                    display: flex;
                     
                     .atomoLink {
-                        box-sizing: border-box;
                         position: relative;
-                        display: inline-block;
                         height: 100%;
                         text-decoration: none;
                         margin-left: 10px;
@@ -210,11 +245,48 @@ html {
                     }
                 }
             }
-            
-            @include allLangs();
-            
-            @include footerAdmin();
-            
+            #langChanger {
+                position: absolute;
+                right: 5%;
+                top: 0;
+                height: 50px;
+                
+                #langForm {
+                    line-height: 50px;
+                }
+                
+                #langDiv {
+                    display: none;
+                }
+            }
+            #footerAdmin {
+                background: #303030;
+                border-radius: 5px;
+                position: absolute;
+                right: 5%;
+                top: 6px;
+                height: 40px;
+                width: 70px;
+                
+                @include transition(all, 300ms, linear);
+                
+                &:hover {
+                    background: $colorBlue;
+                }
+                #adminLink {
+                    display: block;
+                    text-decoration: none;
+                    height: 100%;
+                    width: 100%;
+                    text-align: center;
+                    line-height: 40px;
+                    
+                    #adminSpan {
+                        font-size: 2em;
+                        color: $colorLightGray;
+                    }
+                }
+            }
             #footerImg {
                 border-bottom: 1px solid $colorBlack;
                 position: relative;
@@ -235,30 +307,27 @@ html {
             }
             #footerSocial {
                 position: relative;
-                top: 0;
                 left: 4%;
                 height: 50px;
-                width: 90%;
+                width: 50%;
                 
                 #socialLinks {
                     position: relative;
-                    top: 0;
-                    left: 0;
                     margin-left: 10px;
                     height: 100%;
                     width: 400px;
                     text-align: center;
+                    display: flex;
                     
                     .socialLink {
                         box-sizing: border-box;
                         border-radius: 5px;
                         border-bottom: 3px solid transparent;
                         background: #303030;
-                        display: block;
                         height: 40px;
-                        float: left;
-                        text-decoration: none;
                         margin-right: 10px;
+                        display: flex;
+                        justify-content: space-around;
                         
                         @include transition(all, 300ms, linear);
                         
@@ -323,7 +392,6 @@ html {
                             font-size: 1.5em;
                             color: #e6e6e6;
                             line-height: 40px;
-                            float: right;
                             margin-right: 10px;
                         }
                     }	

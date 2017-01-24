@@ -153,25 +153,24 @@
 		#followersDiv {
 			position: relative;
 			width: 840px;
+			display: flex;
 
 			.follower {
 				position: relative;
-				display: inline-block;
 				margin-left: 10px;
 				width: 400px;
 				height: 100px;
+				display: flex;
 
 				.followerLeft {
 					position: relative;
 					height: 100%;
 					width: 100px;
-					float: left;
 					
 					.followerLink {
 						position: relative;
 						height: 100%;
 						width: 100%;
-						display: block;
 						
 						.followerImage {
 							position: relative;
@@ -184,7 +183,6 @@
 					position: relative;
 					height: 100%;
 					width: calc(100% - 100px);
-					float: right;
 
 					.followerLink {
 						--height: 30px;
