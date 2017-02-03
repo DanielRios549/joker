@@ -46,42 +46,42 @@
 </script>
 <?php }?>
 <main class="interface">
-	<section class="index mainSection">
-		<?php if($loginCheck == false) {?>
-		<article class="containerDiv">
-			<div id="coverImage"></div>
-			<div id="descImage">
-				<img src="<?php echo $imageDir . 'moviesGrid.jpg';?>"/>
-			</div>
-		</article>
-		<article class="containerDiv">
-			<div id="tabHeader">
-				<div class="tabSelected">
-					<span class="tabIcon"></span>
-					<span class="tabSpan"><?php echo langCode('movies');?></span>
+	<?php if($loginCheck == false) {?>
+		<section class="index mainSection">
+			<article class="containerDiv">
+				<div id="coverImage"></div>
+				<div id="descImage">
+					<img src="<?php echo $imageDir . 'moviesGrid.jpg';?>"/>
 				</div>
-				<div class="tab">
-					<span class="tabIcon"></span>
-					<span class="tabSpan"><?php echo langCode('series');?></span>
+			</article>
+			<article class="containerDiv">
+				<div id="tabHeader">
+					<div class="tabSelected">
+						<span class="tabIcon"></span>
+						<span class="tabSpan"><?php echo langCode('movies');?></span>
+					</div>
+					<div class="tab">
+						<span class="tabIcon"></span>
+						<span class="tabSpan"><?php echo langCode('series');?></span>
+					</div>
+					<div class="tab">
+						<span class="tabIcon"></span>
+						<span class="tabSpan"><?php echo langCode('follow');?></span>
+					</div>
 				</div>
-				<div class="tab">
-					<span class="tabIcon"></span>
-					<span class="tabSpan"><?php echo langCode('follow');?></span>
+				<div id="tabContents">
+					<div class="contentShow">
+					aba 1
+					</div>
+					<div class="contentHide">
+					aba 2
+					</div>
+					<div class="contentHide">
+					aba 3
+					</div>
 				</div>
-			</div>
-			<div id="tabContents">
-				<div class="contentShow">
-				aba 1
-				</div>
-				<div class="contentHide">
-				aba 2
-				</div>
-				<div class="contentHide">
-				aba 3
-				</div>
-			</div>
-		</article>
-	</section>
+			</article>
+		</section>
 	<?php } elseif($loginCheck == true) { $contentArray = array('contentCategory' => 'feature', 'dateAdd' => false, 'querySearch' => false, 'page' => false); require $contentDir . 'showContent.php'; if($contentClass -> contentHide == false){?>
 	<section id="contentSlider">
 		<article id="imageDiv">
@@ -112,7 +112,7 @@
 		</article>
 		<?php }?>
 	</section>
-	<section class="index mainSection">
+	<section class="home mainSection">
 		<?php } foreach($allSections as $allSections => $categoryContent) {
 			if($categoryContent == 'watchlist') {
 				$contentArray = array(
@@ -144,7 +144,7 @@
 			require $contentDir . 'showContent.php';
 			if($contentClass -> contentHide == false) {
 		?>
-		<article class="contentContainer">
+		<article <?php if($watchListId == true) {echo 'id="watchListDiv"';}?>class="contentContainer">
 			<?php if($categoryContent == 'watchlist') {?>
 			<p class="contentDivHeader"><?php echo ucfirst(langCode('my')) . ' ' . langCode('watch_list');?></p>
 			<?php } elseif($categoryContent == 'recent_add') {?>
@@ -152,7 +152,7 @@
 			<?php } else {?>
 			<p class="contentDivHeader"><?php echo langCode($categoryContent);?><span><a href="<?php echo $baseUrl . langCode('category_link') . '?c=' . categoryId($categoryContent);?>"><?php echo langCode('view_more');?></a></span></p>
 			<?php }?>
-			<div <?php if($watchListId == true) {echo 'id="watchListDiv"';}?> class="contentDiv">
+			<div class="contentDiv">
 				<div class="contentGroupScroll">
 				<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
 					<div class="content">

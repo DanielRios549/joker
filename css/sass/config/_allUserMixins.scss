@@ -482,7 +482,7 @@
 
 %contentStyle {
 	.contentContainer {
-		position: relative;
+		//position: relative;
 		min-height: 300px;
 		width: 100%;
 		display: flex;
@@ -532,11 +532,11 @@
 				@include transition(transform, 400ms, linear);
 				
 				.content {
+					flex: 0 0 auto;
 					position: relative;
 					width: 160px;
-					height: 240px;
+					height: 100%;
 					margin-left: 10px;
-					flex: 0 0 auto;
 					
 					&:hover {
 						.contentLink {
@@ -552,9 +552,8 @@
 					.contentLink {
 						border-radius: 5px;
 						border: 5px solid transparent;
-						height: 100%;
+						height: 240px;
 						width: 100%;
-						text-decoration: none;
 						
 						@include transition(all, 300ms, linear);
 						
@@ -668,14 +667,27 @@
 							}
 						}
 					}
-					.titleDetails {
-						border: 1px solid red;
-						position: relative;
-						height: 230px;
-						width: 100%;
-						display: flex;
-					}
 				}
+			}
+		}
+		.contentDiv .titleDetails {
+			width: calc(100vw - 15px);
+		}
+		.titleDetails {
+			border: 1px solid red;
+			position: relative;
+			height: 300px;
+			width: 100%;
+
+			a {
+				position: relative;
+				height: 40px;
+				width: 100%;
+				font-size: 2em;
+
+				@include css4 {
+					color: var(--darkGray);
+				};
 			}
 		}
 	}

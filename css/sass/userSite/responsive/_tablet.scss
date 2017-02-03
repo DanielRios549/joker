@@ -19,7 +19,8 @@ $responsiveVariables: (
     --settingsDivRightWidth: 90%,
     --settingsGroupAlign: row wrap,
     --settingsAlignOptions: column wrap,
-    --settingsAlign: center
+    --settingsAlign: center,
+    --settingsJustify: flex-start
 );
 
 @media (max-width: $tablet + 'px') {

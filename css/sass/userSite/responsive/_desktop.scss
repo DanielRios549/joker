@@ -19,7 +19,8 @@ $responsiveVariables: (
     --settingsDivRightWidth: 65%,
     --settingsGroupAlign: column wrap,
     --settingsAlignOptions: row nowrap,
-    --settingsAlign: space-around
+    --settingsAlign: space-around,
+    --settingsJustify: space-around
 );
 
 @media (min-width: $tablet + 1 + 'px') {

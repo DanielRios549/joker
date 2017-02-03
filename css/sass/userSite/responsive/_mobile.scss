@@ -19,7 +19,8 @@ $responsiveVariables: (
     --settingsDivRightWidth: 100%,
     --settingsGroupAlign: column wrap,
     --settingsAlignOptions: column wrap,
-    --settingsAlign: center
+    --settingsAlign: center,
+    --settingsJustify: flex-start
 );
 
 @media (max-width: $mobile + 'px') {

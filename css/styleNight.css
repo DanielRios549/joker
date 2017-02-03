@@ -1,14 +1,14 @@
-html > body > section {
+.interface {
     background-color: #141414 !important;
     color: #f1f1f1 !important;
 }
-#settingsInterface .menuLi .menuLink {
+.settings .menuLi .menuLink {
     background-color: transparent !important;
 }
-#settingsInterface .menuLi .menuLink:before {
+.settings .menuLi .menuLink:before {
     color: #f1f1f1 !important;
 }
-#settingsInterface .menuLi .menuLink .menuLinkSpan {
+.settings .menuLi .menuLink .menuLinkSpan {
     color: #f1f1f1 !important;
 }
 #settingsOptions .settingsOption .section .linkInfo {

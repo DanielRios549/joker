@@ -30,81 +30,62 @@ function intializePlayer() {
 	playerBox = document.getElementById('playerBox');
 	mediaHolder = document.getElementById('mediaHolder');
 	buttonPlay = document.getElementById('playBtn');
-	
+
 	loadFolder();
 }
 
 function loadFolder() {
 	var contentType = document.getElementById("watchInterface").getAttribute("data-type");
-	if(contentType == 'serie') {
+
+	if(contentType == 'movie') {
+		var mediaFolder = baseUrl + 'media/movies/';
+	}
+	else if(contentType == 'serie') {
+		var mediaFolder = baseUrl + 'media/series/';
 		var contentSeason = document.getElementById("watchInterface").getAttribute("data-season");
 		var contentEpisode = document.getElementById("watchInterface").getAttribute("data-episode");
 	}
-	var request = new XMLHttpRequest();
+	
+	var dataId = document.getElementById("watchInterface").getAttribute("data-id");
+	dataPath = mediaFolder + dataId;
 
-	request.open('POST', ajaxFile + '?ajaxAction=watchLink&ajaxId=' + contentType);
+	if(contentType == 'movie') {
+		dataSource = dataPath + '/video.mp4';
+	}
+	else if(contentType == 'serie') {
+		dataSource = dataPath + '/season' + contentSeason + '/episode' + contentEpisode + '/video.mp4';
+	}
 
-	request.error = function() {
-		alert('Error to get access to link');
-	};
+	mediaHolder.innerHTML = "<video id='videoTag' autoplay></video>";
+	addEvents();
+}
 
-	request.onload = function() {
-		if (request.status >= 200 && request.status < 400) {
-            var data = JSON.parse(this.responseText);
+function addEvents() {
+	video = document.getElementById('videoTag');
+	videoLoad = document.getElementById('mediaLoading');
+	controlsDiv = document.getElementById('controlsDiv');
+	slider = document.getElementById('seekSlider');
+	currentTime = document.getElementById('currentVideoTime');
+	totalTime = document.getElementById('totalVideoTime');
+	mute = document.getElementById('muteButton');
+	volumeSlider = document.getElementById('volumeSlider');
+	episodesButton = document.getElementById('episodesButton');
+	fullScreen = document.getElementById('fullScreenButton');
 
-			var dataId = document.getElementById("watchInterface").getAttribute("data-id");
-			dataLink = data.link;
-            dataPath = dataLink + dataId;
+	buttonPlay.addEventListener("click", playPause);
+	video.addEventListener("click", playPause);
+	videoLoad.addEventListener("click", playPause);
+	video.addEventListener("timeupdate", seekTimeUpdade);
+	slider.addEventListener("change", videoSeek);
+	mute.addEventListener("click", muteVideo);
+	volumeSlider.addEventListener("change", videoVolume);
+	fullScreen.addEventListener("click", toggleFullScreen);
+	video.addEventListener("dblclick", toggleFullScreen);
 
-			if(contentType == 'movie') {
-				dataSource = dataPath + '/video.mp4';
-			}
-			else if(contentType == 'serie') {
-				dataSource = dataPath + '/season' + contentSeason + '/episode' + contentEpisode + '/video.mp4';
-			}
+	hideControls();
+	hotKeys();
 
-			var blob = new Blob([dataSource], {type: 'application/octet-binary'});
-			var blobUrl = URL.createObjectURL(blob);
-
-			var videoCode = "<video id='videoTag' autoplay src='" + dataSource + "' type='video/mp4'></video>";
-			
-			mediaHolder.innerHTML = videoCode;
-
-			video = document.getElementById('videoTag');
-			videoLoad = document.getElementById('mediaLoading');
-			controlsDiv = document.getElementById('controlsDiv');
-			buttonPlay = document.getElementById('playBtn');
-			slider = document.getElementById('seekSlider');
-			currentTime = document.getElementById('currentVideoTime');
-			totalTime = document.getElementById('totalVideoTime');
-			mute = document.getElementById('muteButton');
-			volumeSlider = document.getElementById('volumeSlider');
-			episodesButton = document.getElementById('episodesButton');
-			fullScreen = document.getElementById('fullScreenButton');
-
-			buttonPlay.addEventListener("click", playPause);
-			video.addEventListener("click", playPause);
-			videoLoad.addEventListener("click", playPause);
-			video.addEventListener("timeupdate", seekTimeUpdade);
-			slider.addEventListener("change", videoSeek);
-			mute.addEventListener("click", muteVideo);
-			volumeSlider.addEventListener("change", videoVolume);
-			fullScreen.addEventListener("click", toggleFullScreen);
-			video.addEventListener("dblclick", toggleFullScreen);
-
-			hideControls();
-			hotKeys();
-			
-			$(videoLoad).removeClass("videoPaused").removeClass("loading").addClass("loadingNone");
-        }
-        else {
-            alert("Error to get the link");
-        }
-	};
-
-	request.send();
-
-	console.log(request.data);
+	$(videoLoad).removeClass("videoPaused").removeClass("loading").addClass("loadingNone");
 }
 
 function episodeSelect() {
