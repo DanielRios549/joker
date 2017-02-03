@@ -5,5 +5,5 @@ media/movies/*
 media/series/*
 images/media/movies/*
 images/media/series/*
-images/user/*
+images/user/*/*
 _fontIcon.txt

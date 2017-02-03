@@ -167,8 +167,8 @@
                                     $userDir = 'images/user/' . $userDirData['user_id'];
                                     mkdir($userDir);
 
-                                    $copyImageProfile = copy('images/profile.jpg' , $userDir . '/profile.jpg');
-                                    $copyImageCover = copy('images/cover.jpg' , $userDir . '/cover.jpg');
+                                    $copyImageProfile = copy('images/user/profile.jpg' , $userDir . '/profile.jpg');
+                                    $copyImageCover = copy('images/user/cover.jpg' , $userDir . '/cover.jpg');
                                 }
                                 elseif($admin == 'yes') {
                                     $userDir = '../images/user/' . $userDirData['user_id'];
