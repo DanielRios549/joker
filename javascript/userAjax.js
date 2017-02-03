@@ -77,7 +77,7 @@ function addWatchListIndex() {
 
         if (request.status >= 200 && request.status < 400) {
             if($('#watchListDiv').length == false) {
-                $('#contentGroups').prepend('<p class="contentDivHeader">' + data.title + '</p><div id="watchListDiv" class="contentDiv contentDivScroll"><div class="previousHide"></div><div class="nextHide"></div><div class="contentGroup" style="width: 170px; left: 0;"></div></div>');
+                $('.mainSection').prepend('<article id="watchListDiv" class="contentContainer"><p class="contentDivHeader">' + data.title + '</p><div class="contentDiv"><div class="contentGroupScroll"></div></div></article>');
             }
 
             if($this.attr('data-type') == 'movie') {
@@ -88,19 +88,11 @@ function addWatchListIndex() {
             }
 
             $this.removeClass('addWatchList').addClass('removeWatchList');
-            var width = $('#watchListDiv > .contentGroup').width();
-            $('#watchListDiv > .contentGroup').css('width', (width + 170) + 'px');
-            $('#watchListDiv > .contentGroup').prepend('<div class="content contentScroll"><div class="contentLink"><figure class="contentFigure"><img src="' + baseUrl + 'images/media/' + linkType + '/' + $this.attr('data-id') + '/image.jpg"/><figcaption><a class="figLinkWatch" href="' + baseUrl + 'watch?id=' + $this.attr('data-id') + '"></a><a href="' + baseUrl + 'title?id=' + $this.attr('data-id') + '" class="figLink"><span class="figSpan">Teste</span></a><div class="removeWatchList" data-id="' + $this.attr('data-id') + '"></div></figcaption></figure></div></div>');
+
+            $('#watchListDiv .contentGroupScroll').prepend('<div class="content"><div class="contentLink"><figure class="contentFigure"><img src="' + baseUrl + 'images/media/' + linkType + '/' + $this.attr('data-id') + '/image.jpg"/><figcaption><a class="figLinkWatch" href="' + baseUrl + 'watch?id=' + $this.attr('data-id') + '"></a><a href="' + baseUrl + 'title?id=' + $this.attr('data-id') + '" class="figLink"><span class="figSpan">Teste</span></a><div class="removeWatchList" data-id="' + $this.attr('data-id') + '"></div></figcaption></figure></div></div>');
 
             $('.contentDiv .content .addWatchList[data-id="' + $this.attr('data-id') + '"]').removeClass('addWatchList').addClass('removeWatchList');
             $('#imageDiv div span[data-id="' + $this.attr('data-id') + '"]').removeClass('addWatchList').addClass('removeWatchList');
-
-            if(width + 170 > $('#watchListDiv').width()) {
-                $('#watchListDiv .nextHide').removeClass('nextHide').addClass('nextShow');
-            }
-
-            $('#watchListDiv .contentFigure').off('click', '.removeWatchList', removeWatchListIndex);
-            $('#watchListDiv .contentFigure').on('click', '.removeWatchList', removeWatchListIndex);
         }
         else {
             alert('Error');
@@ -123,20 +115,12 @@ function removeWatchListIndex() {
     
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
-            var width = $('#watchListDiv > .contentGroup').width();
-            $('#watchListDiv .contentGroup').css('width', (width - 170) + 'px');
-            
             $('#watchListDiv .content .removeWatchList[data-id="' + $this.attr('data-id') + '"]').parent().parent().parent().parent().remove();
             $('.contentDiv .content .removeWatchList[data-id="' + $this.attr('data-id') + '"]').removeClass('removeWatchList').addClass('addWatchList');
             
             $('#imageDiv span[data-id="' + $this.attr('data-id') + '"]').removeClass('removeWatchList').addClass('addWatchList');
-            
-            if(width - 170 <= $('#watchListDiv').width()) {
-                $('#watchListDiv > .nextShow').removeClass('nextShow').addClass('nextHide');
-            }
 
-            if($.trim($('#watchListDiv .contentGroup').html()) == '') {
-                $('.contentDivHeader:nth-of-type(1)').remove();
+            if($.trim($('#watchListDiv .contentGroupScroll').html()) == '') {
                 $('#watchListDiv').remove();
             }
         }

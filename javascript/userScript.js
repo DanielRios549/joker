@@ -143,7 +143,7 @@ function parallaxExternalHome() {
 //Effect of internal index
 
 function parallaxInternalHome() {
-	var sliderImg = $('#contentSlider > div > div > img');
+	var sliderImg = $('#contentSlider > article > div > img');
 
 	if ($(this).scrollTop() < 300) {
 		$(sliderImg).css("top" , (window.pageYOffset / 2) + 'px');
@@ -340,16 +340,21 @@ function disableEnable() {
 
 function showDetails(event) {
 	event.preventDefault();
-	$('.contentContainer .titleDetails').remove();
-	
-	var parentDiv = $(this).parent().parent().parent().parent().parent().parent();
-	var content = $(this).parent().parent().parent().parent();
-	var detailsDiv = $(parentDiv).find('.titleDetails');
 
-	parentDiv.css({
-		'height': '500px',
-	});
+	var parentDiv = $(this).parent().parent().parent().parent().parent();
+	var contentDiv = $(this).parent().parent().parent().parent();
+	var contentLink = $(this).attr('href');
+	var detailsCode = '<div class="titleDetails"><a href="' + contentLink + '">Ir para a página</a></div>';
+	//alert(parentDiv.attr('class'));
 
-	content.addClass('open').append('<div class="titleDetails"></div');
+	if(parentDiv.attr('class') == 'contentGroupScroll') {
+		parentDiv.parent().parent().append(detailsCode);
+	}
+	else {
+		contentDiv.addClass('open').append(detailsCode);
+
+		var offset = $('.contentGroup .open').offset();
+		//$('.contentGroup .open .titleDetails').css('left', '-' + offset.left + 'px');
+	}
 }
 	

@@ -52,6 +52,11 @@
 	<link rel="stylesheet" href="<?php echo $styleDir . 'userStyle.css';?>"/>
     <script type="text/javascript" src="<?php echo $scriptDir . 'libraries/jquery.js';?>"></script>
     <?php //<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>?>
-    <?php echo '<script lang="text/javascript">var baseUrl = "' . $baseUrl . '";</script>';?>
+    <script type="text/javascript">
+        var baseUrl = '<?php echo $baseUrl;?>';
+        $(document).ready(function() {
+            intervalLogoff = setInterval(secureLogoff, 1000);
+        });
+    </script>
 </head>
 <body>

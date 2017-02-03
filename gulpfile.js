@@ -4,11 +4,12 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('watch');
 var rename = require('gulp-rename');
+var browserSync = require('browser-sync');
 
 //Run this task before the commit and mainly, before the push
 
 gulp.task('prod', function() {
-    return gulp.src('css/sass/style.scss')
+    return gulp.src(['css/sass/userSite/userStyle.scss', 'css/sass/adminSite/adminStyle.scss'])
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(gulp.dest('css/'));
 });
@@ -42,6 +43,15 @@ gulp.task('sass', function() {
 
 gulp.task('watch', function() {
     gulp.watch('./css/sass/**/*.scss', ['sass']);
+});
+
+gulp.task('sync', function() {
+    browserSync({
+        proxy: '127.0.0.1',
+        port: 6767,
+        open: true,
+        notify: false
+    });
 });
 
 //execute the task inside the array only with 'gulp' command

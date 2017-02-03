@@ -7,7 +7,7 @@
 @charset "UTF-8";
 
 $css4: true;
-$compatibility: true;
+$compatibility: false;
 
 @import '../config/config';
 
@@ -120,6 +120,14 @@ html {
         #watchInterface {
             padding-top: 0 !important;
         }
+        #watchInterface {
+		    background: rgba(0,0,0,.8) !important;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+
+            @include watch();
+        }
         .interface {
             position: relative;
             min-height: 300px;
@@ -130,6 +138,9 @@ html {
 
             @extend %slider;
 
+            .home {
+                padding: 20px 0 0 0;
+            }
             .login {
                 display: flex;
 
@@ -137,27 +148,30 @@ html {
                     flex-flow: var(--loginAlign);
                 };
             }
+            .logoff {
+                position: relative;
+                min-height: 400px;
+            }
             .settings {
+			    position: relative;
                 display: flex;
-                justify-content: space-around;
                 padding-bottom: 20px;
 
                 @include css4 {
                     flex-flow: var(--settingsAlignOptions);
+                    justify-content: var(--settingsJustify);
                     align-items: var(--settingsAlign);
                 };  
             }
-            .category,
-            .search,
-            .settings {
+            .category,.search,.settings {
                 min-height: 320px;
                 padding: 20px 0;
             }
             .title {
-                background-color: rgba(0,0,0,.8);
                 position: relative;
-                min-height: 400px;
+                background-color: rgba(0,0,0,.8);
                 width: 100%;
+                min-height: 400px;
                 z-index: 98;
                 display: flex;
                 padding-bottom: 30px;
@@ -187,8 +201,6 @@ html {
                 @include search();
 
                 @include title();
-
-                @include watch();
             }
         }
         #footer {

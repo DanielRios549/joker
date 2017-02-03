@@ -16,7 +16,7 @@
     $userSessionId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : false;
     
     if(($ajaxAction == false) or  ($ajaxId == false) or ($userSessionId == false)) {
-        header("Location:" . $baseUrl);
+        header("Location:" . $baseUrl. '404');
     }
     elseif(($ajaxAction != false) and  ($ajaxId != false) and ($userSessionId != false)) {
         //add the movie to watchlist
@@ -78,22 +78,6 @@
             catch(PDOException $error) {
                 echo $error -> getMessage();
             }
-        }
-        
-        //make the movie url
-        
-        elseif($ajaxAction == 'watchLink') {
-            $contentMediaFolder = $getConfig -> configQuery('mediaFolder');
-
-            if($ajaxId == 'movie') {
-                $contentArray = array('link' => $contentMediaFolder . 'movies/');
-            }
-            elseif($ajaxId == 'serie') {
-                $contentArray = array('link' => $contentMediaFolder . 'series/');
-            }
-            
-            $contentJson = json_encode($contentArray);
-            echo $contentJson;
         }
 
         //follow user
@@ -201,7 +185,8 @@
         }
 
         //What else
-        elseif($ajaxAction == 'editComment' or $ajaxId != false) {
+
+        else {
             header($baseUrl . '404');
         }
     }
