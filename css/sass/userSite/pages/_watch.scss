@@ -150,7 +150,7 @@
 			opacity: 1;
 		}
 		#controlsDiv {
-			background: $colorGray;
+			background: rgba(0,0,0,.5);
 			position: absolute;
 			bottom: 50px;
 			height: 40px;
@@ -210,36 +210,46 @@
 					flex-flow: row wrap;
 					padding: 0 10px;
 					
-					#seekSliderDiv {
+					#progressContainer {
 						position: relative;
 						width: 100%;
+						height: 20px;
 						display: flex;
 						padding: 8px 0;
-						
-						#seekSlider {
+						cursor: pointer;
+						display: flex;
+						align-items: center;
+
+						&:hover {
+							#progressDiv {
+								&:after {
+									@include transform(scale(15));
+								}
+							}
+						}
+						#progressDiv {
 							position: relative;
 							width: 100%;
 							height: 4px;
-							cursor: pointer;
-							-webkit-appearance: none !important;
+							background: #d6d6d6;
+							display: flex;
 
-							&::-ms-fill-lower {
-								background: $colorBlue;
-							} 
-							&::-ms-fill-upper {
-								background: #262626;
-							}
-							&::-webkit-slider-thumb {
+							&:after {
+								content: '';
+								position: relative;
+								top: 2px;
+								width: 1px;
+								height: 1px;
+								background: #2cafec;
 								border-radius: 50%;
-								background: #ffffff;
-								height: 15px;
-								width: 15px;
-								cursor: pointer;
-								-webkit-appearance: none !important;
 
-								&:hover {
-									background: $colorBlue;
-								}
+								@include transition(transform, 200ms, linear);
+							}
+							#progressCurrent {
+								position: relative;
+								height: 100%;
+								width: 0;
+								background: #2cafec;
 							}
 						}
 					}
@@ -299,59 +309,74 @@
 					cursor: pointer;
 					
 					&:hover {
-						+ #volumeSliderDiv{
-							top: -65px;
-							left: -30px;
-							width: 100px;
-							
-							@include transition(all, 300ms, ease);
+						+ #volumeSliderContainer {
+							height: 150px;
 						}
 					}
 				}
-				#volumeSliderDiv {
-					background: $colorGray;
+				#volumeSliderContainer {
+					background: rgba(0,0,0,.5);
 					position: absolute;
-					top: -10px;
-					left: 20px;
-					height: 30px;
-					width: 0;
+					bottom: 40px;
+					left: 0;
+					//height: 0;
+					height: 150px;
+					width: 40px;
 					overflow: hidden;
-					
-					@include transform(rotate(-90deg));
+					display: flex;
+					justify-content: center;
+					align-items: center;
 					
 					@include transition(all, 300ms, ease);
-					
-					&:hover {
-						top: -65px;
-						left: -30px;
-						width: 100px;
-					}
-					#volumeSlider {
-						position: relative;
-						top: 8px;
-						outline: none;
-						height: 4px;
-						width: 95%;
-						cursor: pointer;
-						-webkit-appearance: none !important;
 
-						&::-ms-fill-lower {
-							background: $colorBlue;
-						} 
-						&::-ms-fill-upper {
-							background: #262626;
-						}	
-						&:hover::-webkit-slider-thumb {
-							background: $colorBlue;
-						}
+					//@include transform(rotate(180deg));
+
+					&:hover {
+						height: 150px;
 					}
-					#volumeSlider::-webkit-slider-thumb {
-						border-radius: 50%;
-						background: #ffffff;
-						height: 15px;
-						width: 15px;
+					#volumeSliderDiv {
+						position: relative;
+						width: 25px;
+						height: 90%;
 						cursor: pointer;
-						-webkit-appearance: none !important;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						
+						&:hover {
+							#volumeSlider {
+								&:before {
+									@include transform(scale(15));
+								}
+							}
+						}
+						#volumeSlider {
+							background: #d6d6d6;
+							position: relative;
+							height: 100%;
+							width: 4px;
+							display: flex;
+							flex-direction: column;
+							justify-content: flex-end;
+
+							&:before {
+								content: '';
+								position: relative;
+								left: 1px;
+								width: 1px;
+								height: 1px;
+								background: #2cafec;
+								border-radius: 50%;
+
+								@include transition(transform, 200ms, linear);
+							}
+							#volumeCurrent {
+								background: #2cafec;
+								position: relative;
+								width: 100%;
+								height: 100%;
+							}
+						}
 					}
 				}
 				#episodesButton {
@@ -384,7 +409,7 @@
 					overflow: hidden;
 					display: flex;
 
-					@include transition(height, 200ms, linear);
+					@include transition(all, 200ms, linear);
 
 					&:hover {
 						height: 320px;
@@ -399,10 +424,10 @@
 						flex: 0 0 auto;
 						position: relative;
 						height: 100%;
-						overflow: auto;
+						overflow: hidden;
 						z-index: 96;
 						display: flex;
-						flex-flow: column wrap;
+						flex-direction: column;
 
 						@include transition(width, 200ms, linear);
 
@@ -443,7 +468,7 @@
 						height: 100%;
 						width: 100%;
 						display: flex;
-						flex-flow: column wrap;
+						flex-flow: column nowrap;
 
 						@include transition(width, 200ms, linear);
 
@@ -452,7 +477,7 @@
 							border-bottom: 1px solid #262626;
 							position: relative;
 							width: 100%;
-							height: 13%;
+							height: 40px;
 							z-index: 95;
 							display: flex;
 
@@ -537,7 +562,7 @@
 								width: 100%;
 								z-index: 94;
 								display: flex;
-								flex-flow: column wrap;
+								flex-flow: column nowrap;
 								
 								.episodeClose,
 								.episodeOpen {
@@ -546,6 +571,7 @@
 									width: 100%;
 									overflow: hidden;
 									display: flex;
+									flex: 0 0 auto;
 
 									@include transition(all, 200ms, linear);
 

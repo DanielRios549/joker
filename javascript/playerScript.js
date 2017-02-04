@@ -56,19 +56,22 @@ function loadFolder() {
 		dataSource = dataPath + '/season' + contentSeason + '/episode' + contentEpisode + '/video.mp4';
 	}
 
-	mediaHolder.innerHTML = "<video id='videoTag' autoplay></video>";
+	mediaHolder.innerHTML = "<video id='videoTag'></video>";
 	addEvents();
+	episodeSelectPlayer();
 }
 
 function addEvents() {
 	video = document.getElementById('videoTag');
 	videoLoad = document.getElementById('mediaLoading');
 	controlsDiv = document.getElementById('controlsDiv');
-	slider = document.getElementById('seekSlider');
+	slider = document.getElementById('progressCurrent');
+	setTime = document.getElementById('progressContainer');
 	currentTime = document.getElementById('currentVideoTime');
 	totalTime = document.getElementById('totalVideoTime');
 	mute = document.getElementById('muteButton');
-	volumeSlider = document.getElementById('volumeSlider');
+	volumeSlider = document.getElementById('volumeCurrent');
+	setVolume = document.getElementById('volumeSliderDiv');
 	episodesButton = document.getElementById('episodesButton');
 	fullScreen = document.getElementById('fullScreenButton');
 
@@ -76,25 +79,34 @@ function addEvents() {
 	video.addEventListener("click", playPause);
 	videoLoad.addEventListener("click", playPause);
 	video.addEventListener("timeupdate", seekTimeUpdade);
-	slider.addEventListener("change", videoSeek);
+	setTime.addEventListener("click", videoSeek);
 	mute.addEventListener("click", muteVideo);
-	volumeSlider.addEventListener("change", videoVolume);
+	setVolume.addEventListener("click", videoVolume);
 	fullScreen.addEventListener("click", toggleFullScreen);
 	video.addEventListener("dblclick", toggleFullScreen);
 
 	hideControls();
 	hotKeys();
-
+	video.play();
 	$(videoLoad).removeClass("videoPaused").removeClass("loading").addClass("loadingNone");
 }
 
-function episodeSelect() {
+function episodeSelectPlayer() {
 	$("#seasonSelect").ready(function() {
 		$(this).on("click", "#openSelector #openSpan", function() {
 			$(".seasonGroupShow").removeClass("seasonGroupShow").addClass("seasonGroupHide");
 			$("#seasonSelect").removeClass("seasonSelectHide").addClass("seasonSelectShow");
+
+			/*var parentHeight = 0;
+			$(this).parent().parent().parent().parent()
+			.find('#seasonSelect .season').each(function() {
+				parentHeight += $(this).outerHeight();
+			});
+			$(this).parent().parent().parent().parent().css({
+				'height': parentHeight + 'px'
+			});*/
 		});
-		$(this).on("click", ".seasonSelectShow div", function() {
+		$(this).on("click", ".seasonSelectShow .season", function() {
 			$(".seasonSelectShow").removeClass("seasonSelectShow").addClass("seasonSelectHide");
 			$(".seasonNameShow").removeClass("seasonNameShow").addClass("seasonNameHide");
 
@@ -106,12 +118,18 @@ function episodeSelect() {
 
 			$(".episodeOpen").removeClass("episodeOpen").addClass("episodeClose");
 			$(".episodeClose:nth-of-type(1)").removeClass("episodeClose").addClass("episodeOpen");
+
+			//$('#episodesDiv').removeAttr('style');
 		});
 	});
-	$("#episodeList").on("click", ".episodeClose", function() {
-		$(".episodeOpen").removeClass("episodeOpen").addClass("episodeClose");
+	$("#episodeList").on("click", ".seasonGroupShow .episodeClose", function() {
+		$(".seasonGroupShow .episodeOpen").removeClass("episodeOpen").addClass("episodeClose");
 		$(this).removeClass("episodeClose").addClass("episodeOpen");
 	});
+
+	/*$('#episodesDiv').on('mouseout', function() {
+		$(this).removeAttr('style');
+	});*/
 }
 
 /*---------------------
@@ -157,7 +175,7 @@ function autoHideControls() {
 ---------------------*/
 
 function playPause() {
-	if(video.paused) {
+	if(video.paused || video.ended) {
 		video.play();
 		$(buttonPlay).removeClass("playBtn").addClass("playBtn2");
 		$(videoLoad).removeClass("videoPaused").removeClass("loading").addClass("loadingNone");
@@ -175,9 +193,12 @@ function playPause() {
       Video Time
 ---------------------*/
 
-function videoSeek() {
-	var seekTo = video.duration * (slider.value / 100);
-	video.currentTime = seekTo;
+function videoSeek(e) {
+	var posX = ((e.pageX - $(this).offset().left) * 100) / $(this).innerWidth();
+    seekTo = posX.toString().slice(0, 5);
+	video.currentTime = video.duration * (seekTo / 100);
+	
+	slider.style.width = seekTo + '%';
 }
 
 /*---------------------
@@ -186,7 +207,6 @@ function videoSeek() {
 
 function seekTimeUpdade() {
 	var newTime = video.currentTime * (100 / video.duration);
-	slider.value = newTime;
 	
 	var currentHr = Math.floor(video.currentTime / 3600);
 	var currentMin = Math.floor(video.currentTime / 60);
@@ -195,6 +215,8 @@ function seekTimeUpdade() {
 	var videoHr = Math.floor(video.duration / 3600);
 	var videoMin = Math.floor(video.duration / 60);
 	var videoSec = Math.floor(video.duration -  videoMin * 60);
+
+	slider.style.width = newTime + '%';
 	
 	//Hours
 	
@@ -247,8 +269,13 @@ function muteVideo() {
      Sound Volume
 ---------------------*/
 
-function videoVolume() {
-	video.volume = volumeSlider.value / 100;
+function videoVolume(e) {
+	var posY = ((e.pageY - $(this).offset().top) * 100) / $(this).innerHeight();
+    seekToTop = posY.toString().slice(0, 5);
+	seekTo = 100 - seekToTop;
+	video.volume = seekTo / 100;
+
+	volumeSlider.style.height = seekTo + '%';
 	
 	if(video.volume == 0) {
 		video.muted = true;
@@ -263,7 +290,6 @@ function videoVolume() {
 		if(video.volume < 0.5) {
 			$(mute).removeClass("soundMuted").removeClass("sound2").addClass("sound");
 		}
-		
 		else if(video.volume >= 0.5) {
 			if(video.volume <= 1) {
 				$(mute).removeClass("soundMuted").removeClass("sound").addClass("sound2");

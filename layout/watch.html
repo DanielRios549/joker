@@ -12,11 +12,6 @@
 	}
 	if($contentVerify -> rowCount() == 1) {
 ?>
-<script>
-	$(window).ready(function() {
-		episodeSelect("#episodesDiv");
-	});
-</script>
 <main id="watchInterface" data-type="<?php echo $contentType;?>" data-id="<?php echo $contentId;?>" data-season="<?php echo $dataSeason;?>" data-episode="<?php echo $dataEpisode;?>">
 	
 	<section id="playerBox" class="playerBoxHide">
@@ -29,8 +24,10 @@
 			<div id="leftControls">
 				<div id="playBtn" class="playBtn2 playerIcon"></div>
 				<div id="videoTime">
-					<div id="seekSliderDiv">
-						<input type="range" id="seekSlider" min="0" max="100" value="0" step="1"/>
+					<div id="progressContainer">
+						<div id='progressDiv'>
+							<div id="progressCurrent"></div>
+						</div>
 					</div>
 					<div id="videoTimeCounter">
 						<div id="currentVideoTime">0:00</div>
@@ -41,8 +38,12 @@
 			</div>
 			<div id="rightControls">
 				<div id="muteButton" class="sound2 playerIcon"></div>
-				<div id="volumeSliderDiv">
-					<input type="range" id="volumeSlider" min="0" max="100" value="100" step="1"/>
+				<div id="volumeSliderContainer">
+					<div id="volumeSliderDiv">
+						<div id='volumeSlider'>
+							<div id="volumeCurrent"></div>
+						</div>
+					</div>
 				</div>
 				<?php if($contentType == 'serie') {?>
 				<div id="episodesButton"></div>
@@ -70,7 +71,17 @@
 						<div id="episodeList">
 							<?php foreach($episodesList as $getEpisodes => $key){if($getEpisodes == $contentData['season']){$seasonDisplay = 'Show';}else{$seasonDisplay = 'Hide';}?>
 							<div id="seasonGroup<?php echo $getEpisodes;?>" class="seasonGroup<?php echo $seasonDisplay;?>">
-								<?php foreach($key as $key => $episode){$episodeDivisor = strpos($episode[$cookieLang], "|");if($episode['episode_id'] == $contentData['episode_id']){$episodeDisplay = 'episodeOpen'; $addLinkPlayer = false;}else{$episodeDisplay = 'episodeClose'; $addLinkPlayer = true;}?>
+								<?php
+									foreach($key as $key => $episode) {
+										$episodeDivisor = strpos($episode[$cookieLang], "|");
+
+										if($episode['episode_id'] == $contentData['episode_id']) {
+											$episodeDisplay = 'episodeOpen'; $addLinkPlayer = false;
+										}
+										else {
+											$episodeDisplay = 'episodeClose'; $addLinkPlayer = true;
+										}
+								?>
 								<div class="episode<?php echo $episode['episode'] . ' ' . $episodeDisplay;?>">
 									<div class="episodeHeader">
 										<span class="episodeNumber"><?php echo $episode['episode'];?></span>
@@ -103,8 +114,8 @@
 	</section>
 	
     <script type="text/javascript" src="<?php echo $scriptDir . 'plugins/mouseStop.js'?>"></script>
-	<script type="text/javascript" src="<?php echo $scriptDir . 'blobPlayer.js';?>"></script>
 	<script type="text/javascript" src="<?php echo $scriptDir . 'playerScript.js'?>"></script>
+	<script type="text/javascript" src="<?php echo $scriptDir . 'blobPlayer.js';?>"></script>
 	<script type="text/javascript" src="<?php echo $scriptDir . 'userScript.js'?>"></script>
 </main>
 <?php }?>

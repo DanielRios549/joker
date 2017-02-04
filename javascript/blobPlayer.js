@@ -37,8 +37,7 @@ function get(url, callback) {
 
 window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 
-window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024,
-  handleInitSuccess, handleError);
+window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, handleInitSuccess, handleError);
 
 function handleInitSuccess(fileSystem) {
   window.fileSystem = fileSystem;
