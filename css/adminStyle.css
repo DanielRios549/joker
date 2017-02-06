@@ -21,6 +21,13 @@
 :root {
   --gray: #d6d6d6;
   --darkGray: #464646;
+  --colorLightGray: #d6d6d6;
+  --colorGray: #2d1152;
+  --colorDarkGray: #222222;
+  --colorButtonGray: #9aa4a5;
+  --colorBlack: #101010;
+  --colorBlue: #4e297e;
+  --colorWhite: #f1f1f1;
 }
 
 /*
@@ -32,18 +39,6 @@ For all Browser:
         background: var(--gray);
         color: var(--white);
     };
-*/
-/* 
- ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
- | @ Author	: Daniel Rios.
- ****************************************************************
-*/
-/* 
- ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
- | @ Author	: Daniel Rios.
- ****************************************************************
 */
 /* 
  ***************************************************************

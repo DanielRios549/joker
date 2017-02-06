@@ -7,13 +7,31 @@
 
 var ajaxFile = 'ajax/ajaxRequisitions.php';
 
+function loadVideo(sync, url, callback, done) {
+	var request = new XMLHttpRequest();
+
+	request.open('GET', url, sync);
+	request.responseType = 'arraybuffer';
+
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+			callback(request.response);
+			done();
+		}
+		else {
+			alert('Unexpected status code ' + request.status + ' for ' + url);
+			return false;
+		}
+	};
+	request.send();
+}
+
 $(window).ready(function() {
     showPlayer();
 });
 
 function showPlayer() {
 	intializePlayer();
-	episodeSelect();
 	
 	$(playerBox).removeClass('playerBoxHide').addClass('playerBoxShow');
 	
@@ -31,41 +49,10 @@ function intializePlayer() {
 	mediaHolder = document.getElementById('mediaHolder');
 	buttonPlay = document.getElementById('playBtn');
 
-	loadFolder();
-}
-
-function loadFolder() {
-	var contentType = document.getElementById("watchInterface").getAttribute("data-type");
-
-	if(contentType == 'movie') {
-		var mediaFolder = baseUrl + 'media/movies/';
-	}
-	else if(contentType == 'serie') {
-		var mediaFolder = baseUrl + 'media/series/';
-		var contentSeason = document.getElementById("watchInterface").getAttribute("data-season");
-		var contentEpisode = document.getElementById("watchInterface").getAttribute("data-episode");
-	}
-	
-	var dataId = document.getElementById("watchInterface").getAttribute("data-id");
-	dataPath = mediaFolder + dataId;
-
-	if(contentType == 'movie') {
-		dataSource = dataPath + '/video.mp4';
-	}
-	else if(contentType == 'serie') {
-		dataSource = dataPath + '/season' + contentSeason + '/episode' + contentEpisode + '/video.mp4';
-	}
-
-	mediaHolder.innerHTML = "<video id='videoTag'></video>";
-	addEvents();
-	episodeSelectPlayer();
-}
-
-function addEvents() {
-	video = document.getElementById('videoTag');
 	videoLoad = document.getElementById('mediaLoading');
 	controlsDiv = document.getElementById('controlsDiv');
 	slider = document.getElementById('progressCurrent');
+	bufferDiv = document.getElementById('progressBuffer');
 	setTime = document.getElementById('progressContainer');
 	currentTime = document.getElementById('currentVideoTime');
 	totalTime = document.getElementById('totalVideoTime');
@@ -75,20 +62,70 @@ function addEvents() {
 	episodesButton = document.getElementById('episodesButton');
 	fullScreen = document.getElementById('fullScreenButton');
 
+	loadFolder();
+}
+
+function loadFolder() {
+	var contentType = document.getElementById("watchInterface").getAttribute("data-type");
+	var dataId = document.getElementById("watchInterface").getAttribute("data-id");
+
+	if(contentType == 'movie') {
+		var mediaFolder = baseUrl + 'media/movies/';
+		
+		dataPath = mediaFolder + dataId;
+		dataSource = dataPath + '/video.mp4';
+	}
+	else if(contentType == 'serie') {
+		var mediaFolder = baseUrl + 'media/series/';
+		var contentSeason = document.getElementById("watchInterface").getAttribute("data-season");
+		var contentEpisode = document.getElementById("watchInterface").getAttribute("data-episode");
+		
+		dataPath = mediaFolder + dataId;
+		dataSource = dataPath + '/season' + contentSeason + '/episode' + contentEpisode + '/video.mp4';
+	}
+
+	mediaHolder.innerHTML = "<video id='videoTag' preload='metadata'></video>";
+	video = document.getElementById('videoTag');
+
+	var testeurl = 'https://video-gru2-1.xx.fbcdn.net/v/t42.1790-2/16136505_1640691379570540_6345596034156068864_n.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InN2ZTM2MF9xZl81MTJ3X2NyZl8yMV9tYWluXzQuMl9wMTBfc2QifQ%3D%3D&oh=583f6096a687a501de7dd12d87741b92&oe=5897B227';
+
+	loadVideo(true, dataSource, function(response) {
+		var reader = new FileReader();
+		var blob = new Blob([response], {type: 'text/plain'});
+
+        reader.onloadend = function() {
+        	video.src = URL.createObjectURL(blob);
+			video.play();
+        };
+
+        reader.readAsArrayBuffer(blob);
+		console.log('adicionou o link');
+	}, function() {
+		addEvents();
+	});
+}
+
+function addEvents() {
+	console.log('adicionou os eventos');
 	buttonPlay.addEventListener("click", playPause);
 	video.addEventListener("click", playPause);
 	videoLoad.addEventListener("click", playPause);
 	video.addEventListener("timeupdate", seekTimeUpdade);
 	setTime.addEventListener("click", videoSeek);
+	video.addEventListener('progress', videoBuffer);
 	mute.addEventListener("click", muteVideo);
 	setVolume.addEventListener("click", videoVolume);
 	fullScreen.addEventListener("click", toggleFullScreen);
 	video.addEventListener("dblclick", toggleFullScreen);
-
+	
 	hideControls();
 	hotKeys();
+	episodeSelectPlayer();
+	
 	video.play();
 	$(videoLoad).removeClass("videoPaused").removeClass("loading").addClass("loadingNone");
+	
+	//bufferPercent = ((video.buffered.end(0) / video.duration) * 100);
 }
 
 function episodeSelectPlayer() {
@@ -201,6 +238,15 @@ function videoSeek(e) {
 	slider.style.width = seekTo + '%';
 }
 
+function videoBuffer() {
+	var bufferedEnd = video.buffered.end(video.buffered.length - 1);
+    var duration =  video.duration;
+
+    if(duration > 0) {
+      bufferDiv.style.width = ((bufferedEnd / duration) * 100) + '%';
+    }
+}
+
 /*---------------------
    Video Time Update
 ---------------------*/
@@ -272,31 +318,28 @@ function muteVideo() {
 function videoVolume(e) {
 	var posY = ((e.pageY - $(this).offset().top) * 100) / $(this).innerHeight();
     seekToTop = posY.toString().slice(0, 5);
+
 	seekTo = 100 - seekToTop;
+	//console.log(seekTo);
+
 	video.volume = seekTo / 100;
 
 	volumeSlider.style.height = seekTo + '%';
 	
-	if(video.volume == 0) {
-		video.muted = true;
-	}
-	else {
-		video.muted = false;
-	}
-	
 	//Define the icon of sound level
 	
 	if(video.volume > 0) {
+		video.muted = false;
+
 		if(video.volume < 0.5) {
 			$(mute).removeClass("soundMuted").removeClass("sound2").addClass("sound");
 		}
-		else if(video.volume >= 0.5) {
-			if(video.volume <= 1) {
-				$(mute).removeClass("soundMuted").removeClass("sound").addClass("sound2");
-			}
+		else if(video.volume <= 1) {
+			$(mute).removeClass("soundMuted").removeClass("sound").addClass("sound2");
 		}
 	}
 	else if(video.volume == 0) {
+		video.muted = true;
 		$(mute).removeClass("sound2").removeClass("sound").addClass("soundMuted");
 	}
 }

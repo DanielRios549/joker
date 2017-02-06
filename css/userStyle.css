@@ -21,6 +21,13 @@
 :root {
   --gray: #d6d6d6;
   --darkGray: #464646;
+  --colorLightGray: #d6d6d6;
+  --colorGray: #2d1152;
+  --colorDarkGray: #222222;
+  --colorButtonGray: #9aa4a5;
+  --colorBlack: #101010;
+  --colorBlue: #4e297e;
+  --colorWhite: #f1f1f1;
 }
 
 /*
@@ -32,18 +39,6 @@ For all Browser:
         background: var(--gray);
         color: var(--white);
     };
-*/
-/* 
- ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
- | @ Author	: Daniel Rios.
- ****************************************************************
-*/
-/* 
- ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
- | @ Author	: Daniel Rios.
- ****************************************************************
 */
 /* 
  ***************************************************************
@@ -1408,10 +1403,9 @@ html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #prog
 }
 
 html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer:hover #progressDiv:after {
-  -webkit-transform: scale(15);
-  -moz-transform: scale(15);
-  -ms-transform: scale(15);
-  transform: scale(15);
+  top: -5px;
+  width: 15px;
+  height: 15px;
 }
 
 html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv {
@@ -1424,23 +1418,35 @@ html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #prog
 
 html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv:after {
   content: '';
+  border-radius: 50%;
   position: relative;
   top: 2px;
-  width: 1px;
-  height: 1px;
-  background: #2cafec;
-  border-radius: 50%;
-  -webkit-transition: transform 200ms linear;
-  -moz-transition: transform 200ms linear;
-  -ms-transition: transform 200ms linear;
-  transition: transform 200ms linear;
+  width: 0;
+  height: 0;
+  z-index: 99;
+  flex: 0 0 auto;
+  background: var(--colorBlue);
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
 }
 
 html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv #progressCurrent {
   position: relative;
   height: 100%;
   width: 0;
-  background: #2cafec;
+  z-index: 99;
+  background: var(--colorBlue);
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv #progressBuffer {
+  background: #464646;
+  position: absolute;
+  height: 100%;
+  width: 0;
+  order: 3;
+  z-index: 98;
 }
 
 html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter {
@@ -1507,9 +1513,8 @@ html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderCo
   position: absolute;
   bottom: 40px;
   left: 0;
-  height: 150px;
+  height: 0;
   width: 40px;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1530,14 +1535,12 @@ html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderCo
   cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv:hover #volumeSlider:before {
-  -webkit-transform: scale(15);
-  -moz-transform: scale(15);
-  -ms-transform: scale(15);
-  transform: scale(15);
+  left: -5px;
+  width: 15px;
+  height: 15px;
 }
 
 html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider {
@@ -1553,22 +1556,23 @@ html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderCo
 html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider:before {
   content: '';
   position: relative;
-  left: 1px;
-  width: 1px;
-  height: 1px;
-  background: #2cafec;
+  left: 2px;
+  width: 0;
+  height: 0;
   border-radius: 50%;
-  -webkit-transition: transform 200ms linear;
-  -moz-transition: transform 200ms linear;
-  -ms-transition: transform 200ms linear;
-  transition: transform 200ms linear;
+  flex: 0 0 auto;
+  background: var(--colorBlue);
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
 }
 
 html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider #volumeCurrent {
-  background: #2cafec;
   position: relative;
   width: 100%;
   height: 100%;
+  background: var(--colorBlue);
 }
 
 html body #watchInterface #playerBox #controlsDiv #rightControls #episodesButton {
@@ -3039,7 +3043,6 @@ html body .interface .mainSection #imageBack {
   right: 0;
   z-index: 97;
   width: 100%;
-  height: 400px;
   overflow: hidden;
 }
 

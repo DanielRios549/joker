@@ -223,7 +223,9 @@
 						&:hover {
 							#progressDiv {
 								&:after {
-									@include transform(scale(15));
+									top: -5px;
+									width: 15px;
+									height: 15px;
 								}
 							}
 						}
@@ -236,20 +238,37 @@
 
 							&:after {
 								content: '';
+								border-radius: 50%;
 								position: relative;
 								top: 2px;
-								width: 1px;
-								height: 1px;
-								background: #2cafec;
-								border-radius: 50%;
+								width: 0;
+								height: 0;
+								z-index: 99;
+								flex: 0 0 auto;
 
-								@include transition(transform, 200ms, linear);
+								@include css4{
+									background: var(--colorBlue);
+								};
+
+								@include transition(all, 200ms, linear);
 							}
 							#progressCurrent {
 								position: relative;
 								height: 100%;
 								width: 0;
-								background: #2cafec;
+								z-index: 99;
+
+								@include css4{
+									background: var(--colorBlue);
+								};
+							}
+							#progressBuffer {
+								background: #464646;
+								position: absolute;
+								height: 100%;
+								width: 0;
+								order: 3;
+								z-index: 98;
 							}
 						}
 					}
@@ -319,17 +338,13 @@
 					position: absolute;
 					bottom: 40px;
 					left: 0;
-					//height: 0;
-					height: 150px;
+					height: 0;
 					width: 40px;
-					overflow: hidden;
 					display: flex;
 					justify-content: center;
 					align-items: center;
 					
 					@include transition(all, 300ms, ease);
-
-					//@include transform(rotate(180deg));
 
 					&:hover {
 						height: 150px;
@@ -341,12 +356,13 @@
 						cursor: pointer;
 						display: flex;
 						justify-content: center;
-						align-items: center;
 						
 						&:hover {
 							#volumeSlider {
 								&:before {
-									@include transform(scale(15));
+									left: -5px;
+									width: 15px;
+									height: 15px;
 								}
 							}
 						}
@@ -362,19 +378,26 @@
 							&:before {
 								content: '';
 								position: relative;
-								left: 1px;
-								width: 1px;
-								height: 1px;
-								background: #2cafec;
+								left: 2px;
+								width: 0;
+								height: 0;
 								border-radius: 50%;
+								flex: 0 0 auto;
 
-								@include transition(transform, 200ms, linear);
+								@include css4{
+									background: var(--colorBlue);
+								}
+
+								@include transition(all, 200ms, linear);
 							}
 							#volumeCurrent {
-								background: #2cafec;
 								position: relative;
 								width: 100%;
 								height: 100%;
+
+								@include css4{
+									background: var(--colorBlue);
+								}
 							}
 						}
 					}
@@ -401,6 +424,7 @@
 				}
 				#episodesDiv {
 					background: $colorGray;
+					//background: rgba(0,0,0,.5);
 					position: absolute;
 					bottom: 40px;
 					right: 0;

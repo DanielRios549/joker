@@ -26,10 +26,24 @@ $desktopLarge: 1186;
 $tablet: 1032;
 $mobile: 775;
 $mobileSmall: 599;
+$colorLightGray: #d6d6d6;
+$colorGray: #2d1152;//#464646
+$colorDarkGray: #222222;
+$colorButtonGray: #9aa4a5;
+$colorBlack: #101010;
+$colorBlue: #4e297e;//#2cafec
+$colorWhite: #f1f1f1;
 
 $variables: (
   --gray: #d6d6d6,
-  --darkGray: #464646
+  --darkGray: #464646,
+  --colorLightGray: #d6d6d6,
+  --colorGray: #2d1152,
+  --colorDarkGray: #222222,
+  --colorButtonGray: #9aa4a5,
+  --colorBlack: #101010,
+  --colorBlue: #4e297e,
+  --colorWhite: #f1f1f1
 );
 
 //Set the variables to front and make possible change it with javascript
@@ -87,4 +101,7 @@ For all Browser:
     };
 */
 
-@import 'common';
+@import 'fonts';
+@import 'allMixins';
+@import 'allUserMixins';
+@import 'allAdminMixins';
