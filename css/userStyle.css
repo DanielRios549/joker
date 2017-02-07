@@ -1332,7 +1332,7 @@ html body #watchInterface #playerBox .controlsDivShow {
 html body #watchInterface #playerBox #controlsDiv {
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
-  bottom: 50px;
+  bottom: 10px;
   height: 40px;
   max-width: 800px;
   width: 100%;
@@ -1391,21 +1391,41 @@ html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime {
   padding: 0 10px;
 }
 
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #timePreview {
+  border-radius: 4px;
+  position: absolute;
+  bottom: 30px;
+  max-height: 25px;
+  min-width: 60px;
+  font: 2em Calibri, sans-serif;
+  padding: 5px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: var(--colorDarkGray);
+  color: var(--colorLightGray);
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #timePreview:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 10px);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--colorDarkGray);
+}
+
 html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer {
   position: relative;
   width: 100%;
   height: 20px;
-  display: flex;
   padding: 8px 0;
   cursor: pointer;
   display: flex;
   align-items: center;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer:hover #progressDiv:after {
-  top: -5px;
-  width: 15px;
-  height: 15px;
 }
 
 html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv {
@@ -1420,9 +1440,10 @@ html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #prog
   content: '';
   border-radius: 50%;
   position: relative;
-  top: 2px;
-  width: 0;
-  height: 0;
+  top: -5px;
+  left: -7px;
+  width: 14px;
+  height: 14px;
   z-index: 99;
   flex: 0 0 auto;
   background: var(--colorBlue);
@@ -1437,6 +1458,7 @@ html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #prog
   height: 100%;
   width: 0;
   z-index: 99;
+  flex: 0 0 auto;
   background: var(--colorBlue);
 }
 
@@ -1508,6 +1530,12 @@ html body #watchInterface #playerBox #controlsDiv #rightControls #muteButton:hov
   height: 150px;
 }
 
+html body #watchInterface #playerBox #controlsDiv #rightControls #muteButton:hover + #volumeSliderContainer #volumeSliderDiv #volumeSlider:before {
+  left: -5px;
+  width: 15px;
+  height: 15px;
+}
+
 html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer {
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -1528,19 +1556,19 @@ html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderCo
   height: 150px;
 }
 
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv {
-  position: relative;
-  width: 25px;
-  height: 90%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv:hover #volumeSlider:before {
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer:hover #volumeSliderDiv #volumeSlider:before {
   left: -5px;
   width: 15px;
   height: 15px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv {
+  position: relative;
+  width: 25px;
+  height: 80%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
 html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider {
@@ -1556,6 +1584,7 @@ html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderCo
 html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider:before {
   content: '';
   position: relative;
+  top: 7px;
   left: 2px;
   width: 0;
   height: 0;
@@ -1572,6 +1601,7 @@ html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderCo
   position: relative;
   width: 100%;
   height: 100%;
+  flex: 0 0 auto;
   background: var(--colorBlue);
 }
 

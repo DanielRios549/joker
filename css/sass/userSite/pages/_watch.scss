@@ -152,7 +152,7 @@
 		#controlsDiv {
 			background: rgba(0,0,0,.5);
 			position: absolute;
-			bottom: 50px;
+			bottom: 10px;
 			height: 40px;
 			max-width: 800px;
 			width: 100%;
@@ -209,26 +209,48 @@
 					display: flex;
 					flex-flow: row wrap;
 					padding: 0 10px;
-					
+
+					#timePreview {
+						border-radius: 4px;
+						position: absolute;
+						bottom: 30px;
+						max-height: 25px;
+						min-width: 60px;
+						font: 2em Calibri, sans-serif;
+						padding: 5px;
+						display: none;
+						justify-content: center;
+						align-items: center;
+
+						@include css4 {
+							background: var(--colorDarkGray);
+							color: var(--colorLightGray);
+						};
+
+						&:after {
+							content: '';
+							position: absolute;
+							top: 100%;
+							left: calc(50% - 10px);
+							width: 0;
+							height: 0;
+							border-left: 10px solid transparent;
+							border-right: 10px solid transparent;
+							
+							@include css4 {
+								border-top: 10px solid var(--colorDarkGray);
+							};
+						}
+					}
 					#progressContainer {
 						position: relative;
 						width: 100%;
 						height: 20px;
-						display: flex;
 						padding: 8px 0;
 						cursor: pointer;
 						display: flex;
 						align-items: center;
 
-						&:hover {
-							#progressDiv {
-								&:after {
-									top: -5px;
-									width: 15px;
-									height: 15px;
-								}
-							}
-						}
 						#progressDiv {
 							position: relative;
 							width: 100%;
@@ -240,9 +262,10 @@
 								content: '';
 								border-radius: 50%;
 								position: relative;
-								top: 2px;
-								width: 0;
-								height: 0;
+								top: -5px;
+								left: -7px;
+								width: 14px;
+								height: 14px;
 								z-index: 99;
 								flex: 0 0 auto;
 
@@ -257,6 +280,7 @@
 								height: 100%;
 								width: 0;
 								z-index: 99;
+								flex: 0 0 auto;
 
 								@include css4{
 									background: var(--colorBlue);
@@ -330,6 +354,14 @@
 					&:hover {
 						+ #volumeSliderContainer {
 							height: 150px;
+
+							#volumeSliderDiv #volumeSlider {
+								&:before {
+									left: -5px;
+									width: 15px;
+									height: 15px;
+								}
+							}
 						}
 					}
 				}
@@ -348,24 +380,23 @@
 
 					&:hover {
 						height: 150px;
+						
+						#volumeSliderDiv #volumeSlider {
+							&:before {
+								left: -5px;
+								width: 15px;
+								height: 15px;
+							}
+						}
 					}
 					#volumeSliderDiv {
 						position: relative;
 						width: 25px;
-						height: 90%;
+						height: 80%;
 						cursor: pointer;
 						display: flex;
 						justify-content: center;
-						
-						&:hover {
-							#volumeSlider {
-								&:before {
-									left: -5px;
-									width: 15px;
-									height: 15px;
-								}
-							}
-						}
+
 						#volumeSlider {
 							background: #d6d6d6;
 							position: relative;
@@ -378,6 +409,7 @@
 							&:before {
 								content: '';
 								position: relative;
+								top: 7px;
 								left: 2px;
 								width: 0;
 								height: 0;
@@ -394,6 +426,7 @@
 								position: relative;
 								width: 100%;
 								height: 100%;
+								flex: 0 0 auto;
 
 								@include css4{
 									background: var(--colorBlue);

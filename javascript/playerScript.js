@@ -7,6 +7,14 @@
 
 var ajaxFile = 'ajax/ajaxRequisitions.php';
 
+function convertTime(d) {
+	d = Number(d);
+	var h = Math.floor(d / 3600);
+	var m = Math.floor(d % 3600 / 60);
+	var s = Math.floor(d % 3600 % 60);
+	return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s);
+}
+
 function loadVideo(sync, url, callback, done) {
 	var request = new XMLHttpRequest();
 
@@ -54,6 +62,7 @@ function intializePlayer() {
 	slider = document.getElementById('progressCurrent');
 	bufferDiv = document.getElementById('progressBuffer');
 	setTime = document.getElementById('progressContainer');
+	timePreview = document.getElementById('timePreview');
 	currentTime = document.getElementById('currentVideoTime');
 	totalTime = document.getElementById('totalVideoTime');
 	mute = document.getElementById('muteButton');
@@ -84,10 +93,10 @@ function loadFolder() {
 		dataSource = dataPath + '/season' + contentSeason + '/episode' + contentEpisode + '/video.mp4';
 	}
 
-	mediaHolder.innerHTML = "<video id='videoTag' preload='metadata'></video>";
+	mediaHolder.innerHTML = "<video id='videoTag'></video>";
 	video = document.getElementById('videoTag');
 
-	var testeurl = 'https://video-gru2-1.xx.fbcdn.net/v/t42.1790-2/16136505_1640691379570540_6345596034156068864_n.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InN2ZTM2MF9xZl81MTJ3X2NyZl8yMV9tYWluXzQuMl9wMTBfc2QifQ%3D%3D&oh=583f6096a687a501de7dd12d87741b92&oe=5897B227';
+	var testeurl = 'http://127.0.0.1/joker/media/series/4/season1/episode5/video.mp4';
 
 	loadVideo(true, dataSource, function(response) {
 		var reader = new FileReader();
@@ -112,9 +121,12 @@ function addEvents() {
 	videoLoad.addEventListener("click", playPause);
 	video.addEventListener("timeupdate", seekTimeUpdade);
 	setTime.addEventListener("click", videoSeek);
+	setTime.addEventListener("mousemove", videoSeekHover);
+	setTime.addEventListener("dragover", videoSeekDrag);
 	video.addEventListener('progress', videoBuffer);
 	mute.addEventListener("click", muteVideo);
 	setVolume.addEventListener("click", videoVolume);
+	setVolume.addEventListener("dragover", videoVolumeDrag);
 	fullScreen.addEventListener("click", toggleFullScreen);
 	video.addEventListener("dblclick", toggleFullScreen);
 	
@@ -169,14 +181,11 @@ function episodeSelectPlayer() {
 	});*/
 }
 
-/*---------------------
-	Hide controls
----------------------*/
-
 function hideControls() {
 	$(playerBox).ready(function() {
 		$(this).on("mouseover, mousemove", "#videoTag, #controlsDiv, #mediaLoading", function() {
 			$("#controlsDiv").removeClass("controlsDivHide").addClass('controlsDivShow');
+			$('#videoTag').css('cursor', 'auto');
 		});
 		
 		$(this).on("mouseout", "#videoTag, #controlsDiv, #mediaLoading", function() {
@@ -193,23 +202,17 @@ function hideControls() {
 	$("#videoTag").on("mousestop", function() {
 		if(!video.paused) {
 			setTimeout(autoHideControls, 4000);
+			$('#videoTag').css('cursor', 'auto');
 		}
 	});
 }
 
-/*---------------------
-  Auto Hide controls
----------------------*/
-
 function autoHideControls() {
 	if(!video.paused) {
 		$("#controlsDiv").removeClass("controlsDivShow").addClass('controlsDivHide');
+		$('#videoTag').css('cursor', 'none');
 	}
 }
-
-/*---------------------
-	Play and Pause
----------------------*/
 
 function playPause() {
 	if(video.paused || video.ended) {
@@ -226,16 +229,42 @@ function playPause() {
 	}
 }
 
-/*---------------------
-      Video Time
----------------------*/
-
 function videoSeek(e) {
 	var posX = ((e.pageX - $(this).offset().left) * 100) / $(this).innerWidth();
-    seekTo = posX.toString().slice(0, 5);
-	video.currentTime = video.duration * (seekTo / 100);
-	
+	seekTo = posX.toString().slice(0, 5);
+	video.currentTime = video.duration * (posX.toString() / 100);
 	slider.style.width = seekTo + '%';
+}
+
+function videoSeekHover(e) {
+	var posX = ((e.pageX - $(this).offset().left) * 100) / $(this).innerWidth();
+	timePreview.style.display = 'flex';
+	timePreview.style.left = 'calc(' + posX + '% - ' + (timePreview.offsetWidth / 2) + 'px)';
+
+	seekToHover = video.duration * (posX.toString() / 100);
+	timePreview.innerHTML = convertTime(seekToHover);
+
+	this.addEventListener('mouseout', function() {
+		timePreview.removeAttribute('style');
+	});
+}
+
+function videoSeekDrag(e) {
+	setTime.removeEventListener("click", videoSeek);
+
+	if(!video.paused) {
+		playPause();
+	}
+	var posX = ((e.pageX - $(this).offset().left) * 100) / $(this).innerWidth();
+	seekTo = posX.toString().slice(0, 5);
+	video.currentTime = video.duration * (seekTo / 100);
+
+	timePreview.style.left = 'calc(' + posX + '% - ' + (timePreview.offsetWidth / 2) + 'px)';
+	timePreview.innerHTML = convertTime(video.duration * (posX.toString() / 100));
+	slider.style.width = seekTo + '%';
+
+	setTime.addEventListener("click", videoSeek);
+	setTime.addEventListener("dragend", playPause);
 }
 
 function videoBuffer() {
@@ -247,56 +276,15 @@ function videoBuffer() {
     }
 }
 
-/*---------------------
-   Video Time Update
----------------------*/
-
 function seekTimeUpdade() {
-	var newTime = video.currentTime * (100 / video.duration);
-	
-	var currentHr = Math.floor(video.currentTime / 3600);
-	var currentMin = Math.floor(video.currentTime / 60);
-	var currentSec = Math.floor(video.currentTime - currentMin * 60);
-	
-	var videoHr = Math.floor(video.duration / 3600);
-	var videoMin = Math.floor(video.duration / 60);
-	var videoSec = Math.floor(video.duration -  videoMin * 60);
+	var timePercent = video.currentTime * (100 / video.duration);
+	var loadTime = convertTime(video.currentTime);
+	var videoTime = convertTime(video.duration);
 
-	slider.style.width = newTime + '%';
-	
-	//Hours
-	
-	if(currentHr < 10) {
-		currentHr = "0" + currentHr;
-	}
-	if(videoHr < 10) {
-		videoHr = "0" + videoHr;
-	}
-	
-	//Minutes
-	
-	if(currentMin < 10) {
-		currentMin = "0" + currentMin;
-	}
-	if(videoMin < 10) {
-		videoMin = "0" + videoMin;
-	}
-	
-	//Seconds
-	
-	if(currentSec < 10) {
-		currentSec = "0" + currentSec;
-	}
-	if(videoSec < 10) {
-		videoSec = "0" + videoSec;
-	}
-	currentTime.innerHTML =  currentHr + ":" + currentMin + ":" + currentSec;
-	totalTime.innerHTML =  videoHr + ":" + videoMin + ":" + videoSec;
+	slider.style.width = timePercent + '%';
+	currentTime.innerHTML =  loadTime;
+	totalTime.innerHTML =  videoTime;
 }
-
-/*---------------------
-      Sound Muted
----------------------*/
 
 function muteVideo() {
 	if(video.muted) {
@@ -311,19 +299,26 @@ function muteVideo() {
 	}
 }
 
-/*---------------------
-     Sound Volume
----------------------*/
-
 function videoVolume(e) {
 	var posY = ((e.pageY - $(this).offset().top) * 100) / $(this).innerHeight();
     seekToTop = posY.toString().slice(0, 5);
-
 	seekTo = 100 - seekToTop;
-	//console.log(seekTo);
+	volumeSeek();
+}
 
+function videoVolumeDrag(e) {
+	setVolume.removeEventListener('click', videoVolume);
+
+	var posY = ((e.pageY - $(this).offset().top) * 100) / $(this).innerHeight();
+    seekToTop = posY.toString().slice(0, 5);
+	seekTo = 100 - seekToTop;
+	volumeSeek();
+
+	setVolume.addEventListener('click', videoVolume);
+}
+
+function volumeSeek() {
 	video.volume = seekTo / 100;
-
 	volumeSlider.style.height = seekTo + '%';
 	
 	//Define the icon of sound level
@@ -343,10 +338,6 @@ function videoVolume(e) {
 		$(mute).removeClass("sound2").removeClass("sound").addClass("soundMuted");
 	}
 }
-
-/*---------------------
-      Full Screen
----------------------*/
 
 function toggleFullScreen() {
 	if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
@@ -374,10 +365,6 @@ function toggleFullScreen() {
 		$('#playerBox').removeClass('playerBoxShowFull').addClass('playerBoxShow');
 	}
 }
-
-/*---------------------
-	 Shortcut keys
----------------------*/
 
 function hotKeys() {
 	$(document).ready(function() {
