@@ -1231,6 +1231,10 @@ html body #watchInterface #playerBox #mediaHolder #videoTag {
   position: relative;
 }
 
+html body #watchInterface #playerBox #mediaHolder > img {
+  width: 100%;
+}
+
 html body #watchInterface #playerBox #browserBack {
   position: absolute;
   cursor: pointer;

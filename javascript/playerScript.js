@@ -15,15 +15,15 @@ function convertTime(d) {
 	return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s);
 }
 
-function loadVideo(sync, url, callback, done) {
+function getVideo(async, url, callback, done) {
 	var request = new XMLHttpRequest();
 
-	request.open('GET', url, sync);
+	request.open('GET', url, async);
 	request.responseType = 'arraybuffer';
 
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
-			callback(request.response);
+			callback(new Uint8Array(request.response));
 			done();
 		}
 		else {
@@ -32,6 +32,25 @@ function loadVideo(sync, url, callback, done) {
 		}
 	};
 	request.send();
+}
+
+function checkVideo(url, callback, done) {
+	var check = new XMLHttpRequest();
+	check.open("GET", url, true);
+
+	check.onload = function() {
+		if (check.status >= 200 && check.status < 400) {
+			callback(check.response);
+			done();
+		}
+		else {
+			callback('do not exists');
+		}
+	};
+	check.onerror = function() {
+		callback('do not exists');
+	};
+	check.send();
 }
 
 $(window).ready(function() {
@@ -75,47 +94,115 @@ function intializePlayer() {
 }
 
 function loadFolder() {
-	var contentType = document.getElementById("watchInterface").getAttribute("data-type");
-	var dataId = document.getElementById("watchInterface").getAttribute("data-id");
+	contentType = document.getElementById("watchInterface").getAttribute("data-type");
+	dataId = document.getElementById("watchInterface").getAttribute("data-id");
 
 	if(contentType == 'movie') {
 		var mediaFolder = baseUrl + 'media/movies/';
-		
+
 		dataPath = mediaFolder + dataId;
-		dataSource = dataPath + '/video.mp4';
 	}
 	else if(contentType == 'serie') {
 		var mediaFolder = baseUrl + 'media/series/';
 		var contentSeason = document.getElementById("watchInterface").getAttribute("data-season");
 		var contentEpisode = document.getElementById("watchInterface").getAttribute("data-episode");
 		
-		dataPath = mediaFolder + dataId;
-		dataSource = dataPath + '/season' + contentSeason + '/episode' + contentEpisode + '/video.mp4';
+		dataParent = mediaFolder + dataId;
+		dataPath = dataParent + '/season' + contentSeason + '/episode' + contentEpisode;
 	}
 
 	mediaHolder.innerHTML = "<video id='videoTag'></video>";
 	video = document.getElementById('videoTag');
+	var testeurl = 'https://video-gru2-1.xx.fbcdn.net/v/t42.1790-2/16136505_1640691379570540_6345596034156068864_n.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InN2ZTM2MF9xZl81MTJ3X2NyZl8yMV9tYWluXzQuMl9wMTBfc2QifQ%3D%3D&oh=69a46ad8f468953ad5c485029dc85a5b&oe=589BA6A7';
+	
+	//Verify the file to choose if will use webm or mp4
 
-	var testeurl = 'http://127.0.0.1/joker/media/series/4/season1/episode5/video.mp4';
-
-	loadVideo(true, dataSource, function(response) {
-		var reader = new FileReader();
-		var blob = new Blob([response], {type: 'text/plain'});
-
-        reader.onloadend = function() {
-        	video.src = URL.createObjectURL(blob);
-			video.play();
-        };
-
-        reader.readAsArrayBuffer(blob);
-		console.log('adicionou o link');
+	checkVideo(dataPath + '/video.webm', function(response) {
+		if(response != 'do not exists') {
+			videoExtension = 'webm';
+			videoCodecs = 'vorbis, vp8';
+			dataSource = dataPath + '/video.' + videoExtension;
+		}
+		else {
+			checkVideo(dataPath + '/video.mp4', function(response) {
+				if(response != 'do not exists') {
+					videoExtension = 'mp4';
+					videoCodecs = 'avc1.42E01E, mp4a.40.2';
+					dataSource = dataPath + '/video.' + videoExtension;
+				}
+				else {
+					$(playerBox).find(video).remove();
+					$(playerBox).find(videoLoad).remove();
+					$(playerBox).find(controlsDiv).remove();
+					$(mediaHolder).append('<img src="' + baseUrl + 'images/error404.png"/>');
+				}
+			}, function() {
+				loadVideo();
+			});
+		}
 	}, function() {
-		addEvents();
+		loadVideo();
 	});
 }
 
+function loadVideo() {
+	var mediaSource = new MediaSource();
+	var mimeType = 'video/' + videoExtension + '; codecs="' + videoCodecs + '"';
+	var NUM_CHUNKS = 5;
+	video.src = URL.createObjectURL(mediaSource);
+
+	if (!window.MediaSource) {
+		alert('The MediaSource API is not available on this platform');
+	}
+	mediaSource.addEventListener('sourceopen', function() {
+		var sourceBuffer = mediaSource.addSourceBuffer(mimeType);
+
+		getVideo(true, dataSource, function(response) {
+			var file = new Blob([response], {
+				type: 'video/' + videoExtension
+			});
+			console.log(file.type);
+			var chunkSize = Math.ceil(file.size / NUM_CHUNKS);
+			var i = 0;
+
+			(function readChunk_(i) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					//if (mediaSource.sourceBuffers[0].updating) {
+					//	return;
+					//}
+					sourceBuffer.appendBuffer(new Uint8Array(e.target.result));
+					console.log('chunk ' + (i + 1));
+
+					if (i === NUM_CHUNKS - 1) {
+						sourceBuffer.addEventListener('updateend', function() {
+							if (!sourceBuffer.updating && mediaSource.readyState === 'open') {
+								mediaSource.endOfStream();
+							}
+						});
+					}
+					else {
+						//if (video.paused) {
+						//	video.play();
+						//}
+						readChunk_(++i);
+					}
+				};
+				var startByte = chunkSize * i;
+				var chunk = file.slice(startByte, startByte + chunkSize);
+
+				reader.readAsArrayBuffer(chunk);
+			})(i);
+		},function() {
+			addEvents();
+		});
+	}, false);
+}
+
+//end
+
 function addEvents() {
-	console.log('adicionou os eventos');
 	buttonPlay.addEventListener("click", playPause);
 	video.addEventListener("click", playPause);
 	videoLoad.addEventListener("click", playPause);
