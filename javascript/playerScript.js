@@ -23,7 +23,8 @@ function getVideo(async, url, callback, done) {
 
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
-			callback(new Uint8Array(request.response));
+			//callback(new Uint8Array(request.response));
+			callback(request.response);
 			done();
 		}
 		else {
@@ -34,23 +35,11 @@ function getVideo(async, url, callback, done) {
 	request.send();
 }
 
-function checkVideo(url, callback, done) {
-	var check = new XMLHttpRequest();
-	check.open("GET", url, true);
-
-	check.onload = function() {
-		if (check.status >= 200 && check.status < 400) {
-			callback(check.response);
-			done();
-		}
-		else {
-			callback('do not exists');
-		}
-	};
-	check.onerror = function() {
-		callback('do not exists');
-	};
-	check.send();
+function destroyVideo() {
+	$(playerBox).find(video).remove();
+	$(playerBox).find(videoLoad).remove();
+	$(playerBox).find(controlsDiv).remove();
+	$(mediaHolder).append('<img src="' + baseUrl + 'images/error404.png"/>');
 }
 
 $(window).ready(function() {
@@ -100,7 +89,7 @@ function loadFolder() {
 	if(contentType == 'movie') {
 		var mediaFolder = baseUrl + 'media/movies/';
 
-		dataPath = mediaFolder + dataId;
+		videoPath = mediaFolder + dataId;
 	}
 	else if(contentType == 'serie') {
 		var mediaFolder = baseUrl + 'media/series/';
@@ -108,47 +97,31 @@ function loadFolder() {
 		var contentEpisode = document.getElementById("watchInterface").getAttribute("data-episode");
 		
 		dataParent = mediaFolder + dataId;
-		dataPath = dataParent + '/season' + contentSeason + '/episode' + contentEpisode;
+		videoPath = dataParent + '/season' + contentSeason + '/episode' + contentEpisode;
 	}
 
 	mediaHolder.innerHTML = "<video id='videoTag'></video>";
 	video = document.getElementById('videoTag');
-	var testeurl = 'https://video-gru2-1.xx.fbcdn.net/v/t42.1790-2/16136505_1640691379570540_6345596034156068864_n.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InN2ZTM2MF9xZl81MTJ3X2NyZl8yMV9tYWluXzQuMl9wMTBfc2QifQ%3D%3D&oh=69a46ad8f468953ad5c485029dc85a5b&oe=589BA6A7';
-	
-	//Verify the file to choose if will use webm or mp4
+	//var videoPath = 'http://techslides.com/demos/sample-videos';
+	var videoName = 'video';//'small';
 
-	checkVideo(dataPath + '/video.webm', function(response) {
-		if(response != 'do not exists') {
-			videoExtension = 'webm';
-			videoCodecs = 'vorbis, vp8';
-			dataSource = dataPath + '/video.' + videoExtension;
-		}
-		else {
-			checkVideo(dataPath + '/video.mp4', function(response) {
-				if(response != 'do not exists') {
-					videoExtension = 'mp4';
-					videoCodecs = 'avc1.42E01E, mp4a.40.2';
-					dataSource = dataPath + '/video.' + videoExtension;
-				}
-				else {
-					$(playerBox).find(video).remove();
-					$(playerBox).find(videoLoad).remove();
-					$(playerBox).find(controlsDiv).remove();
-					$(mediaHolder).append('<img src="' + baseUrl + 'images/error404.png"/>');
-				}
-			}, function() {
-				loadVideo();
-			});
-		}
-	}, function() {
-		loadVideo();
-	});
+	wembExtension = 'webm';
+	webmCodec = 'vorbis, vp8';//vorbis, vp9
+
+	mp4Extension = 'mp4';
+	mp4Codec = 'avc1.42E01E, mp4a.40.2';//avc1.640029, mp4a.40.5
+	
+	videoExtension = wembExtension;
+	videoCodecs = webmCodec;
+	dataSource = videoPath + '/' + videoName + '.' + videoExtension;
+	loadVideo();
 }
 
 function loadVideo() {
+	window.MediaSource = window.MediaSource || window.WebKitMediaSource;
 	var mediaSource = new MediaSource();
 	var mimeType = 'video/' + videoExtension + '; codecs="' + videoCodecs + '"';
-	var NUM_CHUNKS = 5;
+	//var NUM_CHUNKS = 5;
 	video.src = URL.createObjectURL(mediaSource);
 
 	if (!window.MediaSource) {
@@ -157,7 +130,7 @@ function loadVideo() {
 	mediaSource.addEventListener('sourceopen', function() {
 		var sourceBuffer = mediaSource.addSourceBuffer(mimeType);
 
-		getVideo(true, dataSource, function(response) {
+		/*getVideo(true, dataSource, function(response) {
 			var file = new Blob([response], {
 				type: 'video/' + videoExtension
 			});
@@ -169,9 +142,6 @@ function loadVideo() {
 				var reader = new FileReader();
 
 				reader.onload = function(e) {
-					//if (mediaSource.sourceBuffers[0].updating) {
-					//	return;
-					//}
 					sourceBuffer.appendBuffer(new Uint8Array(e.target.result));
 					console.log('chunk ' + (i + 1));
 
@@ -183,9 +153,9 @@ function loadVideo() {
 						});
 					}
 					else {
-						//if (video.paused) {
-						//	video.play();
-						//}
+						if (video.paused) {
+							video.play();
+						}
 						readChunk_(++i);
 					}
 				};
@@ -196,11 +166,19 @@ function loadVideo() {
 			})(i);
 		},function() {
 			addEvents();
+		});*/
+		getVideo(true, dataSource, function(response) {
+			console.log('video/' + videoExtension);
+			sourceBuffer.addEventListener('updateend', function () {
+				mediaSource.endOfStream();
+				video.play();
+			});
+			sourceBuffer.appendBuffer(response);
+		},function() {
+			addEvents();
 		});
 	}, false);
 }
-
-//end
 
 function addEvents() {
 	buttonPlay.addEventListener("click", playPause);
@@ -221,7 +199,7 @@ function addEvents() {
 	hotKeys();
 	episodeSelectPlayer();
 	
-	video.play();
+	//video.play();
 	$(videoLoad).removeClass("videoPaused").removeClass("loading").addClass("loadingNone");
 	
 	//bufferPercent = ((video.buffered.end(0) / video.duration) * 100);

@@ -482,20 +482,22 @@
 
 %contentStyle {
 	.contentContainer {
-		//position: relative;
+		position: relative;
 		min-height: 300px;
 		width: 100%;
 		display: flex;
 		flex-flow: column wrap;
+		//padding-bottom: 10px;
 
 		.contentDivHeader {
 			position: relative;
 			font-size: 2em;
 			color: $colorGray;
-			margin-left: 50px;
-			height: 30px;
+			padding-left: 50px;
+			height: 25px;
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 			
 			> span {
 				position: relative;
@@ -517,6 +519,7 @@
 			overflow: auto;
 			display: flex;
 			flex-flow: column wrap;
+			justify-content: center;
 
 			.contentGroup {
 				flex-flow: row wrap;
@@ -637,6 +640,9 @@
 										width: 100%;	
 									}
 								}
+								.figLinkOpen {
+									display: none !important;
+								}
 								.addWatchList,
 								.removeWatchList {
 									position: absolute;
@@ -670,25 +676,80 @@
 				}
 			}
 		}
-		.contentDiv .titleDetails {
-			width: calc(100vw - 15px);
-		}
-		.titleDetails {
-			border: 1px solid red;
+		.titleDetailsOpen {
+			--shadowColor: rgba(0, 0, 0, 0.8);
 			position: relative;
 			height: 300px;
 			width: 100%;
+			//width: calc(100vw - 15px);
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 20px;
+			
+			@include css4 {
+				box-shadow: 12px 0 15px -4px var(--shadowColor), -12px 0 8px -4px var(--shadowColor);
+			};
+			@include transition(height, 200ms, linear);
 
-			a {
+			.headerContent {
 				position: relative;
-				height: 40px;
+				height: 50px;
 				width: 100%;
-				font-size: 2em;
+				display: flex;
 
-				@include css4 {
-					color: var(--darkGray);
-				};
+				.titleContent {
+					position: relative;
+					height: 100%;
+					width: 100%;
+
+					a {
+						position: relative;
+						height: 100%;
+						width: 100%;
+						font-size: 2em;
+						display: flex;
+						align-items: center;
+						padding-left: 10px;
+
+						@include css4 {
+							color: var(--darkGray);
+						};
+					}
+				}
+				.closeButton {
+					position: relative;
+					height: 100%;
+					width: 50px;
+					cursor: pointer;
+					display: flex;
+
+					&:after {
+						content: '\f00d';
+						font: 5em Fontawesome;
+						position: relative;
+						height: 100%;
+						width: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+
+						@include css4 {
+							color: var(--colorDarkGray);
+						};
+					}
+				}
 			}
+			.sectionContent {
+				position: relative;
+				height: 100%;
+				width: 100%;
+			}
+		}
+		.titleDetails {
+			height: 0;
+			overflow: hidden;
+
+			@include transition(height, 200ms, linear);
 		}
 	}
 }

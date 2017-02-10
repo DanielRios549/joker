@@ -89,7 +89,7 @@ function addWatchListIndex() {
 
             $this.removeClass('addWatchList').addClass('removeWatchList');
 
-            $('#watchListDiv .contentGroupScroll').prepend('<div class="content"><div class="contentLink"><figure class="contentFigure"><img src="' + baseUrl + 'images/media/' + linkType + '/' + $this.attr('data-id') + '/image.jpg"/><figcaption><a class="figLinkWatch" href="' + baseUrl + 'watch?id=' + $this.attr('data-id') + '"></a><a href="' + baseUrl + 'title?id=' + $this.attr('data-id') + '" class="figLink"><span class="figSpan">Teste</span></a><div class="removeWatchList" data-id="' + $this.attr('data-id') + '"></div></figcaption></figure></div></div>');
+            $('#watchListDiv .contentGroupScroll').prepend('<div class="content"><div class="contentLink"><figure class="contentFigure"><img src="' + baseUrl + 'images/media/' + linkType + '/' + $this.attr('data-id') + '/image.jpg"/><figcaption><a class="figLinkWatch" href="' + baseUrl + 'watch?id=' + $this.attr('data-id') + '"></a><a href="' + baseUrl + 'title?id=' + $this.attr('data-id') + '" class="figLink"><span class="figSpan">Details</span></a><div class="removeWatchList" data-id="' + $this.attr('data-id') + '"></div></figcaption></figure></div></div>');
 
             $('.contentDiv .content .addWatchList[data-id="' + $this.attr('data-id') + '"]').removeClass('addWatchList').addClass('removeWatchList');
             $('#imageDiv div span[data-id="' + $this.attr('data-id') + '"]').removeClass('addWatchList').addClass('removeWatchList');

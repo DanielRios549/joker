@@ -9,6 +9,8 @@
 		require '../_redirect.php';
 		header("Location:" . $base . "404");
 	}
+
+	$currentServerUrl  = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 	
 	$baseCon = true;
 
@@ -22,7 +24,7 @@
     
     $allowNewUser = $getConfig -> configQuery('allowNewUser');
 
-	$baseUrl = $getConfig -> configQuery('baseUrl');
+	$baseUrl = $currentServerUrl . $getConfig -> configQuery('baseUrl');
 
 	$atomoBaseUrl = $getConfig -> configQuery('atomoBaseUrl');
 

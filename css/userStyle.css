@@ -295,6 +295,7 @@ html body #header #topDiv {
 }
 
 html body .interface .mainSection .contentContainer {
+  position: relative;
   min-height: 300px;
   width: 100%;
   display: flex;
@@ -305,10 +306,11 @@ html body .interface .mainSection .contentContainer .contentDivHeader {
   position: relative;
   font-size: 2em;
   color: #2d1152;
-  margin-left: 50px;
-  height: 30px;
+  padding-left: 50px;
+  height: 25px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 html body .interface .mainSection .contentContainer .contentDivHeader > span {
@@ -331,6 +333,7 @@ html body .interface .mainSection .contentContainer .contentDiv {
   overflow: auto;
   display: flex;
   flex-flow: column wrap;
+  justify-content: center;
 }
 
 html body .interface .mainSection .contentContainer .contentDiv .contentGroup {
@@ -475,6 +478,10 @@ html body .interface .mainSection .contentContainer .contentDiv .contentGroup .c
   width: 100%;
 }
 
+html body .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .figLinkOpen, html body .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .figLinkOpen {
+  display: none !important;
+}
+
 html body .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .addWatchList, html body .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .removeWatchList, html body .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .addWatchList, html body .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .removeWatchList {
   position: absolute;
   bottom: 10px;
@@ -499,23 +506,78 @@ html body .interface .mainSection .contentContainer .contentDiv .contentGroup .c
   content: '\f058';
 }
 
-html body .interface .mainSection .contentContainer .contentDiv .titleDetails {
-  width: calc(100vw - 15px);
-}
-
-html body .interface .mainSection .contentContainer .titleDetails {
-  border: 1px solid red;
+html body .interface .mainSection .contentContainer .titleDetailsOpen {
+  --shadowColor: rgba(0, 0, 0, 0.8);
   position: relative;
   height: 300px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  box-shadow: 12px 0 15px -4px var(--shadowColor), -12px 0 8px -4px var(--shadowColor);
+  -webkit-transition: height 200ms linear;
+  -moz-transition: height 200ms linear;
+  -ms-transition: height 200ms linear;
+  transition: height 200ms linear;
 }
 
-html body .interface .mainSection .contentContainer .titleDetails a {
+html body .interface .mainSection .contentContainer .titleDetailsOpen .headerContent {
   position: relative;
-  height: 40px;
+  height: 50px;
+  width: 100%;
+  display: flex;
+}
+
+html body .interface .mainSection .contentContainer .titleDetailsOpen .headerContent .titleContent {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+html body .interface .mainSection .contentContainer .titleDetailsOpen .headerContent .titleContent a {
+  position: relative;
+  height: 100%;
   width: 100%;
   font-size: 2em;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
   color: var(--darkGray);
+}
+
+html body .interface .mainSection .contentContainer .titleDetailsOpen .headerContent .closeButton {
+  position: relative;
+  height: 100%;
+  width: 50px;
+  cursor: pointer;
+  display: flex;
+}
+
+html body .interface .mainSection .contentContainer .titleDetailsOpen .headerContent .closeButton:after {
+  content: '\f00d';
+  font: 5em Fontawesome;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--colorDarkGray);
+}
+
+html body .interface .mainSection .contentContainer .titleDetailsOpen .sectionContent {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+html body .interface .mainSection .contentContainer .titleDetails {
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height 200ms linear;
+  -moz-transition: height 200ms linear;
+  -ms-transition: height 200ms linear;
+  transition: height 200ms linear;
 }
 
 html body .interface #contentSlider {

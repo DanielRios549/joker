@@ -38,10 +38,11 @@
 		$('#imageDiv div').on('click', '.addWatchList', addWatchListIndex);
     	$('#imageDiv div').on('click', '.removeWatchList', removeWatchListIndex);
 
-		$('.contentFigure').on('click', '.addWatchList', addWatchListIndex);
-        $('.contentFigure').on('click', '.removeWatchList', removeWatchListIndex);
+		$('.contentGroupScroll').on('click', '.content .addWatchList', addWatchListIndex);
+        $('.contentGroupScroll').on('click', '.content .removeWatchList', removeWatchListIndex);
 
-		$('.contentFigure').on('click', '.figLink', showDetails);
+		$('.contentGroupScroll').on('click', '.content .figLink', showDetails);
+		$('.contentContainer').on('click', '.closeButton', closeDetails);
 	});
 </script>
 <?php }?>
@@ -154,30 +155,20 @@
 			<?php }?>
 			<div class="contentDiv">
 				<div class="contentGroupScroll">
-				<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($key['type'] == 'serie') {$contentScroll = $key['content_id']; require $contentDir . 'getEpisodes.php';}?>
-					<div class="content">
-						<div class="contentLink">
-							<figure class="contentFigure">
-								<?php $contentFolder = getDynamicFolder($key['type'], $mediaImageFolder);?>
-								<img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>
-								<figcaption>
-									<?php if($key['type'] == 'movie') {?>
-									<a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']);?>"></a>
-									<?php } elseif($key['type'] == 'serie') {?>
-									<a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']) . '&e=' . $firstEpisode['episode_id'];?>"></a>
-									<?php }?>
-									<a class="figLink" href="<?php echo $contentPagesLink . $key['content_id'];?>">
-										<span class="figSpan"><?php echo langCode('details');?></span>
-									</a>
-									<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
-									<div class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>"></div>
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-				<?php $contentNumber ++;}?>
+				<?php 
+					$contentNumber = 1;
+					foreach($addRow as $showContent => $key) {
+						if($key['type'] == 'serie') {
+							$contentScroll = $key['content_id'];
+							require $contentDir . 'getEpisodes.php';
+						}
+						require 'content.html';
+						$contentNumber ++;
+					}
+				?>
 				</div>
 			</div>
+			<?php require 'detailsDiv.html';?>
 		</article>
 		<?php }}}?>
 	</section>

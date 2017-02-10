@@ -4,14 +4,17 @@ Options All -Indexes
 
 RewriteEngine on
 RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^http(s)?://()?127.0.0.1/Joker/ [NC]
+RewriteCond %{HTTP_REFERER} !^http(s)?://()?127.0.0.1/joker/ [NC]
 RewriteRule \.(jpg|jpeg|png|gif|mp4)$ - [NC,F,L]
 
 #Errors Pages
 
-ErrorDocument 403 http://127.0.0.1/Joker/403
-ErrorDocument 404 http://127.0.0.1/Joker/404
+ErrorDocument 403 http://127.0.0.1/joker/403
+ErrorDocument 404 http://127.0.0.1/joker/404
 
+<ifmodule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+</ifmodule>
 
 RewriteEngine on
 

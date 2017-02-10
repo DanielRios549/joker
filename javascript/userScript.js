@@ -341,20 +341,45 @@ function disableEnable() {
 function showDetails(event) {
 	event.preventDefault();
 
-	var parentDiv = $(this).parent().parent().parent().parent().parent();
-	var contentDiv = $(this).parent().parent().parent().parent();
+	var allcontainerDiv = $('.contentContainer .titleDetailsOpen');
+	var allcontentDiv = $('.contentContainer .contentDiv div .content .contentLink .contentFigure figcaption');
+	
+	var contentDiv = $(this).parent().parent().parent().parent();//content
+	var parentDiv = contentDiv.parent();//contentGroup
+	var containerDiv = parentDiv.parent().parent();//contentContainer
 	var contentLink = $(this).attr('href');
-	var detailsCode = '<div class="titleDetails"><a href="' + contentLink + '">Ir para a página</a></div>';
-	//alert(parentDiv.attr('class'));
+
+	allcontainerDiv.removeClass('titleDetailsOpen').addClass('titleDetails');
+	allcontentDiv.find('.figLinkOpen').removeClass('figLinkOpen').addClass('figLink');
+	$(this).removeClass('figLink').addClass('figLinkOpen');
 
 	if(parentDiv.attr('class') == 'contentGroupScroll') {
-		parentDiv.parent().parent().append(detailsCode);
+		containerDiv.find('.titleDetails').removeClass('titleDetails').addClass('titleDetailsOpen')
+		.find('.titleContent > a').attr('href', contentLink);
+
+		containerDiv.find('.titleDetailsOpen').find('> a').attr('href', contentLink);
 	}
 	else {
-		contentDiv.addClass('open').append(detailsCode);
-
-		var offset = $('.contentGroup .open').offset();
-		//$('.contentGroup .open .titleDetails').css('left', '-' + offset.left + 'px');
+		containerDiv.find('.titleDetails').removeClass('titleDetails').addClass('titleDetailsOpen')
+		.find('.titleContent > a').attr('href', contentLink);
+		var offsetDetailsDiv = containerDiv.find('.titleDetailsOpen').offset().top;
+		
+		$('html, body').animate({
+			scrollTop: offsetDetailsDiv - 150
+		},500);
 	}
 }
+
+function closeDetails() {
+	var containerDiv = $(this).parent().parent().parent();//contentContainer
+	var allcontainerDiv = $('.contentContainer .titleDetailsOpen');
+	var allcontentDiv = $('.contentContainer .contentDiv div .content .contentLink .contentFigure figcaption');
+	var offsetDetailsDiv = containerDiv.offset().top;
 	
+	$('html, body').animate({
+		scrollTop: offsetDetailsDiv - 70
+	},500, function() {
+		allcontainerDiv.removeClass('titleDetailsOpen').addClass('titleDetails');
+		allcontentDiv.find('.figLinkOpen').removeClass('figLinkOpen').addClass('figLink');
+	});
+}
