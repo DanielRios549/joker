@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-var ajaxFile = 'ajax/ajaxRequisitions.php';
+var ajaxFile = baseUrl + 'ajax/ajaxRequisitions.php';
 
 function convertTime(d) {
 	d = Number(d);
@@ -79,45 +79,20 @@ function intializePlayer() {
 	episodesButton = document.getElementById('episodesButton');
 	fullScreen = document.getElementById('fullScreenButton');
 
-	loadFolder();
+	loadVideo();
 }
 
-function loadFolder() {
-	contentType = document.getElementById("watchInterface").getAttribute("data-type");
-	dataId = document.getElementById("watchInterface").getAttribute("data-id");
-
-	if(contentType == 'movie') {
-		var mediaFolder = baseUrl + 'media/movies/';
-
-		videoPath = mediaFolder + dataId;
-	}
-	else if(contentType == 'serie') {
-		var mediaFolder = baseUrl + 'media/series/';
-		var contentSeason = document.getElementById("watchInterface").getAttribute("data-season");
-		var contentEpisode = document.getElementById("watchInterface").getAttribute("data-episode");
-		
-		dataParent = mediaFolder + dataId;
-		videoPath = dataParent + '/season' + contentSeason + '/episode' + contentEpisode;
-	}
-
-	mediaHolder.innerHTML = "<video id='videoTag'></video>";
-	video = document.getElementById('videoTag');
-	//var videoPath = 'http://techslides.com/demos/sample-videos';
-	var videoName = 'video';//'small';
-
+function loadVideo() {
 	wembExtension = 'webm';
 	webmCodec = 'vorbis, vp8';//vorbis, vp9
 
 	mp4Extension = 'mp4';
 	mp4Codec = 'avc1.42E01E, mp4a.40.2';//avc1.640029, mp4a.40.5
-	
+
 	videoExtension = wembExtension;
 	videoCodecs = webmCodec;
 	dataSource = videoPath + '/' + videoName + '.' + videoExtension;
-	loadVideo();
-}
 
-function loadVideo() {
 	window.MediaSource = window.MediaSource || window.WebKitMediaSource;
 	var mediaSource = new MediaSource();
 	var mimeType = 'video/' + videoExtension + '; codecs="' + videoCodecs + '"';

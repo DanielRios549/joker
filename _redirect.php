@@ -5,5 +5,5 @@
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
-	$base = 'http://127.0.0.1/StreaMovie/';
+	$base = 'http://localhost/joker/';
 ?>

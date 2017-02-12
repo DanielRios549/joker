@@ -49,42 +49,42 @@ For all Browser:
 /**  FONTS IMPORTS AND CONFIGS  **/
 @font-face {
   font-family: 'FontAwesome';
-  src: url("http://127.0.0.1/joker/fonts/icons/fontAwesome.otf");
+  src: url("http://localhost/joker/fonts/icons/fontAwesome.otf");
 }
 
 @font-face {
   font-family: 'IcoMoon';
-  src: url("http://127.0.0.1/joker/fonts/icons/icoMoon.ttf");
+  src: url("http://localhost/joker/fonts/icons/icoMoon.ttf");
 }
 
 @font-face {
   font-family: 'PlayerIcon';
-  src: url("http://127.0.0.1/joker/fonts/icons/playerIcon.ttf");
+  src: url("http://localhost/joker/fonts/icons/playerIcon.ttf");
 }
 
 @font-face {
   font-family: 'Arial';
-  src: url("http://127.0.0.1/joker/fonts/arial.ttf");
+  src: url("http://localhost/joker/fonts/arial.ttf");
 }
 
 @font-face {
   font-family: 'Bubblegum';
-  src: url("http://127.0.0.1/joker/fonts/bubblegum-sans-regular.otf");
+  src: url("http://localhost/joker/fonts/bubblegum-sans-regular.otf");
 }
 
 @font-face {
   font-family: 'Calibri';
-  src: url("http://127.0.0.1/joker/fonts/calibri.ttf");
+  src: url("http://localhost/joker/fonts/calibri.ttf");
 }
 
 @font-face {
   font-family: 'CalibriItatic';
-  src: url("http://127.0.0.1/joker/fonts/calibrii.ttf");
+  src: url("http://localhost/joker/fonts/calibrii.ttf");
 }
 
 @font-face {
   font-family: 'Agency';
-  src: url("http://127.0.0.1/joker/fonts/agencyb.ttf");
+  src: url("http://localhost/joker/fonts/agencyb.ttf");
 }
 
 /* 
@@ -103,6 +103,753 @@ For all Browser:
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
+html body #watchInterface .playerBoxShow #mediaHolder #videoTag {
+  max-width: 1080px;
+  width: 90%;
+}
+
+html body #watchInterface .playerBoxShow #controlsDiv #rightControls #fullScreenButton:before {
+  content: '\e901';
+}
+
+html body #watchInterface .playerBoxShowFull #mediaHolder {
+  width: 100%;
+  height: 100%;
+}
+
+html body #watchInterface .playerBoxShowFull #mediaHolder #videoTag {
+  height: 100%;
+  width: 100%;
+}
+
+html body #watchInterface .playerBoxShowFull #controlsDiv {
+  z-index: 1000;
+}
+
+html body #watchInterface .playerBoxShowFull #controlsDiv #rightControls #fullScreenButton:before {
+  content: '\e902';
+}
+
+html body #watchInterface #playerBox {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+html body #watchInterface #playerBox #mediaHolder {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html body #watchInterface #playerBox #mediaHolder #videoTag {
+  background: #000000;
+  position: relative;
+}
+
+html body #watchInterface #playerBox #mediaHolder > img {
+  width: 100%;
+}
+
+html body #watchInterface #playerBox .loadingNone {
+  position: absolute;
+  top: -100%;
+  left: -100%;
+}
+
+html body #watchInterface #playerBox .loading:after {
+  content: '\f110';
+  font: 10em FontAwesome;
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: Rotate 1.8s linear infinite normal;
+  -moz-animation: Rotate 1.8s linear infinite normal;
+  -ms-animation: Rotate 1.8s linear infinite normal;
+  animation: Rotate 1.8s linear infinite normal;
+}
+
+@-webkit-keyframes Rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes Rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+html body #watchInterface #playerBox .videoPaused {
+  cursor: pointer;
+}
+
+html body #watchInterface #playerBox .videoPaused:after {
+  content: '\e905';
+  font: 10em PlayerIcon;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+html body #watchInterface #playerBox .loading, html body #watchInterface #playerBox .videoPaused {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+}
+
+html body #watchInterface #playerBox .controlsDivHide {
+  opacity: 0;
+}
+
+html body #watchInterface #playerBox .controlsDivShow {
+  opacity: 1;
+}
+
+html body #watchInterface #playerBox #controlsDiv {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 10px;
+  height: 40px;
+  max-width: 800px;
+  width: 100%;
+  color: #d6d6d6;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls .playerIcon:before, html body #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:before {
+  font: 3em PlayerIcon;
+  color: #ffffff;
+  position: relative;
+  top: 5px;
+  left: 4px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls .playerIcon:hover:before, html body #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:hover:before {
+  color: #4e297e;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls .playBtn:before {
+  content: '\e905';
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls .playBtn2:before {
+  content: '\e904';
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #playBtn {
+  border-right: 1px solid #262626;
+  position: relative;
+  width: 40px;
+  cursor: pointer;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime {
+  position: relative;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0 10px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #timePreview {
+  border-radius: 4px;
+  position: absolute;
+  bottom: 30px;
+  max-height: 25px;
+  min-width: 60px;
+  font: 2em Calibri, sans-serif;
+  padding: 5px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: var(--colorDarkGray);
+  color: var(--colorLightGray);
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #timePreview:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 10px);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--colorDarkGray);
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  padding: 8px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: #d6d6d6;
+  display: flex;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv:after {
+  content: '';
+  border-radius: 50%;
+  position: relative;
+  top: -5px;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  z-index: 99;
+  flex: 0 0 auto;
+  background: var(--colorBlue);
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv #progressCurrent {
+  position: relative;
+  height: 100%;
+  width: 0;
+  z-index: 99;
+  flex: 0 0 auto;
+  background: var(--colorBlue);
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv #progressBuffer {
+  background: #464646;
+  position: absolute;
+  height: 100%;
+  width: 0;
+  order: 3;
+  z-index: 98;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter {
+  position: relative;
+  height: 15px;
+  width: 60px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter #currentVideoTime {
+  position: relative;
+  font-size: 1.5em;
+  color: #d6d6d6;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter #timeSeparator {
+  position: relative;
+  font-size: 1.5em;
+  color: #d6d6d6;
+}
+
+html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter #totalVideoTime {
+  position: relative;
+  font-size: 1.5em;
+  color: #d6d6d6;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls .sound2:before {
+  content: '\e907';
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls .sound:before {
+  content: '\e906';
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls .soundMuted:before {
+  content: '\e903';
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #muteButton {
+  border-left: 1px solid #262626;
+  border-right: 1px solid #262626;
+  position: relative;
+  width: 40px;
+  height: 100%;
+  cursor: pointer;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #muteButton:hover + #volumeSliderContainer {
+  height: 150px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #muteButton:hover + #volumeSliderContainer #volumeSliderDiv #volumeSlider:before {
+  left: -5px;
+  width: 15px;
+  height: 15px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  height: 0;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer:hover {
+  height: 150px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer:hover #volumeSliderDiv #volumeSlider:before {
+  left: -5px;
+  width: 15px;
+  height: 15px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv {
+  position: relative;
+  width: 25px;
+  height: 80%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider {
+  background: #d6d6d6;
+  position: relative;
+  height: 100%;
+  width: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider:before {
+  content: '';
+  position: relative;
+  top: 7px;
+  left: 2px;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--colorBlue);
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider #volumeCurrent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 0 0 auto;
+  background: var(--colorBlue);
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesButton {
+  position: relative;
+  height: 100%;
+  width: 40px;
+  cursor: pointer;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesButton:after {
+  content: '\f0c9';
+  font: 3em FontAwesome;
+  color: #d6d6d6;
+  position: absolute;
+  left: 7px;
+  top: 5px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesButton:hover + #episodesDiv {
+  height: 320px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv {
+  background: #2d1152;
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  width: 250px;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv:hover {
+  height: 320px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv .seasonSelectHide {
+  width: 0;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv .seasonSelectShow {
+  width: 100%;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect {
+  flex: 0 0 auto;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  z-index: 96;
+  display: flex;
+  flex-direction: column;
+  -webkit-transition: width 200ms linear;
+  -moz-transition: width 200ms linear;
+  -ms-transition: width 200ms linear;
+  transition: width 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season {
+  border-bottom: 1px solid #262626;
+  position: relative;
+  height: 40px;
+  width: 100%;
+  cursor: pointer;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season:hover {
+  background: #323232;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season:after {
+  content: '\f105';
+  font: 2em FontAwesome;
+  color: #d6d6d6;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season .seasonSpan {
+  position: relative;
+  left: 5%;
+  height: 100%;
+  width: 95%;
+  font: 1.5em Calibri, sans-serif;
+  color: #d6d6d6;
+  line-height: 40px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect {
+  flex: 0 0 auto;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  -webkit-transition: width 200ms linear;
+  -moz-transition: width 200ms linear;
+  -ms-transition: width 200ms linear;
+  transition: width 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader {
+  background: #2d1152;
+  border-bottom: 1px solid #262626;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  z-index: 95;
+  display: flex;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector {
+  flex: 0 0 auto;
+  border-right: 1px solid #262626;
+  position: relative;
+  width: 40px;
+  height: 100%;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  display: block;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan:hover {
+  background: #323232;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan:before {
+  content: '\f104';
+  font: 2em FontAwesome;
+  color: #d6d6d6;
+  position: absolute;
+  left: 15px;
+  top: 10px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameHide, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameShow {
+  flex: 0 0 auto;
+  position: relative;
+  height: 100%;
+  width: calc(100% - 40px);
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameHide .seasonNameSpan, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameShow .seasonNameSpan {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: block;
+  font: 1.4em calibri, sans-serif;
+  color: #d6d6d6;
+  text-align: center;
+  line-height: 45px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameHide {
+  order: 3;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameShow {
+  order: 2;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList {
+  position: relative;
+  height: 87%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide {
+  order: 2;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow {
+  order: 1;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow {
+  flex: 1 0 auto;
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  z-index: 94;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen {
+  border-bottom: 1px solid #262626;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex: 0 0 auto;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent {
+  flex: 0 0 auto;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeSynopsis, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeSynopsis, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeSynopsis, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeSynopsis, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeSynopsis, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeSynopsis, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeSynopsis, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeSynopsis {
+  font: 1.5em Calibri, sans-serif;
+  color: #d6d6d6;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose {
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:hover, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:hover {
+  background: #323232;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:hover:after, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:hover:after {
+  opacity: 1;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:after, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:after {
+  content: '\f107';
+  font: 2em FontAwesome;
+  color: #d6d6d6;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  opacity: 0;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeHeader, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeHeader {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeHeader .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeHeader .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeHeader .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeHeader .episodeTitle {
+  margin-left: 10px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen {
+  background: #161616;
+  height: 120px;
+  flex-flow: row wrap;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeHeader, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeHeader {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeHeader .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeHeader .episodeTitle, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeHeader .episodeNumber, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeHeader .episodeTitle {
+  position: relative;
+  height: 20px;
+  line-height: 20px;
+  margin-left: 10px;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeFigure, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeFigure {
+  position: relative;
+  height: 60px;
+  width: 50%;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeFigure a:hover:after, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeFigure a:hover:after {
+  color: #4e297e;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeFigure a:after, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeFigure a:after {
+  content: '\f144';
+  font: 4em FontAwesome;
+  position: absolute;
+  top: 10px;
+  left: 40%;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeFigure img, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeFigure img {
+  position: relative;
+  width: 100%;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeSynopsis, html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeSynopsis {
+  position: relative;
+  height: 100%;
+  width: 50%;
+}
+
+html body #watchInterface #playerBox #controlsDiv #rightControls #fullScreenButton {
+  border-left: 1px solid #262626;
+  position: relative;
+  height: 100%;
+  width: 40px;
+  cursor: pointer;
+}
+
 html body #header #userDiv {
   background: transparent;
   position: absolute;
@@ -843,7 +1590,7 @@ html body .interface #contentSlider #changeDiv .changeShow:after {
   }
   #header #itemHome a {
     display: block;
-    background: url("http://127.0.0.1/joker/images/streamovie.png") no-repeat 50% 50%;
+    background: url("http://localhost/joker/images/streamovie.png") no-repeat 50% 50%;
     background-size: 200px 70px;
     position: relative;
     height: 100%;
@@ -1047,7 +1794,7 @@ html body .interface #contentSlider #changeDiv .changeShow:after {
     transform: translateX(0px);
   }
   #header #menuBt {
-    background: url("http://127.0.0.1/joker/images/menu.png") no-repeat;
+    background: url("http://localhost/joker/images/menu.png") no-repeat;
     position: absolute;
     top: 10px;
     left: 100px;
@@ -1232,41 +1979,14 @@ html body #watchInterface {
   width: 100%;
 }
 
-html body #watchInterface .playerBoxShow #mediaHolder #videoTag {
-  max-width: 1080px;
-  width: 90%;
-}
-
 html body #watchInterface .playerBoxShow #browserBack {
   top: 60px;
   left: 10px;
 }
 
-html body #watchInterface .playerBoxShow #controlsDiv #rightControls #fullScreenButton:before {
-  content: '\e901';
-}
-
-html body #watchInterface .playerBoxShowFull #mediaHolder {
-  width: 100%;
-  height: 100%;
-}
-
-html body #watchInterface .playerBoxShowFull #mediaHolder #videoTag {
-  height: 100%;
-  width: 100%;
-}
-
 html body #watchInterface .playerBoxShowFull #browserBack {
   left: -100%;
   top: -100%;
-}
-
-html body #watchInterface .playerBoxShowFull #controlsDiv {
-  z-index: 1000;
-}
-
-html body #watchInterface .playerBoxShowFull #controlsDiv #rightControls #fullScreenButton:before {
-  content: '\e902';
 }
 
 html body #watchInterface #playerBox {
@@ -1280,28 +2000,14 @@ html body #watchInterface #playerBox {
   align-items: center;
 }
 
-html body #watchInterface #playerBox #mediaHolder {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-html body #watchInterface #playerBox #mediaHolder #videoTag {
-  background: #000000;
-  position: relative;
-}
-
-html body #watchInterface #playerBox #mediaHolder > img {
-  width: 100%;
-}
-
 html body #watchInterface #playerBox #browserBack {
-  position: absolute;
+  position: fixed;
+  top: 50px;
+  left: 10px;
   cursor: pointer;
   height: 50px;
   width: 50px;
+  z-index: 100;
 }
 
 html body #watchInterface #playerBox #browserBack #backButton:before {
@@ -1315,756 +2021,6 @@ html body #watchInterface #playerBox #browserBack #backButton:before {
 
 html body #watchInterface #playerBox #browserBack #backButton:hover:before {
   color: #4e297e;
-}
-
-html body #watchInterface #playerBox .loadingNone {
-  position: absolute;
-  top: -100%;
-  left: -100%;
-}
-
-html body #watchInterface #playerBox .loading:after {
-  content: '\f110';
-  font: 10em FontAwesome;
-  color: #ffffff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-animation: Rotate 1.8s linear infinite normal;
-  -moz-animation: Rotate 1.8s linear infinite normal;
-  -ms-animation: Rotate 1.8s linear infinite normal;
-  animation: Rotate 1.8s linear infinite normal;
-}
-
-@-webkit-keyframes Rotate {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes Rotate {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-html body #watchInterface #playerBox .videoPaused {
-  cursor: pointer;
-}
-
-html body #watchInterface #playerBox .videoPaused:after {
-  content: '\e905';
-  font: 10em PlayerIcon;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
-  color: #ffffff;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-html body #watchInterface #playerBox .loading,
-html body #watchInterface #playerBox .videoPaused {
-  position: absolute;
-  height: 100px;
-  width: 100px;
-}
-
-html body #watchInterface #playerBox .controlsDivHide {
-  opacity: 0;
-}
-
-html body #watchInterface #playerBox .controlsDivShow {
-  opacity: 1;
-}
-
-html body #watchInterface #playerBox #controlsDiv {
-  background: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  bottom: 10px;
-  height: 40px;
-  max-width: 800px;
-  width: 100%;
-  color: #d6d6d6;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  -webkit-transition: all 300ms ease;
-  -moz-transition: all 300ms ease;
-  -ms-transition: all 300ms ease;
-  transition: all 300ms ease;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls .playerIcon:before,
-html body #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:before {
-  font: 3em PlayerIcon;
-  color: #ffffff;
-  position: relative;
-  top: 5px;
-  left: 4px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls .playerIcon:hover:before,
-html body #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:hover:before {
-  color: #4e297e;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls .playBtn:before {
-  content: '\e905';
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls .playBtn2:before {
-  content: '\e904';
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #playBtn {
-  border-right: 1px solid #262626;
-  position: relative;
-  width: 40px;
-  cursor: pointer;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime {
-  position: relative;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-flow: row wrap;
-  padding: 0 10px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #timePreview {
-  border-radius: 4px;
-  position: absolute;
-  bottom: 30px;
-  max-height: 25px;
-  min-width: 60px;
-  font: 2em Calibri, sans-serif;
-  padding: 5px;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: var(--colorDarkGray);
-  color: var(--colorLightGray);
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #timePreview:after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: calc(50% - 10px);
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid var(--colorDarkGray);
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer {
-  position: relative;
-  width: 100%;
-  height: 20px;
-  padding: 8px 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv {
-  position: relative;
-  width: 100%;
-  height: 4px;
-  background: #d6d6d6;
-  display: flex;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv:after {
-  content: '';
-  border-radius: 50%;
-  position: relative;
-  top: -5px;
-  left: -7px;
-  width: 14px;
-  height: 14px;
-  z-index: 99;
-  flex: 0 0 auto;
-  background: var(--colorBlue);
-  -webkit-transition: all 200ms linear;
-  -moz-transition: all 200ms linear;
-  -ms-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv #progressCurrent {
-  position: relative;
-  height: 100%;
-  width: 0;
-  z-index: 99;
-  flex: 0 0 auto;
-  background: var(--colorBlue);
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv #progressBuffer {
-  background: #464646;
-  position: absolute;
-  height: 100%;
-  width: 0;
-  order: 3;
-  z-index: 98;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter {
-  position: relative;
-  height: 15px;
-  width: 60px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter #currentVideoTime {
-  position: relative;
-  font-size: 1.5em;
-  color: #d6d6d6;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter #timeSeparator {
-  position: relative;
-  font-size: 1.5em;
-  color: #d6d6d6;
-}
-
-html body #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter #totalVideoTime {
-  position: relative;
-  font-size: 1.5em;
-  color: #d6d6d6;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls {
-  position: relative;
-  width: 120px;
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls .sound2:before {
-  content: '\e907';
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls .sound:before {
-  content: '\e906';
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls .soundMuted:before {
-  content: '\e903';
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #muteButton {
-  border-left: 1px solid #262626;
-  border-right: 1px solid #262626;
-  position: relative;
-  width: 40px;
-  height: 100%;
-  cursor: pointer;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #muteButton:hover + #volumeSliderContainer {
-  height: 150px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #muteButton:hover + #volumeSliderContainer #volumeSliderDiv #volumeSlider:before {
-  left: -5px;
-  width: 15px;
-  height: 15px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer {
-  background: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  height: 0;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  -webkit-transition: all 300ms ease;
-  -moz-transition: all 300ms ease;
-  -ms-transition: all 300ms ease;
-  transition: all 300ms ease;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer:hover {
-  height: 150px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer:hover #volumeSliderDiv #volumeSlider:before {
-  left: -5px;
-  width: 15px;
-  height: 15px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv {
-  position: relative;
-  width: 25px;
-  height: 80%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider {
-  background: #d6d6d6;
-  position: relative;
-  height: 100%;
-  width: 4px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider:before {
-  content: '';
-  position: relative;
-  top: 7px;
-  left: 2px;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  flex: 0 0 auto;
-  background: var(--colorBlue);
-  -webkit-transition: all 200ms linear;
-  -moz-transition: all 200ms linear;
-  -ms-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider #volumeCurrent {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  flex: 0 0 auto;
-  background: var(--colorBlue);
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesButton {
-  position: relative;
-  height: 100%;
-  width: 40px;
-  cursor: pointer;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesButton:after {
-  content: '\f0c9';
-  font: 3em FontAwesome;
-  color: #d6d6d6;
-  position: absolute;
-  left: 7px;
-  top: 5px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesButton:hover + #episodesDiv {
-  height: 320px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv {
-  background: #2d1152;
-  position: absolute;
-  bottom: 40px;
-  right: 0;
-  width: 250px;
-  height: 0;
-  overflow: hidden;
-  display: flex;
-  -webkit-transition: all 200ms linear;
-  -moz-transition: all 200ms linear;
-  -ms-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv:hover {
-  height: 320px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv .seasonSelectHide {
-  width: 0;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv .seasonSelectShow {
-  width: 100%;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect {
-  flex: 0 0 auto;
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  z-index: 96;
-  display: flex;
-  flex-direction: column;
-  -webkit-transition: width 200ms linear;
-  -moz-transition: width 200ms linear;
-  -ms-transition: width 200ms linear;
-  transition: width 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season {
-  border-bottom: 1px solid #262626;
-  position: relative;
-  height: 40px;
-  width: 100%;
-  cursor: pointer;
-  -webkit-transition: all 200ms linear;
-  -moz-transition: all 200ms linear;
-  -ms-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season:hover {
-  background: #323232;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season:after {
-  content: '\f105';
-  font: 2em FontAwesome;
-  color: #d6d6d6;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season .seasonSpan {
-  position: relative;
-  left: 5%;
-  height: 100%;
-  width: 95%;
-  font: 1.5em Calibri, sans-serif;
-  color: #d6d6d6;
-  line-height: 40px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect {
-  flex: 0 0 auto;
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  -webkit-transition: width 200ms linear;
-  -moz-transition: width 200ms linear;
-  -ms-transition: width 200ms linear;
-  transition: width 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader {
-  background: #2d1152;
-  border-bottom: 1px solid #262626;
-  position: relative;
-  width: 100%;
-  height: 40px;
-  z-index: 95;
-  display: flex;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector {
-  flex: 0 0 auto;
-  border-right: 1px solid #262626;
-  position: relative;
-  width: 40px;
-  height: 100%;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  cursor: pointer;
-  display: block;
-  -webkit-transition: all 200ms linear;
-  -moz-transition: all 200ms linear;
-  -ms-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan:hover {
-  background: #323232;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan:before {
-  content: '\f104';
-  font: 2em FontAwesome;
-  color: #d6d6d6;
-  position: absolute;
-  left: 15px;
-  top: 10px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameHide,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameShow {
-  flex: 0 0 auto;
-  position: relative;
-  height: 100%;
-  width: calc(100% - 40px);
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameHide .seasonNameSpan,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameShow .seasonNameSpan {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  display: block;
-  font: 1.4em calibri, sans-serif;
-  color: #d6d6d6;
-  text-align: center;
-  line-height: 45px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameHide {
-  order: 3;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader .seasonNameShow {
-  order: 2;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList {
-  position: relative;
-  height: 87%;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide {
-  order: 2;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow {
-  order: 1;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow {
-  flex: 1 0 auto;
-  position: relative;
-  min-height: 100%;
-  width: 100%;
-  z-index: 94;
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen {
-  border-bottom: 1px solid #262626;
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex: 0 0 auto;
-  -webkit-transition: all 200ms linear;
-  -moz-transition: all 200ms linear;
-  -ms-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent {
-  flex: 0 0 auto;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeSynopsis,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeSynopsis,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeSynopsis,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeSynopsis,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeSynopsis,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeSynopsis,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeSynopsis,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeSynopsis {
-  font: 1.5em Calibri, sans-serif;
-  color: #d6d6d6;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose {
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  flex-flow: column wrap;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:hover,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:hover {
-  background: #323232;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:hover:after,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:hover:after {
-  opacity: 1;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:after,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:after {
-  content: '\f107';
-  font: 2em FontAwesome;
-  color: #d6d6d6;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  opacity: 0;
-  -webkit-transition: all 200ms linear;
-  -moz-transition: all 200ms linear;
-  -ms-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeHeader,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeHeader {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeHeader .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeHeader .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeHeader .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeHeader .episodeTitle {
-  margin-left: 10px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen {
-  background: #161616;
-  height: 120px;
-  flex-flow: row wrap;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeHeader,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeHeader {
-  position: relative;
-  width: 100%;
-  height: 40px;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeHeader .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeHeader .episodeTitle,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeHeader .episodeNumber,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeHeader .episodeTitle {
-  position: relative;
-  height: 20px;
-  line-height: 20px;
-  margin-left: 10px;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeFigure,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeFigure {
-  position: relative;
-  height: 60px;
-  width: 50%;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeFigure a:hover:after,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeFigure a:hover:after {
-  color: #4e297e;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeFigure a:after,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeFigure a:after {
-  content: '\f144';
-  font: 4em FontAwesome;
-  position: absolute;
-  top: 10px;
-  left: 40%;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeFigure img,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeFigure img {
-  position: relative;
-  width: 100%;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeSynopsis,
-html body #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeSynopsis {
-  position: relative;
-  height: 100%;
-  width: 50%;
-}
-
-html body #watchInterface #playerBox #controlsDiv #rightControls #fullScreenButton {
-  border-left: 1px solid #262626;
-  position: relative;
-  height: 100%;
-  width: 40px;
-  cursor: pointer;
 }
 
 html body .interface {

@@ -81,11 +81,13 @@
 		<span id="spanCopy"><?php echo '&copy Copyright 2015 - Atomo Inc. ' . langCode('footer_right');?></span>
 	</div>
 </footer>
-</body>
 
 <script type="text/javascript" src="<?php echo $scriptDir . 'userScript.js';?>"></script>
 <script type="text/javascript" src="<?php echo $scriptDir . 'userAjax.js';?>"></script>
-<?php /*if($loginCheck == true) {?>
+
+</body>
+<?php 
+/*if($loginCheck == true) {?>
 <script lang="text/javascript">
 	intervalCookieId = setInterval(secureLogoff, 500);
 	(adsbygoogle = window.adsbygoogle || []).push({});

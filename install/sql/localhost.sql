@@ -83,8 +83,8 @@ CREATE TABLE `config` (
 --
 
 INSERT INTO `config` (`config_id`, `name`, `value`) VALUES
-(1, 'baseUrl', 'http://127.0.0.1/joker/'),
-(2, 'atomoBaseUrl', 'http://127.0.0.1/Atomo/'),
+(1, 'baseUrl', 'joker/'),
+(2, 'atomoBaseUrl', 'Atomo/'),
 (3, 'adminDir', 'admin/'),
 (4, 'adminLayoutDir', '../layout/admin/'),
 (6, 'layoutDir', 'layout/'),
@@ -92,9 +92,10 @@ INSERT INTO `config` (`config_id`, `name`, `value`) VALUES
 (9, 'styleDir', 'css/'),
 (10, 'scriptDir', 'javascript/'),
 (11, 'fontDir', 'fonts/'),
-(14, 'mediaFolder', 'http://127.0.0.1/joker/media/'),
-(15, 'mediaImageFolder', 'http://127.0.0.1/joker/images/media/'),
-(18, 'allowNewUser', 'true');
+(14, 'mediaFolder', '/joker/media/'),
+(15, 'mediaImageFolder', '/joker/images/media/'),
+(18, 'allowNewUser', 'true'),
+(19, 'player', 'joker');
 
 -- --------------------------------------------------------
 

@@ -1,0 +1,120 @@
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2017 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+    if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+?>
+<section id="playerBox" class="playerBoxHide">
+    <article id="browserBack">
+        <a id="backButton" href="<?php echo getLink('title', $_GET['id']);?>"></a>
+    </article>
+    <article id="mediaHolder"></article>
+    <article id="mediaLoading" class="loading"></article>
+    <article id="controlsDiv" class="controlsDivHide">
+        <div id="leftControls">
+            <div id="playBtn" class="playBtn2 playerIcon"></div>
+            <div id="videoTime">
+                <div id="progressContainer">
+                    <div id='progressDiv'>
+                        <div id="timePreview"></div>
+                        <div id="progressCurrent"></div>
+                        <div id="progressBuffer"></div>
+                    </div>
+                </div>
+                <div id="videoTimeCounter">
+                    <div id="currentVideoTime">0:00</div>
+                    <div id="timeSeparator">/</div>
+                    <div id="totalVideoTime">0:00</div>
+                </div>
+            </div>
+        </div>
+        <div id="rightControls">
+            <div id="muteButton" class="sound2 playerIcon"></div>
+            <div id="volumeSliderContainer">
+                <div id="volumeSliderDiv">
+                    <div id='volumeSlider'>
+                        <div id="volumeCurrent"></div>
+                    </div>
+                </div>
+            </div>
+            <?php if($contentType == 'serie') {?>
+            <div id="episodesButton"></div>
+            <div id="episodesDiv" class="episodesDiv">
+                <div id="seasonSelect" class="seasonSelectHide">
+                    <?php foreach($episodesList as $getEpisodes => $key) {?>
+                    <div id="season<?php echo $getEpisodes;?>" class="season">
+                        <span class="seasonSpan"><?php echo langCode('season') . " " . $getEpisodes;?></span>
+                    </div>
+                    <?php }?>
+                </div>
+                <div id="episodeSelect">
+                    <div id="episodeSelectHeader">
+                        <div id="openSelector">
+                            <span id="openSpan"></span>
+                        </div>
+                        <?php foreach($episodesList as $getEpisodes => $key){if($getEpisodes == $contentData['season']){$seasonDisplay = 'Show';}else{$seasonDisplay = 'Hide';}?>
+                        <div id="seasonName<?php echo $getEpisodes;?>" class="seasonName<?php echo $seasonDisplay;?>">
+                            <span class="seasonNameSpan">
+                                <?php echo langCode('season') . ' ' . $getEpisodes;?>
+                            </span>
+                        </div>
+                        <?php }?>
+                    </div>
+                    <div id="episodeList">
+                        <?php foreach($episodesList as $getEpisodes => $key){if($getEpisodes == $contentData['season']){$seasonDisplay = 'Show';}else{$seasonDisplay = 'Hide';}?>
+                        <div id="seasonGroup<?php echo $getEpisodes;?>" class="seasonGroup<?php echo $seasonDisplay;?>">
+                            <?php
+                                foreach($key as $key => $episode) {
+                                    $episodeDivisor = strpos($episode[$cookieLang], "|");
+
+                                    if($episode['episode_id'] == $contentData['episode_id']) {
+                                        $episodeDisplay = 'episodeOpen'; $addLinkPlayer = false;
+                                    }
+                                    else {
+                                        $episodeDisplay = 'episodeClose'; $addLinkPlayer = true;
+                                    }
+                            ?>
+                            <div class="episode<?php echo $episode['episode'] . ' ' . $episodeDisplay;?>">
+                                <div class="episodeHeader">
+                                    <span class="episodeNumber"><?php echo $episode['episode'];?></span>
+                                    <h2 class="episodeTitle"><?php echo substr($episode[$cookieLang], 0, $episodeDivisor);?></h2>
+                                </div>
+                                <div class="episodeContent">
+                                    <figure class="episodeFigure">
+                                        <?php if($addLinkPlayer == true) {?>
+                                        <a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId . '&e=' . $episode['episode_id'];?>">
+                                        <?php }?>
+                                            <img src="<?php echo $contentFolder . '/season' . $getEpisodes . '/episode' . $episode['episode'] . '/image.jpg';?>"/>
+                                            <figcaption></figcaption>
+                                        <?php if($addLinkPlayer == true) {?>
+                                        </a>
+                                        <?php }?>
+                                    </figure>
+                                    <p class="episodeSynopsis"><?php echo substr($episode[$cookieLang], $episodeDivisor + 1);?><p>
+                                </div>
+                            </div>
+                            <?php }?>
+                        </div>
+                        <?php }?>
+                    </div>
+                </div>
+            </div>
+            <?php }?>
+            <div id="fullScreenButton" class="playerIcon"></div>
+        </div>
+    </article>
+</section>
+
+<script type="text/javascript" src="<?php echo $baseUrl . 'player/file.js'?>"></script>
+<script type="text/javascript">
+    loadVideo(true);
+</script>
+
+<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/mouseStop.js'?>"></script>
+<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/jokerPlayer.js'?>"></script>

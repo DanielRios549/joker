@@ -285,6 +285,738 @@
 	}
 }
 
+%jokerPlayer {
+	.playerBoxShow {
+		#mediaHolder {
+			#videoTag {
+				max-width: 1080px;
+				width: 90%;
+			}
+		}
+		#controlsDiv {
+			#rightControls {
+				#fullScreenButton {
+					&:before {
+						content: '\e901';
+					}
+				}
+			}
+		}
+	}
+	.playerBoxShowFull {
+		#mediaHolder {
+			width: 100%;
+			height: 100%;
+			
+			#videoTag {
+				height: 100%;
+				width: 100%;
+			}
+		}
+		#controlsDiv {
+			z-index: 1000;
+			
+			#rightControls {
+				#fullScreenButton {
+					&:before {
+						content: '\e902';
+					}
+				}
+			}
+		}
+	}
+	#playerBox {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		z-index: 110;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		#mediaHolder {
+			position: relative;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
+			#videoTag {
+				background: #000000;
+				position: relative;
+			}
+			> img {
+				width: 100%;
+			}
+		}
+		.loadingNone {
+			position: absolute;
+			top: -100%;
+			left: -100%;
+		}
+		.loading {
+			&:after {
+				content: '\f110';
+				font: 10em FontAwesome;
+				color: #ffffff;
+				position: absolute;
+				top: 0;
+				left: 0;
+				
+				@include animation(Rotate, 1.8s, linear, infinite, normal);
+				
+				@-webkit-keyframes Rotate {
+					0% {
+						@include transform(rotate(0deg));
+					}
+					100% {
+						@include transform(rotate(360deg));
+					}
+				}
+				@keyframes Rotate {
+					0% {
+						@include transform(rotate(0deg));
+					}
+					100% {
+						@include transform(rotate(360deg));
+					}
+				}
+			}
+		}
+		.videoPaused {
+			cursor: pointer;
+				
+			&:after {
+				content: '\e905';
+				font: 10em PlayerIcon;
+				text-shadow: 5px 5px 5px rgba(0,0,0,.8);
+				color: #ffffff;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+		.loading,
+		.videoPaused {
+			position: absolute;
+			height: 100px;
+			width: 100px;
+		}
+		.controlsDivHide {
+			opacity: 0;
+		}
+		.controlsDivShow {
+			opacity: 1;
+		}
+		#controlsDiv {
+			background: rgba(0,0,0,.5);
+			position: absolute;
+			bottom: 10px;
+			height: 40px;
+			max-width: 800px;
+			width: 100%;
+			color: $colorLightGray;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+			
+			@include transition(all, 300ms, ease);
+			
+			#leftControls,
+			#rightControls {
+				.playerIcon {
+					&:before {
+						font: 3em PlayerIcon;
+						color: #ffffff;
+						position: relative;
+						top: 5px;
+						left: 4px;
+					}
+					&:hover {
+						&:before {
+							color: $colorBlue;
+						}
+					}
+				}
+			}
+			#leftControls {
+				position: relative;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				
+				.playBtn {
+					&:before {
+						content: '\e905';
+					}
+				}
+				.playBtn2 {
+					&:before {
+						content: '\e904';
+					}
+				}
+				#playBtn {
+					border-right: 1px solid #262626;
+					position: relative;
+					width: 40px;
+					cursor: pointer;
+				}
+				#videoTime {
+					position: relative;
+					width: 100%;
+					position: relative;
+					display: flex;
+					flex-flow: row wrap;
+					padding: 0 10px;
+
+					#timePreview {
+						border-radius: 4px;
+						position: absolute;
+						bottom: 30px;
+						max-height: 25px;
+						min-width: 60px;
+						font: 2em Calibri, sans-serif;
+						padding: 5px;
+						display: none;
+						justify-content: center;
+						align-items: center;
+
+						@include css4 {
+							background: var(--colorDarkGray);
+							color: var(--colorLightGray);
+						};
+
+						&:after {
+							content: '';
+							position: absolute;
+							top: 100%;
+							left: calc(50% - 10px);
+							width: 0;
+							height: 0;
+							border-left: 10px solid transparent;
+							border-right: 10px solid transparent;
+							
+							@include css4 {
+								border-top: 10px solid var(--colorDarkGray);
+							};
+						}
+					}
+					#progressContainer {
+						position: relative;
+						width: 100%;
+						height: 20px;
+						padding: 8px 0;
+						cursor: pointer;
+						display: flex;
+						align-items: center;
+
+						#progressDiv {
+							position: relative;
+							width: 100%;
+							height: 4px;
+							background: #d6d6d6;
+							display: flex;
+
+							&:after {
+								content: '';
+								border-radius: 50%;
+								position: relative;
+								top: -5px;
+								left: -7px;
+								width: 14px;
+								height: 14px;
+								z-index: 99;
+								flex: 0 0 auto;
+
+								@include css4{
+									background: var(--colorBlue);
+								};
+
+								@include transition(all, 200ms, linear);
+							}
+							#progressCurrent {
+								position: relative;
+								height: 100%;
+								width: 0;
+								z-index: 99;
+								flex: 0 0 auto;
+
+								@include css4{
+									background: var(--colorBlue);
+								};
+							}
+							#progressBuffer {
+								background: #464646;
+								position: absolute;
+								height: 100%;
+								width: 0;
+								order: 3;
+								z-index: 98;
+							}
+						}
+					}
+					#videoTimeCounter {
+						position: relative;
+						height: 15px;
+						width: 60px;
+						display: flex;
+						justify-content: flex-start;
+
+						#currentVideoTime {
+							position: relative;
+							font-size: 1.5em;
+							color: $colorLightGray;
+						}
+						#timeSeparator {
+							position: relative;
+							font-size: 1.5em;
+							color: $colorLightGray;
+						}
+						#totalVideoTime {
+							position: relative;
+							font-size: 1.5em;
+							color: $colorLightGray;
+						}
+					}
+				}
+			}
+			#rightControls {
+				position: relative;
+				width: 120px;
+				height: 40px;
+				display: flex;
+				justify-content: space-between;
+				
+				.sound2{
+					&:before {
+						content: '\e907';
+					}
+				}
+				.sound {
+					&:before {
+						content: '\e906';
+					}
+				}
+				.soundMuted  {
+					&:before {
+						content: '\e903';
+					}
+				}
+				#muteButton {
+					border-left: 1px solid #262626;
+					border-right: 1px solid #262626;
+					position: relative;
+					width: 40px;
+					height: 100%;
+					cursor: pointer;
+					
+					&:hover {
+						+ #volumeSliderContainer {
+							height: 150px;
+
+							#volumeSliderDiv #volumeSlider {
+								&:before {
+									left: -5px;
+									width: 15px;
+									height: 15px;
+								}
+							}
+						}
+					}
+				}
+				#volumeSliderContainer {
+					background: rgba(0,0,0,.5);
+					position: absolute;
+					bottom: 40px;
+					left: 0;
+					height: 0;
+					width: 40px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					
+					@include transition(all, 300ms, ease);
+
+					&:hover {
+						height: 150px;
+						
+						#volumeSliderDiv #volumeSlider {
+							&:before {
+								left: -5px;
+								width: 15px;
+								height: 15px;
+							}
+						}
+					}
+					#volumeSliderDiv {
+						position: relative;
+						width: 25px;
+						height: 80%;
+						cursor: pointer;
+						display: flex;
+						justify-content: center;
+
+						#volumeSlider {
+							background: #d6d6d6;
+							position: relative;
+							height: 100%;
+							width: 4px;
+							display: flex;
+							flex-direction: column;
+							justify-content: flex-end;
+
+							&:before {
+								content: '';
+								position: relative;
+								top: 7px;
+								left: 2px;
+								width: 0;
+								height: 0;
+								border-radius: 50%;
+								flex: 0 0 auto;
+
+								@include css4{
+									background: var(--colorBlue);
+								}
+
+								@include transition(all, 200ms, linear);
+							}
+							#volumeCurrent {
+								position: relative;
+								width: 100%;
+								height: 100%;
+								flex: 0 0 auto;
+
+								@include css4{
+									background: var(--colorBlue);
+								}
+							}
+						}
+					}
+				}
+				#episodesButton {
+					position: relative;
+					height: 100%;
+					width: 40px;
+					cursor: pointer;
+
+					&:after {
+						content: '\f0c9';
+						font: 3em FontAwesome;
+						color: $colorLightGray;
+						position: absolute;
+						left: 7px;
+						top: 5px;
+					}
+					&:hover {
+						+ #episodesDiv {
+							height: 320px;
+						}
+					}
+				}
+				#episodesDiv {
+					background: $colorGray;
+					//background: rgba(0,0,0,.5);
+					position: absolute;
+					bottom: 40px;
+					right: 0;
+					width: 250px;
+					height: 0;
+					overflow: hidden;
+					display: flex;
+
+					@include transition(all, 200ms, linear);
+
+					&:hover {
+						height: 320px;
+					}
+					.seasonSelectHide {
+						width: 0;
+					}
+					.seasonSelectShow {
+						width: 100%;
+					}
+					#seasonSelect {
+						flex: 0 0 auto;
+						position: relative;
+						height: 100%;
+						overflow: hidden;
+						z-index: 96;
+						display: flex;
+						flex-direction: column;
+
+						@include transition(width, 200ms, linear);
+
+						.season {
+							border-bottom: 1px solid #262626;
+							position: relative;
+							height: 40px;
+							width: 100%;
+							cursor: pointer;
+							
+							@include transition(all, 200ms, linear);
+
+							&:hover {
+								background: #323232;
+							}
+							&:after {
+								content: '\f105';
+								font: 2em FontAwesome;
+								color: $colorLightGray;
+								position: absolute;
+								right: 10px;
+								top: 10px;
+							}
+							.seasonSpan {
+								position: relative;
+								left: 5%;
+								height: 100%;
+								width: 95%;
+								font: 1.5em Calibri, sans-serif;
+								color: $colorLightGray;
+								line-height: 40px;
+							}
+						}
+					}
+					#episodeSelect {
+						flex: 0 0 auto;
+						position: relative;
+						height: 100%;
+						width: 100%;
+						display: flex;
+						flex-flow: column nowrap;
+
+						@include transition(width, 200ms, linear);
+
+						#episodeSelectHeader {
+							background: $colorGray;
+							border-bottom: 1px solid #262626;
+							position: relative;
+							width: 100%;
+							height: 40px;
+							z-index: 95;
+							display: flex;
+
+							#openSelector {
+								flex: 0 0 auto;
+								border-right: 1px solid #262626;
+								position: relative;
+								width: 40px;
+								height: 100%;
+
+								#openSpan {
+									position: relative;
+									top: 0;
+									left: 0;
+									height: 100%;
+									width: 100%;
+									cursor: pointer;
+									display: block;
+
+									@include transition(all, 200ms, linear);
+
+									&:hover {
+										background: #323232;
+									}
+									&:before {
+										content: '\f104';
+										font: 2em FontAwesome;
+										color: $colorLightGray;
+										position: absolute;
+										left: 15px;
+										top: 10px;
+									}
+								}
+							}
+							.seasonNameHide,
+							.seasonNameShow {
+								flex: 0 0 auto;
+								position: relative;
+								height: 100%;
+								width: calc(100% - 40px);
+
+								.seasonNameSpan {
+									position: relative;
+									top: 0;
+									left: 0;
+									height: 100%;
+									width: 100%;
+									display: block;
+									font: 1.4em calibri, sans-serif;
+									color: $colorLightGray;
+									text-align: center;
+									line-height: 45px;
+								}
+							}
+							.seasonNameHide {
+								order: 3;
+							}
+							.seasonNameShow {
+								order: 2;
+							}
+						}
+						#episodeList {
+							position: relative;
+							height: 87%;
+							width: 100%;
+							overflow-y: auto;
+							overflow-x: hidden;
+							display: flex;
+							flex-flow: row nowrap;
+
+							.seasonGroupHide {
+								order: 2;
+							}
+							.seasonGroupShow {
+								order: 1;
+							}
+							.seasonGroupHide,
+							.seasonGroupShow {
+								flex: 1 0 auto;
+								position: relative;
+								min-height: 100%;
+								width: 100%;
+								z-index: 94;
+								display: flex;
+								flex-flow: column nowrap;
+								
+								.episodeClose,
+								.episodeOpen {
+									border-bottom: 1px solid #262626;
+									position: relative;
+									width: 100%;
+									overflow: hidden;
+									display: flex;
+									flex: 0 0 auto;
+
+									@include transition(all, 200ms, linear);
+
+									.epidodeHeader,
+									.episodeContent {
+										flex: 0 0 auto;
+
+										.episodeNumber,
+										.episodeTitle,
+										.episodeSynopsis {
+											font: 1.5em Calibri, sans-serif;
+											color: $colorLightGray;
+										}
+									}
+								}
+								.episodeClose {
+									height: 40px;
+									cursor: pointer;
+									display: flex;
+									flex-flow: column wrap;
+
+									&:hover {
+										background: #323232;
+
+										&:after {
+											opacity: 1;
+										}
+									}
+									&:after {
+										content: '\f107';
+										font: 2em FontAwesome;
+										color: $colorLightGray;
+										position: absolute;
+										right: 10px;
+										top: 10px;
+										opacity: 0;
+
+										@include transition(all, 200ms, linear);
+									}
+									.episodeHeader {
+										position: relative;
+										height: 100%;
+										width: 100%;
+										display: flex;
+										flex-flow: row nowrap;
+										align-items: center;
+
+										.episodeNumber,
+										.episodeTitle {
+											margin-left: 10px;
+										}
+									}
+								}
+								.episodeOpen {
+									background: #161616;
+									height: 120px;
+									flex-flow: row wrap;
+
+									.episodeHeader {
+										position: relative;
+										width: 100%;
+										height: 40px;
+										display: flex;
+										flex-flow: row wrap;
+										align-items: center;
+
+										.episodeNumber,
+										.episodeTitle {
+											position: relative;
+											height: 20px;
+											line-height: 20px;
+											margin-left: 10px;
+										}
+									}
+									.episodeContent {
+										position: relative;
+										width: 100%;
+										display: flex;
+										flex-flow: row wrap;
+										justify-content: space-between;
+
+										.episodeFigure {
+											position: relative;
+											height: 60px;
+											width: 50%;
+
+											a {
+												&:hover {
+													&:after {
+														color: $colorBlue;
+													}
+												}
+												&:after {
+													content: '\f144';
+													font: 4em FontAwesome;
+													position: absolute;
+													top: 10px;
+													left: 40%;
+												}
+											}
+											img {
+												position: relative;
+												width: 100%;
+											}
+										}
+										.episodeSynopsis {
+											position: relative;
+											height: 100%;
+											width: 50%;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				#fullScreenButton {
+					border-left: 1px solid #262626;
+					position: relative;
+					height: 100%;
+					width: 40px;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
+
 %userDiv {
 	#userDiv {
 		background: transparent;
