@@ -7,3 +7,5 @@ images/media/movies/*
 images/media/series/*
 images/user/*/*
 _fontIcon.txt
+nbproject/
+nbproject/private/

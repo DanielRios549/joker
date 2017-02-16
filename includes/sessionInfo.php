@@ -31,6 +31,6 @@
 
         $sessionToDB = sha1($sessionAddress . $sessionAgent);
 
-        //echo $userAddress;
+        //echo $userAgent;
     }
 ?>

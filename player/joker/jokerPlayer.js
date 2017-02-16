@@ -32,6 +32,9 @@ function getVideo(async, url, callback, done) {
 			return false;
 		}
 	};
+	request.onerror = function() {
+		callback('error');
+	};
 	request.send();
 }
 
@@ -42,9 +45,7 @@ function destroyVideo() {
 	$(mediaHolder).append('<img src="' + baseUrl + 'images/error404.png"/>');
 }
 
-$(window).ready(function() {
-    showPlayer();
-});
+//firt function after checkFormats
 
 function showPlayer() {
 	intializePlayer();
@@ -83,76 +84,27 @@ function intializePlayer() {
 }
 
 function loadVideo() {
-	wembExtension = 'webm';
-	webmCodec = 'vorbis, vp8';//vorbis, vp9
+    if(videoReadyToUse) {
+		video.src = URL.createObjectURL(mediaSource);
+		mediaSource.addEventListener('sourceopen', function() {
+			var sourceBuffer = mediaSource.addSourceBuffer(mimeType);
 
-	mp4Extension = 'mp4';
-	mp4Codec = 'avc1.42E01E, mp4a.40.2';//avc1.640029, mp4a.40.5
-
-	videoExtension = wembExtension;
-	videoCodecs = webmCodec;
-	dataSource = videoPath + '/' + videoName + '.' + videoExtension;
-
-	window.MediaSource = window.MediaSource || window.WebKitMediaSource;
-	var mediaSource = new MediaSource();
-	var mimeType = 'video/' + videoExtension + '; codecs="' + videoCodecs + '"';
-	//var NUM_CHUNKS = 5;
-	video.src = URL.createObjectURL(mediaSource);
-
-	if (!window.MediaSource) {
-		alert('The MediaSource API is not available on this platform');
+			getVideo(true, dataSource, function(response) {
+				sourceBuffer.addEventListener('updateend', function () {
+					mediaSource.endOfStream();
+					video.play();
+				});
+				sourceBuffer.appendBuffer(response);
+			},function() {
+				addEvents();
+			});
+		}, false);
 	}
-	mediaSource.addEventListener('sourceopen', function() {
-		var sourceBuffer = mediaSource.addSourceBuffer(mimeType);
-
-		/*getVideo(true, dataSource, function(response) {
-			var file = new Blob([response], {
-				type: 'video/' + videoExtension
-			});
-			console.log(file.type);
-			var chunkSize = Math.ceil(file.size / NUM_CHUNKS);
-			var i = 0;
-
-			(function readChunk_(i) {
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					sourceBuffer.appendBuffer(new Uint8Array(e.target.result));
-					console.log('chunk ' + (i + 1));
-
-					if (i === NUM_CHUNKS - 1) {
-						sourceBuffer.addEventListener('updateend', function() {
-							if (!sourceBuffer.updating && mediaSource.readyState === 'open') {
-								mediaSource.endOfStream();
-							}
-						});
-					}
-					else {
-						if (video.paused) {
-							video.play();
-						}
-						readChunk_(++i);
-					}
-				};
-				var startByte = chunkSize * i;
-				var chunk = file.slice(startByte, startByte + chunkSize);
-
-				reader.readAsArrayBuffer(chunk);
-			})(i);
-		},function() {
-			addEvents();
-		});*/
-		getVideo(true, dataSource, function(response) {
-			console.log('video/' + videoExtension);
-			sourceBuffer.addEventListener('updateend', function () {
-				mediaSource.endOfStream();
-				video.play();
-			});
-			sourceBuffer.appendBuffer(response);
-		},function() {
-			addEvents();
-		});
-	}, false);
+	else {
+		destroyVideo();
+		alert('There is a error to play the video...');
+		//console.log('There is no video to use...');
+	}
 }
 
 function addEvents() {
@@ -174,7 +126,6 @@ function addEvents() {
 	hotKeys();
 	episodeSelectPlayer();
 	
-	//video.play();
 	$(videoLoad).removeClass("videoPaused").removeClass("loading").addClass("loadingNone");
 	
 	//bufferPercent = ((video.buffered.end(0) / video.duration) * 100);

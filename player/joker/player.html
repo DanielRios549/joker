@@ -112,9 +112,11 @@
 </section>
 
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/file.js'?>"></script>
-<script type="text/javascript">
-    loadVideo(true);
-</script>
-
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/mouseStop.js'?>"></script>
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/jokerPlayer.js'?>"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+         checkFormats(true);
+    });
+</script>

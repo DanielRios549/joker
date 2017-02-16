@@ -320,7 +320,7 @@ function inputError(parentDiv) {
 
 function secureLogoff() {
 	if(!document.cookie.match('PHPSESSID')) {
-		window.location.replace(baseUrl + 'logoff');
+		location.replace(baseUrl + 'logoff');
 	}
 }
 

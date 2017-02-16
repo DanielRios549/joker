@@ -9,8 +9,8 @@ RewriteRule \.(jpg|jpeg|png|gif|mp4)$ - [NC,F,L]
 
 #Errors Pages
 
-ErrorDocument 403 http://localhost/joker/403
-ErrorDocument 404 http://localhost/joker/404
+#ErrorDocument 403 http://localhost/joker/403
+#ErrorDocument 404 http://localhost/joker/404
 
 RewriteEngine on
 

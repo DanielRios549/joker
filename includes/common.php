@@ -34,6 +34,8 @@
 			if(($_SESSION['USER_AGENT'] !== $sessionAgent) or ($_SESSION['USER_ADDRESS'] !== $sessionAddress)) {
 				header("Location:" .  $baseUrl . langCode('logoff_link'));
 			}
+
+			//echo $_COOKIE['PHPSESSID'];
 		
 			//Configure the premium features
 			

@@ -19,27 +19,29 @@
 </section>
 
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/file.js'?>"></script>
-<script type="text/javascript">
-    loadVideo(false);
-</script>
-
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/bitmovin/bitmovinplayer.js';?>"></script>
+
 <script type="text/javascript">
-    var conf = {
-        key: "d4371e6b-7405-4388-a79d-3b9edf9418fa",
-        source: {
-            //dash: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
-            //hls: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
-            progressive: dataSource,
-            //poster: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/poster.jpg"
-        }
-    };
-    var player = bitmovin.player("mediaHolder");
-    player.setup(conf).then(function(value) {
-        // Success
-        console.log("Successfully created bitmovin player instance");
-    }, function(reason) {
-        // Error!
-        console.log("Error while creating bitmovin player instance");
+    $(document).ready(function() {
+         checkFormats(false);
     });
+    function showPlayer() {
+        var conf = {
+            key: "d4371e6b-7405-4388-a79d-3b9edf9418fa",
+            source: {
+                //dash: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
+                //hls: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
+                progressive: dataSource,
+                //poster: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/poster.jpg"
+            }
+        };
+        var player = bitmovin.player("mediaHolder");
+        player.setup(conf).then(function(value) {
+            // Success
+            console.log("Successfully created bitmovin player instance");
+        }, function(reason) {
+            // Error!
+            console.log("Error while creating bitmovin player instance");
+        });
+    }
 </script>
