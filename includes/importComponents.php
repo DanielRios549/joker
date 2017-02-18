@@ -42,10 +42,8 @@
 	require_once $classesDir . 'verifyContent.class.php';
 	require_once $classesDir . 'verifyFollow.class.php';
 	require_once $classesDir . 'userTitle.class.php';
-	require_once $classesDir . 'userFile.class.php';
 	require_once $classesDir . 'userMenu.class.php';
 	require_once $classesDir . 'admin/adminTitle.class.php';
-	require_once $classesDir . 'admin/adminFile.class.php';
 	require_once $classesDir . 'admin/adminMenu.class.php';
 	require_once $classesDir . 'admin/adminCreate.class.php';
     require_once $classesDir . 'admin/adminShowTable.class.php';

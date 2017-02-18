@@ -5,33 +5,21 @@
  ***************************************************************
 */
 
-function checkVideo(video, callback, done) {
-	var check = new XMLHttpRequest();
-	check.open('GET', video, true);
-
-	check.onload = function() {
-        if (check.status >= 200 && check.status < 400) {
-			callback('exists');
-            done();
-		}
-		else {
-			callback('do not exists');
-		}
-	};
-	check.send();
-}
-
 function checkFormats(videoTag) {
     contentType = document.getElementById("watchInterface").getAttribute("data-type");
     dataId = document.getElementById("watchInterface").getAttribute("data-id");
+    dataWebm = document.getElementById("watchInterface").getAttribute("data-webm");
+    dataMp4 = document.getElementById("watchInterface").getAttribute("data-mp4");
 
     if(contentType == 'movie') {
         var mediaFolder = baseUrl + 'media/movies/';
+        //var mediaFolder = 'http://127.0.0.1/media/movies/';
 
         videoPath = mediaFolder + dataId;
     }
     else if(contentType == 'serie') {
         var mediaFolder = baseUrl + 'media/series/';
+        //var mediaFolder = 'http://127.0.0.1/media/series/';
         var contentSeason = document.getElementById("watchInterface").getAttribute("data-season");
         var contentEpisode = document.getElementById("watchInterface").getAttribute("data-episode");
         
@@ -54,26 +42,24 @@ function checkFormats(videoTag) {
     }
 
 	videoToCheck = videoPath + '/' + videoName + '.';
+    webmVideoExists = false;
+    mp4VideoExists = false;
 
-	checkVideo(videoToCheck + webmExtension, function(response) {
-        if(response == 'exists') {
-            webmVideoExists = true;
-        }
-        else {
-            webmVideoExists = false;
-        }
-	}, function() {});
-    
-    checkVideo(videoToCheck + mp4Extension, function(response) {
-        if(response == 'exists') {
-            mp4VideoExists = true;
-        }
-        else {
-            mp4VideoExists = false;
-        }
-    }, function() {
+    if(dataWebm == 'yes') {
+        webmVideoExists = true;
+    }
+    if(dataMp4 == 'yes') {
+        mp4VideoExists = true;
+    }
+
+    //Continue only if there is one of the required video files
+
+    if(webmVideoExists || mp4VideoExists) {
         chooseFormat();
-    });
+    }
+    else {
+        alert("Error to import the video file...");
+    }
 }
 
 function chooseFormat() {

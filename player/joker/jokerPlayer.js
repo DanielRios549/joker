@@ -23,8 +23,8 @@ function getVideo(async, url, callback, done) {
 
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
-			//callback(new Uint8Array(request.response));
-			callback(request.response);
+			callback(new Uint8Array(request.response));
+			//callback(request.response);
 			done();
 		}
 		else {
@@ -45,20 +45,27 @@ function destroyVideo() {
 	$(mediaHolder).append('<img src="' + baseUrl + 'images/error404.png"/>');
 }
 
-//firt function after checkFormats
+//firt function after chooseFormat
 
 function showPlayer() {
-	intializePlayer();
+	if(videoReadyToUse) {
+		intializePlayer();
 	
-	$(playerBox).removeClass('playerBoxHide').addClass('playerBoxShow');
-	
-	$(buttonPlay).removeClass("playBtn").addClass('playBtn2');
-	
-	$("body").on("contextmenu", function() {
-		//return false;
-	});
-	
-	$('body').css('overflow' , 'hidden');
+		$(playerBox).removeClass('playerBoxHide').addClass('playerBoxShow');
+		
+		$(buttonPlay).removeClass("playBtn").addClass('playBtn2');
+		
+		$("body").on("contextmenu", function() {
+			//return false;
+		});
+		
+		$('body').css('overflow' , 'hidden');
+	}
+	else {
+		destroyVideo();
+		alert('There is a error to play the video...');
+		//console.log('There is no video to use...');
+	}
 }
 
 function intializePlayer() {
@@ -84,27 +91,20 @@ function intializePlayer() {
 }
 
 function loadVideo() {
-    if(videoReadyToUse) {
-		video.src = URL.createObjectURL(mediaSource);
-		mediaSource.addEventListener('sourceopen', function() {
-			var sourceBuffer = mediaSource.addSourceBuffer(mimeType);
+	video.src = URL.createObjectURL(mediaSource);
+	mediaSource.addEventListener('sourceopen', function() {
+		var sourceBuffer = mediaSource.addSourceBuffer(mimeType);
 
-			getVideo(true, dataSource, function(response) {
-				sourceBuffer.addEventListener('updateend', function () {
-					mediaSource.endOfStream();
-					video.play();
-				});
-				sourceBuffer.appendBuffer(response);
-			},function() {
-				addEvents();
+		getVideo(true, dataSource, function(response) {
+			sourceBuffer.addEventListener('updateend', function () {
+				mediaSource.endOfStream();
+				video.play();
 			});
-		}, false);
-	}
-	else {
-		destroyVideo();
-		alert('There is a error to play the video...');
-		//console.log('There is no video to use...');
-	}
+			sourceBuffer.appendBuffer(response);
+		},function() {
+			addEvents();
+		});
+	}, false);
 }
 
 function addEvents() {

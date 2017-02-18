@@ -27,6 +27,7 @@
 		//Get the URL
 		
 		$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+		$bodyFile = basename($_SERVER['PHP_SELF'],'.php') . '.html';
 		
 		if($loginCheck == true) {
 			//Verify if the session is invalid to device

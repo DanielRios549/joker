@@ -40,12 +40,11 @@
 			}
 
 			//verify if the content exits
-			
+
             if($contentVerify -> rowCount() !== 1) {
 				header("Location:" . $baseUrl . "404");
 			}
 			elseif($contentVerify -> rowCount() == 1) {
-
                 //set The values for movies
 
                 if($contentTrue['type'] == 'movie') {
@@ -72,6 +71,8 @@
                         $dataSeason = 'none';
                         $dataEpisode = 'none';
 					}
+                    $mediaFolder = 'media/movies/';
+                    $videoPath = $mediaFolder . $contentId;
                 }
 
                 //set The values for series
@@ -126,6 +127,25 @@
                             }
                         }
                     }
+                    $mediaFolder = 'media/series/';
+                    $videoPath = $mediaFolder . $contentId . '/season' . $dataSeason . '/episode' . $dataEpisode;
+                }
+
+                $webmFile = 'no';
+                $mp4File = 'no';
+
+                $videoName = 'video';//'small';
+                $videoToCheck = $videoPath . '/' . $videoName . '.';
+                //$currentDate = new DateTime();
+                //$videoToCheck = sha1($videoPath . '/' . $videoName . '.', 'test');
+
+                //echo $currentDate -> format('m');
+
+                if(file_exists($videoToCheck . 'webm')) {
+                    $webmFile = 'yes';
+                }
+                if(file_exists($videoToCheck . 'mp4')) {
+                    $mp4File = 'yes';
                 }
             }
         }

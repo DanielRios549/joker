@@ -12,7 +12,14 @@
 	}
 	if($contentVerify -> rowCount() == 1) {
 ?>
-<main id="watchInterface" data-type="<?php echo $contentType;?>" data-id="<?php echo $contentId;?>" data-season="<?php echo $dataSeason;?>" data-episode="<?php echo $dataEpisode;?>">
+<main id="watchInterface"
+	data-type="<?php echo $contentType;?>"
+	data-id="<?php echo $contentId;?>"
+	data-season="<?php echo $dataSeason;?>"
+	data-episode="<?php echo $dataEpisode;?>"
+	data-webm="<?php echo $webmFile;?>"
+	data-mp4="<?php echo $mp4File;?>">
+
 	<?php require 'player/' . $videoPlayer . '/player.html';?>
 
 	<script type="text/javascript" src="<?php echo $scriptDir . 'userScript.js';?>"></script>

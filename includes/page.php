@@ -12,17 +12,14 @@
 	
 	if(ADMIN_PAGE == 'no') {
 		$title = new TitleFile();
-		$file = new BodyFile();
 		$menu = new Menu();
 	}
 	elseif(ADMIN_PAGE == 'yes') {
 		$title = new AdminTitleFile();
-		$file = new AdminBodyFile();
 		$menu = new AdminMenu();
 	}
 	
 	$titleFile = $title -> Title($loginCheck);
-	$bodyFile = $file -> File();
 	
 	if(ADMIN_PAGE == 'no') {
 		$menu0 = $menu -> menu0();
