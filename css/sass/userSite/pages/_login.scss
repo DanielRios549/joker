@@ -3,17 +3,20 @@
 		display: none;
 	}
 	#userErrorDisplay {
-		background: #fd0b3e;
+		@include css4 {
+			background: var(--errorColor);
+		};
 	}
 	#newAccountCreatedDisplay {
-		background: $colorBlue;
+		@include css4 {
+			background: var(--blue);
+		};
 	}
 	.userError {
         position: fixed;
 		top: 70px;
 		height: 40px;
 		width: 90%;
-		box-sizing: border-box;
 		border-radius: 5px;
 		margin: 0 0 0 5%;
 		display: block;
@@ -28,7 +31,10 @@
 			
 			#spanUserError {
 				font-size: 2em;
-				color: $colorLightGray;
+
+				@include css4 {
+					color: var(--lightGray);
+				};
 			}
 		}
 		#errorMsgClose {
@@ -42,10 +48,13 @@
 			&:after {
 				content: '\f00d';
 				font: 5em FontAwesome;
-				color: $colorLightGray;
 				position: absolute;
 				top: -6px;
 				left: 0;
+
+				@include css4 {
+					color: var(--lightGray);
+				};
 			}
 		}
 	}
@@ -75,46 +84,61 @@
 					box-sizing: border-box;
 					outline: none;
 					border-radius: 3px;
-					border: 3px solid $colorLightGray;
 					height: 60px;
 					width: 100%;
 					padding-left: 70px;
-					color: $colorGray;
 					margin: -20px 0;
 					font-size: 1.6em;
+
+					@include css4 {
+						border: 3px solid var(--lightGray);
+						color: var(--gray);
+					};
 					
 					@include transition(border, 300ms, linear);
 				}
 				.inputText {
 					+ .inputLabel {
-						background: $colorLightGray;
-						
+						@include css4 {
+							background: var(--lightGray);
+						};
 						&:before {
-							color: $colorGray;
+							@include css4 {
+								color: var(--gray);
+							};
 						}
 					}
 					&:hover,
 					&:focus {
-						border: 3px solid $colorBlue;
-						color: $colorGray;
+						@include css4 {
+							border: 3px solid var(--blue);
+							color: var(--gray);
+						};
 						
 						+ .inputLabel {
-							background: $colorBlue;
-							
+							@include css4 {
+								background: var(--blue);
+							};
 							&:before {
-								color: #f1f1f1;
+								@include css4 {
+									color: var(--fontColor);
+								};
 							}
 						}
 					}
 				}
 				.inputTextError {
-					border: 3px solid #fd0b3e;
-					
+					@include css4 {
+						border: 3px solid var(--errorColor);
+					};
 					+ .inputLabel {
-						background: #fd0b3e;
-						
+						@include css4 {
+							background: var(--errorColor);
+						};
 						&:before {
-							color: #f1f1f1;
+							@include css4 {
+								background: var(--fontColor);
+							};
 						}
 					}
 				}
@@ -137,9 +161,6 @@
 					}
 				}
 				.submitButton {
-					box-sizing: border-box;
-					border: none;
-					outline: none;
 					border-radius: 3px;
 					height: 50px;
 					width: 100%;
@@ -147,17 +168,22 @@
 					@include transition(all, 200ms, linear);
 					
 					&:hover, &:focus {
-						background: $colorBlue;
-						color: #ffffff;
+						@include css4 {
+							background: var(--blue);
+							color: var(--fontColor);
+						};
 					}
 					.submitSpan {
 						display: block;
-						color: $colorGray;
 						margin-bottom: 20px;
 						cursor: pointer;
 						font-size: 1.6em;
 						height: 100%;
 						padding: 10px;
+
+						@include css4 {
+							color: var(--gray);
+						};
 					}
 				}
 			}
@@ -191,8 +217,9 @@
 
 					&:checked + #loginRestoreLabel {
 						.checkIcon {
-							background: $colorBlue;
-
+							@include css4 {
+								background: var(--blue);
+							};
 							&:before {
 								left: 0;
 								opacity: 1;
@@ -209,12 +236,15 @@
 					align-items: center;
 
 					.checkIcon {
-						background: $colorLightGray;
 						border-radius: 4px;
 						position: relative;
 						height: 100%;
 						width: 20px;
 						overflow: hidden;
+
+						@include css4 {
+							background: var(--lightGray);
+						};
 
 						@include transition(all, 300ms, linear);
 
@@ -231,8 +261,11 @@
 					}
 					.spanText {
 						font: 1.5em Calibri, sans-serif;
-						color: $colorGray;
 						padding-left: 10px;
+
+						@include css4 {
+							color: var(--gray);
+						};
 					}
 				}
 			}

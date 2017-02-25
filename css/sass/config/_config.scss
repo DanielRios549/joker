@@ -26,24 +26,36 @@ $desktopLarge: 1186;
 $tablet: 1032;
 $mobile: 775;
 $mobileSmall: 599;
-$colorLightGray: #d6d6d6;
+/*$colorLightGray: #d6d6d6;
 $colorGray: #2d1152;//#464646
 $colorDarkGray: #222222;
 $colorButtonGray: #9aa4a5;
 $colorBlack: #101010;
 $colorBlue: #4e297e;//#2cafec
-$colorWhite: #f1f1f1;
+$colorWhite: #f1f1f1;*/
 
 $variables: (
-  --gray: #d6d6d6,
-  --darkGray: #464646,
-  --colorLightGray: #d6d6d6,
-  --colorGray: #2d1152,
-  --colorDarkGray: #222222,
-  --colorButtonGray: #9aa4a5,
-  --colorBlack: #101010,
-  --colorBlue: #4e297e,
-  --colorWhite: #f1f1f1
+  --errorColor: #fd0b3e,
+  --bodyColor: #141414,
+  --fontColor: #f1f1f1,
+  --lightGray: #d6d6d6,
+  --gray: #464646,
+  --darkGray: #222222,
+  --black: #101010,
+  --blue: #2cafec,
+  --white: #ffffff,
+  --joker01: #2d1152,
+  --joker02: #4e297e,
+  --buttonGray: #9aa4a5,
+  --facebook: #5b79a8,
+  --twitter: #63b3ff,
+  --google: #d14837,
+  --ageFree: #59d224,
+  --age10: #2cafec,
+  --age12: #fff722,
+  --age14: #ff9f22,
+  --age16: #ff0000,
+  --age18: #000000
 );
 
 //Set the variables to front and make possible change it with javascript
@@ -65,9 +77,6 @@ $variables: (
   @else {
     @if(map-has-key($variables, $variable)) {
       @return map-get($variables, $variable);
-    }
-    @if(map-has-key($responsiveVariables, $variable)) {
-      @return map-get($responsiveVariables, $variable);
     }
   }
 }
@@ -103,6 +112,4 @@ For all Browser:
 
 @import 'fonts';
 @import 'allMixins';
-@import 'allUserMixins';
-@import 'allAdminMixins';
 @import 'pages';

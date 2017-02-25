@@ -8,7 +8,7 @@
 $responsiveVariables: (
     --loginAlign: column wrap,
     --loginMiddleBorderLeft: 0,
-    --loginMiddleBorderTop: 3px dashed $colorGray,
+    --loginMiddleBorderTop: 3px dashed var(--gray),
     --loginDivWidth: 100%,
     --titleContentAlign: column wrap,
     --titleDivLeftWidth: 100%,

@@ -29,11 +29,6 @@ function ajax(method, action, dataId, before, notDone, done) {
     request.send();
 }
 
-$(document).ready(function() {
-    $('#header').on('click', '.selectDay', setUserStyleNight);
-    $('#header').on('click', '.selectNight', setUserStyleDay);
-});
-
 function addWatchList() {
     dataId = $(this).attr('data-id');
     
@@ -129,30 +124,6 @@ function removeWatchListIndex() {
         }
     };
     request.send();
-}
-
-function setUserStyleNight() {
-    ajax(
-        'POST',
-        'userStyle',
-        'night',
-        '',
-        '',
-        $('.selectDay').removeClass('selectDay').addClass('selectNight'),
-        $('#styleMode').attr("href", baseUrl + "css/styleNight.css")
-    );
-}
-
-function setUserStyleDay() {
-    ajax(
-        'POST',
-        'userStyle',
-        'day',
-        '',
-        '',
-        $('.selectNight').removeClass('selectNight').addClass('selectDay'),
-        $('#styleMode').attr("href", baseUrl + "css/styleDay.css")
-    );
 }
 
 function followUser() {

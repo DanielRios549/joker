@@ -19,6 +19,8 @@
 }
 
 :root {
+  --bodyColor: #141414;
+  --fontColor: #f1f1f1;
   --gray: #d6d6d6;
   --darkGray: #464646;
   --colorLightGray: #d6d6d6;
@@ -49,42 +51,87 @@ For all Browser:
 /**  FONTS IMPORTS AND CONFIGS  **/
 @font-face {
   font-family: 'FontAwesome';
-  src: url("http://127.0.0.1/joker/fonts/icons/fontAwesome.otf");
+  src: url("http://localhost/joker/fonts/icons/fontAwesome.otf");
 }
 
 @font-face {
   font-family: 'IcoMoon';
-  src: url("http://127.0.0.1/joker/fonts/icons/icoMoon.ttf");
+  src: url("http://localhost/joker/fonts/icons/icoMoon.ttf");
 }
 
 @font-face {
   font-family: 'PlayerIcon';
-  src: url("http://127.0.0.1/joker/fonts/icons/playerIcon.ttf");
+  src: url("http://localhost/joker/fonts/icons/playerIcon.ttf");
 }
 
 @font-face {
   font-family: 'Arial';
-  src: url("http://127.0.0.1/joker/fonts/arial.ttf");
+  src: url("http://localhost/joker/fonts/arial.ttf");
 }
 
 @font-face {
   font-family: 'Bubblegum';
-  src: url("http://127.0.0.1/joker/fonts/bubblegum-sans-regular.otf");
+  src: url("http://localhost/joker/fonts/bubblegum-sans-regular.otf");
 }
 
 @font-face {
   font-family: 'Calibri';
-  src: url("http://127.0.0.1/joker/fonts/calibri.ttf");
+  src: url("http://localhost/joker/fonts/calibri.ttf");
 }
 
 @font-face {
   font-family: 'CalibriItatic';
-  src: url("http://127.0.0.1/joker/fonts/calibrii.ttf");
+  src: url("http://localhost/joker/fonts/calibrii.ttf");
 }
 
 @font-face {
   font-family: 'Agency';
-  src: url("http://127.0.0.1/joker/fonts/agencyb.ttf");
+  src: url("http://localhost/joker/fonts/agencyb.ttf");
+}
+
+::-webkit-scrollbar-track {
+  background-color: #d6d6d6;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b2b6b5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #818181;
+}
+
+html * {
+  margin: 0;
+  padding: 0;
+  font-family: Calibri, sans-serif;
+  box-sizing: border-box;
+}
+
+html body {
+  font-size: 62.5%;
+  background-color: #ffffff;
+}
+
+html body ::selection {
+  background-color: #d6d6d6;
+  color: #2cafec;
+}
+
+html body a {
+  display: block;
+  text-decoration: none;
+  color: #d6d6d6;
+  color: var(--gray);
+}
+
+html body li {
+  list-style: none;
+}
+
+html body input {
+  outline: none;
+  border: none;
 }
 
 /* 
@@ -97,12 +144,6 @@ For all Browser:
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
-/* 
- ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
- | @ Author	: Daniel Rios.
- ***************************************************************
-*/
 /* 
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
@@ -197,7 +238,7 @@ For all Browser:
 }
 
 #header #adminHome a {
-  background: url("http://127.0.0.1/joker/images/streamovie.png") no-repeat 0%;
+  background: url("http://localhost/joker/images/streamovie.png") no-repeat 0%;
   background-size: 140px 50px;
   display: block;
   width: 100%;
@@ -478,7 +519,7 @@ For all Browser:
 
 .menuOpened #ulMenu .itemMenu .subMenuItems,
 .menuOpened #ulMenu .itemMenuActive .subMenuItems {
-  background: #565656 url("http://127.0.0.1/joker/images/menuSubIndicator.png") repeat-y 15px 0;
+  background: #565656 url("http://localhost/joker/images/menuSubIndicator.png") repeat-y 15px 0;
   position: relative;
   top: 0;
   left: 0;

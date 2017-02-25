@@ -9,18 +9,6 @@
 		require '../_redirect.php';
 		header("Location:" .  $base . "404");
 	}
-    
-    if($loginCheck == true) {
-        if($userStyleMode == 'day') {
-            $userStyle = 'styleDay.css';
-        }
-        elseif($userStyleMode == 'night') {
-            $userStyle = 'styleNight.css';
-        }
-    }
-    else {
-        $userStyle = 'styleDay.css';
-    }
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo langCode('lang');?>">
@@ -48,7 +36,6 @@
     
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="icon" href="<?php echo $imageDir . 'favicon.png';?>"/>
-    <link rel="stylesheet" id="styleMode" href="<?php echo $styleDir . $userStyle;?>"/>
 	<link rel="stylesheet" href="<?php echo $styleDir . 'userStyle.css';?>"/>
     <script type="text/javascript" src="<?php echo $scriptDir . 'libraries/jquery.js';?>"></script>
     <?php //<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>?>

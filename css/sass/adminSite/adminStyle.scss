@@ -11,6 +11,8 @@ $compatibility: true;
 
 @import '../config/config';
 
+@import '../config/allAdminMixins';
+
 @import 'responsive/desktop';
 
 @import 'responsive/tablet';

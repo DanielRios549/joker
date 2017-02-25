@@ -10,34 +10,6 @@
 //using on desktop absolute and fixed header.
 
 @mixin header() {
-    #selectMode {
-        position: absolute;
-        top: 0;
-        left: 50px;
-        width: 30px;
-        height: 60px;
-        cursor: pointer;
-        
-        &:after {
-            position: absolute;
-            top: 8px;
-            left: -8px;
-            font: 4em FontAwesome;
-            color: $colorLightGray;
-            
-            @include transform(rotate(90deg));
-        }
-    }
-    .selectDay {
-        &:after {
-            content: '\f204';
-        }
-    }
-    .selectNight {
-        &:after {
-            content: '\f205';
-        }
-    }
 	#itemHome {
 		position: relative;
 		left: 110px;
@@ -77,17 +49,23 @@
 				height: 100%;
 				width: 120px;
 				padding: 10px;
-				color: $colorLightGray;
 				right: 60px;
 				font-size: 1.6em;
 				z-index: 10;
+
+				@include css4 {
+					color: var(--lightGray);
+				};
 				
 				@include transition(all, 300ms, linear);
 				
 				&:focus {
 					background: #ffffff;
-					color: $colorGray;
 					width: 200px;
+
+					@include css4 {
+						color: var(--darkGray);
+					};
 				}
 			}
 			#submitSearch {
@@ -98,9 +76,12 @@
 				height: 100%;
 				width: 40px;
 				right: 20px;
-				background: $colorBlue;
 				cursor: pointer;
 				z-index: 10;
+
+				@include css4 {
+					background: var(--joker02);
+				};
 				
 				&:hover {
 					&:after {
@@ -112,16 +93,23 @@
 					position: absolute;
 					border-width: 8px 8px 8px 0;
 					border-style: solid solid solid none;
-					border-color: transparent $colorBlue transparent;
 					top: 12px;
 					left: -6px;
+
+					@include css4 {
+						border-color: transparent var(--joker02) transparent;
+						color: var(--darkGray);
+					};
 				}
 				&:after {
 					content: '\f002';
 					font: 1.5em FontAwesome;
-					color: $colorLightGray;
 					top: 0;
 					left: 0;
+
+					@include css4 {
+						color: var(--lightColor);
+					};
 					
 					@include transition(color, 200ms, linear);
 				}
@@ -177,10 +165,13 @@
 					background: #ffffff;
 					
 					.menuSpan {
-						color: $colorGray;
-						
+						@include css4 {
+							color: var(--gray);
+						};
 						&:after {
-							color: $colorGray;
+							@include css4 {
+								color: var(--gray);
+							};
 						}
 					}
 					#subMenu {
@@ -189,18 +180,23 @@
 				}
 				.menuSpan {
 					font-size: 1.8em;
-					color: $colorLightGray;
 					cursor: pointer;
 					display: block;
 					padding: 0 15px;
 
+					@include css4 {
+						color: var(--lightGray);
+					};
 					&:after {
 						content: '\f0d7';
 						font: 1em FontAwesome;
-						color: $colorLightGray;
 						position: absolute;
 						bottom: 0;
 						right: 0;
+
+						@include css4 {
+							color: var(--lightGray);
+						};
 						
 						@include transform(rotate(-45deg));
 					}
@@ -218,28 +214,34 @@
 					overflow: hidden;
                     
 					.subMenuItem {
-                        height: 30px;
-                        line-height: 30px;
-                        width: 100%;
-                        
-                        a {
-                            background: #ffffff;
-                            display: block;
-                            display: block;
-                            font-size: 2em;
-                            color: $colorGray;
-                            text-decoration: none;
-                            height: 100%;
-                            padding-left: 10px;
-                            
-                            @include transition (all, 200ms, linear);
-                            
-                            &:hover {
-                                background: $colorBlue;
-                                color: #f1f1f1;
-                            }
-                        }
-                    }
+						height: 30px;
+						line-height: 30px;
+						width: 100%;
+						
+						a {
+							background: #ffffff;
+							display: block;
+							display: block;
+							font-size: 2em;
+							text-decoration: none;
+							height: 100%;
+							padding-left: 10px;
+
+							@include css4 {
+								color: var(--gray);
+							};
+							
+							@include transition (all, 200ms, linear);
+							
+							&:hover {
+								color: #f1f1f1;
+
+								@include css4 {
+									color: var(--joker02);
+								};
+							}
+						}
+					}
 				}
 			}
 		}
@@ -416,10 +418,13 @@
 			height: 40px;
 			max-width: 800px;
 			width: 100%;
-			color: $colorLightGray;
 			margin: 0 auto;
 			display: flex;
 			justify-content: space-between;
+
+			@include css4 {
+				color: var(--lightGray);
+			};
 			
 			@include transition(all, 300ms, ease);
 			
@@ -435,7 +440,9 @@
 					}
 					&:hover {
 						&:before {
-							color: $colorBlue;
+							@include css4{
+								color: var(--joker02);
+							};
 						}
 					}
 				}
@@ -566,17 +573,26 @@
 						#currentVideoTime {
 							position: relative;
 							font-size: 1.5em;
-							color: $colorLightGray;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
 						}
 						#timeSeparator {
 							position: relative;
 							font-size: 1.5em;
-							color: $colorLightGray;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
 						}
 						#totalVideoTime {
 							position: relative;
 							font-size: 1.5em;
-							color: $colorLightGray;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
 						}
 					}
 				}
@@ -704,10 +720,13 @@
 					&:after {
 						content: '\f0c9';
 						font: 3em FontAwesome;
-						color: $colorLightGray;
 						position: absolute;
 						left: 7px;
 						top: 5px;
+
+						@include css4 {
+							color: var(--lightGray);
+						};
 					}
 					&:hover {
 						+ #episodesDiv {
@@ -716,7 +735,6 @@
 					}
 				}
 				#episodesDiv {
-					background: $colorGray;
 					//background: rgba(0,0,0,.5);
 					position: absolute;
 					bottom: 40px;
@@ -725,6 +743,10 @@
 					height: 0;
 					overflow: hidden;
 					display: flex;
+
+					@include css4 {
+						color: var(--gray);
+					};
 
 					@include transition(all, 200ms, linear);
 
@@ -763,10 +785,13 @@
 							&:after {
 								content: '\f105';
 								font: 2em FontAwesome;
-								color: $colorLightGray;
 								position: absolute;
 								right: 10px;
 								top: 10px;
+
+								@include css4 {
+									color: var(--lightGray);
+								};
 							}
 							.seasonSpan {
 								position: relative;
@@ -774,8 +799,11 @@
 								height: 100%;
 								width: 95%;
 								font: 1.5em Calibri, sans-serif;
-								color: $colorLightGray;
 								line-height: 40px;
+
+								@include css4 {
+									color: var(--lightGray);
+								};
 							}
 						}
 					}
@@ -790,13 +818,16 @@
 						@include transition(width, 200ms, linear);
 
 						#episodeSelectHeader {
-							background: $colorGray;
 							border-bottom: 1px solid #262626;
 							position: relative;
 							width: 100%;
 							height: 40px;
 							z-index: 95;
 							display: flex;
+
+							@include css4 {
+								background: var(--gray);
+							};
 
 							#openSelector {
 								flex: 0 0 auto;
@@ -822,10 +853,13 @@
 									&:before {
 										content: '\f104';
 										font: 2em FontAwesome;
-										color: $colorLightGray;
 										position: absolute;
 										left: 15px;
 										top: 10px;
+
+										@include css4 {
+											color: var(--lightGray);
+										};
 									}
 								}
 							}
@@ -844,9 +878,12 @@
 									width: 100%;
 									display: block;
 									font: 1.4em calibri, sans-serif;
-									color: $colorLightGray;
 									text-align: center;
 									line-height: 45px;
+
+									@include css4 {
+										color: var(--lightGray);
+									};
 								}
 							}
 							.seasonNameHide {
@@ -900,7 +937,10 @@
 										.episodeTitle,
 										.episodeSynopsis {
 											font: 1.5em Calibri, sans-serif;
-											color: $colorLightGray;
+
+											@include css4 {
+												color: var(--lightGray);
+											};
 										}
 									}
 								}
@@ -920,11 +960,14 @@
 									&:after {
 										content: '\f107';
 										font: 2em FontAwesome;
-										color: $colorLightGray;
 										position: absolute;
 										right: 10px;
 										top: 10px;
 										opacity: 0;
+
+										@include css4 {
+											color: var(--lightGray);
+										};
 
 										@include transition(all, 200ms, linear);
 									}
@@ -978,7 +1021,9 @@
 											a {
 												&:hover {
 													&:after {
-														color: $colorBlue;
+														@include css4 {
+															color: var(--joker02);
+														};
 													}
 												}
 												&:after {
@@ -1042,8 +1087,10 @@
 			@include transition(all, 400ms, ease);
 			
 			&:hover {
-				border-bottom: 3px solid $colorBlue;
-				background: #363636;
+				@include css4 {
+					border-bottom: 3px solid var(--joker02);
+					background: #363636;
+				};
 			}
 			&:before {
 				content: '\f090';
@@ -1072,10 +1119,13 @@
 						cursor: pointer;
 						
 						#userName {
-							color: $colorGray;
-							
+							@include css4 {
+								color: var(--gray);
+							};
 							&:after {
-								color: $colorGray;
+								@include css4 {
+									color: var(--gray);
+								};
 							}
 						}
 					}
@@ -1086,13 +1136,15 @@
 				width: 100%;
 				
 				#userLink {
-					background: $colorGray;
 					height: 100%;
 					width: 100%;
 					display: flex;
 					align-items: center;
 					justify-content: space-around;
-					
+
+					@include css4 {
+						background: var(--gray);
+					};
 					#userImg {
 						border-radius: 50%;
 						position: relative;
@@ -1102,17 +1154,22 @@
 					#userName {
 						position: relative;
 						font-size: 2em;
-						color: $colorLightGray;
 						height: 100%;
 						line-height: 57px;
 						display: flex;
 						align-items: flex-end;
-						
+
+						@include css4 {
+							color: var(--lightGray);
+						};
 						&:after {
 							content: '\f0d7';
 							font: 1em FontAwesome;
-							color: $colorLightGray;
 							position: relative;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
 							
 							@include transform(rotate(-45deg));
 						}
@@ -1171,15 +1228,20 @@
 							height: 100%;
 							text-decoration: none;
 							font-size: 1.5em;
-							color: $colorGray;
 							display: flex;
+
+							@include css4 {
+								color: var(--gray);
+							};
 							
 							@include transition(all, 300ms, ease);
 							
 							&:hover {
-								background: $colorBlue;
 								color: #ffffff;
-								
+
+								@include css4 {
+									color: var(--joker02);
+								};
 								&:before {
 									color: #f1f1f1;
 								}
@@ -1187,11 +1249,14 @@
 							&:before {
 								position: relative;
 								font-family: FontAwesome;
-                                font-size: 1.7em;
-								color: $colorGray;
+                                		font-size: 1.7em;
 								width: 30%;
 								top: 8px;
 								left: 12px;
+
+								@include css4 {
+									color: var(--gray);
+								};
 								
 								@include transition(color, 300ms, ease);
 							}
@@ -1224,20 +1289,24 @@
 		.contentDivHeader {
 			position: relative;
 			font-size: 2em;
-			color: $colorGray;
 			padding-left: 50px;
 			height: 25px;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			
+
+			@include css4 {
+				color: var(--gray);
+			};
 			> span {
 				position: relative;
 				
 				> a {
 					text-decoration: none;
-					color: $colorGray;
-					
+
+					@include css4 {
+						color: var(--gray);
+					};
 					&:hover {
 						text-decoration: underline;
 					}
@@ -1275,8 +1344,9 @@
 					
 					&:hover {
 						.contentLink {
-							border: 5px solid $colorBlue;
-							
+							@include css4 {
+								border: 5px solid var(--joker02);
+							};
 							.contentFigure {
 								figcaption {
 									opacity: 1;
@@ -1331,37 +1401,46 @@
 										@include transform(scale(1.2));
 
 										&:before {
-											color: $colorBlue;
+											@include css4 {
+												color: var(--joker02);
+											};
 										}
 									}
 									&:before {
 										border-radius: 50%;
 										content: '\f144';
 										font: 7em FontAwesome;
-										color: $colorLightGray;
 										position: absolute;
 										top: -5px;
 										left: 0;
 										z-index: 95;
 
+										@include css4 {
+											color: var(--lightGray);
+										};
 										@include transition(all, 200ms, linear);
 									}
 								}
 								.figLink {
 									border-radius: 3px;
-									background: $colorLightGray;
-									color: $colorBlue;
 									bottom: 10px;
 									left: 45px;
 									width: 60px;
 									height: 20px;
 									font-size: 1.5em;
 
+									@include css4 {
+										background: var(--lightGray);
+										color: var(--joker02);
+									};
+
 									@include transition(all, 200ms, linear);
 
 									&:hover {
-										background: $colorBlue;
-										color: $colorLightGray;
+										@include css4 {
+											background: var(--joker02);
+											color: var(--lightGray);
+										};
 									}
 									
 									.figSpan {
@@ -1384,7 +1463,10 @@
 									
 									&:after {
 										font: 2em FontAwesome;
-										color: $colorLightGray;
+
+										@include css4 {
+											color: var(--lightGray);
+										};
 									}
 								}
 								.addWatchList {
@@ -1512,30 +1594,38 @@
                 .addWatchList,
                 .removeWatchList {
                     border-radius: 4px;
-                    background: $colorGray;
                     position: absolute;
                     top: 250px;
                     right: 150px;
                     height: 40px;
                     width: 40px;
                     z-index: 99;
-                    color: $colorLightGray;
                     font-size: 1.5em;
                     text-align: center;
                     line-height: 38px;
                     cursor: pointer;
+
+				@include css4 {
+					background: var(--gray);
+					color: var(--lightGray);
+				};
                     
                     @include transition(all, 300ms, linear);
                     
                     &:hover {
-                        background: $colorBlue;
+                        @include css4 {
+						background: var(--joker02);
+					};
                     }
                     &:after {
                         font: 2em FontAwesome;
-                        color: $colorLightGray;
                         position: absolute;
                         left: 7px;
                         top: 4px;
+
+				    @include css4 {
+						color: var(--lightGray);
+					};
                     }
                 }
                 .addWatchList {
@@ -1555,7 +1645,6 @@
                 }
                 .sliderLink {
                     border-radius: 4px;
-                    background: $colorGray;
                     position: absolute;
                     top: 250px;
                     right: 50px;
@@ -1564,21 +1653,30 @@
                     width: 80px;
                     z-index: 99;
                     text-decoration: none;
+
+				@include css4 {
+					background: var(--gray);
+				};
                     
                     @include transition(all, 300ms, linear);
                     
                     &:hover {
-                        background: $colorBlue;
+                        @include css4 {
+						background: var(--joker02);
+					};
                     }
                     .linkSpan {
                         display: block;
                         position: relative;
-                        color: $colorLightGray;
                         width: 100%;
                         height: 100%;
                         font-size: 1.5em;
                         text-align: center;
                         line-height: 38px;
+
+				    @include css4 {
+						color: var(--lightGray);
+					};
                     }
                 }
                 img {
@@ -1609,10 +1707,13 @@
             
             &:after {
                 font: 10em FontAwesome;
-                color: $colorLightGray;
                 text-shadow: 2px 2px 2px rgba(0,0,0,.5);
                 position: absolute;
                 top: -20px;
+
+			 @include css4 {
+				 color: var(--lightGray);
+			 };
             }
             &:hover {
                 @include transform(scale(1.3));
@@ -1635,13 +1736,13 @@
             }
         }
         #changeDiv {
-            position: absolute;
-            bottom: 15px;
-            height: 20px;
-            width: 50%;
-            margin: 0 25%;
-            text-align: center;
-            text-shadow: 2px 2px 2px rgba(0,0,0,.5);
+			position: absolute;
+			bottom: 15px;
+			height: 20px;
+			width: 50%;
+			margin: 0 25%;
+			text-align: center;
+			text-shadow: 2px 2px 2px rgba(0,0,0,.5);
 			display: flex;
 			justify-content: center;
             
@@ -1653,7 +1754,7 @@
                 cursor: pointer;
                 margin: 0 2px;
                 
-                &:after {
+               &:after {
                     content: '\f111';
                     font: 1.8em FontAwesome;
                     position: absolute;
@@ -1662,13 +1763,15 @@
                 }
             }
             .changeHide {
-                &:after {
-                    color: $colorLightGray;
-                }
+               &:after {
+                    @include css4 {
+					color: var(--lightGray);
+				};
+               }
             }
             .changeShow {
                 &:after {
-                    color: $colorBlue;color: -webkit-linear-gradient(45deg, $colorBlue 0%,#2cafec 31%,#2cafec 31%,#2cafec 50%,$colorLightGray 100%);
+                    color: var(--joker02);color: -webkit-linear-gradient(45deg, var(--joker02) 0%,#2cafec 31%,#2cafec 31%,#2cafec 50%,var(--lightGray) 100%);
                 }
             }
         }

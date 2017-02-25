@@ -39,3 +39,53 @@
 	font-family: 'Agency';
 	src: url($fontDir + 'agencyb.ttf');
 }
+
+::-webkit-scrollbar {
+    //width: 1em;
+    //height: 1em;
+
+    &-track {
+        background-color: #d6d6d6;
+    }
+    &-thumb {
+        background-color: #b2b6b5;
+
+        &:hover {
+            background-color: #818181;
+        }
+    }
+}
+html {
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: Calibri, sans-serif;
+        box-sizing: border-box;
+    }
+    body {
+        font-size: 62.5%;
+        background-color: #ffffff;
+
+        ::selection {
+            background-color:#d6d6d6;
+            color: #2cafec;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+			//height: 100%;
+			//width: 100%;
+
+            @include css4 {
+                color: var(--gray);
+            };
+        }
+        li {
+            list-style: none;
+        }
+        input {
+            outline: none;
+			border: none;
+        }
+    }
+}

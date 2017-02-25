@@ -13,16 +13,21 @@
 			
 			.userButtonDiv {
 				border-radius: 5px;
-				background: $colorGray;
 				position: absolute;
 				right: 5%;
 				bottom: 25px;
 				height: 40px;
+
+				@include css4 {
+					background: var(--gray);
+				};
 				
 				@include transition(all, 300ms, linear);
 				
 				&:hover {
-					background: $colorBlue;
+					@include css4 {
+						background: var(--blue);
+					};
 				}
 				.buttonSpan {
 					box-sizing: border-box;
@@ -35,10 +40,13 @@
 					font-size: 2em;
 					display: block;
 					text-decoration: none;
-					color: $colorLightGray;
 					line-height: 28px;
 					padding: 5px;
 					cursor: pointer;
+
+					@include css4 {
+						color: var(--lightGray);
+					};
 				}
 			}
 			#userNameDiv {
@@ -49,9 +57,12 @@
 				#userName {
 					text-shadow: 5px 5px 5px rgba(0,0,0,.9);
 					font-size: 3em;
-					color: $colorLightGray;
 					width: 100%;
 					height: 100%;
+
+					@include css4 {
+						color: var(--lightGray);
+					};
 				}
 			}
 			.userNameDiv {
@@ -201,8 +212,11 @@
 							height: 100%;
 							width: 100%;
 							font: 2em Calibri, sans-serif;
-							color: $colorGray;
 							display: block;
+
+							@include css4 {
+								color: var(--gray);
+							};
 						}
 					}
 				}

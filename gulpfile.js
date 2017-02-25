@@ -6,10 +6,24 @@ var watch = require('watch');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync');
 
+//Files
+
+var 
+        styles = ['css/sass/userSite/userStyle.scss', 'css/sass/adminSite/adminStyle.scss'],
+
+        scripts = ['javascript/userScript.js', 'javascript/adminScript.js'];
+
+        userStyle = styles[0],
+        adminStyle = styles[1],
+
+        userScript = scripts[0],
+        adminScript = scripts[1]
+;
+
 //Run this task before the commit and mainly, before the push
 
 gulp.task('prod', function() {
-    return gulp.src(['css/sass/userSite/userStyle.scss', 'css/sass/adminSite/adminStyle.scss'])
+    return gulp.src(styles)
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(gulp.dest('css/'));
 });
@@ -34,7 +48,7 @@ gulp.task('bower', function() {
 //Sass outputs: expanded, compact, compressed
 
 gulp.task('sass', function() {
-    return gulp.src(['css/sass/userSite/userStyle.scss', 'css/sass/adminSite/adminStyle.scss'])
+    return gulp.src(userStyle)
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
     .pipe(gulp.dest('css/'));
 });
@@ -42,12 +56,12 @@ gulp.task('sass', function() {
 //Watch all files including all that are imported, than complile using 'sass' task
 
 gulp.task('watch', function() {
-    gulp.watch('./css/sass/**/*.scss', ['sass']);
+    gulp.watch('css/sass/**/*.scss', ['sass']);
 });
 
 gulp.task('sync', function() {
     browserSync({
-        proxy: '127.0.0.1',
+        proxy: '127.0.0.1/joker',
         port: 6767,
         open: true,
         notify: false

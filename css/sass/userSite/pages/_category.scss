@@ -11,13 +11,18 @@
 			#categoryResult {
 				position: relative;
 				font-size: 1.3em;
-				color: $colorGray;
 				font-weight: normal;
-				
+
+				@include css4 {
+					color: var(--gray);
+				};
 				.searchSpan {
-					color: $colorBlue;
 					font-size: 1.2em;
 					font-weight: bolder;
+
+					@include css4 {
+						color: var(--blue);
+					};
 				}
 			}
 		}

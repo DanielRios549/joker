@@ -62,24 +62,34 @@
 						}
 					}
 					.menuLink {
-						background-color: #ffffff;
 						height: 50px;
 						width: 100%;
-						
+
+						@include css4 {
+							background-color: var(--fontColor);
+						};
 						&:before {
-							color: $colorGray;
+							@include css4 {
+								color: var(--gray);
+							};
 						}
 						.menuLinkSpan {
-							color: $colorGray;
+							@include css4 {
+								color: var(--gray);
+							};
 						}
 					}
 					.menuLinkSelected {
-						background-color: $colorBlue;
 						height: 50px;
 						width: 100%;
-						
+
+						@include css4 {
+							background-color: var(--blue);
+						};
 						&:before {
-							color: #ffffff;
+							@include css4 {
+								color: var(--fontColor);
+							};
 						}
 						&:after{
 							content: "";
@@ -89,10 +99,15 @@
 							margin-top: -2.5em;
 							border-top: 2.5em solid transparent;
 							border-bottom: 2.5em solid transparent;
-							border-left: 2em solid $colorBlue;
+
+							@include css4 {
+								border-left: 2em solid var(--blue);
+							};
 						}
 						.menuLinkSpan {
-							color: #f6f6f6;
+							@include css4 {
+								color: var(--gray);
+							};
 						}
 					}
 				}
@@ -112,20 +127,24 @@
 			width: 100%;
 		}
 		#settingsOptions {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-			background: $colorLightGray;
 			position: relative;
 			top: 10px;
 			width: 100%;
-			
+
+			@include css4 {
+				border-top: 1px solid var(--black);
+				border-bottom: 1px solid var(--black);
+				background: var(--lightGray);
+			};
 			.linkInfo {
-				background: #ffffff;
 				padding: 10px;
 				margin-bottom: 1px;
 				display: flex;
 				justify-content: space-between;
-				
+
+				@include css4 {
+					background: var(--fontColor);
+				};
 				&:after {
 					position: absolute;
 					right: 50px;
@@ -137,7 +156,9 @@
 				}
 				&:hover {
 					&:after {
-						color: #2facec;
+						@include css4 {
+							color: var(--blue);
+						};
 					}
 					.linkInfoSpan {
 						text-decoration: underline;
@@ -146,36 +167,50 @@
 				.linkInfoName {
 					font-size: 1.5em;
 					font-weight: bold;
-					color: $colorGray;
 					width: 100%;
 					order: 1;
+
+					@include css4 {
+						color: var(--gray);
+					};
 				}
 				.linkUserInfo {
 					position: relative;
 					font-size: 1.5em;
-					color: #969696;
 					width: 100%;
 					order: 2;
+
+					@include css4 {
+						color: #969696;
+					};
 				}
 				.linkInfoSpan {
 					font-size: 1.5em;
-					color: $colorBlue;
 					width: 100%;
 					order: 4;
 					text-align: right;
+
+					@include css4 {
+						color: var(--blue);
+					};
 				}
 			}
 			#linkInfo {
 				background: #ffffff;
 			}
 			#linkInfoEdited {
-				background: $colorBlue;
-				
+				@include css4 {
+					background: var(--blue);
+				};
 				.linkInfoName {
-					color: #f6f6f6;
+					@include css4 {
+						color: var(--gray);
+					};
 				}
 				.linkInfoSpan {
-					color: #f6f6f6;
+					@include css4 {
+						color: var(--gray);
+					};
 				}
 			}
 			.section {
@@ -183,10 +218,12 @@
 
 				.formSettings {
 					position: relative;
-					border-bottom: 1px solid $colorLightGray;
-					background: #ffffff;
 					padding: 10px;
-					
+
+					@include css4 {
+						border-bottom: 1px solid var(--lightGray);
+						background: var(--fontColor);
+					};
 					.fieldSettings {
 						border: none;
 						
@@ -194,8 +231,11 @@
 							position: relative;
 							font-size: 2em;
 							font-weight: bold;
-							color: $colorGray;
 							width: 100%;
+
+							@include css4 {
+								color: var(--gray);
+							};
 						}
 						.inputsAera {
 							position: relative;
@@ -206,24 +246,32 @@
 							.inputLabel {
 								font-size: 1.5em;
 								font-weight: bold;
-								color: $colorGray;
 								text-align: left;
+
+								@include css4 {
+									color: var(--gray);
+								};
 							}
 							.setInput {
 								outline: none;
-								border: 2px solid $colorLightGray;
 								font-size: 1.5em;
-								color: $colorGray;
 								width: 100%;
 								height: 30px;
 								padding: 10px;
+
+								@include css4 {
+									border: 2px solid var(--lightGray);
+									color: var(--gray);
+								};
 								
 								@include transition(border, 200ms, linear);
 								
 								&:hover, 
 								&:focus,
 								&:active {
-									border-color: $colorBlue;
+									@include css4 {
+										border-color: var(--blue);
+									};
 								}
 							}
 						}
@@ -241,28 +289,36 @@
 							@include transition(all, 200ms, linear);
 						}
 						.setSubmit {
-							border: 2px solid $colorBlue;
 							outline: none;
-							background: $colorBlue;
-							color: $colorLightGray;
 							cursor: pointer;
 							margin-right: 10px;
-							
+
+							@include css4 {
+								border: 2px solid var(--blue);
+								background: var(--blue);
+								color: var(--lightGray);
+							};
 							&:hover,
 							&:active {
-								border-color: $colorGray;
+								@include css4 {
+									border-color: var(--gray);
+								};
 							}
 						}
 						.linkBack {
-							border: 2px solid $colorLightGray;
-							background: $colorLightGray;
 							text-decoration: none;
 							text-align: center;
-							color: $colorGray;
-							
+
+							@include css4 {
+								border: 2px solid var(--lightGray);
+								background: var(--lightGray);
+								color: var(--gray);
+							};
 							&:hover,
 							&:active {
-								border-color: $colorBlue;
+								@include css4 {
+									border-color: var(--blue);
+								};
 							}
 						}
 					}

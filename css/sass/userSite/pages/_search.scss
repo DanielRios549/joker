@@ -7,8 +7,11 @@
 		.otherSpan {
 			position: relative;
 			font: 2em Calibri, sans-serif;
-			color: $colorBlue;
 			line-height: 35px;
+
+			@include css4 {
+				color: var(--blue);
+			};
 		}
 		.otherUl {
 			position: relative;
@@ -16,18 +19,24 @@
 			line-height: 40px;
 
 			.otherItem {
-				border-right: 1px solid $colorGray;
 				padding: 0 10px;
 
+				@include css4 {
+					border-right: 1px solid var(--gray);
+				};
 				&:last-child {
 					border-right: none;
 				}
 				.itemSpan {
 					font: 2em Calibri, sans-serif;
-					color: $colorBlack;
-
+					
+					@include css4 {
+						color: var(--black);
+					};
 					&:hover {
-						color: $colorBlue;
+						@include css4 {
+							color: var(--blue);
+						};
 					}
 				}
 			}
@@ -45,13 +54,18 @@
 			#searchResult {
 				position: relative;
 				font-size: 1.3em;
-				color: $colorGray;
 				font-weight: normal;
-				
+
+				@include css4 {
+					color: var(--gray);
+				};
 				.searchSpan {
-					color: $colorBlue;
 					font-size: 1.2em;
 					font-weight: bolder;
+
+					@include css4 {
+						color: var(--blue);
+					};
 				}
 			}
 		}

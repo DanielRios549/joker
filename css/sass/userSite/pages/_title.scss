@@ -53,9 +53,12 @@
 		#infoHeader {
 			position: relative;
 			font-size: 2.5em;
-			color: $colorLightGray;
 			font-weight: bold;
 			height: 30px;
+
+			@include css4 {
+				color: var(--lightGray);
+			};
 		}
 		#tabHeader {
 			background: transparent;
@@ -84,17 +87,23 @@
 				
 				&:after {
 					content: '';
-					background: $colorBlue;
 					position: absolute;
 					left: 0;
 					bottom: 0;
 					width: 100%;
+
+					@include css4 {
+						background: var(--blue);
+					};
 					
 					@include transition(height, 200ms, linear);
 				}
 				span {
 					font-size: 1.5em;
-					color: $colorLightGray;
+
+					@include css4 {
+						color: var(--lightGray);
+					};
 				}
 			}
 			.tab {
@@ -109,8 +118,11 @@
 			}
 			.tabSelected {
 				&:after {
-					background: $colorBlue;
 					height: 4px;
+
+					@include css4 {
+						background: var(--blue);
+					};
 				}
 			}
 		}
@@ -133,10 +145,12 @@
 			.contentHide {
 				height: 100%;
 				width: 100%;
-				color: $colorGray;
 				display: flex;
 				flex-flow: row wrap;
 
+				@include css4 {
+					color: var(--gray);
+				};
 				#contentInfo {
 					position: relative;
 					width: 100%;
@@ -153,34 +167,52 @@
 						#age16,
 						#age18 {
 							border-radius: 4px;
-							color: $colorWhite;
 							min-width: 17px;
 							padding: 0 5px;
+
+							@include css4 {
+								color: var(--fontColor);
+							};
 						}
 						#ageFree {
-							background: #59d224;
+							@include css4 {
+								background: var(--ageFree);
+							};
 						}
 						#age10 {
-							background: $colorBlue;
+							@include css4 {
+								background: var(--age10);
+							};
 						}
 						#age12 {
-							background: #fff722;
+							@include css4 {
+								background: var(--age12);
+							};
 						}
 						#age14 {
-							background: #ff9f22;
+							@include css4 {
+								background: var(--age13);
+							};
 						}
 						#age16 {
-							background: #ff0000;
+							@include css4 {
+								background: var(--age16);
+							};
 						}
 						#age18 {
-							background: #000000;
+							@include css4 {
+								background: var(--age18);
+							};
 						}
 						.infoSpan,
 						.infoLink {
 							font-size: 1.5em;
-							color: $colorLightGray;
 							font-weight: bold;
 							margin-right: 15px;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
 						}
 						.infoLink {
 							&:hover {
@@ -198,8 +230,11 @@
 					
 					#synopsisSpan {
 						font: 2em Calibri, sans-serif;
-						color: $colorLightGray;
 						text-shadow: 2px 2px 2px rbga(0,0,0,.5);
+
+						@include css4 {
+							color: var(--lightGray);
+						};
 					}
 				}
 				#contentSortcuts {
@@ -258,12 +293,15 @@
 						border-radius: 3px;
 					}
 					.contentBtn {
-						background: $colorButtonGray;
 						position: relative;
 						height: 100%;
 						width: 100px;
 						margin-right: 10px;
 						cursor: pointer;
+
+						@include css4 {
+							background: var(--buttonGray);
+						};
 						
 						@include transition(all, 200ms, linear);
 						
@@ -271,7 +309,10 @@
 						a:after {
 							position: absolute;
 							font-family: FontAwesome;
-							color: $colorWhite;
+
+							@include css4 {
+								color: var(--white);
+							};
 							
 							@include transition(color, 300ms, linear);
 						}
@@ -282,10 +323,14 @@
 							//top: -10%;
 							
 							&:after {
-								color: $colorGray;
+								@include css4 {
+									color: var(--gray);
+								};
 							}
 							.btnSpan {
-								color: #f1f1f1;
+								@include css4 {
+									color: var(--fontColor);
+								};
 							}
 						}
 						&:active {
@@ -299,13 +344,18 @@
 							width: 100%;
 							text-align: center;
 							font-size: 1.5em;
-							color: $colorButtonGray;
 							line-height: 20px;
+
+							@include css4 {
+								color: var(--buttonGray);
+							};
 							
 							@include transition(color, 200ms, linear);
 							
 							&:hover {
-								color: #f1f1f1;
+								@include css4 {
+									color: var(--fontColor);
+								};
 							}
 						}
 					}
@@ -332,54 +382,71 @@
 							
 							#seasonSpan {
 								font-size: 3em;
-								color: $colorLightGray;
 								text-shadow: 2px 2px 2px rgba(0,0,0,.5);
+
+								@include css4 {
+									color: var(--lightGray);
+								};
 							}
 						}
 						.seasonSelect {
-							background: $colorBlue;
 							height: 20px;
 
+							@include css4 {
+								background: var(--blue);
+							};
 							#seasonSimple {
 								position: relative;
 								font: 2em Calibri, sans-serif;
-								color: $colorWhite;
 								text-align: center;
 								margin: 0 auto;
 								height: 100%;
 								width: 20px;
 								display: block;
 								line-height: 20px;
+
+								@include css4 {
+									color: var(--white);
+								};
 							}
 							.seasonHide,
 							.seasonShow {
 								.seasonSpan {
-									color: $colorLightGray;
-									
+									@include css4 {
+										color: var(--lightGray);
+									};
 									&:after {
 										content: '\f107';
 										font: 1em FontAwesome;
-										color: $colorLightGray;
 										position: absolute;
 										top: 2px;
 										right: 5px;
+
+										@include css4 {
+											color: var(--lightGray);
+										};
 									}
 								}
 							}
 						}
 						.seasonSelectOpen {
-							background: $colorWhite;
-							
+							@include css4 {
+								background: var(--white);
+							};
 							.seasonHide,
 							.seasonShow {
 								.seasonSpan {
-									color: $colorGray;
+									@include css4 {
+										color: var(--gray);
+									};
 
 									@include transition(all, 200ms, linear);
 									
 									&:hover {
-										background: $colorBlue;
-										color: $colorLightGray;
+										@include css4 {
+											background: var(--blue);
+											color: var(--lightGray);
+										};
 									}
 								}
 							}
@@ -493,17 +560,23 @@
 
 										&:hover {
 											&:before {
-												color: $colorBlue;												
+												@include css4 {
+													color: var(--blue);
+												};
+
 												@include transform(scale(1.2));
 											}
 										}
 										&:before {
 											content: '\f144';
 											font: 6em FontAwesome;
-											color: $colorLightGray;
 											position: absolute;
 											top: 20px;
 											left: 74px;
+
+											@include css4 {
+												color: var(--lightGray);
+											};
 
 											@include transition(all, 200ms, linear);
 										}
@@ -511,17 +584,20 @@
 								}
 								.episodeNumber {
 									border-radius: 50%;
-									background: $colorGray;
 									position: relative;
 									top: -40px;
 									left: 10px;
 									font: bold 2em Calibri, sans-serif;
-									color: $colorLightGray;
 									display: block;
 									height: 25px;
 									width: 25px;
 									text-align: center;
 									line-height: 23px;
+
+									@include css4 {
+										background: var(--gray);
+										color: var(--lightGray);
+									};
 								}
 								.episodeTitle,
 								.episodeSynopsis {
@@ -529,8 +605,11 @@
 									top: -20px;
 									left: 0;
 									font-family: Calibri, sans-serif;
-									color: $colorLightGray;
 									text-shadow: 5px 5px 4px rgba(0,0,0,.7);
+
+									@include css4 {
+										color: var(--lightGray);
+									};
 								}
 								.episodeTitle {
 									font-size: 2em;
@@ -556,17 +635,21 @@
 							outline: none;
 							border-radius: 3px;
 							border: 3px solid transparent;
-							background: $colorDarkGray;
 							position: relative;
 							width: 100% !important;
 							max-height: 200px;
-							color: $colorLightGray;
 							font: 1.5em Clibri, sans-serif;
 							padding: 5px 5px 15px 5px;
 							text-align: left;
 
+							@include css4 {
+								background: var(--darkGray);
+								color: var(--lightGray);
+							};
 							&:focus {
-								border: 3px solid $colorBlue;
+								@include css4 {
+									border: 3px solid var(--blue);
+								};
 							}
 						}
 						#buttonsDiv {
@@ -577,7 +660,6 @@
 
 							#commentSubmit {
 								--width: 80px;
-								background: $colorLightGray;
 								border-radius: 3px;
 								border: none;
 								outline: none;
@@ -587,9 +669,13 @@
 								height: 100%;
 								cursor: pointer;
 								font: 1.5em Calibri, sans-serif;
-								color: $colorDarkGray;
 								line-height: 30px;
 								text-align: center;
+								
+								@include css4 {
+									background: var(--lightGray);
+									color: var(--darkGray);
+								};
 							}
 							#commentSubmit[disabled] {
 								opacity: 0.5;
@@ -624,7 +710,10 @@
 									top: 10px;
 									left: 10px;
 									font: 2.5em Calibri, sans-serif;
-									color: $colorLightGray;
+
+									@include css4 {
+										color: var(--lightGray);
+									};
 								}
 							}
 							#commentOptionsDiv {
@@ -644,7 +733,6 @@
 									}
 								}
 								.button {
-									background: $colorButtonGray; 
 									border-radius: 4px;
 									position: relative;
 									height: 40px;
@@ -652,13 +740,20 @@
 									margin-left: 10px;
 									cursor: pointer;
 
+									@include css4 {
+										background: var(--buttonGray);
+									};
+
 									@include transition(all, 400ms, linear);
 
 									&:hover {
-										background: $colorWhite;
-
+										@include css4 {
+											background: var(--white);
+										};
 										&:after {
-											color: $colorDarkGray;
+											@include css4 {
+												color: var(--darkGray);
+											};
 										}
 									}
 									&:after {
@@ -666,7 +761,10 @@
 										top: 5px;
 										left: 8px;
 										font: 3em FontAwesome;
-										color: $colorWhite;
+
+										@include css4 {
+											color: var(--white);
+										};
 
 										@include transition(all, 400ms, linear);
 									}
@@ -684,7 +782,10 @@
 								left: 5px;
 								top: 2px;
 								font: 1.5em FontAwesome;
-								color: $colorLightGray;
+
+								@include css4 {
+									color: var(--lightGray);
+								};
 							}
 						}
 						.replyHide {
@@ -694,7 +795,10 @@
 
 							.spanHide {
 								font: 1.5em Calibri, sans-serif;
-								color: $colorLightGray;
+
+								@include css4 {
+									color: var(--lightGray);
+								};
 							}
 						}
 						.noHide {
@@ -742,9 +846,11 @@
 								.replyName {
 									position: relative;
 									font: 2em Calibri, sans-serif;
-									color: $colorBlue;
 									text-decoration: none;
 
+									@include css4 {
+										color: var(--blue);
+									};
 									&:hover {
 										text-decoration: underline;
 									}
@@ -755,10 +861,13 @@
 									top: 5px;
 									left: 5px;
 									font: 2em Calibri, sans-serif;
-									color: $colorLightGray;
 									text-align: left;
 									width: 80%;
 									text-indent: -35px;
+
+									@include css4 {
+										color: var(--lightGray);
+									};
 								}
 							}
 						}
@@ -794,7 +903,10 @@
 					.alert {
 						text-shadow: 2px 2px 2px rgba(0,0,0,.5);
 						font: 4em Calibri, sans-serif;
-						color: $colorLightGray;
+
+						@include css4 {
+							color: var(--lightGray);
+						};
 					}
 				}
 			}
