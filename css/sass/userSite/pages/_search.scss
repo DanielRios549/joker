@@ -10,7 +10,7 @@
 			line-height: 35px;
 
 			@include css4 {
-				color: var(--blue);
+				color: var(--joker02);
 			};
 		}
 		.otherUl {
@@ -31,11 +31,11 @@
 					font: 2em Calibri, sans-serif;
 					
 					@include css4 {
-						color: var(--black);
+						color: var(--fontColor);
 					};
 					&:hover {
 						@include css4 {
-							color: var(--blue);
+							color: var(--joker02);
 						};
 					}
 				}
@@ -64,7 +64,7 @@
 					font-weight: bolder;
 
 					@include css4 {
-						color: var(--blue);
+						color: var(--fontColor);
 					};
 				}
 			}

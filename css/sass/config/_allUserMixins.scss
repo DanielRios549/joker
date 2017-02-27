@@ -44,7 +44,6 @@
 			
 			#searchInput {
 				position: absolute;
-				background: #606060;
 				border-radius: 3px 0 0 3px;
 				height: 100%;
 				width: 120px;
@@ -54,16 +53,17 @@
 				z-index: 10;
 
 				@include css4 {
+					background: var(--joker02);
 					color: var(--lightGray);
 				};
 				
 				@include transition(all, 300ms, linear);
-				
+
 				&:focus {
-					background: #ffffff;
 					width: 200px;
 
 					@include css4 {
+						background: var(--white);
 						color: var(--darkGray);
 					};
 				}
@@ -162,8 +162,9 @@
 				line-height: 60px;
 
 				&:hover{
-					background: #ffffff;
-					
+					@include css4 {
+						background: var(--white);
+					};
 					.menuSpan {
 						@include css4 {
 							color: var(--gray);
@@ -203,7 +204,6 @@
 				}
 				#subMenu {
 					border-radius: 0 0 4px 4px;
-					background: #ffffff;
 					box-shadow: 2px 2px 2px rgba(0,0,0,.5);
 					position: absolute;
 					top: 60px;
@@ -212,14 +212,16 @@
 					width: 200px;
 				    max-height: 0;
 					overflow: hidden;
-                    
+
+					@include css4 {
+						background: var(--white);
+					};
 					.subMenuItem {
 						height: 30px;
 						line-height: 30px;
 						width: 100%;
 						
 						a {
-							background: #ffffff;
 							display: block;
 							display: block;
 							font-size: 2em;
@@ -228,16 +230,16 @@
 							padding-left: 10px;
 
 							@include css4 {
+								background: var(--white);
 								color: var(--gray);
 							};
 							
 							@include transition (all, 200ms, linear);
 							
 							&:hover {
-								color: #f1f1f1;
-
 								@include css4 {
-									color: var(--joker02);
+									background: var(--joker02);
+									color: var(--lightGray);
 								};
 							}
 						}
@@ -1088,20 +1090,26 @@
 			
 			&:hover {
 				@include css4 {
-					border-bottom: 3px solid var(--joker02);
-					background: #363636;
+					border-bottom: 3px solid var(--gray);
+					background: var(--joker02);
 				};
 			}
 			&:before {
 				content: '\f090';
 				font: 3em FontAwesome;
-				color: #ffffff;
 				position: relative;
+
+				@include css4 {
+					color: var(--white);
+				};
 			}
 			#userName {
 				position: relative;
 				font-size: 2em;
-				color: #ffffff;
+
+				@include css4 {
+					color: var(--white);
+				};
 			}
 		}
 		
@@ -1111,13 +1119,15 @@
 			position: relative;
 			height: 60px;
 			width: 160px;
-			
+
 			&:hover {
-				#userLi{
+				#userLi {
 					#userLink {
-						background: #ffffff;
 						cursor: pointer;
-						
+
+						@include css4 {
+							background: var(--white);
+						};
 						#userName {
 							@include css4 {
 								color: var(--gray);
@@ -1142,9 +1152,6 @@
 					align-items: center;
 					justify-content: space-around;
 
-					@include css4 {
-						background: var(--gray);
-					};
 					#userImg {
 						border-radius: 50%;
 						position: relative;
@@ -1184,40 +1191,42 @@
 					border-radius: 0 0 4px 4px;
 					box-shadow: 4px 4px 8px rgba(0,0,0,.5);
 					overflow: hidden;
-					background: #ffffff;
 					position: relative;
 					max-height: 0;
 					width: 160px;
-                    
-                    #adminLink {
-                        .subMenuLink {
-                            &:before {
-                                content: '\f0e4';
-                                font-size: 1.4em;
-                            }
-                        }
-                    }
-                    #profileLink {
-                        .subMenuLink {
-                            &:before {
-                                content: '\f007';
-                            }
-                        }
-                    }
-                    #settingsLink {
-                        .subMenuLink {
-                            &:before {
-                                content: '\f013';
-                            }
-                        }
-                    }
-                    #logoffLink {
-                        .subMenuLink {
-                            &:before {
-                                content: '\f08b';
-                            }
-                        }
-                    }
+
+					@include css4 {
+						background: var(--white);
+					};
+					#adminLink {
+						.subMenuLink {
+							&:before {
+								content: '\f0e4';
+								font-size: 1.4em;
+							}
+					}
+					}
+					#profileLink {
+						.subMenuLink {
+							&:before {
+								content: '\f007';
+							}
+						}
+					}
+					#settingsLink {
+						.subMenuLink {
+							&:before {
+								content: '\f013';
+							}
+						}
+						}
+					#logoffLink {
+						.subMenuLink {
+							&:before {
+								content: '\f08b';
+							}
+						}
+					}
 					.subMenuItem {
 						list-style: none;
 						width: 100%;
@@ -1237,13 +1246,14 @@
 							@include transition(all, 300ms, ease);
 							
 							&:hover {
-								color: #ffffff;
-
 								@include css4 {
-									color: var(--joker02);
+									background: var(--joker02);
+									color: var(--white);
 								};
 								&:before {
-									color: #f1f1f1;
+									@include css4 {
+										color: var(--white);
+									};
 								}
 							}
 							&:before {
@@ -1284,19 +1294,18 @@
 		width: 100%;
 		display: flex;
 		flex-flow: column wrap;
-		//padding-bottom: 10px;
 
 		.contentDivHeader {
 			position: relative;
 			font-size: 2em;
-			padding-left: 50px;
+			padding: 0 20px;
 			height: 25px;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 
 			@include css4 {
-				color: var(--gray);
+				color: var(--lightGray);
 			};
 			> span {
 				position: relative;
@@ -1305,7 +1314,7 @@
 					text-decoration: none;
 
 					@include css4 {
-						color: var(--gray);
+						color: var(--lightGray);
 					};
 					&:hover {
 						text-decoration: underline;
@@ -1606,7 +1615,7 @@
                     cursor: pointer;
 
 				@include css4 {
-					background: var(--gray);
+					background: var(--joker01);
 					color: var(--lightGray);
 				};
                     
@@ -1655,7 +1664,7 @@
                     text-decoration: none;
 
 				@include css4 {
-					background: var(--gray);
+					background: var(--joker01);
 				};
                     
                     @include transition(all, 300ms, linear);
@@ -1770,9 +1779,9 @@
                }
             }
             .changeShow {
-                &:after {
-                    color: var(--joker02);color: -webkit-linear-gradient(45deg, var(--joker02) 0%,#2cafec 31%,#2cafec 31%,#2cafec 50%,var(--lightGray) 100%);
-                }
+			&:after {
+				color: var(--joker02);
+			}
             }
         }
     }

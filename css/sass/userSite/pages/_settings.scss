@@ -66,16 +66,16 @@
 						width: 100%;
 
 						@include css4 {
-							background-color: var(--fontColor);
+							background-color: var(--bodyColor);
 						};
 						&:before {
 							@include css4 {
-								color: var(--gray);
+								color: var(--lightGray);
 							};
 						}
 						.menuLinkSpan {
 							@include css4 {
-								color: var(--gray);
+								color: var(--lightGray);
 							};
 						}
 					}
@@ -84,7 +84,7 @@
 						width: 100%;
 
 						@include css4 {
-							background-color: var(--blue);
+							background-color: var(--joker02);
 						};
 						&:before {
 							@include css4 {
@@ -101,12 +101,12 @@
 							border-bottom: 2.5em solid transparent;
 
 							@include css4 {
-								border-left: 2em solid var(--blue);
+								border-left: 2em solid var(--joker02);
 							};
 						}
 						.menuLinkSpan {
 							@include css4 {
-								color: var(--gray);
+								color: var(--fontColor);
 							};
 						}
 					}
@@ -132,9 +132,9 @@
 			width: 100%;
 
 			@include css4 {
-				border-top: 1px solid var(--black);
-				border-bottom: 1px solid var(--black);
-				background: var(--lightGray);
+				border-top: 1px solid var(--gray);
+				border-bottom: 1px solid var(--gray);
+				background: var(--bodyColor);
 			};
 			.linkInfo {
 				padding: 10px;
@@ -142,9 +142,6 @@
 				display: flex;
 				justify-content: space-between;
 
-				@include css4 {
-					background: var(--fontColor);
-				};
 				&:after {
 					position: absolute;
 					right: 50px;
@@ -157,7 +154,7 @@
 				&:hover {
 					&:after {
 						@include css4 {
-							color: var(--blue);
+							color: var(--lightGray);
 						};
 					}
 					.linkInfoSpan {
@@ -181,7 +178,7 @@
 					order: 2;
 
 					@include css4 {
-						color: #969696;
+						color: var(--lightGray);
 					};
 				}
 				.linkInfoSpan {
@@ -191,39 +188,42 @@
 					text-align: right;
 
 					@include css4 {
-						color: var(--blue);
+						color: var(--lightGray);
 					};
 				}
 			}
 			#linkInfo {
-				background: #ffffff;
+				@include css4 {
+					background: var(--bodyColor);
+				};
 			}
 			#linkInfoEdited {
 				@include css4 {
-					background: var(--blue);
+					background: var(--joker02);
 				};
 				.linkInfoName {
 					@include css4 {
-						color: var(--gray);
+						color: var(--lightGray);
 					};
 				}
 				.linkInfoSpan {
 					@include css4 {
-						color: var(--gray);
+						color: var(--lightGray);
 					};
 				}
 			}
 			.section {
 				position: relative;
 
+				@include css4 {
+					border-top: 1px solid var(--gray);
+					border-bottom: 1px solid var(--gray);
+					background: var(--bodyColor);
+				};
 				.formSettings {
 					position: relative;
 					padding: 10px;
 
-					@include css4 {
-						border-bottom: 1px solid var(--lightGray);
-						background: var(--fontColor);
-					};
 					.fieldSettings {
 						border: none;
 						
@@ -270,7 +270,7 @@
 								&:focus,
 								&:active {
 									@include css4 {
-										border-color: var(--blue);
+										border-color: var(--joker02);
 									};
 								}
 							}
@@ -294,8 +294,8 @@
 							margin-right: 10px;
 
 							@include css4 {
-								border: 2px solid var(--blue);
-								background: var(--blue);
+								border: 2px solid transparent;
+								background: var(--joker01);
 								color: var(--lightGray);
 							};
 							&:hover,
@@ -312,12 +312,12 @@
 							@include css4 {
 								border: 2px solid var(--lightGray);
 								background: var(--lightGray);
-								color: var(--gray);
+								color: var(--joker02);
 							};
 							&:hover,
 							&:active {
 								@include css4 {
-									border-color: var(--blue);
+									border-color: var(--joker02);
 								};
 							}
 						}

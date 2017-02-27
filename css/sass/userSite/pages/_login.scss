@@ -111,13 +111,13 @@
 					&:hover,
 					&:focus {
 						@include css4 {
-							border: 3px solid var(--blue);
+							border: 3px solid var(--joker02);
 							color: var(--gray);
 						};
 						
 						+ .inputLabel {
 							@include css4 {
-								background: var(--blue);
+								background: var(--joker02);
 							};
 							&:before {
 								@include css4 {
@@ -135,11 +135,6 @@
 						@include css4 {
 							background: var(--errorColor);
 						};
-						&:before {
-							@include css4 {
-								background: var(--fontColor);
-							};
-						}
 					}
 				}
 				.inputLabel {
@@ -169,7 +164,7 @@
 					
 					&:hover, &:focus {
 						@include css4 {
-							background: var(--blue);
+							background: var(--joker02);
 							color: var(--fontColor);
 						};
 					}
@@ -218,7 +213,7 @@
 					&:checked + #loginRestoreLabel {
 						.checkIcon {
 							@include css4 {
-								background: var(--blue);
+								background: var(--joker02);
 							};
 							&:before {
 								left: 0;
@@ -253,8 +248,11 @@
 							position: relative;
 							left: -30px;
 							font: 1.8em FontAwesome;
-							color: #ffffff;
 							opacity: 0;
+
+							@include css4 {
+								color: var(--white);
+							};
 
 							@include transition(all, 300ms, linear);
 						}
