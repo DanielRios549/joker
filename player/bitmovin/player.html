@@ -28,11 +28,39 @@
     function showPlayer() {
         var conf = {
             key: "d4371e6b-7405-4388-a79d-3b9edf9418fa",
+            bitmovin: false,
+            skin: {
+                screenLogoImage : baseUrl + "images/atomoLogoMedio.png"
+            },
             source: {
-                //dash: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
+                dash: videoPath + "/dash.mpd",
                 //hls: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
-                progressive: dataSource,
+                progressive: [{
+                    url: dataSource,
+                    type: mimeType
+                }],
                 //poster: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/poster.jpg"
+            },
+            playback: {
+                autoplay : true,
+                muted: false,
+                preferredTech: [{
+                    player: 'html5',
+                    streaming: 'dash'
+                }, {
+                    player: 'flash',
+                    streaming: 'dash'
+                }]
+            },
+            tweaks : {
+                hwdecoding: true,
+                context_menu_entries: [{
+                    name : 'Home',
+                    url  : baseUrl
+                }, {
+                    name : 'Admin',
+                    url  : baseUrl + 'admin'
+                }]
             }
         };
         var player = bitmovin.player("mediaHolder");
@@ -40,7 +68,7 @@
             // Success
             console.log("Successfully created bitmovin player instance");
         }, function(reason) {
-            // Error!
+            // Error
             console.log("Error while creating bitmovin player instance");
         });
     }

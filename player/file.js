@@ -76,8 +76,8 @@ function chooseFormat() {
     webmSupport = MediaSource.isTypeSupported(webmMime);
     mp4Support = MediaSource.isTypeSupported(mp4Mime);
     
-    console.log(webmExtension + ' exists? ' + webmVideoExists + ' supports? ' + webmSupport);
-    console.log(mp4Extension + ' exists? ' + mp4VideoExists + ' supports? ' + mp4Support);
+    //console.log(webmExtension + ' exists? ' + webmVideoExists + ' supports? ' + webmSupport);
+    //console.log(mp4Extension + ' exists? ' + mp4VideoExists + ' supports? ' + mp4Support);
 
     if(webmVideoExists && webmSupport) {
         dataSource = videoToCheck + webmExtension;
@@ -96,6 +96,6 @@ function chooseFormat() {
     else {
         videoReadyToUse = false;
     }
-    console.log('Using the video ' + videoExtension);
+    //console.log('Using the video ' + videoExtension);
     showPlayer();
 }
