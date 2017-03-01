@@ -1343,166 +1343,111 @@
 				@include transform(translate3d(0, 0, 0));
 				
 				@include transition(transform, 400ms, linear);
-				
+
 				.content {
+					border : 3px solid transparent;
+				}
+				.contentOpen {
+					@include css4 {
+						border : 3px solid var(--joker02);
+					};
+					.contentFigure {
+						figcaption {
+							@include css4 {
+								background: var(--shadowColor) !important;
+							};
+						}
+					}
+					.addWatchList,
+					.removeWatchList {
+						display: none !important;
+					}
+				}
+				.content,
+				.contentOpen {
+					border-radius: 5px;
 					flex: 0 0 auto;
 					position: relative;
 					width: 160px;
 					height: 100%;
 					margin-left: 10px;
-					
-					&:hover {
-						.contentLink {
-							@include css4 {
-								border: 5px solid var(--joker02);
-							};
+					cursor: pointer;
+
+					.contentLink {
+						height: 240px;
+						width: 100%;
+						z-index: 97;
+						
+						&:hover {
 							.contentFigure {
 								figcaption {
-									opacity: 1;
+									@include css4 {
+										background: var(--shadowColor);
+									};
 								}
 							}
 						}
-					}
-					.contentLink {
-						border-radius: 5px;
-						border: 5px solid transparent;
-						height: 240px;
-						width: 100%;
-						
-						@include transition(all, 300ms, linear);
-						
 						.contentFigure {
+							position: relative;
 							height: 100%;
 							width: 100%;
-							
+
 							img {
-								height: 100%;
+								position: absolute;
 								width: 100%;
+								height: 100%;
 							}
 							figcaption {
-								background: rgba(0,0,0,.5);
-								position: relative;
-								top: -233px;
-								left: 0;
+								background: transparent;
+								position: absolute;
 								height: 100%;
 								width: 100%;
-								opacity: 0;
-								
+
 								@include transition(all, 300ms, linear);
-
-								.figLink,
-								.figLinkWatch {
-									position: absolute;
-									text-align: center;
-								}
-								.figLinkWatch {
-									border-radius: 50%;
-									top: 80px;
-									left: 45px;
-									width: 60px;
-									height: 60px;
-									overflow: hidden;
-									z-index: 96;
-
-									@include transition(all, 200ms, linear);
-
-									&:hover {
-										@include transform(scale(1.2));
-
-										&:before {
-											@include css4 {
-												color: var(--joker02);
-											};
-										}
-									}
-									&:before {
-										border-radius: 50%;
-										content: '\f144';
-										font: 7em FontAwesome;
-										position: absolute;
-										top: -5px;
-										left: 0;
-										z-index: 95;
-
-										@include css4 {
-											color: var(--lightGray);
-										};
-										@include transition(all, 200ms, linear);
-									}
-								}
-								.figLink {
-									border-radius: 3px;
-									bottom: 10px;
-									left: 45px;
-									width: 60px;
-									height: 20px;
-									font-size: 1.5em;
-
-									@include css4 {
-										background: var(--lightGray);
-										color: var(--joker02);
-									};
-
-									@include transition(all, 200ms, linear);
-
-									&:hover {
-										@include css4 {
-											background: var(--joker02);
-											color: var(--lightGray);
-										};
-									}
-									
-									.figSpan {
-										position: absolute;
-										left: 0;
-										top: 0;
-										height: 100%;
-										width: 100%;	
-									}
-								}
-								.figLinkOpen {
-									display: none !important;
-								}
-								.addWatchList,
-								.removeWatchList {
-									position: absolute;
-									bottom: 10px;
-									right: 10px;
-									cursor: pointer;
-									
-									&:after {
-										font: 2em FontAwesome;
-
-										@include css4 {
-											color: var(--lightGray);
-										};
-									}
-								}
-								.addWatchList {
-									&:after {
-										content: '\f055';
-									}
-								}
-								.removeWatchList {
-									&:hover {
-										&:after {
-											content: '\f056';
-										}
-									}
-									&:after {
-										content: '\f058';
-									}
-								}
 							}
+						}
+					}
+					.addWatchList,
+					.removeWatchList {
+						position: absolute;
+						bottom: 10px;
+						right: 10px;
+						cursor: pointer;
+						z-index: 98;
+						
+						&:after {
+							font: 2em FontAwesome;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
+						}
+					}
+					.addWatchList {
+						&:after {
+							content: '\f055';
+						}
+					}
+					.removeWatchList {
+						&:hover {
+							&:after {
+								content: '\f056';
+							}
+						}
+						&:after {
+							content: '\f058';
 						}
 					}
 				}
 			}
 		}
+		.titleDetails,
 		.titleDetailsOpen {
-			--shadowColor: rgba(0, 0, 0, 0.8);
+			@include transition(height, 200ms, ease-in);
+		}
+		.titleDetailsOpen {
 			position: relative;
-			height: 300px;
+			height: 400px;
 			width: 100%;
 			//width: calc(100vw - 15px);
 			display: flex;
@@ -1512,67 +1457,64 @@
 			@include css4 {
 				box-shadow: 12px 0 15px -4px var(--shadowColor), -12px 0 8px -4px var(--shadowColor);
 			};
-			@include transition(height, 200ms, linear);
-
-			.headerContent {
-				position: relative;
+			.closeButton {
+				position: absolute;
 				height: 50px;
-				width: 100%;
+				width: 50px;
+				cursor: pointer;
 				display: flex;
+				align-self: flex-end;
+				z-index: 99 !important;
 
-				.titleContent {
+				&:after {
+					content: '\f00d';
+					font: 5em Fontawesome;
 					position: relative;
 					height: 100%;
 					width: 100%;
-
-					a {
-						position: relative;
-						height: 100%;
-						width: 100%;
-						font-size: 2em;
-						display: flex;
-						align-items: center;
-						padding-left: 10px;
-
-						@include css4 {
-							color: var(--darkGray);
-						};
-					}
-				}
-				.closeButton {
-					position: relative;
-					height: 100%;
-					width: 50px;
-					cursor: pointer;
 					display: flex;
+					justify-content: center;
+					align-items: center;
 
-					&:after {
-						content: '\f00d';
-						font: 5em Fontawesome;
-						position: relative;
-						height: 100%;
-						width: 100%;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-
-						@include css4 {
-							color: var(--colorDarkGray);
-						};
-					}
+					@include css4 {
+						color: var(--colorDarkGray);
+					};
 				}
 			}
 			.sectionContent {
 				position: relative;
 				height: 100%;
 				width: 100%;
+				overflow: hidden;
+				display: flex;
+				align-items: flex-start;
+
+				@include css4 {
+					flex-flow: var(--titleContentAlign);
+				};
+				#imageBack {
+					position:  absolute !important;
+					top: -40px !important;
+					z-index: 97  !important;
+				}
+				#divLeft {
+					height: 100%;
+				}
+				#divLeft,
+				#divRight {
+					#tabContents {
+						.contentShow {
+							height: 300px;
+							overflow-y: auto !important;
+							overflow-x: hidden !important;
+						}
+					}
+				}
 			}
 		}
 		.titleDetails {
 			height: 0;
 			overflow: hidden;
-
-			@include transition(height, 200ms, linear);
 		}
 	}
 }
@@ -1581,18 +1523,21 @@
 
 %slider {
 	#contentSlider {
-        background: #000000;
         position: relative;
         left: 0;
         width: 100%;
         height: 300px;
         overflow: hidden;
+
+	   @include css4 {
+        	background: var(--black);
+	   };
         
         #imageDiv {
-            position: relative;
-            height: 100%;
-            width: 100%;
-			display: flex;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		display: flex;
             
             .imageHide,
             .imageShow {

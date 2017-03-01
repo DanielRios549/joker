@@ -12,23 +12,25 @@
 			width: 100%;
 		}
 	}
-	#divLeft {
+	#divLeft,
+	#divRight {
+        	background-color: rgba(0, 0, 0, .8);
 		position: relative;
-		height: 100%;
-		display: flex;
-		padding-top: 10px;
-
+		padding: 10px 0 30px 0;
+		z-index: 98;
+	}
+	#divLeft {
 		@include css4 {
 			width: var(--titleDivLeftWidth);
 			justify-content: var(--titleDivLeftJustify);
 		};
-		
 		#contentImage {
+			position: relative;
 			width: 160px;
 			height: 240px;
+			margin: 0 auto;
 			
 			.contentPlayFigure {
-				margin: 0;
 				height: 100%;
 				width: 100%;
 				
@@ -40,13 +42,11 @@
 		}
 	}
 	#divRight {
-		position: relative;
-		height: 100%;
 		display: flex;
 		flex-direction: column;
-		padding-top: 10px;
 
 		@include css4 {
+			justify-content: var(--titleDivRightJustify);
 			width: var(--titleDivRightWidth);
 		};
 		
@@ -129,7 +129,6 @@
 		#tabContents {
 			position: relative;
 			width: 100%;
-			height: 100%;
 			min-height: 300px;
 
 			.contentShow {
@@ -143,10 +142,10 @@
 			}
 			.contentShow,
 			.contentHide {
-				height: 100%;
+				//height: 100%;
 				width: 100%;
 				display: flex;
-				flex-flow: row wrap;
+				flex-direction: column;
 
 				@include css4 {
 					color: var(--gray);
@@ -224,7 +223,7 @@
 				#contentSynopsis {
 					position: relative;
 					width: 100%;
-					height: 100%;
+					max-height: 100px;
 					overflow-y: hidden;
 					padding: 10px 0 10px 30px;
 					
@@ -495,7 +494,6 @@
 					#episodeDiv {
 						background: transparent;
 						position: relative;
-						top: 10px;
 						height: 200px;
 						width: 100%;
 						overflow: auto;
@@ -629,7 +627,6 @@
 
 					#commentFormDiv {
 						position: relative;
-						top: 10px;
 						width: 100%;
 						min-height: 120px;
 						
@@ -693,7 +690,6 @@
 						img {
 							border-radius: 4px;
 							position: relative;
-							top: 5px;
 							height: 100%;
 							width: 100px;
 						}
@@ -776,7 +772,7 @@
 					}
 					.commentGroup {
 						position: relative;
-						top: 30px;
+						padding: 10px 0 0 0;
 
 						.replyHide {
 							&:after {
@@ -791,7 +787,7 @@
 							}
 						}
 						.replyHide {
-							margin: 0 0 20px 60px;
+							margin: 0 0 0 60px;
 							width: 100px;
 							cursor: pointer;
 
@@ -823,9 +819,7 @@
 						.comment,
 						.reply {
 							position: relative;
-							top: 0;
-							left: 0;
-							margin-bottom: 20px;
+							padding: 20px 0;
 							display: flex;
 
 							.imageDiv {
@@ -835,8 +829,6 @@
 								img {
 									border-radius: 4px;
 									position: relative;
-									left: 0;
-									top: 0;
 								}
 							}
 							.commentInfo,

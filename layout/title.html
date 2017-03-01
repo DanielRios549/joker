@@ -11,6 +11,7 @@
 		header("Location:" .  $base . "404");
 	}
 if($contentVerify -> rowCount() == 1) {
+	if($onlyBody == false) {
 ?>
 <script lang="text/javascript">
 	$(window).ready(function() {
@@ -30,12 +31,11 @@ if($contentVerify -> rowCount() == 1) {
 	});
 </script>
 <main class="interface">
-	<section class="mainSection">
+	<section class="title mainSection">
+	<?php }?>
 		<article id="imageBack">
 			<img src="<?php echo $imageBackground;?>"/>
 		</article>
-	</section>
-	<section class="title mainSection">
 		<article id="divLeft">
 			<div id="contentImage">
 				<figure class="contentPlayFigure">
@@ -75,7 +75,7 @@ if($contentVerify -> rowCount() == 1) {
 						<?php } if(@$adminCheck == true) {?>
 						<div id="playTrayler" class="contentBtn"><span class="btnSpan"><?php echo langCode('trailer');?></span></div>
 						<?php }?>
-						<div id="actionBtn" data-id="<?php echo $contentData['content_id'];?>" class="contentBtn <?php echo $watchList;?>"><span class="btnSpan"><?php echo langCode('watch_list');?></span></div>
+						<div id="actionBtn" data-id="<?php echo $contentData['content_id'];?>" data-type="<?php echo $contentData['type'];?>" class="contentBtn <?php echo $watchList;?>"><span class="btnSpan"><?php echo langCode('watch_list');?></span></div>
 					</div>
 				</div>
 				<?php if($contentType == 'serie') {?>
@@ -185,6 +185,7 @@ if($contentVerify -> rowCount() == 1) {
 				</div>
 			</div>
 		</article>
+	<?php if($onlyBody == false) {?>
 	</section>
 </main>
-<?php }?>
+<?php }}?>

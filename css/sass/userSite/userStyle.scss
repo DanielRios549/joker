@@ -19,9 +19,6 @@ $compatibility: false;
 
 @import 'responsive/mobile';
 
-.interface {
-    
-}
 .header {
     #searchDiv {
         right: 250px;
@@ -107,6 +104,10 @@ $compatibility: false;
     };
 
     @extend %slider;
+    
+    .sectionContent {
+        //@include title();
+    }
 
     .home {
         padding: 20px 0 0 0;
@@ -139,12 +140,10 @@ $compatibility: false;
     }
     .title {
         position: relative;
-        background-color: rgba(0,0,0,.8);
         width: 100%;
         min-height: 400px;
         z-index: 98;
         display: flex;
-        padding-bottom: 30px;
 
         @include css4 {
             flex-flow: var(--titleContentAlign);

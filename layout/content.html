@@ -10,23 +10,14 @@
 		header("Location:" .  $base . "404");
 	}
 ?>
-<div class="content">
-    <div class="contentLink">
+<div class="content" data-id="<?php echo $key['content_id'];?>">
+    <a class="contentLink" href="<?php echo getLink('title', $key['content_id']);?>">
         <figure class="contentFigure">
             <?php $contentFolder = getDynamicFolder($addRow[$contentNumber - 1]['type'], $mediaImageFolder);?>
             <img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>
-            <figcaption>
-                <?php if($key['type'] == 'movie') {?>
-                <a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']);?>"></a>
-                <?php } elseif($key['type'] == 'serie') {?>
-                <a class="figLinkWatch" href="<?php echo getLink('watch', $key['content_id']) . '&e=' . $firstEpisode['episode_id'];?>"></a>
-                <?php }?>
-                <a class="figLink" href="<?php echo getLink('title', $key['content_id']);?>">
-                    <span class="figSpan"><?php echo langCode('details');?></span>
-                </a>
-                <?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
-                <div class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>"></div>
-            </figcaption>
+            <figcaption></figcaption>
         </figure>
-    </div>
+    </a>
+    <?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
+    <div class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>"></div>
 </div>

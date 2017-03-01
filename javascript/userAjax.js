@@ -9,6 +9,27 @@ var ajaxFile = 'ajax/ajaxRequisitions.php';
 
 //function for simple ajax, without sent and received datas, if you want to receive and/or send datas, create anoter one
 
+function getPage(async, page, callback) {
+    var request = new XMLHttpRequest();
+    
+    request.open('GET', page, async);
+    //request.responseType = 'document';
+    
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            callback(request.response);
+        }
+        else {
+            alert('Unexpected status code ' + request.status + ' for ' + page);
+			return false;
+        }
+    };
+    request.onerror = function() {
+        callback('error before seding');
+    };
+    request.send();
+}
+
 function ajax(method, action, dataId, before, notDone, done) {
     var request = new XMLHttpRequest();
     var url = ajaxFile + '?ajaxAction=' + action + '&ajaxId=' + dataId;
@@ -84,10 +105,12 @@ function addWatchListIndex() {
 
             $this.removeClass('addWatchList').addClass('removeWatchList');
 
-            $('#watchListDiv .contentGroupScroll').prepend('<div class="content"><div class="contentLink"><figure class="contentFigure"><img src="' + baseUrl + 'images/media/' + linkType + '/' + $this.attr('data-id') + '/image.jpg"/><figcaption><a class="figLinkWatch" href="' + baseUrl + 'watch?id=' + $this.attr('data-id') + '"></a><a href="' + baseUrl + 'title?id=' + $this.attr('data-id') + '" class="figLink"><span class="figSpan">Details</span></a><div class="removeWatchList" data-id="' + $this.attr('data-id') + '"></div></figcaption></figure></div></div>');
+            $('#watchListDiv .contentGroupScroll').prepend('<div class="content" data-id="' + $this.attr('data-id')  + '"><a class="contentLink" href="' + baseUrl + 'title?id=' + $this.attr('data-id') + '"><figure class="contentFigure"><img src="/joker/images/media/' + linkType + '/' + $this.attr('data-id') + '/image.jpg"/><figcaption></figcaption></figure></a><div class="removeWatchList" data-type="' + linkType + '" data-id="' + $this.attr('data-id') + '"></div></div>');
 
-            $('.contentDiv .content .addWatchList[data-id="' + $this.attr('data-id') + '"]').removeClass('addWatchList').addClass('removeWatchList');
+            $('.contentDiv div .addWatchList[data-id="' + $this.attr('data-id') + '"]').removeClass('addWatchList').addClass('removeWatchList');
             $('#imageDiv div span[data-id="' + $this.attr('data-id') + '"]').removeClass('addWatchList').addClass('removeWatchList');
+
+            $('#contentSortcuts').find('.addWatchList').removeClass('addWatchList').addClass('removeWatchList');
         }
         else {
             alert('Error');
@@ -110,10 +133,12 @@ function removeWatchListIndex() {
     
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
-            $('#watchListDiv .content .removeWatchList[data-id="' + $this.attr('data-id') + '"]').parent().parent().parent().parent().remove();
-            $('.contentDiv .content .removeWatchList[data-id="' + $this.attr('data-id') + '"]').removeClass('removeWatchList').addClass('addWatchList');
+            $('#watchListDiv div[data-id="' + $this.attr('data-id') + '"]').remove();
+            $('.contentDiv div .removeWatchList[data-id="' + $this.attr('data-id') + '"]').removeClass('removeWatchList').addClass('addWatchList');
             
             $('#imageDiv span[data-id="' + $this.attr('data-id') + '"]').removeClass('removeWatchList').addClass('addWatchList');
+
+            $('#contentSortcuts').find('.removeWatchList').removeClass('removeWatchList').addClass('addWatchList');
 
             if($.trim($('#watchListDiv .contentGroupScroll').html()) == '') {
                 $('#watchListDiv').remove();
@@ -222,4 +247,61 @@ function deleteComment() {
     };
 
     request.send();
+}
+
+function showDetails(event) {
+	event.preventDefault();
+    contentLink = $(this).find('.contentLink').attr('href');
+
+    var allcontainerDiv = $('.contentContainer .titleDetailsOpen');
+    var allcontentDiv = $('.contentContainer .contentDiv .contentOpen');
+    
+    var contentDiv = $(this);//content
+    var parentDiv = contentDiv.parent();//contentGroup
+    var containerDiv = parentDiv.parent().parent();//contentContainer
+
+    allcontainerDiv.find('.sectionContent article').remove();
+
+    allcontainerDiv.removeClass('titleDetailsOpen').addClass('titleDetails');
+    allcontentDiv.removeClass('contentOpen').addClass('content');
+    $(this).removeClass('content').addClass('contentOpen');
+    
+    containerDiv.find('.titleDetails').removeClass('titleDetails').addClass('titleDetailsOpen');
+    
+    if(parentDiv.attr('class') == 'contentGroup') {
+        $('html, body').animate({
+            scrollTop: containerDiv.find('.titleDetailsOpen').offset().top - 150
+        },500);
+    }
+	getPage(true, contentLink + '&body=yes', function(data) {
+        $('.titleDetailsOpen').find('.sectionContent').html(data);
+        tabSelect();
+		
+		hideReply(".commentGroup");
+		episodeSelect("#seasonBrowse");
+		
+		$('#contentSortcuts').on('click', '.addWatchList', addWatchListIndex);
+		$('#contentSortcuts').on('click', '.removeWatchList', removeWatchListIndex);
+
+		$('#commentFormDiv').on('click', '#commentSubmit', makeComment);
+		$('#commentOptionsDiv').on('click', '#buttonEdit', editComment);
+		$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
+
+		disableEnable();
+    });
+}
+
+function closeDetails() {
+	var containerDiv = $(this).parent().parent().parent();//contentContainer
+	var allcontainerDiv = $('.contentContainer .titleDetailsOpen');
+	var allcontentDiv = $('.contentContainer .contentDiv div');
+	var offsetDetailsDiv = containerDiv.offset().top;
+	
+	$('html, body').animate({
+		scrollTop: offsetDetailsDiv - 70
+	},500, function() {
+        $('.titleDetailsOpen').find('.sectionContent article').remove();
+		allcontainerDiv.removeClass('titleDetailsOpen').addClass('titleDetails');
+		allcontentDiv.find('.contentOpen').removeClass('contentOpen').addClass('content');
+	});
 }

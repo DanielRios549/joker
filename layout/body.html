@@ -9,24 +9,20 @@
 		require '../_redirect.php';
 		header("Location:" .  $base . "404");
 	}
+	elseif($onlyBody == false) {
+		require 'globalHead.html';
 	
-	/* head file */
-	
-	require 'globalHead.html';
-	
-	/* header file */
-	
-	if(THIS_PAGE !== 'watch') {
-		require 'header.html';
+		if(THIS_PAGE !== 'watch') {
+			require 'header.html';
+		}
+		
+		require $bodyFile;
+		
+		if(THIS_PAGE !== 'watch') {
+			require 'footer.html';
+		}
 	}
-	
-	/* body independent file */
-	
-	require $bodyFile;
-	
-	/* footer file */
-	
-	if(THIS_PAGE !== 'watch') {
-		require 'footer.html';
+	else {
+		require $bodyFile;
 	}
 ?>

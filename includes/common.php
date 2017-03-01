@@ -117,6 +117,10 @@
 			$allSections = array_merge($otherSections, $allCategories);
 			
 			//print_r($allSections);
+
+			//Define if the page show only the body or no
+
+			$onlyBody = isset($_GET['body']) ? $_GET['body'] : false;
 			
 			//Configure the titles and menus
 
