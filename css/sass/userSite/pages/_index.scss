@@ -50,7 +50,7 @@
             }
             .tabSelected {
                 @include css4 {
-                    border-bottom: 5px solid var(--gray);
+                    border-bottom: 5px solid var(--lightGray);
                 };
             }
             .tab,
@@ -95,7 +95,7 @@
                         font: 10em FontAwesome;
 
                         @include css4 {
-							color: var(--gray);
+							color: var(--lightGray);
 						};
                     }
                 }
@@ -107,7 +107,7 @@
                     height: 20%;
 
                     @include css4 {
-                        color: var(--black);
+                        color: var(--lightGray);
                     };
                 }
             }

@@ -15,7 +15,7 @@
         <figure class="contentFigure">
             <?php $contentFolder = getDynamicFolder($addRow[$contentNumber - 1]['type'], $mediaImageFolder);?>
             <img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>
-            <figcaption></figcaption>
+            <figcaption><div class="continueWatching" data-percent="67"></div></figcaption>
         </figure>
     </a>
     <?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>

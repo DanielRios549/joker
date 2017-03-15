@@ -298,10 +298,11 @@ function closeDetails() {
 	var offsetDetailsDiv = containerDiv.offset().top;
 	
 	$('html, body').animate({
-		scrollTop: offsetDetailsDiv - 70
+		scrollTop: offsetDetailsDiv
 	},500, function() {
-        $('.titleDetailsOpen').find('.sectionContent article').remove();
 		allcontainerDiv.removeClass('titleDetailsOpen').addClass('titleDetails');
+        $('.titleDetails').find('.sectionContent article').remove();
+        $('.titleDetailsOpen').find('.sectionContent article').remove();
 		allcontentDiv.find('.contentOpen').removeClass('contentOpen').addClass('content');
 	});
 }

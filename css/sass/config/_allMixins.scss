@@ -64,3 +64,9 @@
     flex-shrink: 1;
     flex-basis: auto;
 }
+
+%alignCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

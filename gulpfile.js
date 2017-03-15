@@ -8,17 +8,15 @@ var browserSync = require('browser-sync');
 
 //Files
 
-var 
-        styles = ['css/sass/userSite/userStyle.scss', 'css/sass/adminSite/adminStyle.scss'],
+var styles = ['css/sass/userSite/userStyle.scss', 'css/sass/adminSite/adminStyle.scss'];
 
-        scripts = ['javascript/userScript.js', 'javascript/adminScript.js'];
+var scripts = ['javascript/userScript.js', 'javascript/adminScript.js'];
 
-        userStyle = styles[0],
-        adminStyle = styles[1],
+var userStyle = styles[0];
+var adminStyle = styles[1];
 
-        userScript = scripts[0],
-        adminScript = scripts[1]
-;
+var userScript = scripts[0];
+var adminScript = scripts[1];
 
 //Run this task before the commit and mainly, before the push
 

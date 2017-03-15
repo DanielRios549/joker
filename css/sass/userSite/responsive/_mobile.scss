@@ -10,7 +10,6 @@ $responsiveVariables: (
     --loginMiddleBorderLeft: 0,
     --loginMiddleBorderTop: 3px dashed var(--gray),
     --loginDivWidth: 100%,
-    --titleContentAlign: column wrap,
     --titleDivLeftWidth: 100%,
     --titleDivLeftJustify: center,
     --titleDivRightWidth: 100%,
@@ -21,7 +20,10 @@ $responsiveVariables: (
     --settingsGroupAlign: column wrap,
     --settingsAlignOptions: column wrap,
     --settingsAlign: center,
-    --settingsJustify: flex-start
+    --settingsJustify: flex-start,
+    --detailsHeight: 800px,
+    --detatilsAlign: column nowrap,
+    --detailsLeftHeight: 300px
 );
 
 @media (max-width: $mobile + 'px') {

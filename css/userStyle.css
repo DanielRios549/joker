@@ -166,6 +166,12 @@ html body button {
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* 
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
@@ -236,10 +242,10 @@ html body button {
 #watchInterface #playerBox .loading:after {
   content: '\f110';
   font: 10em FontAwesome;
-  color: #ffffff;
   position: absolute;
   top: 0;
   left: 0;
+  color: var(--white);
   -webkit-animation: Rotate 1.8s linear infinite normal;
   -moz-animation: Rotate 1.8s linear infinite normal;
   -ms-animation: Rotate 1.8s linear infinite normal;
@@ -375,8 +381,8 @@ html body button {
   display: none;
   justify-content: center;
   align-items: center;
-  background: var(--colorDarkGray);
-  color: var(--colorLightGray);
+  background: var(--darkGray);
+  color: var(--lightGray);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #videoTime #timePreview:after {
@@ -388,7 +394,7 @@ html body button {
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid var(--colorDarkGray);
+  border-top: 10px solid var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer {
@@ -419,7 +425,7 @@ html body button {
   height: 14px;
   z-index: 99;
   flex: 0 0 auto;
-  background: var(--colorBlue);
+  background: var(--blue);
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
@@ -432,7 +438,7 @@ html body button {
   width: 0;
   z-index: 99;
   flex: 0 0 auto;
-  background: var(--colorBlue);
+  background: var(--blue);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv #progressBuffer {
@@ -563,7 +569,7 @@ html body button {
   height: 0;
   border-radius: 50%;
   flex: 0 0 auto;
-  background: var(--colorBlue);
+  background: var(--blue);
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
@@ -575,7 +581,7 @@ html body button {
   width: 100%;
   height: 100%;
   flex: 0 0 auto;
-  background: var(--colorBlue);
+  background: var(--blue);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesButton {
@@ -1205,6 +1211,13 @@ html body button {
   background: var(--shadowColor);
 }
 
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink:hover .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink:hover .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink:hover .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink:hover .contentFigure figcaption .continueWatching:before {
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
 .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure {
   position: relative;
   height: 100%;
@@ -1226,6 +1239,441 @@ html body button {
   -moz-transition: all 300ms linear;
   -ms-transition: all 300ms linear;
   transition: all 300ms linear;
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching {
+  --size: 100px;
+  --barWidth: calc(var(--size) * 4);
+  border-radius: 50%;
+  position: relative;
+  height: var(--size);
+  width: var(--size);
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before {
+  content: attr(data-percent) "%";
+  border-radius: 50%;
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  font: 3em Calibri, sans-serif;
+  background: var(--darkGray);
+  color: var(--white);
+  -webkit-transition: transform 200ms linear;
+  -moz-transition: transform 200ms linear;
+  -ms-transition: transform 200ms linear;
+  transition: transform 200ms linear;
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:after {
+  content: '';
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='0']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='0']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='0']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='0']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(90deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='1']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='1']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='1']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='1']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(93.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='2']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='2']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='2']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='2']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(97.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='3']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='3']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='3']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='3']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(100.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='4']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='4']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='4']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='4']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(104.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='5']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='5']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='5']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='5']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(108deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='6']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='6']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='6']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='6']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(111.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='7']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='7']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='7']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='7']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(115.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='8']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='8']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='8']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='8']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(118.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='9']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='9']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='9']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='9']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(122.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='10']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='10']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='10']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='10']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(126deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='11']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='11']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='11']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='11']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(129.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='12']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='12']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='12']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='12']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(133.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='13']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='13']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='13']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='13']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(136.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='14']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='14']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='14']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='14']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(140.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='15']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='15']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='15']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='15']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(144deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='16']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='16']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='16']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='16']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(147.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='17']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='17']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='17']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='17']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(151.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='18']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='18']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='18']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='18']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(154.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='19']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='19']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='19']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='19']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(158.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='20']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='20']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='20']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='20']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(162deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='21']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='21']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='21']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='21']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(165.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='22']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='22']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='22']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='22']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(169.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='23']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='23']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='23']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='23']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(172.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='24']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='24']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='24']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='24']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(176.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='25']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='25']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='25']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='25']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(180deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='26']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='26']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='26']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='26']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(183.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='27']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='27']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='27']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='27']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(187.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='28']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='28']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='28']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='28']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(190.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='29']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='29']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='29']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='29']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(194.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='30']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='30']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='30']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='30']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(198deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='31']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='31']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='31']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='31']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(201.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='32']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='32']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='32']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='32']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(205.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='33']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='33']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='33']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='33']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(208.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='34']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='34']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='34']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='34']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(212.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='35']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='35']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='35']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='35']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(216deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='36']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='36']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='36']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='36']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(219.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='37']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='37']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='37']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='37']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(223.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='38']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='38']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='38']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='38']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(226.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='39']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='39']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='39']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='39']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(230.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='40']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='40']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='40']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='40']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(234deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='41']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='41']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='41']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='41']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(237.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='42']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='42']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='42']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='42']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(241.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='43']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='43']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='43']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='43']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(244.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='44']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='44']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='44']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='44']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(248.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='45']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='45']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='45']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='45']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(252deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='46']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='46']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='46']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='46']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(255.6deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='47']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='47']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='47']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='47']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(259.2deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='48']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='48']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='48']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='48']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(262.8deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='49']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='49']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='49']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='49']:after {
+  background-image: linear-gradient(90deg, var(--gray) 50%, transparent 50%, transparent), linear-gradient(266.4deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='50']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='50']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='50']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='50']:after {
+  background-image: linear-gradient(-90deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='51']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='51']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='51']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='51']:after {
+  background-image: linear-gradient(-86.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='52']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='52']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='52']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='52']:after {
+  background-image: linear-gradient(-82.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='53']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='53']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='53']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='53']:after {
+  background-image: linear-gradient(-79.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='54']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='54']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='54']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='54']:after {
+  background-image: linear-gradient(-75.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='55']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='55']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='55']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='55']:after {
+  background-image: linear-gradient(-72deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='56']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='56']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='56']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='56']:after {
+  background-image: linear-gradient(-68.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='57']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='57']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='57']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='57']:after {
+  background-image: linear-gradient(-64.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='58']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='58']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='58']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='58']:after {
+  background-image: linear-gradient(-61.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='59']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='59']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='59']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='59']:after {
+  background-image: linear-gradient(-57.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='60']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='60']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='60']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='60']:after {
+  background-image: linear-gradient(-54deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='61']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='61']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='61']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='61']:after {
+  background-image: linear-gradient(-50.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='62']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='62']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='62']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='62']:after {
+  background-image: linear-gradient(-46.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='63']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='63']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='63']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='63']:after {
+  background-image: linear-gradient(-43.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='64']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='64']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='64']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='64']:after {
+  background-image: linear-gradient(-39.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='65']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='65']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='65']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='65']:after {
+  background-image: linear-gradient(-36deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='66']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='66']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='66']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='66']:after {
+  background-image: linear-gradient(-32.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='67']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='67']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='67']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='67']:after {
+  background-image: linear-gradient(-28.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='68']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='68']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='68']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='68']:after {
+  background-image: linear-gradient(-25.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='69']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='69']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='69']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='69']:after {
+  background-image: linear-gradient(-21.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='70']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='70']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='70']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='70']:after {
+  background-image: linear-gradient(-18deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='71']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='71']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='71']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='71']:after {
+  background-image: linear-gradient(-14.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='72']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='72']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='72']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='72']:after {
+  background-image: linear-gradient(-10.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='73']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='73']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='73']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='73']:after {
+  background-image: linear-gradient(-7.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='74']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='74']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='74']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='74']:after {
+  background-image: linear-gradient(-3.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='75']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='75']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='75']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='75']:after {
+  background-image: linear-gradient(0deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='76']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='76']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='76']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='76']:after {
+  background-image: linear-gradient(3.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='77']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='77']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='77']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='77']:after {
+  background-image: linear-gradient(7.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='78']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='78']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='78']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='78']:after {
+  background-image: linear-gradient(10.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='79']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='79']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='79']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='79']:after {
+  background-image: linear-gradient(14.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='80']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='80']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='80']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='80']:after {
+  background-image: linear-gradient(18deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='81']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='81']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='81']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='81']:after {
+  background-image: linear-gradient(21.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='82']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='82']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='82']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='82']:after {
+  background-image: linear-gradient(25.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='83']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='83']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='83']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='83']:after {
+  background-image: linear-gradient(28.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='84']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='84']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='84']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='84']:after {
+  background-image: linear-gradient(32.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='85']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='85']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='85']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='85']:after {
+  background-image: linear-gradient(36deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='86']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='86']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='86']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='86']:after {
+  background-image: linear-gradient(39.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='87']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='87']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='87']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='87']:after {
+  background-image: linear-gradient(43.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='88']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='88']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='88']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='88']:after {
+  background-image: linear-gradient(46.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='89']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='89']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='89']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='89']:after {
+  background-image: linear-gradient(50.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='90']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='90']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='90']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='90']:after {
+  background-image: linear-gradient(54deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='91']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='91']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='91']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='91']:after {
+  background-image: linear-gradient(57.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='92']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='92']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='92']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='92']:after {
+  background-image: linear-gradient(61.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='93']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='93']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='93']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='93']:after {
+  background-image: linear-gradient(64.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='94']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='94']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='94']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='94']:after {
+  background-image: linear-gradient(68.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='95']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='95']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='95']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='95']:after {
+  background-image: linear-gradient(72deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='96']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='96']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='96']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='96']:after {
+  background-image: linear-gradient(75.6deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='97']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='97']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='97']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='97']:after {
+  background-image: linear-gradient(79.2deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='98']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='98']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='98']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='98']:after {
+  background-image: linear-gradient(82.8deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='99']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='99']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='99']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='99']:after {
+  background-image: linear-gradient(86.4deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching[data-percent='100']:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='100']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching[data-percent='100']:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching[data-percent='100']:after {
+  background-image: linear-gradient(90deg, var(--joker02) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--joker02) 50%, var(--gray) 50%, var(--gray));
 }
 
 .interface .mainSection .contentContainer .contentDiv .contentGroup .content .addWatchList, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .removeWatchList, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .addWatchList, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .removeWatchList, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .addWatchList, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .removeWatchList, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .addWatchList, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .removeWatchList {
@@ -1262,12 +1710,12 @@ html body button {
 
 .interface .mainSection .contentContainer .titleDetailsOpen {
   position: relative;
-  height: 400px;
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
   box-shadow: 12px 0 15px -4px var(--shadowColor), -12px 0 8px -4px var(--shadowColor);
+  height: var(--detailsHeight);
 }
 
 .interface .mainSection .contentContainer .titleDetailsOpen .closeButton {
@@ -1289,7 +1737,7 @@ html body button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--colorDarkGray);
+  color: var(--lightGray);
 }
 
 .interface .mainSection .contentContainer .titleDetailsOpen .sectionContent {
@@ -1298,8 +1746,8 @@ html body button {
   width: 100%;
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
-  flex-flow: var(--titleContentAlign);
+  align-items: center;
+  flex-flow: var(--detatilsAlign);
 }
 
 .interface .mainSection .contentContainer .titleDetailsOpen .sectionContent #imageBack {
@@ -1309,7 +1757,9 @@ html body button {
 }
 
 .interface .mainSection .contentContainer .titleDetailsOpen .sectionContent #divLeft {
-  height: 100%;
+  display: flex;
+  align-items: center;
+  height: var(--detailsLeftHeight);
 }
 
 .interface .mainSection .contentContainer .titleDetailsOpen .sectionContent #divLeft #tabContents .contentShow, .interface .mainSection .contentContainer .titleDetailsOpen .sectionContent #divRight #tabContents .contentShow {
@@ -1525,6 +1975,12 @@ html body button {
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
+ ****************************************************************
+*/
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
  ***************************************************************
 */
 @media (min-width: 1033px) {
@@ -1533,7 +1989,6 @@ html body button {
     --loginMiddleBorderLeft: 3px dashed var(--gray);
     --loginMiddleBorderTop: 0;
     --loginDivWidth: 50%;
-    --titleContentAlign: row nowrap;
     --titleDivLeftWidth: 25%;
     --titleDivLeftJustify: flex-start;
     --titleDivRightWidth: 100%;
@@ -1545,6 +2000,9 @@ html body button {
     --settingsAlignOptions: row nowrap;
     --settingsAlign: space-around;
     --settingsJustify: space-around;
+    --detailsHeight: 400px;
+    --detatilsAlign: row nowrap;
+    --detailsLeftHeight: 100%;
   }
   #header #itemHome {
     position: relative;
@@ -1699,7 +2157,7 @@ html body button {
     background: var(--joker02);
   }
   #header #searchDiv #searchForm #submitSearch:hover:after {
-    color: #ffffff;
+    color: var(--white);
   }
   #header #searchDiv #searchForm #submitSearch:before {
     content: '';
@@ -1716,7 +2174,7 @@ html body button {
     font: 1.5em FontAwesome;
     top: 0;
     left: 0;
-    color: var(--lightColor);
+    color: var(--lightGray);
     -webkit-transition: color 200ms linear;
     -moz-transition: color 200ms linear;
     -ms-transition: color 200ms linear;
@@ -1796,7 +2254,6 @@ html body button {
     --loginMiddleBorderLeft: 0;
     --loginMiddleBorderTop: 3px dashed var(--gray);
     --loginDivWidth: 100%;
-    --titleContentAlign: row wrap;
     --titleDivLeftWidth: 100%;
     --titleDivLeftJustify: center;
     --titleDivRightWidth: 100%;
@@ -1808,6 +2265,9 @@ html body button {
     --settingsAlignOptions: column wrap;
     --settingsAlign: center;
     --settingsJustify: flex-start;
+    --detailsHeight: 800px;
+    --detatilsAlign: column nowrap;
+    --detailsLeftHeight: 300px;
   }
 }
 
@@ -1823,7 +2283,6 @@ html body button {
     --loginMiddleBorderLeft: 0;
     --loginMiddleBorderTop: 3px dashed var(--gray);
     --loginDivWidth: 100%;
-    --titleContentAlign: column wrap;
     --titleDivLeftWidth: 100%;
     --titleDivLeftJustify: center;
     --titleDivRightWidth: 100%;
@@ -1835,6 +2294,9 @@ html body button {
     --settingsAlignOptions: column wrap;
     --settingsAlign: center;
     --settingsJustify: flex-start;
+    --detailsHeight: 800px;
+    --detatilsAlign: column nowrap;
+    --detailsLeftHeight: 300px;
   }
 }
 
@@ -2045,7 +2507,7 @@ html body button {
 }
 
 .interface .mainSection .containerDiv #tabHeader .tabSelected {
-  border-bottom: 5px solid var(--gray);
+  border-bottom: 5px solid var(--lightGray);
 }
 
 .interface .mainSection .containerDiv #tabHeader .tab,
@@ -2086,7 +2548,7 @@ html body button {
   position: relative;
   left: 0;
   font: 10em FontAwesome;
-  color: var(--gray);
+  color: var(--lightGray);
 }
 
 .interface .mainSection .containerDiv #tabHeader .tab .tabSpan,
@@ -2096,7 +2558,7 @@ html body button {
   text-align: center;
   width: 100%;
   height: 20%;
-  color: var(--black);
+  color: var(--lightGray);
 }
 
 .interface .mainSection .containerDiv .contentHide,
@@ -3196,7 +3658,7 @@ html body button {
 
 .interface .mainSection #divRight #tabContents .contentShow #contentInfo #infoGeneral #age14,
 .interface .mainSection #divRight #tabContents .contentHide #contentInfo #infoGeneral #age14 {
-  background: var(--age13);
+  background: var(--age14);
 }
 
 .interface .mainSection #divRight #tabContents .contentShow #contentInfo #infoGeneral #age16,

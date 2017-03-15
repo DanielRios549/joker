@@ -6,18 +6,9 @@
 */
 @charset "UTF-8";
 
-$css4: true;
-$compatibility: false;
+//CSS universal variables
 
 @import '../config/config';
-
-@import '../config/allUserMixins';
-
-@import 'responsive/desktop';
-
-@import 'responsive/tablet';
-
-@import 'responsive/mobile';
 
 .header {
     #searchDiv {

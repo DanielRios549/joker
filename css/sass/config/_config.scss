@@ -4,10 +4,10 @@
  | @ Author	: Daniel Rios.
  ****************************************************************
 */
+//css4 defines if will be used native variables, compatibility defines if there will be compatibility with old browsers
 
-$baseUrl: 'http://localhost/joker/';
-$imageDir: $baseUrl + 'images/';
-$fontDir: $baseUrl + 'fonts/';
+$css4: true;
+$compatibility: false;
 
 //New W3C standard
 
@@ -18,7 +18,9 @@ $fontDir: $baseUrl + 'fonts/';
   width: device-width;
 }
 
-//it is nessesary to define the variables in sass map instead of :root, for compatibility reasons.
+$baseUrl: 'http://localhost/joker/';
+$imageDir: $baseUrl + 'images/';
+$fontDir: $baseUrl + 'fonts/';
 
 //75em 61.5625em 56.875em 48.9375em 44.375em
 
@@ -26,6 +28,7 @@ $desktopLarge: 1186;
 $tablet: 1032;
 $mobile: 775;
 $mobileSmall: 599;
+
 /*$colorLightGray: #d6d6d6;
 $colorGray: #2d1152;//#464646
 $colorDarkGray: #222222;
@@ -33,6 +36,8 @@ $colorButtonGray: #9aa4a5;
 $colorBlack: #101010;
 $colorBlue: #4e297e;//#2cafec
 $colorWhite: #f1f1f1;*/
+
+//These are global variables, there is a lot of them especific to make responsive design on the especifics files
 
 $variables: (
 	--shadowColor: rgba(0, 0, 0, .8),
@@ -59,7 +64,7 @@ $variables: (
   --age18: #000000
 );
 
-//Set the variables to front and make possible change it with javascript
+//Set the variables to front (:root) and make possible change it with javascript
 
 @if($css4 == true) {
   :root {
@@ -69,7 +74,7 @@ $variables: (
   }
 }
 
-//Make the function var dont't be useless and work on non-compatible web browsers, but it's necessary to use the mixin css4
+//Make the function var don't be useless and work on non-compatible web browsers, but it's necessary to use the css4 mixin
 
 @function var($variable) {
   @if($css4 == true) {
@@ -78,6 +83,9 @@ $variables: (
   @else {
     @if(map-has-key($variables, $variable)) {
       @return map-get($variables, $variable);
+    }
+    @if(map-has-key($responsiveVariables, $variable)) {
+      @return map-get($responsiveVariables, $variable);
     }
   }
 }
@@ -111,6 +119,17 @@ For all Browser:
     };
 */
 
-@import 'fonts';
-@import 'allMixins';
-@import 'pages';
+//Font imports and mixins/placeholders
+
+@import '../config/fonts';
+
+@import '../config/allMixins';
+@import '../config/allUserMixins';
+@import '../config/allAdminMixins';
+@import '../config/pages';
+
+//CSS variables to make the site responsive
+
+@import 'responsive/desktop';
+@import 'responsive/tablet';
+@import 'responsive/mobile';

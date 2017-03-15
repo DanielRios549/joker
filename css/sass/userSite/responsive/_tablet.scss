@@ -10,7 +10,6 @@ $responsiveVariables: (
     --loginMiddleBorderLeft: 0,
     --loginMiddleBorderTop: 3px dashed var(--gray),
     --loginDivWidth: 100%,
-    --titleContentAlign: row wrap,
     --titleDivLeftWidth: 100%,
     --titleDivLeftJustify: center,
     --titleDivRightWidth: 100%,
@@ -21,12 +20,48 @@ $responsiveVariables: (
     --settingsGroupAlign: row wrap,
     --settingsAlignOptions: column wrap,
     --settingsAlign: center,
-    --settingsJustify: flex-start
+    --settingsJustify: flex-start,
+    --detailsHeight: 800px,
+    --detatilsAlign: column nowrap,
+    --detailsLeftHeight: 300px
 );
 
 @media (max-width: $tablet + 'px') {
     #header {
-        @include touchMenu();
+        #menuBtInput {
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            
+            &:checked ~ #menu{
+                @include transform(translateX(0px));
+            }
+        }
+        #menuBt {
+            background: url($imageDir + 'menu.png') no-repeat;
+            position: absolute;
+            top: 10px;
+            left: 100px;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+        #menu {
+            box-shadow: 2px 0 2px rgba(0,0,0,.5);
+            background: #ffffff;
+            position: fixed;
+            top: 42px;
+            height: 100%;
+            width: 300px;
+            overflow: hidden;
+            
+            @include transition(all, 300ms, ease);
+            
+            @include transform(translateX(-300px));
+        }
+        #searchDiv {
+            display: none;
+        }
     }
 }
 

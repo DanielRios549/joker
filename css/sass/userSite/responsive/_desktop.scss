@@ -10,7 +10,6 @@ $responsiveVariables: (
     --loginMiddleBorderLeft: 3px dashed var(--gray),
     --loginMiddleBorderTop: 0,
     --loginDivWidth: 50%,
-    --titleContentAlign: row nowrap,
     --titleDivLeftWidth: 25%,
     --titleDivLeftJustify: flex-start,
     --titleDivRightWidth: 100%,
@@ -21,7 +20,10 @@ $responsiveVariables: (
     --settingsGroupAlign: column wrap,
     --settingsAlignOptions: row nowrap,
     --settingsAlign: space-around,
-    --settingsJustify: space-around
+    --settingsJustify: space-around,
+    --detailsHeight: 400px,
+    --detatilsAlign: row nowrap,
+    --detailsLeftHeight: 100%,
 );
 
 @media (min-width: $tablet + 1 + 'px') {
@@ -33,6 +35,237 @@ $responsiveVariables: (
         }
     }
     #header {
-        @include header();
+        #itemHome {
+            position: relative;
+            left: 110px;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            
+            a {
+                display: block;
+                background: url($imageDir + 'streamovie.png') no-repeat 50% 50%;
+                background-size: 200px 70px;
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+        }
+        #menuBtInput, #menuBt {
+            position: absolute;
+            top: -100%;
+            left: -100%;
+        }
+        #menu {
+            position: absolute;
+            top: 0;
+            left: 280px;
+            
+            #ulMenu {
+                list-style: none;
+                
+                #itemMenuHome {
+                    display: none;
+                }
+                #itemSubMenu {
+                    position: absolute;
+                    top: 0;
+                    left: 40px;
+                    height: 60px;
+                    line-height: 60px;
+
+                    &:hover{
+                        @include css4 {
+                            background: var(--white);
+                        };
+                        .menuSpan {
+                            @include css4 {
+                                color: var(--gray);
+                            };
+                            &:after {
+                                @include css4 {
+                                    color: var(--gray);
+                                };
+                            }
+                        }
+                        #subMenu {
+                            max-height: 1000px;
+                        }
+                    }
+                    .menuSpan {
+                        font-size: 1.8em;
+                        cursor: pointer;
+                        display: block;
+                        padding: 0 15px;
+
+                        @include css4 {
+                            color: var(--lightGray);
+                        };
+                        &:after {
+                            content: '\f0d7';
+                            font: 1em FontAwesome;
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+
+                            @include css4 {
+                                color: var(--lightGray);
+                            };
+                            
+                            @include transform(rotate(-45deg));
+                        }
+                    }
+                    #subMenu {
+                        border-radius: 0 0 4px 4px;
+                        box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+                        position: absolute;
+                        top: 60px;
+                        left: 0;
+                        list-style: none;
+                        width: 200px;
+                        max-height: 0;
+                        overflow: hidden;
+
+                        @include css4 {
+                            background: var(--white);
+                        };
+                        .subMenuItem {
+                            height: 30px;
+                            line-height: 30px;
+                            width: 100%;
+                            
+                            a {
+                                display: block;
+                                display: block;
+                                font-size: 2em;
+                                text-decoration: none;
+                                height: 100%;
+                                padding-left: 10px;
+
+                                @include css4 {
+                                    background: var(--white);
+                                    color: var(--gray);
+                                };
+                                
+                                @include transition (all, 200ms, linear);
+                                
+                                &:hover {
+                                    @include css4 {
+                                        background: var(--joker02);
+                                        color: var(--lightGray);
+                                    };
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #searchDiv {
+            position: absolute;
+            top: 10px;
+            height: 40px;
+            width: 280px;
+            
+            @include transition(right, 200ms, linear);
+            
+            #searchForm {
+                position: relative;
+                height: 100%;
+                width: 100%;
+                
+                #searchInput {
+                    position: absolute;
+                    border-radius: 3px 0 0 3px;
+                    height: 100%;
+                    width: 120px;
+                    padding: 10px;
+                    right: 60px;
+                    font-size: 1.6em;
+                    z-index: 10;
+
+                    @include css4 {
+                        background: var(--joker02);
+                        color: var(--lightGray);
+                    };
+                    
+                    @include transition(all, 300ms, linear);
+
+                    &:focus {
+                        width: 200px;
+
+                        @include css4 {
+                            background: var(--white);
+                            color: var(--darkGray);
+                        };
+                    }
+                }
+                #submitSearch {
+                    outline: none;
+                    border: none;
+                    border-radius: 0 3px 3px 0;
+                    position: absolute;
+                    height: 100%;
+                    width: 40px;
+                    right: 20px;
+                    cursor: pointer;
+                    z-index: 10;
+
+                    @include css4 {
+                        background: var(--joker02);
+                    };
+                    
+                    &:hover {
+                        &:after {
+                            @include css4 {
+                                color: var(--white);
+                            }
+                        }
+                    }
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        border-width: 8px 8px 8px 0;
+                        border-style: solid solid solid none;
+                        top: 12px;
+                        left: -6px;
+
+                        @include css4 {
+                            border-color: transparent var(--joker02) transparent;
+                            color: var(--darkGray);
+                        };
+                    }
+                    &:after {
+                        content: '\f002';
+                        font: 1.5em FontAwesome;
+                        top: 0;
+                        left: 0;
+
+                        @include css4 {
+                            color: var(--lightGray);
+                        };
+                        
+                        @include transition(color, 200ms, linear);
+                    }
+                }
+            }
+            .searchOff {
+                display: none;
+                height: 0;
+                width: 0;
+            }
+            .searchOn {
+                display: block;
+                height: 100px;
+                width: 100%;
+            }
+            #searchAjaxResults {
+                background: #303030;
+                position: relative;
+                top: -60px;
+                left: 0;
+                z-index: 9;
+            }
+        }
     }
 }
