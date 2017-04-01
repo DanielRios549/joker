@@ -21,6 +21,7 @@
 	require_once $functionsDir . 'links.php';
 	require_once $functionsDir . 'getBrowser.php';
 	require_once $functionsDir . 'getEnumOptions.php';
+	require_once $functionsDir . 'continueWatching.php';
 
 	//import the interfaces
 	

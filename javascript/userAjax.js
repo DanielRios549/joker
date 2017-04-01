@@ -9,11 +9,11 @@ var ajaxFile = 'ajax/ajaxRequisitions.php';
 
 //function for simple ajax, without sent and received datas, if you want to receive and/or send datas, create anoter one
 
-function getPage(async, page, callback) {
+function getPage(page, parameters, callback) {
     var request = new XMLHttpRequest();
     
-    request.open('GET', page, async);
-    //request.responseType = 'document';
+    request.open('POST', page, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
@@ -27,7 +27,7 @@ function getPage(async, page, callback) {
     request.onerror = function() {
         callback('error before seding');
     };
-    request.send();
+    request.send(parameters);
 }
 
 function ajax(method, action, dataId, before, notDone, done) {
@@ -273,7 +273,7 @@ function showDetails(event) {
             scrollTop: containerDiv.find('.titleDetailsOpen').offset().top - 150
         },500);
     }
-	getPage(true, contentLink + '&body=yes', function(data) {
+	getPage(contentLink, "body=yes", function(data) {
         $('.titleDetailsOpen').find('.sectionContent').html(data);
         tabSelect();
 		

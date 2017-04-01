@@ -120,7 +120,11 @@
 
 			//Define if the page show only the body or no
 
-			$onlyBody = isset($_GET['body']) ? $_GET['body'] : false;
+			$onlyBody = $_POST['body'] ?? false;
+
+			//Make the continue watching
+
+			require 'continueWatching.php';
 			
 			//Configure the titles and menus
 

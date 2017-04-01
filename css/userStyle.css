@@ -225,8 +225,8 @@ html body button {
 }
 
 #watchInterface #playerBox #mediaHolder #videoTag {
-  background: #000000;
   position: relative;
+  background: var(--black);
 }
 
 #watchInterface #playerBox #mediaHolder > img {
@@ -290,10 +290,10 @@ html body button {
   content: '\e905';
   font: 10em PlayerIcon;
   text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
-  color: #ffffff;
   position: absolute;
   top: 0;
   left: 0;
+  color: var(--white);
 }
 
 #watchInterface #playerBox .loading, #watchInterface #playerBox .videoPaused {
@@ -329,10 +329,10 @@ html body button {
 
 #watchInterface #playerBox #controlsDiv #leftControls .playerIcon:before, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:before {
   font: 3em PlayerIcon;
-  color: #ffffff;
   position: relative;
   top: 5px;
   left: 4px;
+  color: var(--white);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls .playerIcon:hover:before, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:hover:before {
@@ -355,10 +355,10 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #playBtn {
-  border-right: 1px solid #262626;
   position: relative;
   width: 40px;
   cursor: pointer;
+  border-right: 1px solid var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #videoTime {
@@ -411,8 +411,8 @@ html body button {
   position: relative;
   width: 100%;
   height: 4px;
-  background: #d6d6d6;
   display: flex;
+  background: var(--lightGray);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv:after {
@@ -425,7 +425,7 @@ html body button {
   height: 14px;
   z-index: 99;
   flex: 0 0 auto;
-  background: var(--blue);
+  background: var(--joker02);
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
@@ -438,16 +438,16 @@ html body button {
   width: 0;
   z-index: 99;
   flex: 0 0 auto;
-  background: var(--blue);
+  background: var(--joker02);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #videoTime #progressContainer #progressDiv #progressBuffer {
-  background: #464646;
   position: absolute;
   height: 100%;
   width: 0;
   order: 3;
   z-index: 98;
+  background: var(--gray);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #videoTime #videoTimeCounter {
@@ -497,12 +497,12 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #muteButton {
-  border-left: 1px solid #262626;
-  border-right: 1px solid #262626;
   position: relative;
   width: 40px;
   height: 100%;
   cursor: pointer;
+  border-left: 1px solid var(--darkGray);
+  border-right: 1px solid var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #muteButton:hover + #volumeSliderContainer {
@@ -551,13 +551,13 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider {
-  background: #d6d6d6;
   position: relative;
   height: 100%;
   width: 4px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background: var(--lightGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #volumeSliderContainer #volumeSliderDiv #volumeSlider:before {
@@ -569,7 +569,7 @@ html body button {
   height: 0;
   border-radius: 50%;
   flex: 0 0 auto;
-  background: var(--blue);
+  background: var(--joker02);
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
@@ -581,7 +581,7 @@ html body button {
   width: 100%;
   height: 100%;
   flex: 0 0 auto;
-  background: var(--blue);
+  background: var(--joker02);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesButton {
@@ -639,6 +639,7 @@ html body button {
   z-index: 96;
   display: flex;
   flex-direction: column;
+  background: var(--gray);
   -webkit-transition: width 200ms linear;
   -moz-transition: width 200ms linear;
   -ms-transition: width 200ms linear;
@@ -658,7 +659,7 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season:hover {
-  background: #323232;
+  background: var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #seasonSelect .season:after {
@@ -694,21 +695,21 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader {
-  border-bottom: 1px solid #262626;
   position: relative;
   width: 100%;
   height: 40px;
   z-index: 95;
   display: flex;
+  border-bottom: 1px solid var(--darkGray);
   background: var(--gray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector {
   flex: 0 0 auto;
-  border-right: 1px solid #262626;
   position: relative;
   width: 40px;
   height: 100%;
+  border-right: 1px solid var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan {
@@ -726,7 +727,7 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan:hover {
-  background: #323232;
+  background: var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector #openSpan:before {
@@ -792,15 +793,16 @@ html body button {
   z-index: 94;
   display: flex;
   flex-flow: column nowrap;
+  background: var(--gray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen {
-  border-bottom: 1px solid #262626;
   position: relative;
   width: 100%;
   overflow: hidden;
   display: flex;
   flex: 0 0 auto;
+  border-bottom: 1px solid var(--darkGray);
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
@@ -824,7 +826,7 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:hover, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:hover {
-  background: #323232;
+  background: var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:hover:after, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:hover:after {
@@ -859,9 +861,9 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen {
-  background: #161616;
   height: 120px;
   flex-flow: row wrap;
+  background: var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeHeader, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeHeader {
@@ -1747,7 +1749,7 @@ html body button {
   overflow: hidden;
   display: flex;
   align-items: center;
-  flex-flow: var(--detatilsAlign);
+  flex-flow: var(--titleContentAlign);
 }
 
 .interface .mainSection .contentContainer .titleDetailsOpen .sectionContent #imageBack {
@@ -1989,6 +1991,7 @@ html body button {
     --loginMiddleBorderLeft: 3px dashed var(--gray);
     --loginMiddleBorderTop: 0;
     --loginDivWidth: 50%;
+    --titleContentAlign: row nowrap;
     --titleDivLeftWidth: 25%;
     --titleDivLeftJustify: flex-start;
     --titleDivRightWidth: 100%;
@@ -2001,7 +2004,6 @@ html body button {
     --settingsAlign: space-around;
     --settingsJustify: space-around;
     --detailsHeight: 400px;
-    --detatilsAlign: row nowrap;
     --detailsLeftHeight: 100%;
   }
   #header #itemHome {
@@ -2254,6 +2256,7 @@ html body button {
     --loginMiddleBorderLeft: 0;
     --loginMiddleBorderTop: 3px dashed var(--gray);
     --loginDivWidth: 100%;
+    --titleContentAlign: column wrap;
     --titleDivLeftWidth: 100%;
     --titleDivLeftJustify: center;
     --titleDivRightWidth: 100%;
@@ -2266,7 +2269,6 @@ html body button {
     --settingsAlign: center;
     --settingsJustify: flex-start;
     --detailsHeight: 800px;
-    --detatilsAlign: column nowrap;
     --detailsLeftHeight: 300px;
   }
 }
@@ -2283,6 +2285,7 @@ html body button {
     --loginMiddleBorderLeft: 0;
     --loginMiddleBorderTop: 3px dashed var(--gray);
     --loginDivWidth: 100%;
+    --titleContentAlign: column wrap;
     --titleDivLeftWidth: 100%;
     --titleDivLeftJustify: center;
     --titleDivRightWidth: 100%;
@@ -2295,7 +2298,6 @@ html body button {
     --settingsAlign: center;
     --settingsJustify: flex-start;
     --detailsHeight: 800px;
-    --detatilsAlign: column nowrap;
     --detailsLeftHeight: 300px;
   }
 }
@@ -2406,7 +2408,7 @@ html body button {
 }
 
 #watchInterface #playerBox #browserBack #backButton:hover:before {
-  color: var(--blue);
+  color: var(--joker02);
 }
 
 .interface {

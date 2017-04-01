@@ -10,6 +10,7 @@ $responsiveVariables: (
     --loginMiddleBorderLeft: 3px dashed var(--gray),
     --loginMiddleBorderTop: 0,
     --loginDivWidth: 50%,
+    --titleContentAlign: row nowrap,
     --titleDivLeftWidth: 25%,
     --titleDivLeftJustify: flex-start,
     --titleDivRightWidth: 100%,
@@ -22,7 +23,6 @@ $responsiveVariables: (
     --settingsAlign: space-around,
     --settingsJustify: space-around,
     --detailsHeight: 400px,
-    --detatilsAlign: row nowrap,
     --detailsLeftHeight: 100%,
 );
 

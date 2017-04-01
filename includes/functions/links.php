@@ -25,8 +25,11 @@
                 elseif($type == 'title') {
                     $link = $baseUrl . langCode('title_link') .'?id=' . $id;
                 }
-                elseif($type == 'watch') {
+                elseif($type == 'watchMovie') {
                     $link = $baseUrl . langCode('watch_link') .'?id=' . $id;
+                }
+                elseif($type == 'watchSerie') {
+                    $link = $baseUrl . langCode('watch_link') . '?id=' . $id . '&e=';//$firstEpisode['episode_id'];
                 }
                 elseif($type == 'category') {
                     $link = $baseUrl . langCode('category_link') . '?c=' . categoryId($id);

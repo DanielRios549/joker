@@ -69,9 +69,18 @@ if($contentVerify -> rowCount() == 1) {
 					</div>
 					<div id="contentSortcuts">
 						<?php if($contentType == 'movie') {?>
-						<div id="startBtn" class="contentBtn"><a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId?>"><span class="btnSpan"><?php echo langCode('play');?></span></a></div>
-						<?php } elseif($contentType == 'serie') {?>
-						<div id="startBtn" class="contentBtn"><a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId . '&e=' . $firstEpisode['episode_id'];?>"><span class="btnSpan"><?php echo langCode('play');?></span></a></div>
+						<div id="startBtn" class="contentBtn"><a href="<?php echo getLink('watchMovie', $contentId);?>"><span class="btnSpan"><?php echo langCode('play');?></span></a></div>
+						<?php } elseif($contentType == 'serie') {
+							if(continueWatching($contentId) == true) {
+								$continueEpidode = $continues[$contentId] [0] ['continueContent'];
+								$buttonText = langCode('continue');
+							}
+							else {
+								$continueEpidode = $firstEpisode['episode_id'];
+								$buttonText = langCode('play');
+							}
+						?>
+						<div id="startBtn" class="contentBtn"><a href="<?php echo getLink('watchSerie', $contentId) . $continueEpidode;?>"><span class="btnSpan"><?php echo $buttonText;?></span></a></div>
 						<?php } if(@$adminCheck == true) {?>
 						<div id="playTrayler" class="contentBtn"><span class="btnSpan"><?php echo langCode('trailer');?></span></div>
 						<?php }?>
