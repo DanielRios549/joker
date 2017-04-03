@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2017 at 05:44 PM
--- Server version: 5.7.16-0ubuntu0.16.10.1
--- PHP Version: 7.0.14-2+deb.sury.org~yakkety+1
+-- Generation Time: Apr 03, 2017 at 07:15 PM
+-- Server version: 5.7.17-0ubuntu0.16.04.1
+-- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `joker`
 --
-CREATE DATABASE IF NOT EXISTS `joker` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `joker`;
 
 -- --------------------------------------------------------
 
@@ -42,7 +40,7 @@ CREATE TABLE `comment` (
 INSERT INTO `comment` (`comment_id`, `content`, `user`, `comment`) VALUES
 (3, 4, 3, 'Nossa, ficou show'),
 (4, 4, 2, 'Já vi melhores'),
-(26, 4, 1, 'Que foda!');
+(29, 4, 1, 'Teste');
 
 -- --------------------------------------------------------
 
@@ -172,8 +170,8 @@ CREATE TABLE `content_episodes` (
 --
 
 INSERT INTO `content_episodes` (`episode_id`, `active`, `episode_ref`, `season`, `episode`, `en_US`, `pt_BR`) VALUES
-(1, 'yes', 4, 1, 3, 'Episode 1.3 Title|Episode 1.3 Synopsis', 'Episódio 1.3 Título|Episódio 1.3 Sinópse'),
-(2, 'yes', 4, 1, 1, 'Episode 1.1 Title|Episode 1.1 Synopsis', 'Episódio 1.1 Título|Episódio 1.1 Sinópse'),
+(1, 'yes', 4, 1, 1, 'Episode 1.1 Title|Episode 1.1 Synopsis', 'Episódio 1.1 Título|Episódio 1.1 Sinópse'),
+(2, 'yes', 4, 1, 3, 'Episode 1.3 Title|Episode 1.3 Synopsis', 'Episódio 1.3 Título|Episódio 1.3 Sinópse'),
 (4, 'yes', 4, 1, 4, 'Episode 1.4 Title|Episode 1.4 Synopsis', 'Episódio 1.4 Título|Episódio 1.4 Sinópse'),
 (6, 'yes', 4, 2, 1, 'Episode 2.1 Title|Episode 2.1 Synopsis', 'Episódio 2.1 Título|Episódio 2.1 Sinópse'),
 (7, 'yes', 4, 1, 2, 'Episode 1.2 Title|Episode 1.2 Synopsis', 'Episódio 1.2 Título|Episódio 1.2 Sinópse'),
@@ -220,9 +218,9 @@ CREATE TABLE `follow` (
 
 INSERT INTO `follow` (`follow_id`, `user`, `follow`) VALUES
 (11, 2, 1),
-(53, 1, 3),
 (55, 2, 3),
-(59, 1, 2);
+(59, 1, 2),
+(60, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -419,7 +417,8 @@ INSERT INTO `language` (`language_id`, `name`, `en_US`, `pt_BR`) VALUES
 (180, 'admin_episodes_add_hover', 'Add more Episodes for a serie', 'Adicionar mais episódios para uma série'),
 (181, 'admin_episodes_add_link', 'episodes/add', 'episodios/adicionar'),
 (182, 'admin_episodes_manager_link', 'episodes/manager', 'episodios/gerenciar'),
-(183, 'admin_episodes_manager_hover', 'Manager episodes', 'Gerenciar episódios');
+(183, 'admin_episodes_manager_hover', 'Manager episodes', 'Gerenciar episódios'),
+(184, 'continue', 'Continue', 'Continuar');
 
 -- --------------------------------------------------------
 
@@ -445,7 +444,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `active`, `name`, `username`, `email`, `password`, `category`, `premium`, `lang`, `style`) VALUES
-(1, 'yes', 'Daniel Rios', 'DanielRios549', 'danielrios.flamengo@gmail.com', '97ce58a4a7b39373aadeb73c3dfdc7fc204c6655', 'admin', 'yes', 'pt_BR', 'D'),
+(1, 'yes', 'Daniel Rios', 'DanielRios54', 'danielrios.flamengo@gmail.com', '97ce58a4a7b39373aadeb73c3dfdc7fc204c6655', 'admin', 'yes', 'en_US', 'N'),
 (2, 'yes', 'Daniel Reis', 'DanielFla', 'daniel_fla@live.com', 'e5d79a4ffb899191b9f69439ab3e947b2b0acbf1', 'user', 'no', 'pt_BR', 'D'),
 (3, 'yes', 'Teste 01', 'teste01', 'email.teste@email.com', 'e5d79a4ffb899191b9f69439ab3e947b2b0acbf1', 'user', 'no', 'pt_BR', 'D');
 
@@ -466,7 +465,7 @@ CREATE TABLE `user_restore` (
 --
 
 INSERT INTO `user_restore` (`restore_id`, `user_id`, `location`) VALUES
-(244, 1, 'cb88e9e4ffee3432a9c6e09fe4335e31c5ddf28d');
+(254, 1, 'a89e47cd3c3444f28f0b37d5430c8fa248893406');
 
 -- --------------------------------------------------------
 
@@ -476,10 +475,20 @@ INSERT INTO `user_restore` (`restore_id`, `user_id`, `location`) VALUES
 
 CREATE TABLE `watched` (
   `watched_id` int(11) NOT NULL,
+  `content` int(11) NOT NULL,
+  `continueContent` int(11) NOT NULL,
+  `percent` tinyint(2) NOT NULL,
   `user` int(11) NOT NULL,
-  `movie` int(11) NOT NULL,
-  `serie` int(11) NOT NULL
+  `type` enum('movie','serie') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `watched`
+--
+
+INSERT INTO `watched` (`watched_id`, `content`, `continueContent`, `percent`, `user`, `type`) VALUES
+(3, 4, 7, 33, 1, 'serie'),
+(4, 1, 1, 75, 1, 'movie');
 
 -- --------------------------------------------------------
 
@@ -501,8 +510,9 @@ INSERT INTO `watchlist` (`wish_id`, `user_id`, `content_id`) VALUES
 (411, 2, 2),
 (413, 2, 3),
 (414, 3, 3),
-(423, 1, 2),
-(424, 1, 4);
+(459, 1, 30),
+(461, 1, 2),
+(462, 1, 4);
 
 --
 -- Indexes for dumped tables
@@ -591,8 +601,8 @@ ALTER TABLE `user_restore`
 ALTER TABLE `watched`
   ADD PRIMARY KEY (`watched_id`),
   ADD KEY `user` (`user`),
-  ADD KEY `movie` (`movie`),
-  ADD KEY `serie` (`serie`);
+  ADD KEY `content` (`content`),
+  ADD KEY `continueContent` (`continueContent`);
 
 --
 -- Indexes for table `watchlist`
@@ -610,7 +620,7 @@ ALTER TABLE `watchlist`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `comment_reply`
 --
@@ -620,7 +630,7 @@ ALTER TABLE `comment_reply`
 -- AUTO_INCREMENT for table `config`
 --
 ALTER TABLE `config`
-  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `config_admin`
 --
@@ -645,12 +655,12 @@ ALTER TABLE `email`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -660,17 +670,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_restore`
 --
 ALTER TABLE `user_restore`
-  MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 --
 -- AUTO_INCREMENT for table `watched`
 --
 ALTER TABLE `watched`
-  MODIFY `watched_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `watched_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `watchlist`
 --
 ALTER TABLE `watchlist`
-  MODIFY `wish_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=426;
+  MODIFY `wish_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=463;
 --
 -- Constraints for dumped tables
 --
@@ -719,8 +729,8 @@ ALTER TABLE `user_restore`
 --
 ALTER TABLE `watched`
   ADD CONSTRAINT `watched_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`),
-  ADD CONSTRAINT `watched_ibfk_2` FOREIGN KEY (`movie`) REFERENCES `content` (`content_id`),
-  ADD CONSTRAINT `watched_ibfk_3` FOREIGN KEY (`serie`) REFERENCES `content_episodes` (`episode_id`);
+  ADD CONSTRAINT `watched_ibfk_2` FOREIGN KEY (`content`) REFERENCES `content` (`content_id`),
+  ADD CONSTRAINT `watched_ibfk_3` FOREIGN KEY (`continueContent`) REFERENCES `content_episodes` (`episode_id`);
 
 --
 -- Constraints for table `watchlist`

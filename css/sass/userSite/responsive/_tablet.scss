@@ -28,39 +28,73 @@ $responsiveVariables: (
 
 @media (max-width: $tablet + 'px') {
     #header {
+        align-items: center;
+
         #menuBtInput {
             position: absolute;
             top: -100%;
             left: -100%;
+            align-self: flex-start;
             
-            &:checked ~ #menu{
-                @include transform(translateX(0px));
+            &:checked {
+                ~ #menuBt {
+                    background: rgba(0, 0, 0, .5);
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    z-index: 99;
+                }
+                ~ #headerCenter {
+                    @include transform(translateX(0px));
+                }
             }
         }
         #menuBt {
             background: url($imageDir + 'menu.png') no-repeat;
-            position: absolute;
-            top: 10px;
-            left: 100px;
+            position: relative;
             height: 40px;
             width: 40px;
             cursor: pointer;
+            margin-right: calc(160px - 40px);
         }
-        #menu {
+        #headerCenter {
             box-shadow: 2px 0 2px rgba(0,0,0,.5);
-            background: #ffffff;
             position: fixed;
-            top: 42px;
+            top: 0;
+            left: 0;
             height: 100%;
             width: 300px;
-            overflow: hidden;
-            
+            z-index: 100;
+            display: flex;
+            flex-flow: row wrap;
+
+            @include css4 {
+                background: var(--darkGray);
+            };
+
             @include transition(all, 300ms, ease);
-            
+                
             @include transform(translateX(-300px));
-        }
-        #searchDiv {
-            display: none;
+
+            #menu {
+                position: relative;
+                height: calc(100% - 60px);
+                width: 100%;
+                overflow: auto;
+                order: 2;
+
+                #ulMenu {
+                    
+                }
+            }
+            #searchDiv {
+                position: relative;
+                height: 60px;
+                width: 100%;
+                order: 1;
+            }
         }
     }
 }

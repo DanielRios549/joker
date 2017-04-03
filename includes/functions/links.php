@@ -29,7 +29,7 @@
                     $link = $baseUrl . langCode('watch_link') .'?id=' . $id;
                 }
                 elseif($type == 'watchSerie') {
-                    $link = $baseUrl . langCode('watch_link') . '?id=' . $id . '&e=';//$firstEpisode['episode_id'];
+                    $link = $baseUrl . langCode('watch_link') . '?id=' . $id . '&e=';
                 }
                 elseif($type == 'category') {
                     $link = $baseUrl . langCode('category_link') . '?c=' . categoryId($id);

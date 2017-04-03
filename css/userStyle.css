@@ -166,7 +166,7 @@ html body button {
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
-.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before {
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, #header #itemHome a, #footer #topDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -925,196 +925,6 @@ html body button {
   height: 100%;
   width: 40px;
   cursor: pointer;
-}
-
-#header #userDiv {
-  background: transparent;
-  position: absolute;
-  top: 0;
-  right: 60px;
-  height: 100%;
-  width: 160px;
-  -webkit-transition: right 200ms linear;
-  -moz-transition: right 200ms linear;
-  -ms-transition: right 200ms linear;
-  transition: right 200ms linear;
-}
-
-#header #userDiv #loginLink {
-  border-bottom: 3px solid transparent;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 100%;
-  width: 100%;
-  -webkit-transition: all 400ms ease;
-  -moz-transition: all 400ms ease;
-  -ms-transition: all 400ms ease;
-  transition: all 400ms ease;
-}
-
-#header #userDiv #loginLink:hover {
-  border-bottom: 3px solid var(--gray);
-  background: var(--joker02);
-}
-
-#header #userDiv #loginLink:before {
-  content: '\f090';
-  font: 3em FontAwesome;
-  position: relative;
-  color: var(--white);
-}
-
-#header #userDiv #loginLink #userName {
-  position: relative;
-  font-size: 2em;
-  color: var(--white);
-}
-
-#header #userDiv #userUl {
-  position: relative;
-  height: 60px;
-  width: 160px;
-}
-
-#header #userDiv #userUl:hover #userLi #userLink {
-  cursor: pointer;
-  background: var(--white);
-}
-
-#header #userDiv #userUl:hover #userLi #userLink #userName {
-  color: var(--gray);
-}
-
-#header #userDiv #userUl:hover #userLi #userLink #userName:after {
-  color: var(--gray);
-}
-
-#header #userDiv #userUl #userLi {
-  height: 100%;
-  width: 100%;
-}
-
-#header #userDiv #userUl #userLi #userLink {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-#header #userDiv #userUl #userLi #userLink #userImg {
-  border-radius: 50%;
-  position: relative;
-  height: 30px;
-  width: 30px;
-}
-
-#header #userDiv #userUl #userLi #userLink #userName {
-  position: relative;
-  font-size: 2em;
-  height: 100%;
-  line-height: 57px;
-  display: flex;
-  align-items: flex-end;
-  color: var(--lightGray);
-}
-
-#header #userDiv #userUl #userLi #userLink #userName:after {
-  content: '\f0d7';
-  font: 1em FontAwesome;
-  position: relative;
-  color: var(--lightGray);
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-#header #userDiv #userUl #userLi:hover #userSubMenu {
-  max-height: 160px;
-}
-
-#header #userDiv #userUl #userLi #userSubMenu {
-  border-radius: 0 0 4px 4px;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  position: relative;
-  max-height: 0;
-  width: 160px;
-  background: var(--white);
-}
-
-#header #userDiv #userUl #userLi #userSubMenu #adminLink .subMenuLink:before {
-  content: '\f0e4';
-  font-size: 1.4em;
-}
-
-#header #userDiv #userUl #userLi #userSubMenu #profileLink .subMenuLink:before {
-  content: '\f007';
-}
-
-#header #userDiv #userUl #userLi #userSubMenu #settingsLink .subMenuLink:before {
-  content: '\f013';
-}
-
-#header #userDiv #userUl #userLi #userSubMenu #logoffLink .subMenuLink:before {
-  content: '\f08b';
-}
-
-#header #userDiv #userUl #userLi #userSubMenu .subMenuItem {
-  list-style: none;
-  width: 100%;
-  height: 40px;
-}
-
-#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  font-size: 1.5em;
-  display: flex;
-  color: var(--gray);
-  -webkit-transition: all 300ms ease;
-  -moz-transition: all 300ms ease;
-  -ms-transition: all 300ms ease;
-  transition: all 300ms ease;
-}
-
-#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:hover {
-  background: var(--joker02);
-  color: var(--white);
-}
-
-#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:hover:before {
-  color: var(--white);
-}
-
-#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:before {
-  position: relative;
-  font-family: FontAwesome;
-  font-size: 1.7em;
-  width: 30%;
-  top: 8px;
-  left: 12px;
-  color: var(--gray);
-  -webkit-transition: color 300ms ease;
-  -moz-transition: color 300ms ease;
-  -ms-transition: color 300ms ease;
-  transition: color 300ms ease;
-}
-
-#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink .subMenuSpan {
-  width: 70%;
-  line-height: 40px;
-}
-
-#header #topDiv {
-  -webkit-transition: opacity 200ms linear;
-  -moz-transition: opacity 200ms linear;
-  -ms-transition: opacity 200ms linear;
-  transition: opacity 200ms linear;
 }
 
 .interface .mainSection .contentContainer {
@@ -2006,64 +1816,58 @@ html body button {
     --detailsHeight: 400px;
     --detailsLeftHeight: 100%;
   }
-  #header #itemHome {
-    position: relative;
-    left: 110px;
-    top: 0;
-    height: 100%;
-    width: 200px;
-  }
-  #header #itemHome a {
-    display: block;
-    background: url("http://localhost/joker/images/streamovie.png") no-repeat 50% 50%;
-    background-size: 200px 70px;
-    position: relative;
-    height: 100%;
-    width: 100%;
-  }
   #header #menuBtInput, #header #menuBt {
     position: absolute;
     top: -100%;
     left: -100%;
   }
-  #header #menu {
-    position: absolute;
-    top: 0;
-    left: 280px;
+  #header #headerCenter {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    -webkit-transition: padding 200ms linear;
+    -moz-transition: padding 200ms linear;
+    -ms-transition: padding 200ms linear;
+    transition: padding 200ms linear;
   }
-  #header #menu #ulMenu {
+  #header #headerCenter #menu {
+    position: relative;
+  }
+  #header #headerCenter #menu #ulMenu {
     list-style: none;
   }
-  #header #menu #ulMenu #itemMenuHome {
+  #header #headerCenter #menu #ulMenu #itemMenuHome {
     display: none;
   }
-  #header #menu #ulMenu #itemSubMenu {
-    position: absolute;
-    top: 0;
-    left: 40px;
+  #header #headerCenter #menu #ulMenu #itemSubMenu {
+    position: relative;
     height: 60px;
     line-height: 60px;
   }
-  #header #menu #ulMenu #itemSubMenu:hover {
+  #header #headerCenter #menu #ulMenu #itemSubMenu:hover {
     background: var(--white);
   }
-  #header #menu #ulMenu #itemSubMenu:hover .menuSpan {
+  #header #headerCenter #menu #ulMenu #itemSubMenu:hover .menuSpan {
     color: var(--gray);
   }
-  #header #menu #ulMenu #itemSubMenu:hover .menuSpan:after {
+  #header #headerCenter #menu #ulMenu #itemSubMenu:hover .menuSpan:after {
     color: var(--gray);
   }
-  #header #menu #ulMenu #itemSubMenu:hover #subMenu {
+  #header #headerCenter #menu #ulMenu #itemSubMenu:hover #subMenu {
     max-height: 1000px;
   }
-  #header #menu #ulMenu #itemSubMenu .menuSpan {
+  #header #headerCenter #menu #ulMenu #itemSubMenu .menuSpan {
     font-size: 1.8em;
     cursor: pointer;
     display: block;
     padding: 0 15px;
     color: var(--lightGray);
   }
-  #header #menu #ulMenu #itemSubMenu .menuSpan:after {
+  #header #headerCenter #menu #ulMenu #itemSubMenu .menuSpan:after {
     content: '\f0d7';
     font: 1em FontAwesome;
     position: absolute;
@@ -2075,7 +1879,7 @@ html body button {
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
   }
-  #header #menu #ulMenu #itemSubMenu #subMenu {
+  #header #headerCenter #menu #ulMenu #itemSubMenu #subMenu {
     border-radius: 0 0 4px 4px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     position: absolute;
@@ -2087,12 +1891,12 @@ html body button {
     overflow: hidden;
     background: var(--white);
   }
-  #header #menu #ulMenu #itemSubMenu #subMenu .subMenuItem {
+  #header #headerCenter #menu #ulMenu #itemSubMenu #subMenu .subMenuItem {
     height: 30px;
     line-height: 30px;
     width: 100%;
   }
-  #header #menu #ulMenu #itemSubMenu #subMenu .subMenuItem a {
+  #header #headerCenter #menu #ulMenu #itemSubMenu #subMenu .subMenuItem a {
     display: block;
     display: block;
     font-size: 2em;
@@ -2106,32 +1910,28 @@ html body button {
     -ms-transition: all 200ms linear;
     transition: all 200ms linear;
   }
-  #header #menu #ulMenu #itemSubMenu #subMenu .subMenuItem a:hover {
+  #header #headerCenter #menu #ulMenu #itemSubMenu #subMenu .subMenuItem a:hover {
     background: var(--joker02);
     color: var(--lightGray);
   }
-  #header #searchDiv {
-    position: absolute;
-    top: 10px;
+  #header #headerCenter #searchDiv {
+    position: relative;
     height: 40px;
     width: 280px;
-    -webkit-transition: right 200ms linear;
-    -moz-transition: right 200ms linear;
-    -ms-transition: right 200ms linear;
-    transition: right 200ms linear;
   }
-  #header #searchDiv #searchForm {
+  #header #headerCenter #searchDiv #searchForm {
     position: relative;
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
-  #header #searchDiv #searchForm #searchInput {
-    position: absolute;
+  #header #headerCenter #searchDiv #searchForm #searchInput {
+    position: relative;
     border-radius: 3px 0 0 3px;
     height: 100%;
     width: 120px;
     padding: 10px;
-    right: 60px;
     font-size: 1.6em;
     z-index: 10;
     background: var(--joker02);
@@ -2141,27 +1941,26 @@ html body button {
     -ms-transition: all 300ms linear;
     transition: all 300ms linear;
   }
-  #header #searchDiv #searchForm #searchInput:focus {
+  #header #headerCenter #searchDiv #searchForm #searchInput:focus {
     width: 200px;
     background: var(--white);
     color: var(--darkGray);
   }
-  #header #searchDiv #searchForm #submitSearch {
+  #header #headerCenter #searchDiv #searchForm #submitSearch {
     outline: none;
     border: none;
     border-radius: 0 3px 3px 0;
-    position: absolute;
+    position: relative;
     height: 100%;
     width: 40px;
-    right: 20px;
     cursor: pointer;
     z-index: 10;
     background: var(--joker02);
   }
-  #header #searchDiv #searchForm #submitSearch:hover:after {
+  #header #headerCenter #searchDiv #searchForm #submitSearch:hover:after {
     color: var(--white);
   }
-  #header #searchDiv #searchForm #submitSearch:before {
+  #header #headerCenter #searchDiv #searchForm #submitSearch:before {
     content: '';
     position: absolute;
     border-width: 8px 8px 8px 0;
@@ -2171,7 +1970,7 @@ html body button {
     border-color: transparent var(--joker02) transparent;
     color: var(--darkGray);
   }
-  #header #searchDiv #searchForm #submitSearch:after {
+  #header #headerCenter #searchDiv #searchForm #submitSearch:after {
     content: '\f002';
     font: 1.5em FontAwesome;
     top: 0;
@@ -2182,17 +1981,17 @@ html body button {
     -ms-transition: color 200ms linear;
     transition: color 200ms linear;
   }
-  #header #searchDiv .searchOff {
+  #header #headerCenter #searchDiv .searchOff {
     display: none;
     height: 0;
     width: 0;
   }
-  #header #searchDiv .searchOn {
+  #header #headerCenter #searchDiv .searchOn {
     display: block;
     height: 100px;
     width: 100%;
   }
-  #header #searchDiv #searchAjaxResults {
+  #header #headerCenter #searchDiv #searchAjaxResults {
     background: #303030;
     position: relative;
     top: -60px;
@@ -2208,12 +2007,25 @@ html body button {
  ***************************************************************
 */
 @media (max-width: 1032px) {
+  #header {
+    align-items: center;
+  }
   #header #menuBtInput {
     position: absolute;
     top: -100%;
     left: -100%;
+    align-self: flex-start;
   }
-  #header #menuBtInput:checked ~ #menu {
+  #header #menuBtInput:checked ~ #menuBt {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+  }
+  #header #menuBtInput:checked ~ #headerCenter {
     -webkit-transform: translateX(0px);
     -moz-transform: translateX(0px);
     -ms-transform: translateX(0px);
@@ -2221,21 +2033,23 @@ html body button {
   }
   #header #menuBt {
     background: url("http://localhost/joker/images/menu.png") no-repeat;
-    position: absolute;
-    top: 10px;
-    left: 100px;
+    position: relative;
     height: 40px;
     width: 40px;
     cursor: pointer;
+    margin-right: calc(160px - 40px);
   }
-  #header #menu {
+  #header #headerCenter {
     box-shadow: 2px 0 2px rgba(0, 0, 0, 0.5);
-    background: #ffffff;
     position: fixed;
-    top: 42px;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 300px;
-    overflow: hidden;
+    z-index: 100;
+    display: flex;
+    flex-flow: row wrap;
+    background: var(--darkGray);
     -webkit-transition: all 300ms ease;
     -moz-transition: all 300ms ease;
     -ms-transition: all 300ms ease;
@@ -2245,8 +2059,18 @@ html body button {
     -ms-transform: translateX(-300px);
     transform: translateX(-300px);
   }
-  #header #searchDiv {
-    display: none;
+  #header #headerCenter #menu {
+    position: relative;
+    height: calc(100% - 60px);
+    width: 100%;
+    overflow: auto;
+    order: 2;
+  }
+  #header #headerCenter #searchDiv {
+    position: relative;
+    height: 60px;
+    width: 100%;
+    order: 1;
   }
 }
 
@@ -2302,49 +2126,6 @@ html body button {
   }
 }
 
-.header #searchDiv {
-  right: 250px;
-}
-
-.header #userDiv {
-  right: 50px;
-}
-
-.header #topDiv {
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  opacity: 0;
-}
-
-.headerFixed #searchDiv {
-  right: 350px;
-}
-
-.headerFixed #userDiv {
-  right: 150px !important;
-}
-
-.headerFixed #topDiv {
-  position: absolute;
-  top: 0;
-  right: 80px;
-  height: 100%;
-  width: 50px;
-  cursor: pointer;
-  opacity: 1;
-  background: var(--joker02);
-}
-
-.headerFixed #topDiv:after {
-  position: relative;
-  content: '\f139';
-  font: 2em FontAwesome;
-  top: 20px;
-  left: 16px;
-  color: var(--lightGray);
-}
-
 #header {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -2353,7 +2134,200 @@ html body button {
   z-index: 100;
   height: 60px;
   width: 100%;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
   background: var(--joker01);
+}
+
+#header #itemHome {
+  position: relative;
+  height: 100%;
+  width: 200px;
+  flex: 0 0 auto;
+}
+
+#header #itemHome a {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+#header #userDiv {
+  position: relative;
+  height: 100%;
+  width: 160px;
+  flex: 0 0 auto;
+}
+
+#header #userDiv #loginLink {
+  border-bottom: 3px solid transparent;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -ms-transition: all 400ms ease;
+  transition: all 400ms ease;
+}
+
+#header #userDiv #loginLink:hover {
+  border-bottom: 3px solid var(--gray);
+  background: var(--joker02);
+}
+
+#header #userDiv #loginLink:before {
+  content: '\f090';
+  font: 3em FontAwesome;
+  position: relative;
+  color: var(--white);
+}
+
+#header #userDiv #loginLink #userName {
+  position: relative;
+  font-size: 2em;
+  color: var(--white);
+}
+
+#header #userDiv #userUl {
+  position: relative;
+  height: 60px;
+  width: 160px;
+}
+
+#header #userDiv #userUl:hover #userLi #userLink {
+  cursor: pointer;
+  background: var(--white);
+}
+
+#header #userDiv #userUl:hover #userLi #userLink #userName {
+  color: var(--gray);
+}
+
+#header #userDiv #userUl:hover #userLi #userLink #userName:after {
+  color: var(--gray);
+}
+
+#header #userDiv #userUl #userLi {
+  height: 100%;
+  width: 100%;
+}
+
+#header #userDiv #userUl #userLi #userLink {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#header #userDiv #userUl #userLi #userLink #userImg {
+  border-radius: 50%;
+  position: relative;
+  height: 30px;
+  width: 30px;
+}
+
+#header #userDiv #userUl #userLi #userLink #userName {
+  position: relative;
+  font-size: 2em;
+  height: 100%;
+  line-height: 57px;
+  display: flex;
+  align-items: flex-end;
+  color: var(--lightGray);
+}
+
+#header #userDiv #userUl #userLi #userLink #userName:after {
+  content: '\f0d7';
+  font: 1em FontAwesome;
+  position: relative;
+  color: var(--lightGray);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#header #userDiv #userUl #userLi:hover #userSubMenu {
+  max-height: 160px;
+}
+
+#header #userDiv #userUl #userLi #userSubMenu {
+  border-radius: 0 0 4px 4px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+  max-height: 0;
+  width: 160px;
+  background: var(--white);
+}
+
+#header #userDiv #userUl #userLi #userSubMenu #adminLink .subMenuLink:before {
+  content: '\f0e4';
+  font-size: 1.4em;
+}
+
+#header #userDiv #userUl #userLi #userSubMenu #profileLink .subMenuLink:before {
+  content: '\f007';
+}
+
+#header #userDiv #userUl #userLi #userSubMenu #settingsLink .subMenuLink:before {
+  content: '\f013';
+}
+
+#header #userDiv #userUl #userLi #userSubMenu #logoffLink .subMenuLink:before {
+  content: '\f08b';
+}
+
+#header #userDiv #userUl #userLi #userSubMenu .subMenuItem {
+  list-style: none;
+  width: 100%;
+  height: 40px;
+}
+
+#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-size: 1.5em;
+  display: flex;
+  color: var(--gray);
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:hover {
+  background: var(--joker02);
+  color: var(--white);
+}
+
+#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:hover:before {
+  color: var(--white);
+}
+
+#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:before {
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 1.7em;
+  width: 30%;
+  top: 8px;
+  left: 12px;
+  color: var(--gray);
+  -webkit-transition: color 300ms ease;
+  -moz-transition: color 300ms ease;
+  -ms-transition: color 300ms ease;
+  transition: color 300ms ease;
+}
+
+#header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink .subMenuSpan {
+  width: 70%;
+  line-height: 40px;
 }
 
 #watchInterface {
@@ -4527,6 +4501,35 @@ html body button {
   width: 100%;
   z-index: 99;
   background: var(--joker01);
+}
+
+#footer .topDiv {
+  bottom: -100px;
+}
+
+#footer .topDivFixed {
+  bottom: 10px;
+}
+
+#footer #topDiv {
+  border-radius: 50%;
+  position: fixed;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background: var(--joker02);
+  -webkit-transition: bottom 200ms linear;
+  -moz-transition: bottom 200ms linear;
+  -ms-transition: bottom 200ms linear;
+  transition: bottom 200ms linear;
+}
+
+#footer #topDiv:after {
+  position: relative;
+  content: '\f139';
+  font: 2em FontAwesome;
+  color: var(--lightGray);
 }
 
 #footer #footerAtomo {

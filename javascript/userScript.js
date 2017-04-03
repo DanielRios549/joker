@@ -13,17 +13,17 @@ $(document).ready(function() {
 	//Change class of header of all page
 
 	$(window).on('scroll', function() {
-		var header = $('#header');
+		var topDiv = $('#topDiv');
 
 		if ($(this).scrollTop() >= 300) {
-			header.removeClass('header').addClass('headerFixed');
+			topDiv.removeClass('topDiv').addClass('topDivFixed');
 		}
 		else {
-			header.removeClass('headerFixed').addClass('header');
+			topDiv.removeClass('topDivFixed').addClass('topDiv');
 		}
 	});
 	
-	$('#header').on("click", "#topDiv", function(event) {
+	$('#footer').on("click", "#topDiv", function(event) {
 		event.preventDefault();
 		$('html, body').animate({
 			scrollTop: 0

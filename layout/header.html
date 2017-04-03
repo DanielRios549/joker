@@ -12,41 +12,44 @@
 ?>
 
 <header id="header" class="header">
-	<div id="itemHome">
-		<a title="<?php echo langCode('home_hover');?>" href="<?php echo $baseUrl;?>"></a>
-	</div>
-	<?php if($loginCheck == true) {?>
 	<input type="checkbox" name="menuBtInput" id="menuBtInput"/>
 	<label for="menuBtInput" id="menuBt"></label>
-	
-	<nav id="menu">
-		<ul id="ulMenu">
-			<li id="itemMenuHome">
-				<a id="menuHome" class="allMenus" title="<?php echo langCode('home_hover');?>" href="<?php echo $baseUrl;?>">
-					<span class="menuSpan"><?php echo langCode('home');?></span>
-				</a>
-			</li>
-			<li id="itemSubMenu"><span class="menuSpan"><?php echo langCode('nav_menu');?></span>
-				<ul id="subMenu">
-					<?php foreach($allCategories as $allCategories => $key) {$category = $key; require $contentDir . 'contentMenu.php'; if($contentMenu -> contentHide == false){?>
-					<li class="subMenuItem"><a href="<?php echo getLink('category', $key);?>"><?php echo langCode($key);?></a></li>
-					<?php }}?>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-	<div id="searchDiv">
-		<form id="searchForm" method="get" action="<?php echo langCode('search_link');?>">
-			<input type="text" name="q" id="searchInput" placeholder="<?php echo langCode('input_search');?>" autocomplete="off" required/>
-			
-			<button type="submit" id="submitSearch" value=""></button>
-		</form>
-		<div id="searchAjaxResults" class="searchOff">
-			
-		</div>
-	</div>
+	<section id="itemHome">
+		<a title="<?php echo langCode('home_hover');?>" href="<?php echo $baseUrl;?>">
+			<img src="<?php echo $imageDir . 'streamovie.png';?>" alt="header">
+		</a>
+	</section>
+	<?php if($loginCheck == true) {?>
+	<section id="headerCenter">
+		<nav id="menu">
+			<ul id="ulMenu">
+				<li id="itemMenuHome">
+					<a id="menuHome" class="allMenus" title="<?php echo langCode('home_hover');?>" href="<?php echo $baseUrl;?>">
+						<span class="menuSpan"><?php echo langCode('home');?></span>
+					</a>
+				</li>
+				<li id="itemSubMenu"><span class="menuSpan"><?php echo langCode('nav_menu');?></span>
+					<ul id="subMenu">
+						<?php foreach($allCategories as $allCategories => $key) {$category = $key; require $contentDir . 'contentMenu.php'; if($contentMenu -> contentHide == false){?>
+						<li class="subMenuItem"><a href="<?php echo getLink('category', $key);?>"><?php echo langCode($key);?></a></li>
+						<?php }}?>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<article id="searchDiv">
+			<form id="searchForm" method="get" action="<?php echo langCode('search_link');?>">
+				<input type="text" name="q" id="searchInput" placeholder="<?php echo langCode('input_search');?>" autocomplete="off" required/>
+				
+				<button type="submit" id="submitSearch" value=""></button>
+			</form>
+			<div id="searchAjaxResults" class="searchOff">
+				
+			</div>
+		</article>
+	</section>
 	<?php }?>
-	<div id="userDiv">
+	<section id="userDiv">
 		<?php if($loginCheck == false) {?>
 				<a href="<?php echo $baseUrl . langCode('login_link');?>" id="loginLink">
 					<span id="userName"><?php echo langCode('login');?></span>
@@ -69,6 +72,5 @@
 			</li>
 		</ul>
 		<?php }?>
-	</div>
-	<div id="topDiv"></div>
+	</section>
 </header>
