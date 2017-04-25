@@ -37,6 +37,12 @@ $responsiveVariables: (
             align-self: flex-start;
             
             &:checked {
+                position: relative;
+                height: 40px;
+                width: 40px;
+                cursor: pointer;
+                margin-right: calc(160px - 40px);
+                
                 ~ #menuBt {
                     background: rgba(0, 0, 0, .5);
                     position: fixed;

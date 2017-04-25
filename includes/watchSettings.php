@@ -130,22 +130,22 @@
                     $mediaFolder = 'media/series/';
                     $videoPath = $mediaFolder . $contentId . '/season' . $dataSeason . '/episode' . $dataEpisode;
                 }
+                
+                $dashFile = 'no';
+                $hlsFile = 'no';
 
-                $webmFile = 'no';
-                $mp4File = 'no';
-
-                $videoName = 'video';//'small';
-                $videoToCheck = $videoPath . '/' . $videoName . '.';
+                $fileName = 'output_dash';
+                $fileToCheck = $videoPath . '/' . $fileName . '.';
                 //$currentDate = new DateTime();
                 //$videoToCheck = sha1($videoPath . '/' . $videoName . '.', 'test');
 
                 //echo $currentDate -> format('m');
 
-                if(file_exists($videoToCheck . 'webm')) {
-                    $webmFile = 'yes';
+                if(file_exists($fileToCheck . 'mpd')) {
+                    $dashFile = 'yes';
                 }
-                if(file_exists($videoToCheck . 'mp4')) {
-                    $mp4File = 'yes';
+                if(file_exists($fileToCheck . 'm3u8')) {
+                    $hlsFile = 'yes';
                 }
             }
         }

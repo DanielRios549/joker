@@ -166,7 +166,7 @@ html body button {
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
-.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, #header #itemHome a, #footer #topDiv {
+#watchInterface #playerBox #controlsDiv #leftControls .playerIcon, #watchInterface #playerBox #controlsDiv #leftControls .rightButton, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon, #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, #header #itemHome a, #footer #topDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -178,22 +178,48 @@ html body button {
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
-#watchInterface .playerBoxShow #mediaHolder #videoTag {
-  max-width: 1080px;
-  width: 90%;
+#watchInterface #videoStats {
+  border-radius: 5px;
+  position: absolute;
+  top: 20px;
+  left: calc(5% + 20px);
+  z-index: 111;
+  font: 2em Calibri, sans-serif;
+  padding: 5px;
+  display: none;
+  background: var(--darkGray);
+  color: var(--lightGray);
 }
 
-#watchInterface .playerBoxShow #controlsDiv #rightControls #fullScreenButton:before {
+#watchInterface .playerBoxShow {
+  height: 100%;
+  width: 100%;
+}
+
+#watchInterface .playerBoxShow #mediaHolder {
+  height: 100%;
+  width: calc(100% - 100px);
+}
+
+#watchInterface .playerBoxShow #mediaHolder #videoTag {
+  width: 100%;
+}
+
+#watchInterface .playerBoxShow #controlsDiv #rightControls #fullScreenButton:after {
   content: '\e901';
 }
 
-#watchInterface .playerBoxShowFull #mediaHolder {
+#watchInterface .playerBoxShowFull {
   width: 100%;
   height: 100%;
 }
 
-#watchInterface .playerBoxShowFull #mediaHolder #videoTag {
+#watchInterface .playerBoxShowFull #mediaHolder {
   height: 100%;
+  width: 100%;
+}
+
+#watchInterface .playerBoxShowFull #mediaHolder #videoTag {
   width: 100%;
 }
 
@@ -201,14 +227,12 @@ html body button {
   z-index: 1000;
 }
 
-#watchInterface .playerBoxShowFull #controlsDiv #rightControls #fullScreenButton:before {
+#watchInterface .playerBoxShowFull #controlsDiv #rightControls #fullScreenButton:after {
   content: '\e902';
 }
 
 #watchInterface #playerBox {
   position: relative;
-  height: 100%;
-  width: 100%;
   z-index: 110;
   display: flex;
   flex-direction: column;
@@ -218,10 +242,10 @@ html body button {
 
 #watchInterface #playerBox #mediaHolder {
   position: relative;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--black);
 }
 
 #watchInterface #playerBox #mediaHolder #videoTag {
@@ -327,16 +351,28 @@ html body button {
   transition: all 300ms ease;
 }
 
-#watchInterface #playerBox #controlsDiv #leftControls .playerIcon:before, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:before {
-  font: 3em PlayerIcon;
+#watchInterface #playerBox #controlsDiv #leftControls .playerIcon, #watchInterface #playerBox #controlsDiv #leftControls .rightButton, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon, #watchInterface #playerBox #controlsDiv #rightControls .rightButton {
   position: relative;
-  top: 5px;
-  left: 4px;
+  width: 40px;
+  height: 100%;
+  cursor: pointer;
+}
+
+#watchInterface #playerBox #controlsDiv #leftControls .playerIcon:after, #watchInterface #playerBox #controlsDiv #leftControls .rightButton:after, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:after, #watchInterface #playerBox #controlsDiv #rightControls .rightButton:after {
+  position: absolute;
   color: var(--white);
 }
 
-#watchInterface #playerBox #controlsDiv #leftControls .playerIcon:hover:before, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:hover:before {
+#watchInterface #playerBox #controlsDiv #leftControls .playerIcon:hover:after, #watchInterface #playerBox #controlsDiv #leftControls .rightButton:hover:after, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:hover:after, #watchInterface #playerBox #controlsDiv #rightControls .rightButton:hover:after {
   color: var(--joker02);
+}
+
+#watchInterface #playerBox #controlsDiv #leftControls .playerIcon:after, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon:after {
+  font: 3em PlayerIcon;
+}
+
+#watchInterface #playerBox #controlsDiv #leftControls .rightButton:after, #watchInterface #playerBox #controlsDiv #rightControls .rightButton:after {
+  font: 3em FontAwesome;
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls {
@@ -346,19 +382,16 @@ html body button {
   justify-content: center;
 }
 
-#watchInterface #playerBox #controlsDiv #leftControls .playBtn:before {
+#watchInterface #playerBox #controlsDiv #leftControls .playerIcon, #watchInterface #playerBox #controlsDiv #leftControls .rightButton {
+  border-right: 1px solid var(--darkGray);
+}
+
+#watchInterface #playerBox #controlsDiv #leftControls .playBtn:after {
   content: '\e905';
 }
 
-#watchInterface #playerBox #controlsDiv #leftControls .playBtn2:before {
+#watchInterface #playerBox #controlsDiv #leftControls .playBtn2:after {
   content: '\e904';
-}
-
-#watchInterface #playerBox #controlsDiv #leftControls #playBtn {
-  position: relative;
-  width: 40px;
-  cursor: pointer;
-  border-right: 1px solid var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #leftControls #videoTime {
@@ -478,31 +511,24 @@ html body button {
 
 #watchInterface #playerBox #controlsDiv #rightControls {
   position: relative;
-  width: 120px;
   height: 40px;
   display: flex;
-  justify-content: space-between;
 }
 
-#watchInterface #playerBox #controlsDiv #rightControls .sound2:before {
+#watchInterface #playerBox #controlsDiv #rightControls .playerIcon, #watchInterface #playerBox #controlsDiv #rightControls .rightButton {
+  border-left: 1px solid var(--darkGray);
+}
+
+#watchInterface #playerBox #controlsDiv #rightControls .sound2:after {
   content: '\e907';
 }
 
-#watchInterface #playerBox #controlsDiv #rightControls .sound:before {
+#watchInterface #playerBox #controlsDiv #rightControls .sound:after {
   content: '\e906';
 }
 
-#watchInterface #playerBox #controlsDiv #rightControls .soundMuted:before {
+#watchInterface #playerBox #controlsDiv #rightControls .soundMuted:after {
   content: '\e903';
-}
-
-#watchInterface #playerBox #controlsDiv #rightControls #muteButton {
-  position: relative;
-  width: 40px;
-  height: 100%;
-  cursor: pointer;
-  border-left: 1px solid var(--darkGray);
-  border-right: 1px solid var(--darkGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #muteButton:hover + #volumeSliderContainer {
@@ -584,20 +610,12 @@ html body button {
   background: var(--joker02);
 }
 
-#watchInterface #playerBox #controlsDiv #rightControls #episodesButton {
-  position: relative;
-  height: 100%;
-  width: 40px;
-  cursor: pointer;
+#watchInterface #playerBox #controlsDiv #rightControls #qualityButton:after {
+  content: '\f013';
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesButton:after {
   content: '\f0c9';
-  font: 3em FontAwesome;
-  position: absolute;
-  left: 7px;
-  top: 5px;
-  color: var(--lightGray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesButton:hover + #episodesDiv {
@@ -605,6 +623,7 @@ html body button {
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv {
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   bottom: 40px;
   right: 0;
@@ -639,7 +658,6 @@ html body button {
   z-index: 96;
   display: flex;
   flex-direction: column;
-  background: var(--gray);
   -webkit-transition: width 200ms linear;
   -moz-transition: width 200ms linear;
   -ms-transition: width 200ms linear;
@@ -701,7 +719,6 @@ html body button {
   z-index: 95;
   display: flex;
   border-bottom: 1px solid var(--darkGray);
-  background: var(--gray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeSelectHeader #openSelector {
@@ -793,7 +810,6 @@ html body button {
   z-index: 94;
   display: flex;
   flex-flow: column nowrap;
-  background: var(--gray);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen {
@@ -815,7 +831,7 @@ html body button {
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeNumber, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeTitle, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .epidodeHeader .episodeSynopsis, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeNumber, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeTitle, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose .episodeContent .episodeSynopsis, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeNumber, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeTitle, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .epidodeHeader .episodeSynopsis, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeNumber, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeTitle, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent .episodeSynopsis, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeNumber, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeTitle, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .epidodeHeader .episodeSynopsis, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeNumber, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeTitle, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose .episodeContent .episodeSynopsis, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeNumber, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeTitle, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .epidodeHeader .episodeSynopsis, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeNumber, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeTitle, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent .episodeSynopsis {
   font: 1.5em Calibri, sans-serif;
-  color: var(--lightGray);
+  color: var(--white);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose {
@@ -823,6 +839,7 @@ html body button {
   cursor: pointer;
   display: flex;
   flex-flow: column wrap;
+  color: var(--white);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeClose:hover, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeClose:hover {
@@ -880,6 +897,7 @@ html body button {
   height: 20px;
   line-height: 20px;
   margin-left: 10px;
+  color: var(--white);
 }
 
 #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupHide .episodeOpen .episodeContent, #watchInterface #playerBox #controlsDiv #rightControls #episodesDiv #episodeSelect #episodeList .seasonGroupShow .episodeOpen .episodeContent {
@@ -917,14 +935,6 @@ html body button {
   position: relative;
   height: 100%;
   width: 50%;
-}
-
-#watchInterface #playerBox #controlsDiv #rightControls #fullScreenButton {
-  border-left: 1px solid #262626;
-  position: relative;
-  height: 100%;
-  width: 40px;
-  cursor: pointer;
 }
 
 .interface .mainSection .contentContainer {
@@ -2016,6 +2026,13 @@ html body button {
     left: -100%;
     align-self: flex-start;
   }
+  #header #menuBtInput:checked {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    margin-right: calc(160px - 40px);
+  }
   #header #menuBtInput:checked ~ #menuBt {
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
@@ -2364,8 +2381,6 @@ html body button {
 
 #watchInterface #playerBox #browserBack {
   position: fixed;
-  top: 50px;
-  left: 10px;
   cursor: pointer;
   height: 50px;
   width: 50px;
@@ -3450,6 +3465,7 @@ html body button {
   z-index: 97;
   width: 100%;
   overflow: hidden;
+  box-shadow: 10px 40px 80px rgba(51, 51, 0, 0.5);
 }
 
 .interface .mainSection #imageBack img {
@@ -3475,16 +3491,51 @@ html body button {
   width: 160px;
   height: 240px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  box-shadow: 5px 10px 20px var(--joker02);
 }
 
-.interface .mainSection #divLeft #contentImage .contentPlayFigure {
+.interface .mainSection #divLeft #contentImage .contentFigure {
+  position: absolute;
   height: 100%;
   width: 100%;
 }
 
-.interface .mainSection #divLeft #contentImage .contentPlayFigure img {
+.interface .mainSection #divLeft #contentImage .contentFigure img {
   height: 100%;
   width: 100%;
+}
+
+.interface .mainSection #divLeft #contentImage .shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.interface .mainSection #divLeft #contentImage *[class*="layer-"] {
+  position: relative;
+}
+
+.interface .mainSection #divLeft #contentImage .layer-all {
+  width: 100%;
+  height: 100%;
+}
+
+.interface .mainSection #divLeft #contentImage .layer-top {
+  align-self: flex-start;
+}
+
+.interface .mainSection #divLeft #contentImage .layer-center {
+  align-self: center;
+}
+
+.interface .mainSection #divLeft #contentImage .layer-bottom {
+  align-self: flex-end;
 }
 
 .interface .mainSection #divRight {
@@ -4144,7 +4195,8 @@ html body button {
 .interface .mainSection #divRight #tabContents .contentShow #commentsDiv,
 .interface .mainSection #divRight #tabContents .contentHide #commentsDiv {
   position: relative;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .interface .mainSection #divRight #tabContents .contentShow #commentsDiv #commentFormDiv,

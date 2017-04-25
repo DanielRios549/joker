@@ -11,12 +11,11 @@
 		header("Location:" .  $base . "404");
 	}
 if($contentVerify -> rowCount() == 1) {
-	if($onlyBody == false) {
 ?>
 <script lang="text/javascript">
 	$(window).ready(function() {
 		tabSelect();
-		
+
 		hideReply(".commentGroup");
 		episodeSelect("#seasonBrowse");
 		
@@ -28,8 +27,10 @@ if($contentVerify -> rowCount() == 1) {
 		$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
 
 		disableEnable();
+		posterParalax('#contentImage');
 	});
 </script>
+<?php if($onlyBody == false) {?>
 <main class="interface">
 	<section class="title mainSection">
 	<?php }?>
@@ -37,9 +38,13 @@ if($contentVerify -> rowCount() == 1) {
 			<img src="<?php echo $imageBackground;?>"/>
 		</article>
 		<article id="divLeft">
-			<div id="contentImage">
-				<figure class="contentPlayFigure">
+			<div id="contentImage" data-offset="10">
+				<figure class="contentFigure">
 					<img src="<?php echo $imageContent;?>"/>
+				</figure>
+				<div class="shine"></div>
+				<figure class="layer-bottom" data-offset="20">
+					<img src="<?php echo $imageDir . 'streamovie.png';?>"/>
 				</figure>
 			</div>
 		</article>

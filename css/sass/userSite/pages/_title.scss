@@ -6,7 +6,8 @@
 		z-index: 97;
 		width: 100%;
 		overflow: hidden;
-		
+		box-shadow: 10px 40px 80px rgba(51, 51, 0, 0.5);
+
 		img {
 			position: relative;
 			width: 100%;
@@ -29,15 +30,46 @@
 			width: 160px;
 			height: 240px;
 			margin: 0 auto;
-			
-			.contentPlayFigure {
+			display: flex;
+			justify-content: center;
+			flex-flow: row wrap;
+
+			@include css4 {
+				box-shadow: 5px 10px 20px var(--joker02);//rgba(51, 51, 0, 0.5);
+			};
+			.contentFigure {
+				position: absolute;
 				height: 100%;
 				width: 100%;
-				
+
 				img {
 					height: 100%;
 					width: 100%;
 				}
+			}
+			.shine {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 100;
+			}
+			*[class*="layer-"] {
+				position: relative;
+			}
+			.layer-all {
+				width: 100%;
+				height: 100%;
+			}
+			.layer-top {
+				align-self: flex-start;
+			}
+			.layer-center {
+				align-self: center;
+			}
+			.layer-bottom {
+				align-self: flex-end;
 			}
 		}
 	}
@@ -623,7 +655,8 @@
 				}
 				#commentsDiv {
 					position: relative;
-					width: 100%;
+					width: 90%;
+					margin: 0 auto;
 
 					#commentFormDiv {
 						position: relative;

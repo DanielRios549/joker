@@ -15,29 +15,6 @@ function convertTime(d) {
 	return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s);
 }
 
-function getVideo(async, url, callback, done) {
-	var request = new XMLHttpRequest();
-
-	request.open('GET', url, async);
-	request.responseType = 'arraybuffer';
-
-	request.onload = function() {
-		if (request.status >= 200 && request.status < 400) {
-			callback(new Uint8Array(request.response));
-			//callback(request.response);
-			done();
-		}
-		else {
-			alert('Unexpected status code ' + request.status + ' for ' + url);
-			return false;
-		}
-	};
-	request.onerror = function() {
-		callback('error');
-	};
-	request.send();
-}
-
 function destroyVideo() {
 	$(playerBox).find(video).remove();
 	$(playerBox).find(videoLoad).remove();
@@ -47,8 +24,13 @@ function destroyVideo() {
 
 //firt function after chooseFormat
 
-function showPlayer() {
-	if(videoReadyToUse) {
+function showPlayer(configObject) {
+	if(videoReadyToUse == true) {
+		config = configObject;
+		dash = config.source.dash || false;
+		hls = config.source.hls || false;
+		progressive = config.source.progressive || false;
+
 		intializePlayer();
 	
 		$(playerBox).removeClass('playerBoxHide').addClass('playerBoxShow');
@@ -59,11 +41,11 @@ function showPlayer() {
 			//return false;
 		});
 		
-		$('body').css('overflow' , 'hidden');
+		//$('body').css('overflow' , 'hidden');
 	}
 	else {
 		destroyVideo();
-		alert('There is a error to play the video...');
+		alert('There is a error to play the video specified...');
 		//console.log('There is no video to use...');
 	}
 }
@@ -87,24 +69,27 @@ function intializePlayer() {
 	episodesButton = document.getElementById('episodesButton');
 	fullScreen = document.getElementById('fullScreenButton');
 
-	loadVideo();
+	if (dash != false) {
+		loadVideoDash();
+	}
+	else if(hls != false) {
+		loadVideoHls();
+	}
+	else {
+		destroyVideo();
+		alert('No DASH, HLS or direct video to play');
+	}
 }
 
-function loadVideo() {
-	video.src = URL.createObjectURL(mediaSource);
-	mediaSource.addEventListener('sourceopen', function() {
-		var sourceBuffer = mediaSource.addSourceBuffer(mimeType);
+function loadVideoDash() {
+	var dashPlayer = dashjs.MediaPlayer().create();
+	dashPlayer.getDebug().setLogToBrowserConsole(false)
+     dashPlayer.initialize(videoTag, dash, true);
+     addEvents();
+}
 
-		getVideo(true, dataSource, function(response) {
-			sourceBuffer.addEventListener('updateend', function () {
-				mediaSource.endOfStream();
-				video.play();
-			});
-			sourceBuffer.appendBuffer(response);
-		},function() {
-			addEvents();
-		});
-	}, false);
+function loadVideoHls() {
+	console.log("Using HLS");
 }
 
 function addEvents() {
@@ -259,12 +244,17 @@ function videoSeekDrag(e) {
 }
 
 function videoBuffer() {
-	var bufferedEnd = video.buffered.end(video.buffered.length - 1);
-    var duration =  video.duration;
+	if(dash != false) {
+		var bufferedEnd = video.buffered.end(video.buffered.length - 1);
+		var duration =  video.duration;
 
-    if(duration > 0) {
-      bufferDiv.style.width = ((bufferedEnd / duration) * 100) + '%';
-    }
+		if(duration > 0) {
+			bufferDiv.style.width = ((bufferedEnd / duration) * 100) + '%';
+		}
+	}
+	else {
+		bufferDiv.style.width = '100%';
+	}
 }
 
 function seekTimeUpdade() {

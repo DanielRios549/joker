@@ -25,20 +25,20 @@
     $(document).ready(function() {
          checkFormats(false);
     });
-    function showPlayer() {
+    function playerConfig() {
         var conf = {
             key: "d4371e6b-7405-4388-a79d-3b9edf9418fa",
             bitmovin: false,
             skin: {
-                screenLogoImage : baseUrl + "images/atomoLogoMedio.png"
+                screenLogoImage : baseUrl + "images/stremovie.png"
             },
             source: {
-                dash: videoPath + "/dash.mpd",
+                dash: dataSource,
                 //hls: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
-                progressive: [{
-                    url: dataSource,
-                    type: mimeType
-                }],
+                /*progressive: [{
+                    url: dataSource + 'video.mp4',
+                    type: 'video/mp4'
+                }],*/
                 //poster: "//bitmovin-a.akamaihd.net/content/MI201109210084_1/poster.jpg"
             },
             playback: {
@@ -66,7 +66,8 @@
         var player = bitmovin.player("mediaHolder");
         player.setup(conf).then(function(value) {
             // Success
-            console.log("Successfully created bitmovin player instance");
+            //console.log("Successfully created bitmovin player instance");
+            console.clear();
         }, function(reason) {
             // Error
             console.log("Error while creating bitmovin player instance");

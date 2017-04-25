@@ -337,3 +337,47 @@ function disableEnable() {
 		}
 	});
 }
+
+function posterParalax(image) {
+	var $poster = $(image);
+	var $shine = $poster.find('.shine');
+	var $layer = $poster.find('*[class*="layer-"]');
+	var w = $poster.width();
+	var h = $poster.height();
+
+	$poster.on('mousemove', function(e) {
+		$('.mainSection').css({
+			'transform-style': 'preserve-3d',
+			'transform': 'perspective(1000px)'
+		}),
+		$('#imageBack').css({
+			'top': '0'
+		});
+
+		//var offsetX = 0.5 - e.pageX / w; // cursor hor
+		//var offsetY = 0.5 - e.pageY / h; // cursor vert
+		var offsetX = 0.5 - e.pageX / w; // cursor hor
+		var offsetY = 0.5 - e.pageY / h; // cursor vert
+		var dx = e.pageX - w / 2; // poster center hor
+		var dy = e.pageY - h / 2; // poster center vert
+		var theta = Math.atan2(dy, dx); // angle b/w cursor and poster center in RAD
+		var angle = theta * 180 / Math.PI - 90; // convert rad to degrees
+		var offsetPoster = $poster.data('offset');
+		var transformPoster = 'translateY(' + -offsetX * offsetPoster + 'px) rotateX(' + (-offsetY * offsetPoster) + 'deg) rotateY(' + (offsetX * (offsetPoster * 2)) + 'deg)';
+		$poster.css('transform', transformPoster);
+
+		if (angle < 0) {
+			angle = angle + 360;
+		}
+
+		$shine.css('background', 'linear-gradient(' + angle + 'deg, rgba(0, 0, 0,' + e.pageY / h + ') 0%,rgba(0, 0, 0, 0) 80%)');
+		
+		$layer.each(function() {
+			var $this = $(this),
+			offsetLayer = $this.data('offset') || 0;
+			transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
+			
+			$this.css('transform', transformLayer);
+		});
+	});
+}

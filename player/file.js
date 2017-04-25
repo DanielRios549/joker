@@ -8,8 +8,8 @@
 function checkFormats(videoTag) {
     contentType = document.getElementById("watchInterface").getAttribute("data-type");
     dataId = document.getElementById("watchInterface").getAttribute("data-id");
-    dataWebm = document.getElementById("watchInterface").getAttribute("data-webm");
-    dataMp4 = document.getElementById("watchInterface").getAttribute("data-mp4");
+    dataDash = document.getElementById("watchInterface").getAttribute("data-dash");
+    dataHls = document.getElementById("watchInterface").getAttribute("data-hls");
 
     if(contentType == 'movie') {
         var mediaFolder = baseUrl + 'media/movies/';
@@ -26,76 +26,43 @@ function checkFormats(videoTag) {
         dataParent = mediaFolder + dataId;
         videoPath = dataParent + '/season' + contentSeason + '/episode' + contentEpisode;
     }
+    
+    dashFileExists = false;
+    hlsFileExists = false;
 
-    //var videoPath = 'http://techslides.com/demos/sample-videos';
-    videoName = 'video';//'small';
-
-    webmExtension = 'webm';
-    webmCodec = 'vorbis, vp8';//vorbis, vp9
-
-    mp4Extension = 'mp4';
-    mp4Codec = 'avc1.42E01E, mp4a.40.2';//avc1.640029, mp4a.40.5
+    videoName = 'output_dash';
+    dashExtension = 'mpd';
+    hlsExtension = 'm3u8';
 
     if(videoTag == true) {
+        //mediaHolder.innerHTML = "<video autoplay data-dashjs-player id='videoTag'></video>";
         mediaHolder.innerHTML = "<video id='videoTag'></video>";
 	    video = document.getElementById('videoTag');
     }
 
-	videoToCheck = videoPath + '/' + videoName + '.';
-    webmVideoExists = false;
-    mp4VideoExists = false;
+    if(dataDash == 'yes') {
+        window.MediaSource = window.MediaSource || window.WebKitMediaSource;
 
-    if(dataWebm == 'yes') {
-        webmVideoExists = true;
+        if (window.MediaSource) {
+            dataSource = videoPath + '/' +  videoName + '.' + dashExtension;
+            dashFileExists = true;
+            videoReadyToUse = true;
+
+            playerConfig();
+        }
+        else {
+            alert('The MediaSource API is not available on this platform e/ou browser.');
+        }
     }
-    if(dataMp4 == 'yes') {
-        mp4VideoExists = true;
-    }
+    else if(dataHls == 'yes') {
+        dataSource = videoPath + '/' + videoName +  '.' + hlsExtension;
+        hlsFileExists = true;
+        videoReadyToUse = true;
 
-    //Continue only if there is one of the required video files
-
-    if(webmVideoExists || mp4VideoExists) {
-        chooseFormat();
+        playerConfig();
     }
     else {
         alert("Error to import the video file...");
-    }
-}
-
-function chooseFormat() {
-    webmMime = 'video/' + webmExtension + '; codecs="' + webmCodec + '"';
-    mp4Mime = 'video/' + mp4Extension + '; codecs="' + mp4Codec + '"';
-
-    window.MediaSource = window.MediaSource || window.WebKitMediaSource;
-
-    if (!window.MediaSource) {
-        alert('The MediaSource API is not available on this platform e/ou browser.');
-    }
-
-    mediaSource = new MediaSource();
-    webmSupport = MediaSource.isTypeSupported(webmMime);
-    mp4Support = MediaSource.isTypeSupported(mp4Mime);
-    
-    //console.log(webmExtension + ' exists? ' + webmVideoExists + ' supports? ' + webmSupport);
-    //console.log(mp4Extension + ' exists? ' + mp4VideoExists + ' supports? ' + mp4Support);
-
-    if(webmVideoExists && webmSupport) {
-        dataSource = videoToCheck + webmExtension;
-        videoExtension = webmExtension;
-        videoCodec = webmCodec;
-        mimeType = webmMime;
-        videoReadyToUse = true;
-    }
-    else if(mp4VideoExists && mp4Support) {
-        dataSource = videoToCheck + mp4Extension;
-        videoExtension = mp4Extension;
-        videoCodec = mp4Codec;
-        mimeType = mp4Mime;
-        videoReadyToUse = true;
-    }
-    else {
         videoReadyToUse = false;
     }
-    //console.log('Using the video ' + videoExtension);
-    showPlayer();
 }

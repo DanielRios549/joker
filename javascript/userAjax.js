@@ -275,19 +275,6 @@ function showDetails(event) {
     }
 	getPage(contentLink, "body=yes", function(data) {
         $('.titleDetailsOpen').find('.sectionContent').html(data);
-        tabSelect();
-		
-		hideReply(".commentGroup");
-		episodeSelect("#seasonBrowse");
-		
-		$('#contentSortcuts').on('click', '.addWatchList', addWatchListIndex);
-		$('#contentSortcuts').on('click', '.removeWatchList', removeWatchListIndex);
-
-		$('#commentFormDiv').on('click', '#commentSubmit', makeComment);
-		$('#commentOptionsDiv').on('click', '#buttonEdit', editComment);
-		$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
-
-		disableEnable();
     });
 }
 

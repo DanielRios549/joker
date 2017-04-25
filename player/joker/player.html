@@ -11,10 +11,15 @@
 	}
 ?>
 <section id="playerBox" class="playerBoxHide">
+    <article id="videoStats">
+       
+    </article>
     <article id="browserBack">
         <a id="backButton" href="<?php echo getLink('title', $_GET['id']);?>"></a>
     </article>
-    <article id="mediaHolder"></article>
+    <article id="mediaHolder">
+        
+    </article>
     <article id="mediaLoading" class="loading"></article>
     <article id="controlsDiv" class="controlsDivHide">
         <div id="leftControls">
@@ -43,8 +48,11 @@
                     </div>
                 </div>
             </div>
+            <div id="qualityButton" class="rightButton qualityButton">
+
+            </div>
             <?php if($contentType == 'serie') {?>
-            <div id="episodesButton"></div>
+            <div id="episodesButton" class="rightButton"></div>
             <div id="episodesDiv" class="episodesDiv">
                 <div id="seasonSelect" class="seasonSelectHide">
                     <?php foreach($episodesList as $getEpisodes => $key) {?>
@@ -112,11 +120,23 @@
 </section>
 
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/file.js'?>"></script>
+<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/dashScript.js'?>"></script>
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/mouseStop.js'?>"></script>
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/jokerPlayer.js'?>"></script>
 
 <script type="text/javascript">
+    'use strict'
     $(document).ready(function() {
          checkFormats(true);
     });
+    function playerConfig() {
+        var config = {
+            source: {
+                dash: dataSource,
+                //hls: "hls.m3u8"
+            },
+        };
+        console.log(config);
+        showPlayer(config);
+    }
 </script>
