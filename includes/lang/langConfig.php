@@ -36,46 +36,38 @@
 				echo "<script>document.location.href='';</script>";
 			}
 		}
-		
-		//file
-		
-		if($cookieLang == 'en_US') {
-			$setLang = 'English';
-			$selectedEn = ' selected';
-		}
-		elseif($cookieLang == 'pt_BR') {
-			$setLang = 'Português';
-			$selectedPt = ' selected';
-		}
-
-		$thisLang = $langClass -> langSelect($cookieLang);
 	}
+
+	//Both cases
 	
-	//If the user is connected
-
-	elseif(isset($userSession)) {
-		//file
-		
-		if($cookieLang == 'en_US') {
-			$setLang = 'English';
-			$selectedEn = ' selected';
-		}
-		elseif($cookieLang == 'pt_BR') {
-			$setLang = 'Português';
-			$selectedPt = ' selected';
-		}
-		
-		$thisLang = $langClass -> langSelect($cookieLang);
+	if($cookieLang == 'en_US') {
+		$setLang = 'English';
+		$selectedEn = ' selected';
 	}
+	elseif($cookieLang == 'pt_BR') {
+		$setLang = 'Português';
+		$selectedPt = ' selected';
+	}
+
+	$thisLang = $langClass -> langSelect($cookieLang);
+	$forceEnglish = $langClass -> langSelect('en_US');
 
 	//function used to write the texts
 
 	function langCode($name) {
 		global $thisLang;
+		global $forceEnglish;
 		global $cookieLang;
-		
-		$langName = $thisLang[$name][$cookieLang];
+		$langPrefer = $thisLang[$name][$cookieLang];
+
+		if($langPrefer != '') {
+			$langName = $langPrefer;
+		}
+		else {
+			$langName = $forceEnglish[$name]['en_US'];
+		}
 		
 		return $langName;
 	}
+	//echo langCode('test');
 ?>

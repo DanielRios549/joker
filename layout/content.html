@@ -10,8 +10,13 @@
 		header("Location:" .  $base . "404");
 	}
 ?>
+<script type="text/javascript">
+    $('.contentDiv').on('click', '.contentOpen', function(e) {
+        e.preventDefault();
+    });
+</script>
 <div class="content" data-id="<?php echo $key['content_id'];?>">
-    <a class="contentLink" href="<?php echo getLink('title', $key['content_id']);?>">
+    <a class="contentLink" href="<?php echo getLink('title', $key['content_id']);?>" data-url="<?php echo $thisUrl;?>">
         <figure class="contentFigure">
             <?php $contentFolder = getDynamicFolder($addRow[$contentNumber - 1]['type'], $mediaImageFolder);?>
             <img src="<?php echo $contentFolder . $key['content_id'] . '/image.jpg';?>"/>

@@ -48,8 +48,15 @@
                     </div>
                 </div>
             </div>
-            <div id="qualityButton" class="rightButton qualityButton">
-
+            <div id="qualityButton" class="rightButton qualityButton"></div>
+            <div id="qualitySelectorDiv">
+                <?php
+                    $qualityInterval = 1;  while($qualityInterval <= 10000) {
+                ?>
+                <div class="qualityOption">
+                    <span class="qualitySpan"><?php echo "Option N. " . $qualityInterval;?></span>
+                </div>
+                <?php $qualityInterval *= 10;}?>
             </div>
             <?php if($contentType == 'serie') {?>
             <div id="episodesButton" class="rightButton"></div>
@@ -125,7 +132,7 @@
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/jokerPlayer.js'?>"></script>
 
 <script type="text/javascript">
-    'use strict'
+    //'use strict'
     $(document).ready(function() {
          checkFormats(true);
     });

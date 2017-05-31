@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2017 at 07:15 PM
+-- Generation Time: Apr 25, 2017 at 08:44 PM
 -- Server version: 5.7.17-0ubuntu0.16.04.1
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `joker`
 --
+CREATE DATABASE IF NOT EXISTS `joker` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `joker`;
 
 -- --------------------------------------------------------
 
@@ -465,7 +467,8 @@ CREATE TABLE `user_restore` (
 --
 
 INSERT INTO `user_restore` (`restore_id`, `user_id`, `location`) VALUES
-(254, 1, 'a89e47cd3c3444f28f0b37d5430c8fa248893406');
+(254, 1, 'a89e47cd3c3444f28f0b37d5430c8fa248893406'),
+(255, 1, 'c0f83d8b5ab296b9cefcee0985d3540429cdda76');
 
 -- --------------------------------------------------------
 
@@ -670,7 +673,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_restore`
 --
 ALTER TABLE `user_restore`
-  MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
 --
 -- AUTO_INCREMENT for table `watched`
 --

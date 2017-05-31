@@ -22,7 +22,7 @@
 
 	$getConfig = new GetConfig();
     
-    $allowNewUser = $getConfig -> configQuery('allowNewUser');
+    	$allowNewUser = $getConfig -> configQuery('allowNewUser');
 
 	$baseUrl = $currentServerUrl . $getConfig -> configQuery('baseUrl');
 

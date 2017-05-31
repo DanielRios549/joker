@@ -18,9 +18,9 @@ $compatibility: false;
   width: device-width;
 }
 
-$baseUrl: 'http://localhost/joker/';
-$imageDir: $baseUrl + 'images/';
-$fontDir: $baseUrl + 'fonts/';
+//$baeUrl: 'http://localhost/joker/';
+$imageDir: '../images/';
+$fontDir: '../fonts/';
 
 //75em 61.5625em 56.875em 48.9375em 44.375em
 

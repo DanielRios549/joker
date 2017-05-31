@@ -491,6 +491,64 @@
 					&:after {
 						content: '\f013';
 					}
+					&:hover {
+						+ #qualitySelectorDiv {
+							min-height: 40px;
+							max-height: 800px;
+						}
+					}
+				}
+				#qualitySelectorDiv {
+					background: rgba(0, 0, 0, .5);
+					position: absolute;
+					bottom: 40px;
+					right: 80px;
+					min-height: 0;
+					max-height: 0;
+					overflow: hidden;
+					//min-height: 40px;
+					//max-height: 800px;
+
+					@include transition(all, 500ms, linear);
+
+					&:hover {
+						min-height: 40px;
+						max-height: 800px;
+					}
+					.qualityOption {
+						position: relative;
+						height: 40px;
+						cursor: pointer;
+						padding-right: 5px;
+						display: flex;
+						justify-content: flex-end;
+						align-items: center;
+						justify-content: flex-end;
+
+						@include transition(all, 200ms, linear);
+
+						&:not(:last-child) {
+							@include css4 {
+								border-bottom: 1px solid var(--gray);
+							};
+						}
+						&:hover {
+							@include css4 {
+								background: var(--darkGray);
+							};
+						}
+						.qualitySpan {
+							position: relative;
+							width: 100px;
+							font: 1.2em Calibri, sans-serif;
+							font-weight: bold;
+							text-align: right;
+							
+							@include css4 {
+								color: var(--white);
+							};
+						}
+					}
 				}
 				#episodesButton {
 					&:after {
@@ -901,8 +959,15 @@
 
 				.content {
 					border : 3px solid transparent;
+					
+					a {
+						cursor: pointer;
+					}
 				}
 				.contentOpen {
+					a {
+						cursor: default;
+					}
 					@include css4 {
 						border : 3px solid var(--joker02);
 					};
@@ -926,7 +991,6 @@
 					width: 160px;
 					height: 100%;
 					margin-left: 10px;
-					cursor: pointer;
 
 					.contentLink {
 						height: 240px;

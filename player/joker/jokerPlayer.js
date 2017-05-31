@@ -82,9 +82,12 @@ function intializePlayer() {
 }
 
 function loadVideoDash() {
-	var dashPlayer = dashjs.MediaPlayer().create();
-	dashPlayer.getDebug().setLogToBrowserConsole(false)
+	var player = dashjs.MediaPlayer();
+	var dashPlayer = player.create();
+	//dashPlayer.getDebug().setLogToBrowserConsole(false)
      dashPlayer.initialize(videoTag, dash, true);
+
+	//console.log();
      addEvents();
 }
 

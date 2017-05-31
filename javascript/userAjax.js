@@ -9,6 +9,10 @@ var ajaxFile = 'ajax/ajaxRequisitions.php';
 
 //function for simple ajax, without sent and received datas, if you want to receive and/or send datas, create anoter one
 
+function changeUrl(url) {
+    history.pushState("object or string", "Title", url);
+}
+
 function getPage(page, parameters, callback) {
     var request = new XMLHttpRequest();
     
@@ -252,6 +256,9 @@ function deleteComment() {
 function showDetails(event) {
 	event.preventDefault();
     contentLink = $(this).find('.contentLink').attr('href');
+    contentLinkToBack = $(this).find('.contentLink').attr('data-url');;
+    $('.closeButton').attr('data-url', contentLinkToBack);
+    changeUrl(contentLink);
 
     var allcontainerDiv = $('.contentContainer .titleDetailsOpen');
     var allcontentDiv = $('.contentContainer .contentDiv .contentOpen');
@@ -283,13 +290,16 @@ function closeDetails() {
 	var allcontainerDiv = $('.contentContainer .titleDetailsOpen');
 	var allcontentDiv = $('.contentContainer .contentDiv div');
 	var offsetDetailsDiv = containerDiv.offset().top;
-	
-	$('html, body').animate({
+	var linkToBack = $(this).attr('data-url');
+
+    $('html, body').animate({
 		scrollTop: offsetDetailsDiv
 	},500, function() {
 		allcontainerDiv.removeClass('titleDetailsOpen').addClass('titleDetails');
         $('.titleDetails').find('.sectionContent article').remove();
         $('.titleDetailsOpen').find('.sectionContent article').remove();
 		allcontentDiv.find('.contentOpen').removeClass('contentOpen').addClass('content');
+        
+        changeUrl(linkToBack);
 	});
 }

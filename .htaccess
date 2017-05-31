@@ -3,9 +3,9 @@ AddType application/x-httpd-php .html
 Options All -Indexes
 
 RewriteEngine on
-RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^http(s)?://()?localhost/joker/ [NC]
-RewriteRule \.(jpg|png|gif|mp4|webm)$ - [NC,F,L]
+#RewriteCond %{HTTP_REFERER} !^$
+#RewriteCond %{HTTP_REFERER} !^http(s)?://()?localhost/joker/ [NC]
+#RewriteRule \.(jpg|png|gif|mp4|webm)$ - [NC,F,L]
 
 #Errors Pages
 

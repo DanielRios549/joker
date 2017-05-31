@@ -69,42 +69,42 @@ For all Browser:
 /**  FONTS IMPORTS AND CONFIGS  **/
 @font-face {
   font-family: 'FontAwesome';
-  src: url("http://localhost/joker/fonts/icons/fontAwesome.otf");
+  src: url("../fonts/icons/fontAwesome.otf");
 }
 
 @font-face {
   font-family: 'IcoMoon';
-  src: url("http://localhost/joker/fonts/icons/icoMoon.ttf");
+  src: url("../fonts/icons/icoMoon.ttf");
 }
 
 @font-face {
   font-family: 'PlayerIcon';
-  src: url("http://localhost/joker/fonts/icons/playerIcon.ttf");
+  src: url("../fonts/icons/playerIcon.ttf");
 }
 
 @font-face {
   font-family: 'Arial';
-  src: url("http://localhost/joker/fonts/arial.ttf");
+  src: url("../fonts/arial.ttf");
 }
 
 @font-face {
   font-family: 'Bubblegum';
-  src: url("http://localhost/joker/fonts/bubblegum-sans-regular.otf");
+  src: url("../fonts/bubblegum-sans-regular.otf");
 }
 
 @font-face {
   font-family: 'Calibri';
-  src: url("http://localhost/joker/fonts/calibri.ttf");
+  src: url("../fonts/calibri.ttf");
 }
 
 @font-face {
   font-family: 'CalibriItatic';
-  src: url("http://localhost/joker/fonts/calibrii.ttf");
+  src: url("../fonts/calibrii.ttf");
 }
 
 @font-face {
   font-family: 'Agency';
-  src: url("http://localhost/joker/fonts/agencyb.ttf");
+  src: url("../fonts/agencyb.ttf");
 }
 
 ::-webkit-scrollbar-track {
@@ -614,6 +614,62 @@ html body button {
   content: '\f013';
 }
 
+#watchInterface #playerBox #controlsDiv #rightControls #qualityButton:hover + #qualitySelectorDiv {
+  min-height: 40px;
+  max-height: 800px;
+}
+
+#watchInterface #playerBox #controlsDiv #rightControls #qualitySelectorDiv {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 40px;
+  right: 80px;
+  min-height: 0;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+
+#watchInterface #playerBox #controlsDiv #rightControls #qualitySelectorDiv:hover {
+  min-height: 40px;
+  max-height: 800px;
+}
+
+#watchInterface #playerBox #controlsDiv #rightControls #qualitySelectorDiv .qualityOption {
+  position: relative;
+  height: 40px;
+  cursor: pointer;
+  padding-right: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  justify-content: flex-end;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+#watchInterface #playerBox #controlsDiv #rightControls #qualitySelectorDiv .qualityOption:not(:last-child) {
+  border-bottom: 1px solid var(--gray);
+}
+
+#watchInterface #playerBox #controlsDiv #rightControls #qualitySelectorDiv .qualityOption:hover {
+  background: var(--darkGray);
+}
+
+#watchInterface #playerBox #controlsDiv #rightControls #qualitySelectorDiv .qualityOption .qualitySpan {
+  position: relative;
+  width: 100px;
+  font: 1.2em Calibri, sans-serif;
+  font-weight: bold;
+  text-align: right;
+  color: var(--white);
+}
+
 #watchInterface #playerBox #controlsDiv #rightControls #episodesButton:after {
   content: '\f0c9';
 }
@@ -1001,8 +1057,16 @@ html body button {
   border: 3px solid transparent;
 }
 
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content a, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content a {
+  cursor: pointer;
+}
+
 .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen {
   border: 3px solid var(--joker02);
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen a, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen a {
+  cursor: default;
 }
 
 .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentFigure figcaption {
@@ -1020,7 +1084,6 @@ html body button {
   width: 160px;
   height: 100%;
   margin-left: 10px;
-  cursor: pointer;
 }
 
 .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink {
@@ -2049,7 +2112,7 @@ html body button {
     transform: translateX(0px);
   }
   #header #menuBt {
-    background: url("http://localhost/joker/images/menu.png") no-repeat;
+    background: url("../images/menu.png") no-repeat;
     position: relative;
     height: 40px;
     width: 40px;

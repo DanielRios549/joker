@@ -91,10 +91,10 @@
 			elseif($querySearch !== false) {
 				try {
 					if($category == 'name') {
-						$query = $pdo -> query("SELECT content_id, type FROM content WHERE en_US LIKE '%" . $querySearch . "%' OR pt_BR LIKE '%" . $querySearch . "%' AND active = 'yes' ORDER BY date_add DESC");
+						$query = $pdo -> query("SELECT content_id, type FROM content WHERE en_US LIKE '%" . $querySearch . "%' OR pt_BR LIKE '%" . $querySearch . "%'  OR producer LIKE '%" . $querySearch . "%' OR director LIKE '%" . $querySearch . "%' AND active = 'yes' ORDER BY date_add DESC");
 					}
 					elseif($category == 'producer') {
-						$query = $pdo -> query("SELECT producer FROM content WHERE producer LIKE '%" . $querySearch . "%' AND active = 'yes' ORDER BY date_add DESC");
+						$query = $pdo -> query("SELECT producer, director FROM content WHERE producer LIKE '%" . $querySearch . "%' OR director LIKE '%" . $querySearch . "%' AND active = 'yes' ORDER BY date_add DESC");
 					}
 					
 					$content = $query -> execute();
