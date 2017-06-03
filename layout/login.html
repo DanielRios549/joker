@@ -10,16 +10,10 @@
 		require '../_redirect.php';
 		header("Location:" .  $base . "404");
 	}
+	if($onlyBody == false) {
 ?>
-<script lang="text/javascript">
-	$(window).ready(function() {
-		//Close the message displayed when has some error
-
-		inputError($(".userDiv"));
-		closeMessage('.userError', '#errorMsgClose');
-	});
-</script>
 <main class="interface">
+<?php }?>
 	<section class="login mainSection">
 		<?php if((isset($_POST['loginSubmit'])) or (isset($_POST['siginSubmit']))) {?>
 		<article id="<?php echo $showError;?>" class="userError">
@@ -79,4 +73,14 @@
 		</article>
 		<?php }?>
 	</section>
+<?php if($onlyBody == false) {?>
 </main>
+<?php }?>
+<script lang="text/javascript">
+	$(document).ready(function() {
+		//Close the message displayed when has some error
+
+		inputError($(".userDiv"));
+		closeMessage('.userError', '#errorMsgClose');
+	});
+</script>

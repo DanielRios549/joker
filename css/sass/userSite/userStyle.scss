@@ -262,6 +262,37 @@
 
     @include watch();
 }
+.loading {
+    @extend %alignCenter;
+    
+    &:after {
+        content: '\f110';
+        font: 10em FontAwesome;
+
+        @include css4 {
+            color: var(--white);
+        };
+        
+        @include animation(Rotate, 1.8s, linear, infinite, normal);
+        
+        @-webkit-keyframes Rotate {
+            0% {
+                @include transform(rotate(0deg));
+            }
+            100% {
+                @include transform(rotate(360deg));
+            }
+        }
+        @keyframes Rotate {
+            0% {
+                @include transform(rotate(0deg));
+            }
+            100% {
+                @include transform(rotate(360deg));
+            }
+        }
+    }
+}
 .interface {
     position: relative;
     min-height: 300px;

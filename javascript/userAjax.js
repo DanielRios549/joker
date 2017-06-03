@@ -303,3 +303,25 @@ function closeDetails() {
         changeUrl(linkToBack);
 	});
 }
+
+function ajaxLink(event) {
+    event.preventDefault();
+    var linkTo = $(this).attr('href');
+    $('.interface').css('height', $(window).height()).addClass('loading').find('> *').remove();
+    $(document).off('scroll');
+
+    getPage(linkTo, "body=yes", function(data) {
+        $('.interface').removeAttr('style').removeClass('loading');
+        $('.interface').html(data);
+
+        if(linkTo == baseUrl) {
+            clearInterval(intervalId);
+        }
+
+        $('html, body').animate({
+            scrollTop: 0
+        },500);
+
+        changeUrl(linkTo);
+    });
+}

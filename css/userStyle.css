@@ -166,7 +166,7 @@ html body button {
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
-#watchInterface #playerBox #controlsDiv #leftControls .playerIcon, #watchInterface #playerBox #controlsDiv #leftControls .rightButton, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon, #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, #header #itemHome a, #footer #topDiv {
+#watchInterface #playerBox #controlsDiv #leftControls .playerIcon, #watchInterface #playerBox #controlsDiv #leftControls .rightButton, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon, #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, #header #itemHome a, .loading, #footer #topDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2461,6 +2461,46 @@ html body button {
 
 #watchInterface #playerBox #browserBack #backButton:hover:before {
   color: var(--joker02);
+}
+
+.loading:after {
+  content: '\f110';
+  font: 10em FontAwesome;
+  color: var(--white);
+  -webkit-animation: Rotate 1.8s linear infinite normal;
+  -moz-animation: Rotate 1.8s linear infinite normal;
+  -ms-animation: Rotate 1.8s linear infinite normal;
+  animation: Rotate 1.8s linear infinite normal;
+}
+
+@-webkit-keyframes Rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes Rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 .interface {

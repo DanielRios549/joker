@@ -10,16 +10,18 @@
 		require '../_redirect.php';
 		header("Location:" .  $base . "404");
 	}
+	 if($onlyBody == false) {
 ?>
 <main class="interface">
+<?php }?>
 	<section class="settings mainSection">
 		<article class="divLeft">
 			<div id="settingsMenu">
 				<ul id="menuUl">
-					<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=info';?>" class="<?php echo $menuLink1Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_info');?></span></a></li>
-					<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=lang';?>" class="<?php echo $menuLink2Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_lang');?></span></a></li>
+					<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=info';?>" class="<?php echo $menuLink1Class;?> ajaxLink"><span class="menuLinkSpan"><?php echo langCode('settings_info');?></span></a></li>
+					<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=lang';?>" class="<?php echo $menuLink2Class;?> ajaxLink"><span class="menuLinkSpan"><?php echo langCode('settings_lang');?></span></a></li>
 					<?php if($adminCheck == true) {?>
-					<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=delete';?>" class="<?php echo $menuLink3Class;?>"><span class="menuLinkSpan"><?php echo langCode('settings_delete');?></span></a></li>
+					<li class="menuLi"><a href="<?php echo $userSettingsPage . '?tab=delete';?>" class="<?php echo $menuLink3Class;?> ajaxLink"><span class="menuLinkSpan"><?php echo langCode('settings_delete');?></span></a></li>
 					<?php }?>
 				</ul>
 			</div>
@@ -157,4 +159,6 @@
 			</div>
 		</article>
 	</section>
-	</main>
+ <?php if($onlyBody == false) {?>
+</main>
+<?php }?>

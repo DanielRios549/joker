@@ -10,7 +10,16 @@
 		require '../_redirect.php';
 		header("Location:" .  $base . "404");
 	}
+	if($onlyBody == false) {
 ?>
+<main class="interface">
+<?php }?>
+	<section class="logoff mainSection">
+    		<p class="logoffText"><?php echo langCode('logoff_info');?></p>
+	</section>
+<?php if($onlyBody == false) {?>
+</main>
+<?php }?>
 <script lang="text/javascript">
 	$(document).ready(function() {
 		setTimeout(function() {
@@ -18,8 +27,3 @@
 		}, 3000);
 	});
 </script>
-<main class="interface">
-	<section class="logoff mainSection">
-    	<p class="logoffText"><?php echo langCode('logoff_info');?></p>
-	</section>
-</main>

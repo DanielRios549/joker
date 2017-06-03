@@ -11,26 +11,8 @@
 		header("Location:" .  $base . "404");
 	}
 if($contentVerify -> rowCount() == 1) {
+	if($onlyBody == false) {
 ?>
-<script lang="text/javascript">
-	$(window).ready(function() {
-		tabSelect();
-
-		hideReply(".commentGroup");
-		episodeSelect("#seasonBrowse");
-		
-		$('#contentSortcuts').on('click', '.addWatchList', addWatchList);
-		$('#contentSortcuts').on('click', '.removeWatchList', removeWatchList);
-
-		$('#commentFormDiv').on('click', '#commentSubmit', makeComment);
-		$('#commentOptionsDiv').on('click', '#buttonEdit', editComment);
-		$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
-
-		disableEnable();
-		posterParalax('#contentImage');
-	});
-</script>
-<?php if($onlyBody == false) {?>
 <main class="interface">
 	<section class="title mainSection">
 	<?php }?>
@@ -209,3 +191,21 @@ if($contentVerify -> rowCount() == 1) {
 	</section>
 </main>
 <?php }}?>
+<script lang="text/javascript">
+	$(window).ready(function() {
+		tabSelect();
+
+		hideReply(".commentGroup");
+		episodeSelect("#seasonBrowse");
+		
+		$('#contentSortcuts').on('click', '.addWatchList', addWatchList);
+		$('#contentSortcuts').on('click', '.removeWatchList', removeWatchList);
+
+		$('#commentFormDiv').on('click', '#commentSubmit', makeComment);
+		$('#commentOptionsDiv').on('click', '#buttonEdit', editComment);
+		$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
+
+		disableEnable();
+		posterParalax('#contentImage');
+	});
+</script>

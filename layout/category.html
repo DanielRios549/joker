@@ -12,18 +12,10 @@
 	}
 	
 	$categoryQuery = @$_GET['c'];
+	if($onlyBody == false) {
 ?>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.contentFigure').on('click', '.addWatchList', addWatchList);
-        	$('.contentFigure').on('click', '.removeWatchList', removeWatchList);
-
-		$('.contentGroup').on('click', '.content', showDetails);
-		$('.contentContainer').on('click', '.closeButton', closeDetails);
-	});
-</script>
 <main class="interface">
-	<?php $contentArray = array('contentCategory' => $categoryQuery, 'dateAdd' => false, 'querySearch' => false, 'page' => THIS_PAGE); require $contentDir . 'showContent.php';?>
+	<?php } $contentArray = array('contentCategory' => $categoryQuery, 'dateAdd' => false, 'querySearch' => false, 'page' => THIS_PAGE); require $contentDir . 'showContent.php';?>
 	<section class="category mainSection">
 		<article id="headerContainer">
 			<header id="categoryHeader">
@@ -55,4 +47,15 @@
 			<?php require 'detailsDiv.html';?>
 		</article>
 	</section>
+<?php if($onlyBody == false) {?>
 </main>
+<?php }?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.contentFigure').on('click', '.addWatchList', addWatchList);
+        	$('.contentFigure').on('click', '.removeWatchList', removeWatchList);
+
+		$('.contentGroup').on('click', '.content', showDetails);
+		$('.contentContainer').on('click', '.closeButton', closeDetails);
+	});
+</script>

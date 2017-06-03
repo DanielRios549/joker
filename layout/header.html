@@ -15,7 +15,7 @@
 	<input type="checkbox" name="menuBtInput" id="menuBtInput"/>
 	<label for="menuBtInput" id="menuBt"></label>
 	<section id="itemHome">
-		<a title="<?php echo langCode('home_hover');?>" href="<?php echo $baseUrl;?>">
+		<a title="<?php echo langCode('home_hover');?>" href="<?php echo $baseUrl;?>" class="ajaxLink">
 			<img src="<?php echo $imageDir . 'streamovie.png';?>" alt="header">
 		</a>
 	</section>
@@ -30,8 +30,8 @@
 				</li>
 				<li id="itemSubMenu"><span class="menuSpan"><?php echo langCode('nav_menu');?></span>
 					<ul id="subMenu">
-						<?php foreach($allCategories as $allCategories => $key) {$category = $key; require $contentDir . 'contentMenu.php'; if($contentMenu -> contentHide == false){?>
-						<li class="subMenuItem"><a href="<?php echo getLink('category', $key);?>"><?php echo langCode($key);?></a></li>
+						<?php foreach($allCategories as $allCategories => $key) {$category = $key; require $contentDir . 'contentMenu.php'; if($contentMenu -> contentHide == false) {?>
+						<li class="subMenuItem"><a href="<?php echo getLink('category', $key);?>" class="ajaxLink"><?php echo langCode($key);?></a></li>
 						<?php }}?>
 					</ul>
 				</li>
@@ -51,7 +51,7 @@
 	<?php }?>
 	<section id="userDiv">
 		<?php if($loginCheck == false) {?>
-				<a href="<?php echo $baseUrl . langCode('login_link');?>" id="loginLink">
+				<a href="<?php echo $baseUrl . langCode('login_link');?>" id="loginLink" class="ajaxLink">
 					<span id="userName"><?php echo langCode('login');?></span>
 				</a>
 		<?php } elseif($loginCheck == true) {?>
@@ -64,9 +64,9 @@
 				<ul id="userSubMenu">
                     <?php if($adminCheck == true) {?>
                     <li id="adminLink" class="subMenuItem"><a href="<?php echo $adminDir;?>" class="subMenuLink"><span class="subMenuSpan"><?php echo 'Admin';?></span></a></li>
-                    <li id="profileLink" class="subMenuItem"><a href="<?php echo getLink('userProfile', $_SESSION['user_id']);?>" class="subMenuLink"><span class="subMenuSpan"><?php echo langCode('profile');?></span></a></li>
+                    <li id="profileLink" class="subMenuItem"><a href="<?php echo getLink('userProfile', $_SESSION['user_id']);?>" class="subMenuLink ajaxLink"><span class="subMenuSpan"><?php echo langCode('profile');?></span></a></li>
 					<?php }?>
-					<li id="settingsLink" class="subMenuItem"><a href="<?php echo $baseUrl . langCode('settings_link');?>" class="subMenuLink"><span class="subMenuSpan"><?php echo langCode('settings');?></span></a></li>
+					<li id="settingsLink" class="subMenuItem"><a href="<?php echo $baseUrl . langCode('settings_link');?>" class="subMenuLink ajaxLink"><span class="subMenuSpan"><?php echo langCode('settings');?></span></a></li>
 					<li id="logoffLink" class="subMenuItem"><a href="<?php echo $baseUrl . langCode('logoff_link');?>" class="subMenuLink"><span class="subMenuSpan"><?php echo langCode('logoff');?></span></a></li>
 				</ul>
 			</li>

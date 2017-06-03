@@ -10,44 +10,10 @@
 		require '../_redirect.php';
 		header("Location:" .  $base . "404");
 	}
-	elseif($loginCheck == false) {
 ?>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(this).on('scroll', function() {
-			parallaxExternalHome();
-		});
-
-		tabSelect(true);
-	});
-</script>
-<?php } elseif($loginCheck == true) {?>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		if($('#contentSlider #changeDiv').length) {
-			intervalId = setInterval(slideIndex, 5000);
-			
-			changeIndex('#contentSlider');
-		}
-
-		$(this).on('scroll', function() {
-			parallaxInternalHome();
-		});
-
-		$('#imageDiv div').on('click', '.addWatchList', addWatchListIndex);
-    		$('#imageDiv div').on('click', '.removeWatchList', removeWatchListIndex);
-
-		$('.contentGroupScroll').on('click', '.content .addWatchList', addWatchListIndex);
-        	$('.contentGroupScroll').on('click', '.content .removeWatchList', removeWatchListIndex);
-
-		$('.contentGroupScroll').on('click', '.content', showDetails);
-		$('.contentContainer').on('click', '.closeButton', closeDetails);
-	});
-</script>
-<?php }?>
+<?php if($onlyBody == false) {?>
 <main class="interface">
-	<?php if($loginCheck == false) {?>
+	<?php } if($loginCheck == false) {?>
 		<section class="index mainSection">
 			<article class="containerDiv">
 				<div id="coverImage"></div>
@@ -172,4 +138,41 @@
 		</article>
 		<?php }}}?>
 	</section>
+<?php if($onlyBody == false) {?>
 </main>
+<?php }?>
+<?php if($loginCheck == false) {?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(this).on('scroll', function() {
+			parallaxExternalHome();
+		});
+
+		tabSelect(true);
+	});
+</script>
+<?php } elseif($loginCheck == true) {?>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		if($('#contentSlider #changeDiv').length) {
+			intervalId = setInterval(slideIndex, 5000);
+			
+			changeIndex('#contentSlider');
+		}
+
+		$(this).on('scroll', function() {
+			parallaxInternalHome();
+		});
+
+		$('#imageDiv div').on('click', '.addWatchList', addWatchListIndex);
+    		$('#imageDiv div').on('click', '.removeWatchList', removeWatchListIndex);
+
+		$('.contentGroupScroll').on('click', '.content .addWatchList', addWatchListIndex);
+        	$('.contentGroupScroll').on('click', '.content .removeWatchList', removeWatchListIndex);
+
+		$('.contentGroupScroll').on('click', '.content', showDetails);
+		$('.contentContainer').on('click', '.closeButton', closeDetails);
+	});
+</script>
+<?php }?>

@@ -11,19 +11,9 @@
 		header("Location:" .  $base . "404");
 	}
 ?>
-<script>
-	$(window).ready(function(){
-		$(this).on('scroll', function(){
-			parallaxHeaderUser();
-			parallaxImg();
-			parallaxName();
-		});
-		
-		$('#userHeader').on('click', '#followUser', followUser);
-		$('#userHeader').on('click', '#unfollowUser', unfollowUser);
-	});
-</script>
+<?php if($onlyBody == false) {?>
 <main class="interface">
+<?php }?>
 	<section class="profile mainSection">
 		<article id="profileHeaderDiv">
 			<div id="userHeader" class="userHeader">
@@ -37,7 +27,7 @@
 				</div>
 				<?php } elseif($loggedUserPage == true) {?>
 				<div class="userButtonDiv">
-					<a class="buttonSpan" href="<?php echo $baseUrl . langCode('settings_link');?>"><?php echo langCode('settings');?></a>
+					<a class="buttonSpan ajaxLink" href="<?php echo $baseUrl . langCode('settings_link');?>"><?php echo langCode('settings');?></a>
 				</div>
 				<?php }}?>
 			</div>
@@ -74,4 +64,18 @@
 		</article>
 		<?php }?>
 	</section>
+<?php if($onlyBody == false) {?>
 </main>
+<?php }?>
+<script>
+	$(window).ready(function() {
+		$(this).on('scroll', function() {
+			parallaxHeaderUser();
+			parallaxImg();
+			parallaxName();
+		});
+		
+		$('#userHeader').on('click', '#followUser', followUser);
+		$('#userHeader').on('click', '#unfollowUser', unfollowUser);
+	});
+</script>
