@@ -13,9 +13,9 @@
 if($contentVerify -> rowCount() == 1) {
 	if($onlyBody == false) {
 ?>
-<main class="interface">
+<main class="interface ajaxReplace">
+<?php }?>
 	<section class="title mainSection">
-	<?php }?>
 		<article id="imageBack">
 			<img src="<?php echo $imageBackground;?>"/>
 		</article>
@@ -187,25 +187,29 @@ if($contentVerify -> rowCount() == 1) {
 				</div>
 			</div>
 		</article>
-	<?php if($onlyBody == false) {?>
+		<script lang="text/javascript">
+			$(window).ready(function() {
+				tabSelect();
+
+				hideReply(".commentGroup");
+				episodeSelect("#seasonBrowse");
+				
+				$('#contentSortcuts').on('click', '.addWatchList', addWatchList);
+				$('#contentSortcuts').on('click', '.removeWatchList', removeWatchList);
+
+				$('#commentFormDiv').on('click', '#commentSubmit', makeComment);
+				$('#commentOptionsDiv').on('click', '#buttonEdit', editComment);
+				$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
+
+				disableEnable();
+				posterParalax('#contentImage');
+
+				<?php if($onlyBody == true) {?>
+					$('title').empty().text("<?php echo $titleFile;?>");
+				<?php }?>
+			});
+		</script>
 	</section>
+<?php if($onlyBody == false) {?>
 </main>
 <?php }}?>
-<script lang="text/javascript">
-	$(window).ready(function() {
-		tabSelect();
-
-		hideReply(".commentGroup");
-		episodeSelect("#seasonBrowse");
-		
-		$('#contentSortcuts').on('click', '.addWatchList', addWatchList);
-		$('#contentSortcuts').on('click', '.removeWatchList', removeWatchList);
-
-		$('#commentFormDiv').on('click', '#commentSubmit', makeComment);
-		$('#commentOptionsDiv').on('click', '#buttonEdit', editComment);
-		$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
-
-		disableEnable();
-		posterParalax('#contentImage');
-	});
-</script>

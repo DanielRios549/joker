@@ -21,7 +21,7 @@
 		$('.contentContainer').on('click', '.closeButton', closeDetails);
 	});
 </script>
-<main class="interface">
+<main class="interface ajaxReplace">
 	<section class="search mainSection">
 		<?php $contentArray = array('contentCategory' => 'producer', 'dateAdd' => false, 'querySearch' => $searchQuery, 'page' => false); require $contentDir . 'showContent.php'; if($contentClass -> contentHide == false) {?>
 		<article class="searchOther">

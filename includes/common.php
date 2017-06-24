@@ -24,9 +24,8 @@
 		
 		require 'connectUser.php';
 		
-		//Get the URL
+		//Get the HTML file
 		
-		$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 		$bodyFile = basename($_SERVER['PHP_SELF'],'.php') . '.html';
 		
 		if($loginCheck == true) {
@@ -121,6 +120,7 @@
 			//Define if the page show only the body or no
 
 			$onlyBody = $_POST['body'] ?? false;
+			$onlyDetails = $_POST['details'] ?? false;
 
 			//Make the continue watching
 

@@ -12,16 +12,16 @@
 	}
 ?>
 <?php if($onlyBody == false) {?>
-<main class="interface">
+<main class="interface ajaxReplace">
 	<?php } if($loginCheck == false) {?>
 		<section class="index mainSection">
-			<article class="containerDiv">
+			<article class="containerImage">
 				<div id="coverImage"></div>
 				<div id="descImage">
 					<img src="<?php echo $imageDir . 'moviesGrid.jpg';?>"/>
 				</div>
 			</article>
-			<article class="containerDiv">
+			<article class="containerTabs">
 				<div id="tabHeader">
 					<div class="tabSelected">
 						<span class="tabIcon"></span>
@@ -38,13 +38,13 @@
 				</div>
 				<div id="tabContents">
 					<div class="contentShow">
-					aba 1
+						<span class="contentSpan span1">Assista a filmes que você adora.</span>
 					</div>
 					<div class="contentHide">
-					aba 2
+						<span class="contentSpan span1">Assista séries episódio por epidódio sem parar.</span>
 					</div>
 					<div class="contentHide">
-					aba 3
+						<span class="contentSpan span1">Siga seus amigos para saber oque eles assistem e ver as recomendações deles.</span>
 					</div>
 				</div>
 			</article>
@@ -58,7 +58,7 @@
 				<span class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>">
 					
 				</span>
-				<a href="<?php echo $contentPagesLink . $key['content_id'];?>" class="sliderLink">
+				<a href="<?php echo $contentPagesLink . $key['content_id'];?>" class="sliderLink ajaxLink">
 					<span class="linkSpan">
 						<?php echo langCode('details');?>
 					</span>
@@ -173,6 +173,12 @@
 
 		$('.contentGroupScroll').on('click', '.content', showDetails);
 		$('.contentContainer').on('click', '.closeButton', closeDetails);
+	});
+</script>
+<?php } if($onlyBody == true) {?>
+<script lang="text/javascript">
+	$(window).ready(function() {
+		$('title').empty().text("<?php echo $titleFile;?>");
 	});
 </script>
 <?php }?>

@@ -166,7 +166,7 @@ html body button {
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
-#watchInterface #playerBox #controlsDiv #leftControls .playerIcon, #watchInterface #playerBox #controlsDiv #leftControls .rightButton, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon, #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, #header #itemHome a, .loading, #footer #topDiv {
+#watchInterface #playerBox #controlsDiv #leftControls .playerIcon, #watchInterface #playerBox #controlsDiv #leftControls .rightButton, #watchInterface #playerBox #controlsDiv #rightControls .playerIcon, #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, #header #itemHome a, #footer #topDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2146,11 +2146,56 @@ html body button {
     overflow: auto;
     order: 2;
   }
+  #header #headerCenter #menu #ulMenu #itemSubMenu .menuSpan {
+    display: none;
+  }
+  #header #headerCenter #menu #ulMenu #itemSubMenu #subMenu > li {
+    position: relative;
+    height: 40px;
+    width: 93%;
+    margin: 10px 0 0 0;
+    background: var(--gray);
+  }
+  #header #headerCenter #menu #ulMenu #itemSubMenu #subMenu > li:after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    right: -20px;
+    margin-top: -2.5em;
+    border-top: 2em solid transparent;
+    border-bottom: 2em solid transparent;
+    border-left: 2em solid var(--gray);
+  }
+  #header #headerCenter #menu #ulMenu #itemSubMenu #subMenu > li .ajaxLink {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    font: 2em Calibri, sans-serif;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: var(--darkGray);
+  }
   #header #headerCenter #searchDiv {
     position: relative;
     height: 60px;
     width: 100%;
     order: 1;
+  }
+  #header #headerCenter #searchDiv #searchForm {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #header #headerCenter #searchDiv #searchForm #searchInput {
+    position: relative;
+    height: 50%;
+    width: 90%;
+    padding: 5px;
+    font: 2em Calibri, sans-serif;
   }
 }
 
@@ -2233,13 +2278,15 @@ html body button {
   width: 100%;
 }
 
+#header #loginDiv,
 #header #userDiv {
   position: relative;
   height: 100%;
-  width: 160px;
+  min-width: 160px;
   flex: 0 0 auto;
 }
 
+#header #loginDiv #loginLink,
 #header #userDiv #loginLink {
   border-bottom: 3px solid transparent;
   position: relative;
@@ -2254,11 +2301,13 @@ html body button {
   transition: all 400ms ease;
 }
 
+#header #loginDiv #loginLink:hover,
 #header #userDiv #loginLink:hover {
   border-bottom: 3px solid var(--gray);
   background: var(--joker02);
 }
 
+#header #loginDiv #loginLink:before,
 #header #userDiv #loginLink:before {
   content: '\f090';
   font: 3em FontAwesome;
@@ -2266,36 +2315,46 @@ html body button {
   color: var(--white);
 }
 
+#header #loginDiv #loginLink #loginSpan,
+#header #loginDiv #loginLink #userName,
+#header #userDiv #loginLink #loginSpan,
 #header #userDiv #loginLink #userName {
   position: relative;
   font-size: 2em;
+  margin: 10px;
   color: var(--white);
 }
 
+#header #loginDiv #userUl,
 #header #userDiv #userUl {
   position: relative;
   height: 60px;
   width: 160px;
 }
 
+#header #loginDiv #userUl:hover #userLi #userLink,
 #header #userDiv #userUl:hover #userLi #userLink {
   cursor: pointer;
   background: var(--white);
 }
 
+#header #loginDiv #userUl:hover #userLi #userLink #userName,
 #header #userDiv #userUl:hover #userLi #userLink #userName {
   color: var(--gray);
 }
 
+#header #loginDiv #userUl:hover #userLi #userLink #userName:after,
 #header #userDiv #userUl:hover #userLi #userLink #userName:after {
   color: var(--gray);
 }
 
+#header #loginDiv #userUl #userLi,
 #header #userDiv #userUl #userLi {
   height: 100%;
   width: 100%;
 }
 
+#header #loginDiv #userUl #userLi #userLink,
 #header #userDiv #userUl #userLi #userLink {
   height: 100%;
   width: 100%;
@@ -2304,6 +2363,7 @@ html body button {
   justify-content: space-around;
 }
 
+#header #loginDiv #userUl #userLi #userLink #userImg,
 #header #userDiv #userUl #userLi #userLink #userImg {
   border-radius: 50%;
   position: relative;
@@ -2311,6 +2371,7 @@ html body button {
   width: 30px;
 }
 
+#header #loginDiv #userUl #userLi #userLink #userName,
 #header #userDiv #userUl #userLi #userLink #userName {
   position: relative;
   font-size: 2em;
@@ -2321,6 +2382,7 @@ html body button {
   color: var(--lightGray);
 }
 
+#header #loginDiv #userUl #userLi #userLink #userName:after,
 #header #userDiv #userUl #userLi #userLink #userName:after {
   content: '\f0d7';
   font: 1em FontAwesome;
@@ -2332,10 +2394,12 @@ html body button {
   transform: rotate(-45deg);
 }
 
+#header #loginDiv #userUl #userLi:hover #userSubMenu,
 #header #userDiv #userUl #userLi:hover #userSubMenu {
   max-height: 160px;
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu,
 #header #userDiv #userUl #userLi #userSubMenu {
   border-radius: 0 0 4px 4px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
@@ -2346,29 +2410,35 @@ html body button {
   background: var(--white);
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu #adminLink .subMenuLink:before,
 #header #userDiv #userUl #userLi #userSubMenu #adminLink .subMenuLink:before {
   content: '\f0e4';
   font-size: 1.4em;
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu #profileLink .subMenuLink:before,
 #header #userDiv #userUl #userLi #userSubMenu #profileLink .subMenuLink:before {
   content: '\f007';
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu #settingsLink .subMenuLink:before,
 #header #userDiv #userUl #userLi #userSubMenu #settingsLink .subMenuLink:before {
   content: '\f013';
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu #logoffLink .subMenuLink:before,
 #header #userDiv #userUl #userLi #userSubMenu #logoffLink .subMenuLink:before {
   content: '\f08b';
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu .subMenuItem,
 #header #userDiv #userUl #userLi #userSubMenu .subMenuItem {
   list-style: none;
   width: 100%;
   height: 40px;
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink,
 #header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink {
   width: 100%;
   height: 100%;
@@ -2382,15 +2452,18 @@ html body button {
   transition: all 300ms ease;
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:hover,
 #header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:hover {
   background: var(--joker02);
   color: var(--white);
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:hover:before,
 #header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:hover:before {
   color: var(--white);
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:before,
 #header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink:before {
   position: relative;
   font-family: FontAwesome;
@@ -2405,13 +2478,10 @@ html body button {
   transition: color 300ms ease;
 }
 
+#header #loginDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink .subMenuSpan,
 #header #userDiv #userUl #userLi #userSubMenu .subMenuItem .subMenuLink .subMenuSpan {
   width: 70%;
   line-height: 40px;
-}
-
-#watchInterface {
-  padding-top: 0 !important;
 }
 
 #watchInterface {
@@ -2419,6 +2489,7 @@ html body button {
   position: absolute;
   height: 100%;
   width: 100%;
+  padding-top: 0 !important;
 }
 
 #watchInterface .playerBoxShow #browserBack {
@@ -2463,44 +2534,14 @@ html body button {
   color: var(--joker02);
 }
 
-.loading:after {
-  content: '\f110';
-  font: 10em FontAwesome;
-  color: var(--white);
-  -webkit-animation: Rotate 1.8s linear infinite normal;
-  -moz-animation: Rotate 1.8s linear infinite normal;
-  -ms-animation: Rotate 1.8s linear infinite normal;
-  animation: Rotate 1.8s linear infinite normal;
-}
-
-@-webkit-keyframes Rotate {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes Rotate {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+.loading:before {
+  content: '';
+  position: fixed;
+  top: 60px;
+  width: 0%;
+  height: 10px;
+  z-index: 100;
+  background: var(--lightGray);
 }
 
 .interface {
@@ -2556,14 +2597,14 @@ html body button {
   margin: 0 auto;
 }
 
-.interface .mainSection .containerDiv {
+.interface .mainSection .containerImage {
   position: relative;
   width: 100%;
   height: 450px;
   margin-top: 10px;
 }
 
-.interface .mainSection .containerDiv #coverImage {
+.interface .mainSection .containerImage #coverImage {
   background: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: -10px;
@@ -2573,7 +2614,7 @@ html body button {
   z-index: 98;
 }
 
-.interface .mainSection .containerDiv #descImage {
+.interface .mainSection .containerImage #descImage {
   position: absolute;
   top: -10px;
   height: 100%;
@@ -2582,12 +2623,17 @@ html body button {
   z-index: 97;
 }
 
-.interface .mainSection .containerDiv #descImage img {
+.interface .mainSection .containerImage #descImage img {
   position: relative;
   width: 100%;
 }
 
-.interface .mainSection .containerDiv #tabHeader {
+.interface .mainSection .containerTabs {
+  position: relative;
+  height: 100%;
+}
+
+.interface .mainSection .containerTabs #tabHeader {
   position: relative;
   width: 90%;
   height: 150px;
@@ -2596,16 +2642,16 @@ html body button {
   display: flex;
 }
 
-.interface .mainSection .containerDiv #tabHeader .tab {
+.interface .mainSection .containerTabs #tabHeader .tab {
   border-bottom: 5px solid transparent;
 }
 
-.interface .mainSection .containerDiv #tabHeader .tabSelected {
+.interface .mainSection .containerTabs #tabHeader .tabSelected {
   border-bottom: 5px solid var(--lightGray);
 }
 
-.interface .mainSection .containerDiv #tabHeader .tab,
-.interface .mainSection .containerDiv #tabHeader .tabSelected {
+.interface .mainSection .containerTabs #tabHeader .tab,
+.interface .mainSection .containerTabs #tabHeader .tabSelected {
   position: relative;
   height: 100%;
   width: 100%;
@@ -2615,38 +2661,38 @@ html body button {
   flex-direction: column;
 }
 
-.interface .mainSection .containerDiv #tabHeader .tab:nth-of-type(1) .tabIcon:after,
-.interface .mainSection .containerDiv #tabHeader .tabSelected:nth-of-type(1) .tabIcon:after {
+.interface .mainSection .containerTabs #tabHeader .tab:nth-of-type(1) .tabIcon:after,
+.interface .mainSection .containerTabs #tabHeader .tabSelected:nth-of-type(1) .tabIcon:after {
   content: '\f008';
 }
 
-.interface .mainSection .containerDiv #tabHeader .tab:nth-of-type(2) .tabIcon:after,
-.interface .mainSection .containerDiv #tabHeader .tabSelected:nth-of-type(2) .tabIcon:after {
+.interface .mainSection .containerTabs #tabHeader .tab:nth-of-type(2) .tabIcon:after,
+.interface .mainSection .containerTabs #tabHeader .tabSelected:nth-of-type(2) .tabIcon:after {
   content: '\f26c';
 }
 
-.interface .mainSection .containerDiv #tabHeader .tab:nth-of-type(3) .tabIcon:after,
-.interface .mainSection .containerDiv #tabHeader .tabSelected:nth-of-type(3) .tabIcon:after {
+.interface .mainSection .containerTabs #tabHeader .tab:nth-of-type(3) .tabIcon:after,
+.interface .mainSection .containerTabs #tabHeader .tabSelected:nth-of-type(3) .tabIcon:after {
   content: '\f234';
 }
 
-.interface .mainSection .containerDiv #tabHeader .tab .tabIcon,
-.interface .mainSection .containerDiv #tabHeader .tabSelected .tabIcon {
+.interface .mainSection .containerTabs #tabHeader .tab .tabIcon,
+.interface .mainSection .containerTabs #tabHeader .tabSelected .tabIcon {
   position: relative;
   width: 100%;
   height: 80%;
 }
 
-.interface .mainSection .containerDiv #tabHeader .tab .tabIcon:after,
-.interface .mainSection .containerDiv #tabHeader .tabSelected .tabIcon:after {
+.interface .mainSection .containerTabs #tabHeader .tab .tabIcon:after,
+.interface .mainSection .containerTabs #tabHeader .tabSelected .tabIcon:after {
   position: relative;
   left: 0;
   font: 10em FontAwesome;
   color: var(--lightGray);
 }
 
-.interface .mainSection .containerDiv #tabHeader .tab .tabSpan,
-.interface .mainSection .containerDiv #tabHeader .tabSelected .tabSpan {
+.interface .mainSection .containerTabs #tabHeader .tab .tabSpan,
+.interface .mainSection .containerTabs #tabHeader .tabSelected .tabSpan {
   position: relative;
   font: 2em Calibri, sans-serif;
   text-align: center;
@@ -2655,22 +2701,34 @@ html body button {
   color: var(--lightGray);
 }
 
-.interface .mainSection .containerDiv .contentHide,
-.interface .mainSection .containerDiv .contenteShow {
+.interface .mainSection .containerTabs #tabContents {
   position: relative;
-  width: 80%;
-  height: calc(100% - 40px);
-  margin: 0 auto;
-  z-index: 98;
-  border: 1px solid var(--black);
+  height: 100%;
+  width: 100%;
 }
 
-.interface .mainSection .containerDiv .contentHide {
+.interface .mainSection .containerTabs #tabContents .contentHide,
+.interface .mainSection .containerTabs #tabContents .contentShow {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  z-index: 98;
+}
+
+.interface .mainSection .containerTabs #tabContents .contentHide {
   display: none;
 }
 
-.interface .mainSection .containerDiv .contentShow {
-  display: block;
+.interface .mainSection .containerTabs #tabContents .contentShow {
+  display: flex;
+  justify-content: center;
+}
+
+.interface .mainSection .containerTabs #tabContents .contentShow .contentSpan {
+  font: 7em Calibri, sans-serif;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .interface .mainSection #userErrorNone {
@@ -2823,6 +2881,7 @@ html body button {
   border-radius: 3px;
   height: 50px;
   width: 100%;
+  color: var(--gray);
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
@@ -2831,7 +2890,7 @@ html body button {
 
 .interface .mainSection .userDiv .userFrom .userFieldset .submitButton:hover, .interface .mainSection .userDiv .userFrom .userFieldset .submitButton:focus {
   background: var(--joker02);
-  color: var(--fontColor);
+  color: var(--white);
 }
 
 .interface .mainSection .userDiv .userFrom .userFieldset .submitButton .submitSpan {
@@ -2841,7 +2900,7 @@ html body button {
   font-size: 1.6em;
   height: 100%;
   padding: 10px;
-  color: var(--gray);
+  line-height: 30px;
 }
 
 .interface .mainSection #loginDiv .userFrom .userFieldset label:nth-of-type(1):before {
@@ -2911,7 +2970,7 @@ html body button {
 .interface .mainSection #loginDiv .userFrom .userFieldset #loginRestoreLabel .spanText {
   font: 1.5em Calibri, sans-serif;
   padding-left: 10px;
-  color: var(--gray);
+  color: var(--lightGray);
 }
 
 .interface .mainSection #siginDiv {

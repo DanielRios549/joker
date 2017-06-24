@@ -14,7 +14,7 @@
 	$categoryQuery = @$_GET['c'];
 	if($onlyBody == false) {
 ?>
-<main class="interface">
+<main class="interface ajaxReplace">
 	<?php } $contentArray = array('contentCategory' => $categoryQuery, 'dateAdd' => false, 'querySearch' => false, 'page' => THIS_PAGE); require $contentDir . 'showContent.php';?>
 	<section class="category mainSection">
 		<article id="headerContainer">
@@ -57,5 +57,9 @@
 
 		$('.contentGroup').on('click', '.content', showDetails);
 		$('.contentContainer').on('click', '.closeButton', closeDetails);
+		
+		<?php if($onlyBody == true) {?>
+			 $('title').empty().text("<?php echo $titleFile;?>");
+		<?php }?>
 	});
 </script>

@@ -10,6 +10,8 @@
 		header("Location:" . $base . "404");
 	}
 
+	$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
 	$currentServerUrl  = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 	
 	$baseCon = true;
@@ -22,7 +24,7 @@
 
 	$getConfig = new GetConfig();
     
-    	$allowNewUser = $getConfig -> configQuery('allowNewUser');
+    $allowNewUser = $getConfig -> configQuery('allowNewUser');
 
 	$baseUrl = $currentServerUrl . $getConfig -> configQuery('baseUrl');
 

@@ -12,7 +12,7 @@
 	}
 	if($onlyBody == false) {
 ?>
-<main class="interface">
+<main class="interface ajaxReplace">
 <?php }?>
 	<section class="logoff mainSection">
     		<p class="logoffText"><?php echo langCode('logoff_info');?></p>
@@ -26,4 +26,7 @@
 			window.location.replace(baseUrl);
 		}, 3000);
 	});
+	<?php if($onlyBody == true) {?>
+			$('title').empty().text("<?php echo $titleFile;?>");
+	<?php }?>
 </script>

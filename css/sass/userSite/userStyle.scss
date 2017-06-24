@@ -39,10 +39,11 @@
             @extend %alignCenter;
         }
     }
+    #loginDiv,
     #userDiv {
 		position: relative;
 		height: 100%;
-		width: 160px;
+		min-width: 160px;
 		flex: 0 0 auto;
 		
 		//If the user is not conected
@@ -73,9 +74,11 @@
 					color: var(--white);
 				};
 			}
+            #loginSpan,
 			#userName {
 				position: relative;
 				font-size: 2em;
+                margin: 10px;
 
 				@include css4 {
 					color: var(--white);
@@ -252,45 +255,26 @@
 	}
 }
 #watchInterface {
-    padding-top: 0 !important;
-}
-#watchInterface {
     background: rgba(0,0,0,.8) !important;
     position: absolute;
     height: 100%;
     width: 100%;
+    padding-top: 0 !important;
 
     @include watch();
 }
 .loading {
-    @extend %alignCenter;
-    
-    &:after {
-        content: '\f110';
-        font: 10em FontAwesome;
+    &:before {
+        content: '';
+        position: fixed;
+        top: 60px;
+        width: 0%;
+        height: 10px;
+        z-index: 100;
 
         @include css4 {
-            color: var(--white);
+            background: var(--lightGray);
         };
-        
-        @include animation(Rotate, 1.8s, linear, infinite, normal);
-        
-        @-webkit-keyframes Rotate {
-            0% {
-                @include transform(rotate(0deg));
-            }
-            100% {
-                @include transform(rotate(360deg));
-            }
-        }
-        @keyframes Rotate {
-            0% {
-                @include transform(rotate(0deg));
-            }
-            100% {
-                @include transform(rotate(360deg));
-            }
-        }
     }
 }
 .interface {

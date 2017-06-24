@@ -26,6 +26,549 @@ $responsiveVariables: (
     --detailsLeftHeight: 300px
 );
 
+@mixin mobileMenu {
+	#toggleMenuInput {
+        position: absolute;
+        top: -100%;
+        left: -100%;
+
+        &:checked {
+            position: relative;
+            height: 40px;
+            width: 40px;
+            display: block;
+            z-index: 101;
+
+            ~ #wpadminbar {
+                z-index: 99;
+            }
+            + #toggleMenu {
+                border: none;
+                background: rgba(0,0,0,.6);
+                position: fixed;
+                float: right;
+                right: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                z-index: 101;
+                cursor: default;
+            }
+            ~ #menuContainer {
+                @include transform(translate3d(310px, 0, 0));
+            }
+        }
+    }
+    #toggleMenu {
+        position: relative;
+        height: 40px;
+        width: 40px;
+
+        @include css4 {
+            background: var(--bodyColor);
+        };
+
+        @include transition(background, 200ms, linear, 0ms);
+
+        &:after {
+            content: '\f0c9';
+            font: 4em FontAwesome;
+            position: absolute;
+            left: 3px;
+
+            @include css4 {
+                color: var(--darkGray);
+            };
+        }
+    }
+    #menuContainer {
+        position: fixed;
+        top: 0;
+        left: -310px;
+        width: 280px;
+        height: 100%;
+        z-index: 102;
+
+        @include css4 {
+            background: var(--bodyColor);
+        };
+
+        @include transition(transform, 200ms, linear, 0ms);
+
+        #menu {
+            position: relative;
+            top: 0 !important;
+            width: 100%;
+            height: 100%;
+			overflow-x: auto;
+            display: flex;
+            flex-direction: column;
+            
+            .menuUl {
+                position: relative;
+                overflow-x: hidden;
+                order: 3;
+
+                > .current-menu-item,
+                > .current-menu-ancestor {
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 11px;
+                        left: 0;
+                        width: 2px;
+                        height: 40px;
+                        display: block;
+                        z-index: 100;
+                    }
+                    &:after {
+                        content: '';
+                        border-style: solid;
+                        border-width: 10px 0 10px 10px;
+                        position: absolute;
+                        left: 0;
+                        top: 20px;
+                    }
+                    &:nth-child(1) {
+                        a {
+                            @include css4 {
+                                color: var(--menu01);
+                            };
+                        }
+                        &:before {
+                            @include css4 {
+                                background: var(--menu01);
+                            };
+                        }
+                        &:after {
+                            @include css4 {
+                                border-color: transparent transparent transparent var(--menu01) ;
+                            };
+                        }
+                        .openSubMenu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu01);
+                                };
+                            }
+                            &:after {
+                                @include css4 {
+                                    color: var(--menu01);
+                                };
+                            }
+                        }
+                    }
+                    &:nth-child(2) {
+                        a {
+                            @include css4 {
+                                color: var(--menu02);
+                            };
+                        }
+                        &:before {
+                            @include css4 {
+                                background: var(--menu02);
+                            };
+                        }
+                        &:after {
+                            @include css4 {
+                                border-color: transparent transparent transparent var(--menu02) ;
+                            };
+                        }
+                        .openSubMenu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu02);
+                                };
+                            }
+                            &:after {
+                                @include css4 {
+                                    color: var(--menu02);
+                                };
+                            }
+                        }
+                    }
+                    &:nth-child(3) {
+                        a {
+                            @include css4 {
+                                color: var(--menu03);
+                            };
+                        }
+                        &:before {
+                            @include css4 {
+                                background: var(--menu03);
+                            };
+                        }
+                        &:after {
+                            @include css4 {
+                                border-color: transparent transparent transparent var(--menu03) ;
+                            };
+                        }
+                        .openSubMenu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu03);
+                                };
+                            }
+                            &:after {
+                                @include css4 {
+                                    color: var(--menu03);
+                                };
+                            }
+                        }
+                    }
+                    &:nth-child(4) {
+                        a {
+                            @include css4 {
+                                color: var(--menu04);
+                            };
+                        }
+                        &:before {
+                            @include css4 {
+                                background: var(--menu04);
+                            };
+                        }
+                        &:after {
+                            @include css4 {
+                                border-color: transparent transparent transparent var(--menu04) ;
+                            };
+                        }
+                        > .openSubMenu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu04);
+                                };
+                            }
+                            &:after {
+                                @include css4 {
+                                    color: var(--menu04);
+                                };
+                            }
+                        }
+                    }
+                    &:nth-child(5) {
+                        a {
+                            @include css4 {
+                                color: var(--menu05);
+                            };
+                        }
+                        &:before {
+                            @include css4 {
+                                background: var(--menu05);
+                            };
+                        }
+                        &:after {
+                            @include css4 {
+                                border-color: transparent transparent transparent var(--menu05) ;
+                            };
+                        }
+                        > .openSubMenu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu05);
+                                };
+                            }
+                            &:after {
+                                @include css4 {
+                                    color: var(--menu05);
+                                };
+                            }
+                        }
+                    }
+                }
+                > .menu-item {
+                    &:nth-child(1) {
+                        a {
+                            &:hover,
+                            &:active {
+                                @include css4 {
+                                    color: var(--menu01);
+                                };
+                            }
+                        }
+                        .openSubMenu {
+                            &:hover,
+                            &:active {
+                                &:before {
+                                    @include css4 {
+                                        background: var(--menu01);
+                                    };
+                                }
+                                &:after {
+                                    @include css4 {
+                                        color: var(--menu01);
+                                    };
+                                }
+                            }
+                        }
+                    }
+                    &:nth-child(2) {
+                        a {
+                            &:hover,
+                            &:active {
+                                @include css4 {
+                                    color: var(--menu02);
+                                };
+                            }
+                        }
+                        .openSubMenu {
+                            &:hover,
+                            &:active {
+                                &:before {
+                                    @include css4 {
+                                        background: var(--menu02);
+                                    };
+                                }
+                                &:after {
+                                    @include css4 {
+                                        color: var(--menu02);
+                                    };
+                                }
+                            }
+                        }
+                    }
+                    &:nth-child(3) {
+                        a {
+                            &:hover,
+                            &:active {
+                                @include css4 {
+                                    color: var(--menu03);
+                                };
+                            }
+                        }
+                        .openSubMenu {
+                            &:hover,
+                            &:active {
+                                &:before {
+                                    @include css4 {
+                                        background: var(--menu03);
+                                    };
+                                }
+                                &:after {
+                                    @include css4 {
+                                        color: var(--menu03);
+                                    };
+                                }
+                            }
+                        }
+                    }
+                    &:nth-child(4) {
+                        a {
+                            &:hover,
+                            &:active {
+                                @include css4 {
+                                    color: var(--menu04);
+                                };
+                            }
+                        }
+                        .openSubMenu {
+                            &:hover,
+                            &:active {
+                                &:before {
+                                    @include css4 {
+                                        background: var(--menu04);
+                                    };
+                                }
+                                &:after {
+                                    @include css4 {
+                                        color: var(--menu04);
+                                    };
+                                }
+                            }
+                        }
+                    }
+                    &:nth-child(5) {
+                        a {
+                            &:hover,
+                            &:active {
+                                @include css4 {
+                                    color: var(--menu05);
+                                };
+                            }
+                        }
+                        .openSubMenu {
+                            &:hover,
+                            &:active {
+                                &:before {
+                                    @include css4 {
+                                        background: var(--menu05);
+                                    };
+                                }
+                                &:after {
+                                    @include css4 {
+                                        color: var(--menu05);
+                                    };
+                                }
+                            }
+                        }
+                    }
+                }
+                .menu-item {
+                    position: relative;
+                    margin-top: 2px;
+
+                    a {
+                        position: relative;
+                        height: 60px;
+                        font: 2em Calibri, sans-serif;
+                        line-height: 60px;
+                        text-indent: 15px;
+                        display: block;
+
+                        @include css4 {
+                            background: var(--bodyColor);
+                            color: var(--darkGray);
+                        };
+
+                        @include transition(color, 200ms, linear, 1ms);
+                    }
+                }
+                .menu-item:not(.menu-item-has-children) {
+                    a {
+                        width: 100%;
+                        height: 60px;
+                    }
+                }
+                > .menu-item-has-children {
+                    &:nth-child(1) {
+                        .sub-menu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu01);
+                                };
+                            }
+                        }
+                    }
+                    &:nth-child(2) {
+                        .sub-menu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu02);
+                                };
+                            }
+                        }
+                    }
+                    &:nth-child(3) {
+                        .sub-menu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu03);
+                                };
+                            }
+                        }
+                    }
+                    &:nth-child(4) {
+                        .sub-menu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu04);
+                                };
+                            }
+                        }
+                    }
+                    &:nth-child(5) {
+                        .sub-menu {
+                            &:before {
+                                @include css4 {
+                                    background: var(--menu05);
+                                };
+                            }
+                        }
+                    }
+                    .sub-menu {
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            left: 15px;
+                            height: 100%;
+                            width: 2px;
+                        }
+                    }
+                }
+                .menu-item-has-children {
+                    a {
+                        width: calc(100% - 60px);
+                        min-height: 60px !important;
+                    }
+                    .openSubMenuInput {
+                        position: fixed;
+                        top: -100%;
+                        left: -100%;
+
+                        &:checked {
+                            + .openSubMenu {
+                                &:after {
+                                    content: '\f077';
+                                }
+                            }
+                            ~ .sub-menu {
+                                max-height: 500px;
+
+                                @include transition(max-height, 400ms, cubic-bezier(1,1,1,1), 1ms);
+                            }
+                        }
+                    }
+                    .openSubMenu {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        height: 60px;
+                        width: 55px;
+                        z-index: 102;
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 14px;
+                            left: -5px;
+                            width: 2px;
+                            height: 55%;
+                            display: block;
+
+                            @include css4 {
+                                background: var(--darkGray);
+                            };
+
+                            @include transition(background, 200ms, linear, 1ms)
+                        }
+                        &:after {
+                            content: '\f078';
+                            font: 5em FontAwesome;
+                            
+                            @include css4 {
+                                color: var(--darkGray);
+                            };
+
+                            @include transition(color, 200ms, linear, 1ms);
+                        }
+                    }
+                    .sub-menu {
+                        position: relative;
+                        max-height: 0px;
+                        overflow: hidden;
+
+                        @include transition(max-height, 400ms, ease-out, 1ms);
+
+                        .menu-item {
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
+            .searchForm {
+                height: 40px;
+                width: 100%;
+                order: 1;
+
+                .searchInput {
+                    position: relative;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: $tablet + 'px') {
     #header {
         align-items: center;
@@ -92,7 +635,50 @@ $responsiveVariables: (
                 order: 2;
 
                 #ulMenu {
-                    
+                    #itemSubMenu {
+                        .menuSpan {
+                            display: none;
+                        }
+                        #subMenu {
+                            > li {
+                                position: relative;
+                                height: 40px;
+                                width: 93%;
+                                margin: 10px 0 0 0;
+
+                                &:after {
+                                    content: "";
+                                    position: absolute;
+                                    top: 25px;
+                                    right: -20px;
+                                    margin-top: -2.5em;
+                                    border-top: 2em solid transparent;
+                                    border-bottom: 2em solid transparent;
+
+                                    @include css4 {
+                                        border-left: 2em solid var(--gray);
+                                    };
+                                }
+
+                                @include css4 {
+                                    background: var(--gray);
+                                };
+                                .ajaxLink {
+                                    position: relative;
+                                    height: 100%;
+                                    width: 100%;
+                                    font: 2em Calibri, sans-serif;
+                                    display: flex;
+                                    align-items: center;
+                                    padding-left: 10px;
+
+                                    @include css4 {
+                                        color: var(--darkGray);
+                                    };
+                                }
+                            }
+                        }
+                    }
                 }
             }
             #searchDiv {
@@ -100,6 +686,23 @@ $responsiveVariables: (
                 height: 60px;
                 width: 100%;
                 order: 1;
+
+                #searchForm {
+                    position: relative;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    #searchInput {
+                        position: relative;
+                        height: 50%;
+                        width: 90%;
+                        padding: 5px;
+                        font: 2em Calibri, sans-serif;
+                    }
+                }
             }
         }
     }

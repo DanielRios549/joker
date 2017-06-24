@@ -160,12 +160,16 @@
 					height: 50px;
 					width: 100%;
 					
+					@include css4 {
+						color: var(--gray);
+					};
+					
 					@include transition(all, 200ms, linear);
 					
 					&:hover, &:focus {
 						@include css4 {
 							background: var(--joker02);
-							color: var(--fontColor);
+							color: var(--white);
 						};
 					}
 					.submitSpan {
@@ -175,10 +179,7 @@
 						font-size: 1.6em;
 						height: 100%;
 						padding: 10px;
-
-						@include css4 {
-							color: var(--gray);
-						};
+						line-height: 30px;
 					}
 				}
 			}
@@ -262,7 +263,7 @@
 						padding-left: 10px;
 
 						@include css4 {
-							color: var(--gray);
+							color: var(--lightGray);
 						};
 					}
 				}

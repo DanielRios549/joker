@@ -12,7 +12,7 @@
 	}
 	if($onlyBody == false) {
 ?>
-<main class="interface">
+<main class="interface ajaxReplace">
 <?php }?>
 	<section class="login mainSection">
 		<?php if((isset($_POST['loginSubmit'])) or (isset($_POST['siginSubmit']))) {?>
@@ -82,5 +82,9 @@
 
 		inputError($(".userDiv"));
 		closeMessage('.userError', '#errorMsgClose');
+
+		<?php if($onlyBody == true) {?>
+			 $('title').empty().text("<?php echo $titleFile;?>");
+		<?php }?>
 	});
 </script>

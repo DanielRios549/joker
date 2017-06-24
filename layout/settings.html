@@ -12,7 +12,7 @@
 	}
 	 if($onlyBody == false) {
 ?>
-<main class="interface">
+<main class="interface ajaxReplace">
 <?php }?>
 	<section class="settings mainSection">
 		<article class="divLeft">
@@ -33,7 +33,7 @@
 					<div id="settingsOptionInfo" class="settingsOption">
 						<div id="section1" class="section">
 							<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'name')) {?>
-								<a href="<?php echo $userSettingsPage . '?tab=info&section=name'?>" id="<?php echo $linkInfoName;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_name');?></span><span class="linkUserInfo"><?php echo $userConf['name'];?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanName;?></span></a>
+								<a href="<?php echo $userSettingsPage . '?tab=info&section=name'?>" id="<?php echo $linkInfoName;?>" class="linkInfo ajaxLink"><span class="linkInfoName"><?php echo langCode('settings_name');?></span><span class="linkUserInfo"><?php echo $userConf['name'];?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanName;?></span></a>
 								<?php } elseif(@$_GET['section'] == 'name') {?>
 								<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=name&go=setName'?>" id="formSettings1" class="formSettings">
 									<fieldset id="fieldSettings1" class="fieldSettings"><legend id="legendSettings1" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_name');?></legend>
@@ -46,14 +46,14 @@
 										</div>
 										
 										<button type="submit" id="setSubmit1" class="setSubmit"><?php echo $btnChange;?></button>
-										<a id="linkBack1" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
+										<a id="linkBack1" class="linkBack ajaxLink" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
 									</fieldset>
 								</form>
 							<?php }?>
 						</div>
 						<div id="section2" class="section">
 							<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'username')) {?>
-								<a href="<?php echo $userSettingsPage . '?tab=info&section=username'?>" id="<?php echo $linkInfoUserName;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_username');?></span><span class="linkUserInfo"><?php echo $userConf['username'];;?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanUserName;?></span></a>
+								<a href="<?php echo $userSettingsPage . '?tab=info&section=username'?>" id="<?php echo $linkInfoUserName;?>" class="linkInfo ajaxLink"><span class="linkInfoName"><?php echo langCode('settings_username');?></span><span class="linkUserInfo"><?php echo $userConf['username'];;?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanUserName;?></span></a>
 								<?php } elseif(@$_GET['section'] == 'username') {?>
 								<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=username&go=setUserName'?>" id="formSettings2" class="formSettings">
 									<fieldset id="fieldSettings2" class="fieldSettings"><legend id="legendSettings2" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_username');?></legend>
@@ -63,7 +63,7 @@
 										</div>
 										
 										<button type="submit" id="setSubmit2" class="setSubmit"><?php echo $btnChange;?></button>
-										<a id="linkBack2" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
+										<a id="linkBack2" class="linkBack ajaxLink" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
 									</fieldset>
 								</form>
 							<?php }?>
@@ -71,7 +71,7 @@
 						<?php if($adminCheck == true) {?>
 						<div id="section3" class="section">
 							<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'email')) {?>
-								<a href="<?php echo $userSettingsPage . '?tab=info&section=email'?>" id="<?php echo $linkInfoEmail;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_email');?></span><span class="linkUserInfo"><?php echo $userConf['email'];?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanEmail;?></span></a>
+								<a href="<?php echo $userSettingsPage . '?tab=info&section=email'?>" id="<?php echo $linkInfoEmail;?>" class="linkInfo ajaxLink"><span class="linkInfoName"><?php echo langCode('settings_email');?></span><span class="linkUserInfo"><?php echo $userConf['email'];?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanEmail;?></span></a>
 								<?php } elseif(@$_GET['section'] == 'email') {?>
 								<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=email&go=setEmail'?>" id="formSettings3" class="formSettings">
 									<fieldset id="fieldSettings3" class="fieldSettings"><legend id="legendSettings3" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_email');?></legend>
@@ -81,7 +81,7 @@
 										</div>
 										
 										<button type="submit" id="setSubmit3" class="setSubmit"><?php echo $btnChange;?></button>
-										<a id="linkBack3" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
+										<a id="linkBack3" class="linkBack ajaxLink" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
 									</fieldset>
 								</form>
 							<?php }?>
@@ -89,7 +89,7 @@
 						<?php }?>
 						<div id="section4" class="section">
 							<?php if((!isset ($_GET['section'])) or (@$_GET['section'] !== 'password')) {?>
-								<a href="<?php echo $userSettingsPage . '?tab=info&section=password'?>" id="<?php echo $linkInfoPassword;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_password');?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanPassword;?></span></a>
+								<a href="<?php echo $userSettingsPage . '?tab=info&section=password'?>" id="<?php echo $linkInfoPassword;?>" class="linkInfo ajaxLink"><span class="linkInfoName"><?php echo langCode('settings_password');?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanPassword;?></span></a>
 							<?php } elseif(@$_GET['section'] == 'password') {?>
 								<form method="post" action="<?php echo $userSettingsPage . '?tab=info&section=password&go=setPassword'?>" id="formSettings4" class="formSettings">
 									<fieldset id="fieldSettings4" class="fieldSettings"><legend id="legendSettings4" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_password');?></legend>
@@ -105,7 +105,7 @@
 										</div>
 										
 										<button type="submit" id="setSubmit4" class="setSubmit"><?php echo $btnChange;?></button>
-										<a id="linkBack4" class="linkBack" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
+										<a id="linkBack4" class="linkBack ajaxLink" href="<?php echo $userSettingsPage . '?tab=info'?>"><?php echo $btnCancel;?></a>
 									</fieldset>
 								</form>
 							<?php }?>
@@ -115,7 +115,7 @@
 					<div id="settingsOptionLang" class="settingsOption">
 						<div id="section5" class="section">
 							<?php if(!isset($_GET['section'])) {?>
-								<a href="<?php echo $userSettingsPage . '?tab=lang&section=userLang'?>" id="<?php echo $linkInfoLang;?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_account_lang');?></span><span class="linkUserInfo"><?php echo langCode('lang_name');?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanLang;?></span></a>
+								<a href="<?php echo $userSettingsPage . '?tab=lang&section=userLang'?>" id="<?php echo $linkInfoLang;?>" class="linkInfo ajaxLink"><span class="linkInfoName"><?php echo langCode('settings_account_lang');?></span><span class="linkUserInfo"><?php echo langCode('lang_name');?></span><span class="linkInfoSpan"><?php echo $linkInfoSpanLang;?></span></a>
 							<?php } elseif(@$_GET['section'] == 'userLang') {?>
 								<form method="post" action="<?php echo $userSettingsPage . '?tab=lang&section=userLang&go=setLang'?>" id="formSettings5" class="formSettings">
 									<fieldset id="fieldSettings5" class="fieldSettings"><legend id="legendSettings5" class="legendSettings"><?php echo langCode('settings_change') . ' ' . langCode('settings_account_lang');?></legend>
@@ -127,7 +127,7 @@
 											</div>
 											
 											<button type="submit" id="setSubmit5" class="setSubmit"><?php echo $btnChange;?></button>
-											<a id="linkBack5" class="linkBack" href="<?php echo $userSettingsPage . '?tab=lang'?>"><?php echo $btnCancel;?></a>
+											<a id="linkBack5" class="linkBack ajaxLink" href="<?php echo $userSettingsPage . '?tab=lang'?>"><?php echo $btnCancel;?></a>
 									</fieldset>
 								</form>
 							<?php }?>
@@ -137,7 +137,7 @@
 					<div id="settingsOptionDelete" class="settingsOption">
 						<div id="section6" class="section">
 							<?php if(!isset($_GET['section'])) {?>
-								<a href="<?php echo $userSettingsPage . '?tab=delete&section=deleteUser'?>" class="linkInfo"><span class="linkInfoName"><?php echo langCode('settings_delete_account');?></span><span class="linkInfoSpan"><?php echo langCode('settings_edit');?></span></a>
+								<a href="<?php echo $userSettingsPage . '?tab=delete&section=deleteUser'?>" class="linkInfo ajaxLink"><span class="linkInfoName"><?php echo langCode('settings_delete_account');?></span><span class="linkInfoSpan"><?php echo langCode('settings_edit');?></span></a>
 							<?php } elseif(@$_GET['section'] == 'deleteUser') {?>
 								<form method="post" action="<?php echo $userSettingsPage . '?tab=delete&section=deleteUser&go=setDelete'?>" id="formSettings6" class="formSettings">
 									<fieldset id="fieldSettings6" class="fieldSettings"><legend id="legendSettings6" class="legendSettings"><?php echo langCode('settings_delete_account');?></legend>
@@ -149,7 +149,7 @@
 											</div>
 											
 											<button type="submit" id="setSubmit6" class="setSubmit"><?php echo $btnChange;?></button>
-											<a id="linkBack6" class="linkBack" href="<?php echo $userSettingsPage . '?tab=delete'?>"><?php echo $btnCancel;?></a>
+											<a id="linkBack6" class="linkBack ajaxLink" href="<?php echo $userSettingsPage . '?tab=delete'?>"><?php echo $btnCancel;?></a>
 									</fieldset>
 								</form>
 							<?php }}?>
@@ -161,4 +161,10 @@
 	</section>
  <?php if($onlyBody == false) {?>
 </main>
+<?php } if($onlyBody == true) {?>
+<script lang="text/javascript">
+	$(window).ready(function() {
+		$('title').empty().text("<?php echo $titleFile;?>");
+	});
+</script>
 <?php }?>

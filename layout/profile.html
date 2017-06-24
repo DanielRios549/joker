@@ -12,7 +12,7 @@
 	}
 ?>
 <?php if($onlyBody == false) {?>
-<main class="interface">
+<main class="interface ajaxReplace">
 <?php }?>
 	<section class="profile mainSection">
 		<article id="profileHeaderDiv">
@@ -67,7 +67,7 @@
 <?php if($onlyBody == false) {?>
 </main>
 <?php }?>
-<script>
+<script lang="text/javascript">
 	$(window).ready(function() {
 		$(this).on('scroll', function() {
 			parallaxHeaderUser();
@@ -77,5 +77,9 @@
 		
 		$('#userHeader').on('click', '#followUser', followUser);
 		$('#userHeader').on('click', '#unfollowUser', unfollowUser);
+
+		<?php if($onlyBody == true) {?>
+			 $('title').empty().text("<?php echo $titleFile;?>");
+		<?php }?>
 	});
 </script>
