@@ -350,37 +350,47 @@ function toggleFullScreen() {
 	}
 }
 
-function hotKeys() {
-	$(document).ready(function() {
-		var pressedCtrl = false;
+function exitFullScreen() {
+	if (document.fullScreen) {
+		document.cancelFullScreen();
+	} 
+	else if (document.mozFullScreen) {
+		document.mozCancelFullScreen();
+	}
+	else if (document.webkitIsFullScreen) {
+		document.webkitCancelFullScreen();
+	}
+	alert('Esc key is press');
+	$('#playerBox').removeClass('playerBoxShowFull').addClass('playerBoxShow');
+}
 
-		$(document).keyup(function (e) {
-			
-			//Space == Play and Pause
-			
-			if(e.wich == 32 || e.keyCode == 32){
-				playPause();
-			}
-			
-			//Enter == Mute and Unmute
-			
-			if(e.wich == 77 || e.keyCode == 77){
-				muteVideo();
-			}
-			
-			//ESC or F11 == Exit FullScreen
-			
-			if((e.wich == 27 || e.keyCode == 27) || (e.wich == 122 || e.keyCode == 122)) {
-				$('#playerBox').removeClass('playerBoxShowFull').addClass('playerBoxShow');
-			}
-			
-			//Left ALT + ENTER == FullScreen
-			
-			if(e.which == 18) pressedCtrl = true;
-			
-			if((e.which == 13 || e.keyCode == 13) && (pressedCtrl == true)) {
-				toggleFullScreen();
-			}
-		});
+function hotKeys() {
+	$(document).on('keyup', function (e) {
+		var keyPress = e.which || e.keyCode;
+		
+		//Space == Play and Pause
+		
+		if(keyPress == 32) {
+			playPause();
+		}
+
+		//Enter == Mute and Unmute
+		
+		if(keyPress == 77) {
+			muteVideo();
+		}
+
+		//ESC or F11 == Exit FullScreen
+
+		if((keyPress == 27)  || (keyPress == 122)) {
+			//e.preventDefault();
+			exitFullScreen();
+		}
+
+		//F  == Toggle FullScreen
+
+		if(keyPress == 70) {
+			toggleFullScreen();
+		}
 	});
 }

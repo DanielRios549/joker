@@ -290,7 +290,7 @@ function showDetails(event) {
             scrollTop: containerDiv.find('.titleDetailsOpen').offset().top - 150
         },500);
     }
-	getPage(contentLink, "body=yes", function(data) {
+	getPage(contentLink, "body=true", function(data) {
         var filter = $(data).children();
         //console.log(data);
         $('.titleDetailsOpen').find('.sectionContent').html(filter);
@@ -324,8 +324,8 @@ function ajaxLink(event) {
     var linkTo = $(this).attr('href');
     $(document).off('scroll');
 
-    getPage(linkTo, "body=true", function(data, load) {
-        //console.log(load)
+    getPage(linkTo, "body=true", function(data) {
+        //console.log(data);
         //$('.ajaxReplace').removeClass('loading');
         $('.ajaxReplace').html(data);
 

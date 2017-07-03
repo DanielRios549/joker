@@ -46,7 +46,7 @@ gulp.task('bower', function() {
 //Sass outputs: expanded, compact, compressed
 
 gulp.task('sass', function() {
-    return gulp.src(userStyle)
+    return gulp.src([userStyle, adminStyle])
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
     .pipe(gulp.dest('css/'));
 });

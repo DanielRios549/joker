@@ -120,7 +120,6 @@
 			//Define if the page show only the body or no
 
 			$onlyBody = $_POST['body'] ?? false;
-			$onlyDetails = $_POST['details'] ?? false;
 
 			//Make the continue watching
 

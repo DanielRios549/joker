@@ -10,7 +10,6 @@
         .managerLink,
         #advancedClose {
             box-sizing: border-box;
-            background: $colorBlue;
             border-radius: 3px;
             position: relative;
             float: right;
@@ -18,16 +17,22 @@
             height: 40px;
             width: auto;
             font: 2em Calibri, sans-serif;
-            color: $colorLightGray;
             text-decoration: none;
             padding: 5px;
-            
+
+			@include css4 {
+            	background: var(--joker02);
+                color: var(--lightGray);
+            };
             &:after {
                 top: 3px;
                 left: 3px;
                 position: relative;
                 font-family: FontAwesome;
-                color: $colorLightGray;
+
+				@include css4 {
+					color: var(--lightGray);
+				};
             }
         }
         .managerLink {
@@ -59,7 +64,9 @@
             border: 3px solid transparent;
         }
         .searchAdvancedOpen {
-            border: 3px solid rgba(0,0,0,0.5);
+			@include css4 {
+            	border: 3px solid var(--lightGray);
+			};
             
             &:after {
                 @include transform(rotate(180deg));
@@ -97,9 +104,12 @@
 
 		#contentTotal {
 			font-size: 2em;
-			color: $colorGray;
 			font-weight: bold;
 			padding-left: 1%;
+
+			@include css4 {
+				color: var(--gray);
+			};
 		}
 		#selectDiv {
 			position: relative;
@@ -135,23 +145,34 @@
 				float: left;
 				margin-right: 30px;
 				line-height: 30px;
+
+				@include css4 {
+					color: var(--lightGray);
+				};
 			}
 			#buttonDiv {
 				position: relative;
 				float: right;
 
 				.pageInactive {
-					background: $colorLightGray;
-					
+					@include css4 {
+						background: var(--lightGray);
+					};
 					.pageSpan {
-						color: $colorGray;
+						@include css4 {
+							color: var(--gray);
+						};
 					}
 				}
 				.pageActive {
-					background: $colorBlue;
+					@include css4 {
+						background: var(--joker02);
+					};
 					
 					.pageSpan {
-						color: $colorLightGray;
+						@include css4 {
+							color: var(--lightGray);
+						};
 					}
 				}
 				.pageButton {
@@ -182,12 +203,14 @@
 		#contentTable {
 			box-sizing: border-box;
 			position: relative;
-			outline: 1px solid $colorLightGray;
 			width: 98%;
 			height: 100%;
 			margin: 50px auto 0 auto;
 			padding: 3px;
-			
+
+			@include css4 {
+				outline: 1px solid var(--lightGray);
+			};
 			#tableHead {
 				position: relative;
 				display: block;
@@ -195,13 +218,15 @@
 				width: 100%;
 				
 				#headRow {
-					background: $colorLightGray;
 					position: absolute;
 					height: 100%;
 					width: 100%;
 					float: left;
 					padding: 3px 0;
-					
+
+					@include css4 {
+						background: var(--gray);
+					};
 					#contentId,
 					#contentDetails,
 					#contentOptions {
@@ -212,10 +237,13 @@
 							height: 100%;
 							width: 100%;
 							font-size: 2em;
-							color: #484848;
 							line-height: 36px;
 							text-align: center;
 							font-weight: bold;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
 						}
 					}
 					#contentId {
@@ -248,11 +276,13 @@
 				.contentRow {
 					position: relative;
 					box-sizing: border-box;
-					border-bottom: 1px solid $colorLightGray;
-					background: #ffffff;
 					display: block;
 					width: 100%;
 					padding: 10px 0 10px 0;
+
+					@include css4 {
+						background: var(--darkGray);
+					};
 				}
 				#contentRowEdit {
 					position: relative;
@@ -278,12 +308,15 @@
 							&:after {
 								content: '\e900';
 								font: 4em PlayerIcon;
-								color: $colorGray;
+
+								@include css4 {
+									color: var(--gray);
+								};
 							}
 						}
 					}
 
-					@include addContent(0);
+					@include addContent();
 				}
 				.contentRow {
 					height: 60px;
@@ -296,13 +329,15 @@
 							height: 100%;
 							width: 100%;
 							font-size: 1.6em;
-							color: #484848;
 							line-height: 40px;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
 						}
 					}
 					.contentId {
 						box-sizing: border-box;
-						border-right: 1px solid $colorLightGray;
 						position: relative;
 						top: 0;
 						left: 0;
@@ -310,10 +345,13 @@
 						height: 40px;
 						width: 15%;
 						text-align: center;
+
+						@include css4 {
+							border-right: 1px solid var(--lightGray);
+						};
 					}
 					.contentDetails {
 						box-sizing: border-box;
-						border-right: 1px solid $colorLightGray;
 						position: relative;
 						top: 0;
 						left: 0;
@@ -321,6 +359,10 @@
 						height: 40px;
 						width: 70%;
 						text-indent: 20px;
+
+						@include css4 {
+							border-right: 1px solid var(--lightGray);
+						};
 					}
 					.contentOptions {
 						box-sizing: border-box;
@@ -334,31 +376,40 @@
 						.contentEdit {
 							box-sizing: border-box;
 							border-radius: 3px;
-							background: $colorBlue;
 							width: 100px;
 							height: 100%;
 							margin: 0 auto;
 							padding: 3px;
-							
+
+							@include css4 {
+								background: var(--joker02);
+								border-right: 1px solid var(--lightGray);
+							};
 							.contentLink {
-								border-right: 1px solid #f1f1f1;
 								float: left;
 								width: 70%;
 								height: 100%;
 								text-decoration: none;
 
+								@include css4 {
+									border-right: 1px solid var(--white);
+								};
 								&:before {
 									content: '\f044';
 									font: 1.2em FontAwesome;
-									color: $colorWhite;
 									position: relative;
 									top: 12px;
 									left: 10px;
 									opacity: 0;
+
+									@include css4 {
+										color: var(--white);
+									};
 								}
 								&:hover {
-									color: #f1f1f1;
-
+									@include css4 {
+										color: var(--white);
+									};
 									&:before {
 										opacity: 1;
 									}
@@ -370,12 +421,15 @@
 									position: relative;
 									text-align: center;
 									line-height: 32px;
-									color: #f1f1f1;
 									font-size: 1.6em;
 									display: block;
 									width: 80%;
 									height: 100%;
 									float: right;
+
+									@include css4 {
+										color: var(--white);
+									};
 								}
 							}
 							.moreOptions {
@@ -390,10 +444,13 @@
 								&:after {
 									content: '\f142';
 									font: 2em FontAwesome;
-									color: $colorWhite;
 									position: relative;
 									top: 7px;
 									left: 8px;
+
+									@include css4 {
+										color: var(--white);
+									};
 								}
 							}
 						}

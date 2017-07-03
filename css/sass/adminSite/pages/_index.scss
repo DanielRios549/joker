@@ -30,18 +30,25 @@
                 @include transition(border, 300ms, ease);
                 
                 &:hover {
-                    border-bottom: 4px solid $colorBlue;
+                    @include css4 {
+                        border-bottom: 4px solid var(--joker02);
+                    };
                 }
                 span {
                     font-size: 1.5em;
-                    color: $colorGray;
+
+                    @include css4 {
+                        color: var(--lightGray);
+                    };
                 }
             }
             .tab {
                 border-bottom: 4px solid transparent;
             }
             .tabSelected {
-                border-bottom: 4px solid $colorBlue;
+                @include css4 {
+                    border-bottom: 4px solid var(--joker02);
+                };
             }
         }
     }
@@ -58,7 +65,10 @@
         .contentHide {
             height: 100%;
             width: 100%;
-            color: $colorGray;
+
+            @include css4 {
+                color: var(--lightGray);
+            };
         }
         .contentShow {
             opacity: 1;

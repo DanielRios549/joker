@@ -10,7 +10,7 @@
 		header("Location:" . $base . "404");
 	}
 	elseif ($adminCheck == true) {
-		//Get options of user to create the select
+		//Get options of user to make the select
 
 		$userActive = getEnum('user', 'active');
 		$userCategories = getEnum('user', 'category');
@@ -18,7 +18,7 @@
 		$userLang = getEnum('user', 'lang');
 		$userStyle = getEnum('user', 'style');
 
-		//Get options of content to create the select
+		//Get options of content to make the select
 
 		$contentActive = getEnum('content', 'active');
 		$contentCategories = getEnum('content', 'category');
@@ -37,7 +37,7 @@
 
 		//print_r($allSeries);
 
-		if(THIS_PAGE == 'admin_users_manager') {
+		if(MENU_GROUP == 'users') {
 			$selectFormFile = 'userSelect.html';
 			$pageType = langCode('admin_users');
 		}

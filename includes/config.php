@@ -10,9 +10,9 @@
 		header("Location:" . $base . "404");
 	}
 
-	$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-
 	$currentServerUrl  = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+
+	$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 	
 	$baseCon = true;
 
