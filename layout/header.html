@@ -45,7 +45,7 @@
 		</nav>
 		<article id="searchDiv">
 			<form id="searchForm" method="get" action="<?php echo langCode('search_link');?>">
-				<input type="text" name="q" id="searchInput" placeholder="<?php echo langCode('input_search');?>" autocomplete="off" required/>
+				<input type="text" value="<?php if(THIS_PAGE == 'search'){echo $searchQuery;}?>" name="q" id="searchInput" placeholder="<?php echo langCode('input_search');?>" autocomplete="off" required/>
 				
 				<button type="submit" id="submitSearch" value=""></button>
 			</form>

@@ -9,6 +9,10 @@ $responsiveVariables: (
     --testResponsive: 80%
 );
 
+@media (max-width: $tablet + 'px') {
+    
+}
+
 @media (min-width: $mobile + 1 + 'px') and (max-width: $tablet + 'px') {
 	@if($css4 == true) {
         :root {

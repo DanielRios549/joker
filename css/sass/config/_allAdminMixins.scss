@@ -13,11 +13,11 @@
 		top: 10px;
 		left: 0;
 		height: 40px;
+		display: flex;
 		
 		.pageLink,
 		#activePage	{
 			position: relative;
-			float: left;
 			font-size: 1.6em;
 			text-decoration: none;
 			height: 100%;
@@ -179,8 +179,11 @@
 		width: 80%;
 		margin: 40px auto 0 auto;
 
-		.formFieldset,
-		.seasonDiv {
+		.formFieldsetInline {
+			//display: flex;
+		}
+		.formFieldset {
+		//.seasonDiv {
 			border: none;
 			position: relative;
 			margin-bottom: 10px;
@@ -195,11 +198,16 @@
 			}
 			.selectDiv {
 				position: relative;
-				float: left;
 				margin-right: 20px;
+				display: inline-block;
 
 				.selectLabel {
 					position: relative;
+					font: 1.6em Calibri, sans-serif;
+					
+					@include css4 {
+						color: var(--lightGray);
+					};
 				}
 				.select {
 					position: relative;
@@ -210,7 +218,7 @@
 				height: 40px;
 
 				.fileInput {
-					top: -30px;
+					top: -28px;
 					width: 100%;
 				}
 			}
@@ -230,7 +238,7 @@
 				}
 				.fileInput {
 					top: 10px;
-					left: -88px;
+					left: -70px;
 					z-index: 96;
 
 					&:after {
@@ -241,13 +249,15 @@
 			}
 			.selectDivFile,
 			.selectedDivFile {
+				border-radius: 3px;
 				position: relative;
-				float: left;
 				margin-right: 10px;
 				overflow: hidden;
+				display: inline-block;
 
 				@include css4 {
-					border: 1px solid var(--black);
+					background: var(--gray);
+					color: var(--lightGray);
 				};
 
 				@include transition(width, 400ms, linear);

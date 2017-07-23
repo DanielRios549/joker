@@ -14,7 +14,15 @@
 <div class="selectDiv">
     <label for="active" class="selectLabel" >Active</label>
     <select class="select" name="active">
-        <?php foreach($userActive as $userActive => $select) {if($select == @$keyEdit['active']) {$optionSelected1 = 'selected';}else{$optionSelected1 = '';}?>
+        <?php 
+            foreach($userActive as $userActive => $select) {
+                if($select == @$keyEdit['active']) {
+                    $optionSelected1 = 'selected';
+                }
+                else {
+                    $optionSelected1 = '';
+                }
+        ?>
         <option value="<?php echo $select;?>" <?php echo @$optionSelected1;?>><?php echo ucfirst($select);?></option>
         <?php }?>
     </select>
@@ -22,7 +30,15 @@
 <div class="selectDiv">
     <label for="category" class="selectLabel" >Category</label>
     <select class="select" name="category">
-        <?php foreach($userCategories as $userCategories => $select) {if($select == @$keyEdit['category']) {$optionSelected2 = 'selected';}else{$optionSelected2 = '';}?>
+        <?php 
+            foreach($userCategories as $userCategories => $select) {
+                if($select == @$keyEdit['category']) {
+                    $optionSelected2 = 'selected';
+                }
+                else {
+                    $optionSelected2 = '';
+                }
+        ?>
         <option value="<?php echo $select;?>" <?php echo @$optionSelected2;?>><?php echo ucfirst($select);?></option>
         <?php }?>
     </select>
@@ -30,7 +46,15 @@
 <div class="selectDiv">
     <label for="premium" class="selectLabel" >Premium</label>
     <select class="select" name="premium">
-        <?php foreach($userPremium as $userPremium => $select) {if($select == @$keyEdit['premium']) {$optionSelected3 = 'selected';}else{$optionSelected3 = '';}?>
+        <?php 
+            foreach($userPremium as $userPremium => $select) {
+                if($select == @$keyEdit['premium']) {
+                    $optionSelected3 = 'selected';
+                }
+                else {
+                    $optionSelected3 = '';
+                }
+        ?>
         <option value="<?php echo $select;?>" <?php echo @$optionSelected3;?>><?php echo ucfirst($select);?></option>
         <?php }?>
     </select>
@@ -38,7 +62,15 @@
 <div class="selectDiv">
     <label for="lang" class="selectLabel" >Lang</label>
     <select class="select" name="lang">
-        <?php foreach($userLang as $userLang => $select) {if($select == @$keyEdit['lang']) {$optionSelected4 = 'selected';}else{$optionSelected4 = '';}?>
+        <?php 
+            foreach($userLang as $userLang => $select) {
+                if($select == @$keyEdit['lang']) {
+                    $optionSelected4 = 'selected';
+                }
+                else {
+                    $optionSelected4 = '';
+                }
+        ?>
         <option value="<?php echo $select;?>" <?php echo @$optionSelected4;?>><?php echo $select;?></option>
         <?php }?>
     </select>
@@ -46,7 +78,15 @@
 <div class="selectDiv">
     <label for="style" class="selectLabel" >Style</label>
     <select class="select" name="style">
-        <?php foreach($userStyle as $userStyle => $select) {if($select == @$keyEdit['style']) {$optionSelected5 = 'selected';}else{$optionSelected5 = '';}?>
+        <?php 
+            foreach($userStyle as $userStyle => $select) {
+                if($select == @$keyEdit['style']) {
+                    $optionSelected5 = 'selected';
+                }
+                else {
+                    $optionSelected5 = '';
+                }
+        ?>
         <option value="<?php echo $select;?>" <?php echo @$optionSelected5;?>><?php echo ucfirst($select);?></option>
         <?php }?>
     </select>

@@ -34,11 +34,14 @@
             <?php require 'episodeSelect.html';?>
         </fieldset>
         <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Select the serie and episode numbers';?></legend>
-            <label for="seasonNumber">Season</label>
-            <input type="number" name="seasonNumber" min="1" max="30"/>
-
-            <label for="episodeNumber">Episode</label>
-            <input type="number" name="episodeNumber" min="1" max="200"/>
+            <div class="selectDiv">
+                <label for="seasonNumber" class="selectLabel">Season</label>
+                <input type="number" name="seasonNumber" min="1" max="30"/>
+            </div>
+            <div class="selectDiv">
+                <label for="episodeNumber" class="selectLabel">Episode</label>
+                <input type="number" name="episodeNumber" min="1" max="200"/>
+            </div>
         </fieldset>
         <?php require 'episodesForm.html';?>
         <fieldset class="formFieldset">

@@ -46,7 +46,9 @@
 	
 	$mediaImageFolder = $getConfig -> configQuery('mediaImageFolder');
 	
-	$videoPlayer = $getConfig -> configQuery('player');
+	$streamPlayer = $getConfig -> configQuery('streamPlayer');
+	
+	$livePlayer = $getConfig -> configQuery('livePlayer');
 	
 	require 'common.php';
 ?>

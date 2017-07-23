@@ -6,13 +6,14 @@
         top: 20px;
         height: 50px;
         width: 100%;
+		display: flex;
+		justify-content: flex-end;
         
         .managerLink,
         #advancedClose {
             box-sizing: border-box;
             border-radius: 3px;
             position: relative;
-            float: right;
             top: 0;
             height: 40px;
             width: auto;
@@ -36,15 +37,13 @@
             }
         }
         .managerLink {
-            right: 20px;
-            
+			margin: 0 10px 0 0;
             &:after {
                 content: '\f067';
                 font-size: 1em;
             }
         }
         #advancedClose {
-            right: 10px;
             cursor: pointer;
             line-height: 20px;
             
@@ -53,7 +52,6 @@
                 font-size: 1.5em;
                 font-weight: bold;
                 position: relative;
-                float: right;
                 right: 0;
                 top: 0;
                 
@@ -91,7 +89,6 @@
         position: relative;
         top: 50px;
         right: 0;
-        float: right;
         min-height: 600px;
         width: 83%;
         z-index: 100;
@@ -102,6 +99,10 @@
 		width: 100%;
 		margin-top: 30px;
 
+		.contentSortOption {
+			display: flex;
+			justify-content: space-between;
+		}
 		#contentTotal {
 			font-size: 2em;
 			font-weight: bold;
@@ -113,7 +114,6 @@
 		}
 		#selectDiv {
 			position: relative;
-			float: left;
 			top: 10px;
 			left: 1%;
 			height: 30px;
@@ -133,16 +133,15 @@
 		}
 		.indexPageDiv {
 			position: relative;
-			float: right;
 			top: 10px;
 			right: 1%;
 			height: 60px;
 			text-align: right;
 			overflow: hidden;
+			display: flex;
 
 			#pageInfo {
 				position: relative;
-				float: left;
 				margin-right: 30px;
 				line-height: 30px;
 
@@ -152,7 +151,6 @@
 			}
 			#buttonDiv {
 				position: relative;
-				float: right;
 
 				.pageInactive {
 					@include css4 {
@@ -205,7 +203,7 @@
 			position: relative;
 			width: 98%;
 			height: 100%;
-			margin: 50px auto 0 auto;
+			margin: 0 auto;
 			padding: 3px;
 
 			@include css4 {
@@ -221,8 +219,8 @@
 					position: absolute;
 					height: 100%;
 					width: 100%;
-					float: left;
 					padding: 3px 0;
+					display: flex;
 
 					@include css4 {
 						background: var(--gray);
@@ -230,8 +228,6 @@
 					#contentId,
 					#contentDetails,
 					#contentOptions {
-						float: left;
-
 						.contentSpan {
 							display: block;
 							height: 100%;
@@ -320,6 +316,7 @@
 				}
 				.contentRow {
 					height: 60px;
+					display: flex;
 					
 					.contentId,
 					.contentDetails,
@@ -341,7 +338,6 @@
 						position: relative;
 						top: 0;
 						left: 0;
-						float: left;
 						height: 40px;
 						width: 15%;
 						text-align: center;
@@ -355,7 +351,6 @@
 						position: relative;
 						top: 0;
 						left: 0;
-						float: left;
 						height: 40px;
 						width: 70%;
 						text-indent: 20px;
@@ -369,7 +364,6 @@
 						position: relative;
 						top: 0;
 						left: 0;
-						float: left;
 						width: 15%;
 						height: 40px;
 						
@@ -380,16 +374,17 @@
 							height: 100%;
 							margin: 0 auto;
 							padding: 3px;
+							display: flex;
 
 							@include css4 {
 								background: var(--joker02);
 								border-right: 1px solid var(--lightGray);
 							};
 							.contentLink {
-								float: left;
 								width: 70%;
 								height: 100%;
 								text-decoration: none;
+								display: flex;
 
 								@include css4 {
 									border-right: 1px solid var(--white);
@@ -425,7 +420,6 @@
 									display: block;
 									width: 80%;
 									height: 100%;
-									float: right;
 
 									@include css4 {
 										color: var(--white);
@@ -434,7 +428,6 @@
 							}
 							.moreOptions {
 								position: relative;
-								float: right;
 								right: 0;
 								top: 0;
 								width: 25%;

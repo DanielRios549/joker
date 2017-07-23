@@ -14,18 +14,44 @@
 <div class="selectDiv">
     <label for="active" class="selectLabel" >Active</label>
     <select class="select" name="active">
-        <?php foreach($episodeActive as $episodeActive => $select) {if($select == @$keyEdit['episode_active']) {$optionSelected1 = 'selected';}else{$optionSelected1 = '';}?>
+        <?php 
+            foreach($episodeActive as $episodeActive => $select) {
+                if($select == @$keyEdit['episode_active']) {
+                    $optionSelected1 = 'selected';
+                }
+                else {
+                    $optionSelected1 = '';
+                }
+        ?>
         <option value="<?php echo $select;?>" <?php echo @$optionSelected1;?>><?php echo ucfirst($select);?></option>
         <?php }?>
     </select>
 </div>
-<?php /*?>
+<?php ?>
 <div class="selectDiv">
     <label for="serie" class="selectLabel" >Serie</label>
     <select class="select" name="serie">
-        <?php foreach($allSeries as $allSeries => $select) { $episodeDivisor = strpos($select[$cookieLang], "|"); $thisShow = substr($select[$cookieLang], 0, $episodeDivisor);if($select['content_id'] == @$keyEdit['episode_ref']) {$optionSelected2 = 'selected'; echo @$keyEdit['contentUS'];}else{$optionSelected2 = '';}?>
+        <?php 
+            foreach($allSeries as $allSeries => $select) {
+                $episodeDivisor = strpos($select[$cookieLang], "|");
+                $thisShow = substr($select[$cookieLang], 0, $episodeDivisor);
+
+                if($select['content_id'] == @$keyEdit['episode_ref']) {
+                    $optionSelected2 = 'selected';
+                }
+                else {
+                    $optionSelected2 = '';
+                }
+        ?>
         <option value="<?php echo $select['content_id'];?>" <?php echo @$optionSelected2;?>><?php echo ucfirst($thisShow);?></option>
         <?php }?>
     </select>
 </div>
-<?php */} foreach($allSeries as $allSeries => $select) { $episodeDivisor = strpos($select[$cookieLang], "|"); $thisShow = substr($select[$cookieLang], 0, $episodeDivisor);if($select['content_id'] == @$keyEdit['episode_ref']) {echo $thisShow;}}?>
+<?php }
+/*foreach($allSeries as $allSeries => $select) {
+    $episodeDivisor = strpos($select[$cookieLang], "|");
+    $thisShow = substr($select[$cookieLang], 0, $episodeDivisor);
+    if($select['content_id'] == @$keyEdit['episode_ref']) {
+        echo $thisShow;
+    }
+}*/?>

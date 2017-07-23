@@ -46,8 +46,8 @@ if($contentVerify -> rowCount() == 1) {
 						<div id="infoGeneral">
 							<span id="<?php echo $ageStyle;?>" class="infoSpan"><?php echo $contentAge;?></span>
 							<span class="infoSpan"><?php echo $contentTime;?></span>
-							<span class="infoSpan"><?php echo $contentProducer;?></span>
-							<a href="<?php echo getLink('category', $contentData['category']);?>" class="infoLink"><?php echo $contentCategory;?></a>
+							<a href="<?php echo getLink('search', $contentProducerSearch);?>" class="infoLink ajaxLink"><?php echo $contentProducer;?></a>
+							<a href="<?php echo getLink('category', $contentData['category']);?>" class="infoLink ajaxLink"><?php echo $contentCategory;?></a>
 							<span class="infoSpan"><?php echo $contentYear;?></span>
 						</div>
 					</div>

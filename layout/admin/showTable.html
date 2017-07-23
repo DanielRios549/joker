@@ -12,15 +12,17 @@
     elseif($adminCheck == true) {
 ?>
 <div id="managerOptions">
-	<div id="advancedClose" class="searchAdvancedClose"><?php echo langCode('admin_advanced_search');?></div>
 	<a class="managerLink" href="<?php echo $adminDir . langCode('admin_users_add_link');?>"><?php echo langCode('admin_add');?></a>
+	<div id="advancedClose" class="searchAdvancedClose"><?php echo langCode('admin_advanced_search');?></div>
 </div>
 <div id="advancedSearchDiv" class="advancedSearchHide">
 	<input type="text" placeholder="Pesquisar por palavra"/>
 </div>
 <div id="showContents">
 <h2 id="contentTotal"><?php echo $foundHeaderText . ' ' . $totalRows . ' ' . $pageType;?></h2>
-	<?php require 'managerOption.html';?>
+	<div class="contentSortOption">
+		<?php require 'managerOption.html';?>
+	</div>
 	<div id="contentTable">
 		<div id="tableHead">
 			<div id="headRow">
@@ -130,6 +132,8 @@
 			<?php }}?>
 		</div>
 	</div>
-	<?php require 'managerOption.html';?>
+	<div class="contentSortOption">
+		<?php require 'managerOption.html';?>
+	</div>
 </div>
 <?php }?>

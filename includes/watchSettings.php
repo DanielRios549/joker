@@ -28,7 +28,7 @@
 		}
 		else {
             try {
-				$contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage AND active = 'yes'");
+				$contentVerify = $pdo -> prepare("SELECT content_id, type, live FROM content WHERE content_id = :contentPage AND active = 'yes'");
 				$contentVerify -> bindValue(":contentPage", $contentPage);
 
 				if($contentVerify -> execute()) {
@@ -45,6 +45,15 @@
 				header("Location:" . $baseUrl . "404");
 			}
 			elseif($contentVerify -> rowCount() == 1) {
+                //set the player
+
+                if($contentTrue['live'] == 'no') {
+                    $videoPlayer = $streamPlayer;
+                }
+                else {
+                    $videoPlayer = $livePlayer;
+                }
+                
                 //set The values for movies
 
                 if($contentTrue['type'] == 'movie') {

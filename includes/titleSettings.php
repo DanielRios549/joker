@@ -79,6 +79,8 @@
 				$contentProducer = $contentData['producer'];
 				$contentSynopsis = $contentData['synopsis'];
 				$contentYear = $contentData['date'];
+
+				$contentProducerSearch = str_replace(' ', '+', $contentProducer);
 				
 				//Define the age
 				

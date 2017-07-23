@@ -34,6 +34,9 @@
                 elseif($type == 'category') {
                     $link = $baseUrl . langCode('category_link') . '?c=' . categoryId($id);
                 }
+                elseif($type == 'search') {
+                    $link = $baseUrl . langCode('search_link') . '?q=' . $id;
+                }
             }
         }
         return $link;
