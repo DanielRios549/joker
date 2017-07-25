@@ -10,8 +10,8 @@
 		header("Location:" . $base . "404");
 	}
 	
-    require_once 'classes/connect.class.php';
-	
+	require_once 'classes/connect.class.php';
+
 	$connection = new Connect();
 
 	$connect = $connection -> getConnection();

@@ -10,6 +10,16 @@
 		header("Location:" . $base . "404");
 	}
 	elseif ($adminCheck == true) {
+		//Make the settings inside the congig table
+
+		$setConfig = new SetConfig();
+
+		$currentSettings = $setConfig -> getConfigSet();
+
+		//print_r($currentSettings);
+
+		
+
 		//Get options of user to make the select
 
 		$userActive = getEnum('user', 'active');

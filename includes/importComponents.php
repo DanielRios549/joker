@@ -51,4 +51,5 @@
 	require_once $classesDir . 'admin/adminCreate.class.php';
     require_once $classesDir . 'admin/adminShowTable.class.php';
     require_once $classesDir . 'admin/adminEdit.class.php';
+	require_once $classesDir . 'admin/settings.class.php';
 ?>

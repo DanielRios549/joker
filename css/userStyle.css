@@ -156,6 +156,10 @@ html body button {
   border: none;
 }
 
+html body fieldset {
+  border: none;
+}
+
 /* 
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.

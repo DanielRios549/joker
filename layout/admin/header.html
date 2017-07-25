@@ -103,4 +103,17 @@
 		</li>
 	</ul>
 </nav>
+<aside id="configBar">
+	<form action="" id="settingsForm">
+		<fieldset id="generalConfigs" class="settingsFieldset"><legend class="settingsLegend">General</legend>
+		<?php
+			foreach($currentSettings as $currentSettings => $settings) {
+				if($settings['type'] == 'text') {
+		?>
+			<lable class="settingsLabel"><?php echo $settings['name']?></lable>
+			<input type="text" value="<?php echo $settings['value']?>"/>
+		<?php }}?>
+		</fieldset>
+	</form>
+</aside>
 <?php }?>

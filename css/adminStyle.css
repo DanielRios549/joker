@@ -156,6 +156,10 @@ html body button {
   border: none;
 }
 
+html body fieldset {
+  border: none;
+}
+
 /* 
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
@@ -172,6 +176,12 @@ html body button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#configBar #settingsForm, #configBar #settingsForm .settingsFieldset {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 /* 
@@ -228,7 +238,7 @@ html body button {
   left: 0;
   width: 100%;
   height: 50px;
-  z-index: 101;
+  z-index: 102;
   border-bottom: 1px solid var(--gray);
   background: var(--joker01);
 }
@@ -694,14 +704,14 @@ html body button {
 
 .menuOpened,
 .menuClosed {
-  box-sizing: border-box;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   float: left;
   padding-top: 60px;
-  z-index: 99;
+  z-index: 101;
   overflow-y: auto;
   background: var(--gray);
 }
@@ -2024,13 +2034,53 @@ html body button {
   color: var(--white);
 }
 
+#configBar {
+  box-shadow: -3px 3px 3px rgba(0, 0, 0, 0.6);
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 250px;
+  z-index: 101;
+  padding-top: 45px;
+  background: var(--gray);
+}
+
+#configBar #settingsForm {
+  padding: 5px;
+}
+
+#configBar #settingsForm .settingsFieldset {
+  display: flex;
+}
+
+#configBar #settingsForm .settingsFieldset:not(legend) {
+  padding-left: 10px;
+}
+
+#configBar #settingsForm .settingsFieldset .settingsLegend {
+  font: 2em Calibri, sans-serif;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  color: var(--lightGray);
+}
+
+#configBar #settingsForm .settingsFieldset .settingsLabel {
+  font: 1.6em Calibri, sans-serif;
+  color: var(--lightGray);
+}
+
+#configBar #settingsForm input {
+  margin-bottom: 5px;
+}
+
 #footer {
   position: fixed;
   bottom: 0;
   left: 0;
   height: 30px;
   width: 100%;
-  z-index: 100;
+  z-index: 102;
   border-top: 1px solid var(--lightGray);
   background: var(--joker02);
 }

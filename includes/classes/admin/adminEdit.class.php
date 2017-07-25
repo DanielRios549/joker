@@ -6,7 +6,7 @@
  ***************************************************************
 */
 	if(!isset($baseCon)) {
-		require '../_redirect.php';
+		require '../../../_redirect.php';
 		header("Location:" . $base . "404");
 	}
     
