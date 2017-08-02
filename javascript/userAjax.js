@@ -319,9 +319,14 @@ function closeDetails() {
 	});
 }
 
-function ajaxLink(event) {
+function ajaxLink(event, url) {
     event.preventDefault();
-    var linkTo = $(this).attr('href');
+    if(url != undefined) {
+        var linkTo = url;
+    }
+    else {
+        var linkTo = $(this).attr('href');
+    }
     $(document).off('scroll');
 
     getPage(linkTo, "body=true", function(data) {

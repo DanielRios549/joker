@@ -24,14 +24,20 @@
 	</div>
 	<div id="adminUser">
 		<ul id="adminUserUl">
-			<li id="adminUserLi"><img src="<?php echo $_SESSION['image'];?>"/><span id="adminName"><?php echo $firstName;?></span>
+			<li id="adminUserLi">
+				<img src="<?php echo $_SESSION['image'];?>"/>
+				<span id="adminName"><?php echo $firstName;?></span>
 				<ul id="adminUserSub">
-					<li class="adminUserOption"><a href="<?php echo $baseUrl . langCode('settings_link');?>" class="adminUserSubLink"><?php echo langCode('settings');?></a></li>
-					<li class="adminUserOption"><a href="<?php echo $baseUrl . langCode('logoff_link');?>" class="adminUserSubLink"><?php echo langCode('logoff');?></a></li>
+					<li class="adminUserOption">
+						<a href="<?php echo $baseUrl . langCode('logoff_link');?>" class="adminUserSubLink">
+							<?php echo langCode('logoff');?>
+						</a>
+					</li>
 				</ul>
 			</li>
 		</ul>
 	</div>
+	<div id="settingsOpen"></div>
 </header>
 <nav class="menuOpened">
 	<ul id="ulMenu">
@@ -107,12 +113,55 @@
 	<form action="" id="settingsForm">
 		<fieldset id="generalConfigs" class="settingsFieldset"><legend class="settingsLegend">General</legend>
 		<?php
-			foreach($currentSettings as $currentSettings => $settings) {
-				if($settings['type'] == 'text') {
+			//Text Options
+			foreach($textSettings as $textSettings => $setting) {
 		?>
-			<lable class="settingsLabel"><?php echo $settings['name']?></lable>
-			<input type="text" value="<?php echo $settings['value']?>"/>
-		<?php }}?>
+			<lable class="settingsLabel"><?php echo $setting['name'];?></lable>
+			<input type="text" value="<?php echo $setting['value'];?>"/>
+		<?php }
+			//Boolean Options
+			foreach($boolSettings as $boolSettings => $setting) {
+				$name = $setting['name'];
+				$selected = $setting['value'];
+		?>
+		</fieldset>
+		<fieldset id="loginConfigs" class="settingsFieldset"><legend class="settingsLegend">Login</legend>
+			<p class="settingsLabel"><?php echo $name;?></p>
+		<?php
+			foreach($avaliableBoolean as $avaliableBoolean => $boolean) {
+				if($selected == $boolean) {
+					$selectedOption = 'checked';
+				}
+				else {
+					$selectedOption = '';
+				}
+		?>
+			<input type="radio" name="<?php echo $name;?>" id="<?php echo $boolean;?>" value="<?php echo $boolean;?>" <?php echo $selectedOption;?> <?php echo $selectedOption;?>/><label for="<?php echo $boolean;?>"><?php echo $boolean;?></label>
+			<?php }?>
+		</fieldset>
+		<fieldset id="playerConfigs" class="settingsFieldset"><legend class="settingsLegend">Player</legend>
+		<?php }
+			//Select Options
+			foreach($selectSettings as $selectSettings => $setting) {
+				$name = $setting['name'];
+				$selected = $setting['value'];
+				$allPlayers = $avaliablePlayers;
+		?>
+			<p class="settingsLabel"><?php echo $name;?></p>
+			<select name="<?php echo $name;?>" id="<?php echo $name;?>">
+			<?php 
+				foreach($allPlayers as $allPlayers => $player) {
+					if($selected == $player['name']) {
+						$selectedOption = 'selected';
+					}
+					else {
+						$selectedOption = '';
+					}
+			?>
+				<option value="<?php echo $player['name'];?>" class="playerSetOption" <?php echo $selectedOption;?>><?php echo $player['name'];?></option>
+			<?php }?>
+			</select>
+			<?php }?>
 		</fieldset>
 	</form>
 </aside>

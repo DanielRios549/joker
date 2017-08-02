@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2017 at 08:44 PM
--- Server version: 5.7.17-0ubuntu0.16.04.1
--- PHP Version: 7.0.15-0ubuntu0.16.04.4
+-- Generation Time: Aug 03, 2017 at 07:02 PM
+-- Server version: 5.7.19-0ubuntu0.16.04.1
+-- PHP Version: 7.0.18-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -74,6 +74,7 @@ INSERT INTO `comment_reply` (`reply_id`, `comment`, `user`, `reply`) VALUES
 
 CREATE TABLE `config` (
   `config_id` int(11) NOT NULL,
+  `type` enum('text','bool','select') DEFAULT NULL,
   `name` varchar(5000) NOT NULL,
   `value` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -82,20 +83,21 @@ CREATE TABLE `config` (
 -- Dumping data for table `config`
 --
 
-INSERT INTO `config` (`config_id`, `name`, `value`) VALUES
-(1, 'baseUrl', 'joker/'),
-(2, 'atomoBaseUrl', 'Atomo/'),
-(3, 'adminDir', 'admin/'),
-(4, 'adminLayoutDir', '../layout/admin/'),
-(6, 'layoutDir', 'layout/'),
-(8, 'imageDir', 'images/'),
-(9, 'styleDir', 'css/'),
-(10, 'scriptDir', 'javascript/'),
-(11, 'fontDir', 'fonts/'),
-(14, 'mediaFolder', '/joker/media/'),
-(15, 'mediaImageFolder', '/joker/images/media/'),
-(18, 'allowNewUser', 'true'),
-(19, 'player', 'joker');
+INSERT INTO `config` (`config_id`, `type`, `name`, `value`) VALUES
+(1, 'text', 'baseUrl', 'joker/'),
+(2, 'text', 'atomoBaseUrl', 'Atomo/'),
+(3, 'text', 'adminDir', 'admin/'),
+(4, 'text', 'adminLayoutDir', '../layout/admin/'),
+(6, 'text', 'layoutDir', 'layout/'),
+(8, 'text', 'imageDir', 'images/'),
+(9, 'text', 'styleDir', 'css/'),
+(10, 'text', 'scriptDir', 'javascript/'),
+(11, 'text', 'fontDir', 'fonts/'),
+(14, 'text', 'mediaFolder', '/joker/media/'),
+(15, 'text', 'mediaImageFolder', '/joker/images/media/'),
+(18, 'bool', 'allowNewUser', 'yes'),
+(19, 'select', 'streamPlayer', 'joker'),
+(20, 'select', 'livePlayer', 'dailymotion');
 
 -- --------------------------------------------------------
 
@@ -131,6 +133,7 @@ CREATE TABLE `content` (
   `director` varchar(100) NOT NULL,
   `category` enum('animation','science','action','suspense','terror','drama','fantasy','spirit','music','comedy','sport','romance','police','war','documentary','indenpendent') NOT NULL,
   `type` enum('movie','serie') NOT NULL,
+  `live` enum('yes','no') NOT NULL DEFAULT 'no',
   `feature` enum('no','yes') NOT NULL DEFAULT 'no',
   `duration` varchar(13) NOT NULL,
   `age` enum('L','10','12','14','16','18') NOT NULL,
@@ -144,12 +147,12 @@ CREATE TABLE `content` (
 -- Dumping data for table `content`
 --
 
-INSERT INTO `content` (`content_id`, `active`, `producer`, `director`, `category`, `type`, `feature`, `duration`, `age`, `date`, `date_add`, `en_US`, `pt_BR`) VALUES
-(1, 'yes', 'Walt Disney', 'Stieve Spilber', 'animation', 'movie', 'yes', '1 hr 27 min', 'L', '1940', '2016-01-29', 'Pinochio|Pinocchio synopsis example', 'Pinóquio|Exemplo de sinopse do pinóquio'),
-(2, 'yes', 'Gabriel Guedes', 'Daniel rios', 'science', 'movie', 'yes', '1 hr 25 min', '18', '2006-2015', '2016-01-05', 'Back to the future|Back to the future synopsis example', 'De volta par ao futuro|Exemplo de sinopse do de folta para o futuro'),
-(3, 'yes', 'Pixar Pictures', 'Christopher Crown', 'animation', 'movie', 'no', '1 hr 50 min', '10', '1985', '2015-12-16', 'Big Buck Bunny|Bunny synopsis example', 'Grande Coelho Bunny|Exemplo de sinopse do Bunny'),
-(4, 'yes', 'Warner Pictures', 'Paul Walker', 'documentary', 'serie', 'yes', 'N/D', '16', '2003-2009', '2016-01-04', 'Tears of steel|Tears synopsis example', 'Lágrimas de aço|Exemplo de sinopse do Lágrimas de Aço'),
-(30, 'yes', 'Teste da Vincci', 'Daniel\'s Gray', 'drama', 'serie', 'no', 'N/D', 'L', '2010-2015', '2016-10-17', 'Da Vinces\'s Name|Da Vince\'s Synopsis', 'Nome Da Vince|Sinópse Da Vince');
+INSERT INTO `content` (`content_id`, `active`, `producer`, `director`, `category`, `type`, `live`, `feature`, `duration`, `age`, `date`, `date_add`, `en_US`, `pt_BR`) VALUES
+(1, 'yes', 'Walt Disney', 'Stieve Spielber', 'animation', 'movie', 'yes', 'yes', '1 hr 27 min', 'L', '1940', '2016-01-29', 'Pinochio|Pinocchio synopsis example', 'Pinóquio|Exemplo de sinopse do pinóquio'),
+(2, 'yes', 'Gabriel Guedes', 'Daniel Rios', 'science', 'movie', 'no', 'yes', '1 hr 25 min', '18', '2006-2015', '2016-01-05', 'Back to the future|Back to the future synopsis example', 'De volta par ao futuro|Exemplo de sinopse do de folta para o futuro'),
+(3, 'yes', 'Pixar Pictures', 'Christopher Crown', 'animation', 'movie', 'no', 'no', '1 hr 50 min', '10', '1985', '2015-12-16', 'Big Buck Bunny|Bunny synopsis example', 'Grande Coelho Bunny|Exemplo de sinopse do Bunny'),
+(4, 'yes', 'Warner Pictures', 'Paul Walker', 'documentary', 'serie', 'no', 'yes', 'N/D', '16', '2003-2009', '2016-01-04', 'Tears of steel|Tears synopsis example', 'Lágrimas de aço|Exemplo de sinopse do Lágrimas de Aço'),
+(30, 'yes', 'Teste da Vincci', 'Daniel\'s Gray', 'drama', 'serie', 'no', 'no', 'N/D', 'L', '2010-2015', '2016-10-17', 'Da Vinces\'s Name|Da Vince\'s Synopsis', 'Nome Da Vince|Sinópse Da Vince');
 
 -- --------------------------------------------------------
 
@@ -273,7 +276,7 @@ INSERT INTO `language` (`language_id`, `name`, `en_US`, `pt_BR`) VALUES
 (29, 'footer_right', 'All rigth reserved.', 'Todos os direitos reservados'),
 (30, 'login_link', 'login', 'entrar'),
 (31, 'login_title', 'Log in or create your account', 'Entre ou crie sua conta'),
-(32, 'login', 'Login', 'Entrar'),
+(32, 'login', 'Login or Create an account', 'Entre ou crie uma conta'),
 (33, 'profile', 'Profile', 'Perfil'),
 (34, 'settings', 'Settings', 'Configurações'),
 (35, 'logoff', 'Logoff', 'Sair'),
@@ -420,7 +423,8 @@ INSERT INTO `language` (`language_id`, `name`, `en_US`, `pt_BR`) VALUES
 (181, 'admin_episodes_add_link', 'episodes/add', 'episodios/adicionar'),
 (182, 'admin_episodes_manager_link', 'episodes/manager', 'episodios/gerenciar'),
 (183, 'admin_episodes_manager_hover', 'Manager episodes', 'Gerenciar episódios'),
-(184, 'continue', 'Continue', 'Continuar');
+(184, 'continue', 'Continue', 'Continuar'),
+(185, 'test', 'English here!', '');
 
 -- --------------------------------------------------------
 
@@ -446,7 +450,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `active`, `name`, `username`, `email`, `password`, `category`, `premium`, `lang`, `style`) VALUES
-(1, 'yes', 'Daniel Rios', 'DanielRios54', 'danielrios.flamengo@gmail.com', '97ce58a4a7b39373aadeb73c3dfdc7fc204c6655', 'admin', 'yes', 'en_US', 'N'),
+(1, 'yes', 'Daniel Rios', 'DanielRios549', 'danielrios.flamengo@gmail.com', '97ce58a4a7b39373aadeb73c3dfdc7fc204c6655', 'admin', 'yes', 'en_US', 'N'),
 (2, 'yes', 'Daniel Reis', 'DanielFla', 'daniel_fla@live.com', 'e5d79a4ffb899191b9f69439ab3e947b2b0acbf1', 'user', 'no', 'pt_BR', 'D'),
 (3, 'yes', 'Teste 01', 'teste01', 'email.teste@email.com', 'e5d79a4ffb899191b9f69439ab3e947b2b0acbf1', 'user', 'no', 'pt_BR', 'D');
 
@@ -467,8 +471,7 @@ CREATE TABLE `user_restore` (
 --
 
 INSERT INTO `user_restore` (`restore_id`, `user_id`, `location`) VALUES
-(254, 1, 'a89e47cd3c3444f28f0b37d5430c8fa248893406'),
-(255, 1, 'c0f83d8b5ab296b9cefcee0985d3540429cdda76');
+(6, 1, 'a89e47cd3c3444f28f0b37d5430c8fa248893406');
 
 -- --------------------------------------------------------
 
@@ -513,9 +516,8 @@ INSERT INTO `watchlist` (`wish_id`, `user_id`, `content_id`) VALUES
 (411, 2, 2),
 (413, 2, 3),
 (414, 3, 3),
-(459, 1, 30),
-(461, 1, 2),
-(462, 1, 4);
+(462, 1, 4),
+(463, 1, 2);
 
 --
 -- Indexes for dumped tables
@@ -633,7 +635,7 @@ ALTER TABLE `comment_reply`
 -- AUTO_INCREMENT for table `config`
 --
 ALTER TABLE `config`
-  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `config_admin`
 --
@@ -663,17 +665,17 @@ ALTER TABLE `follow`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user_restore`
 --
 ALTER TABLE `user_restore`
-  MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
+  MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `watched`
 --
@@ -683,7 +685,7 @@ ALTER TABLE `watched`
 -- AUTO_INCREMENT for table `watchlist`
 --
 ALTER TABLE `watchlist`
-  MODIFY `wish_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=463;
+  MODIFY `wish_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=464;
 --
 -- Constraints for dumped tables
 --

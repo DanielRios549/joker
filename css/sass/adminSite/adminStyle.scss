@@ -151,7 +151,7 @@
                         @include transform(rotate(180deg));
                     }
                     #adminUserSub {
-                        height: 70px;
+                        height: auto;
 
                         @include css4 {
                             background: var(--gray);
@@ -177,18 +177,17 @@
                 #adminUserSub {
                     box-shadow: 3px 3px 12px rgba(0,0,0,.5);
                     list-style: none;
-                    display: block;
                     position: absolute;
                     top: 50px;
                     right: 0;
-                    width: 200px;
-                    height: 0;
+                    min-width: 150px;
+                    height: 0px;
                     text-align: right;
                     overflow: hidden;
                     
-                    @include transition(height, 0.2s, ease);
+                    @include transition(all, 0.2s, ease);
                     
-                    .adminUserSubLink{
+                    .adminUserSubLink {
                         box-sizing: border-box;
                         width: 100%;
                         height: 35px;
@@ -210,6 +209,29 @@
                     }
                 }
             }
+        }
+    }
+    #settingsOpen {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+
+        @extend %alignCenter;
+
+        @include css4 {
+            border-left: 1px solid var(--gray);
+            border-right: 1px solid var(--gray);
+        };
+        &:after {
+            content: '\f085';
+            font: 3em fontWesome;
+
+            @include css4 {
+                color: var(--lightGray);
+            };
         }
     }
 }
@@ -548,26 +570,39 @@
 
     @include managerInterface();
 }
+.configBarOpen {
+    right: 0 !important;
+}
 #configBar {
     box-shadow: -3px 3px 3px rgba(0,0,0,.6);
     position: fixed;
-    right: 0;
+    right: -250px;
     top: 0;
-    height: 100%;
+    height: calc(100% - 80px);
     width: 250px;
     z-index: 101;
-    padding-top: 45px;
+    //padding-top: 45px;
+    margin-top: 50px;
 
     @include css4 {
         background: var(--gray);
     };
+
+    @include transition(right, 200ms, linear);
+    
     #settingsForm {
         @extend %allContainer;
+        position: relative;
+        //height: 100%;
         padding: 5px;
+        overflow: auto;
 
         .settingsFieldset {
             @extend %allContainer;
+            position: relative;
+            height: auto;
             display: flex;
+            margin-bottom: 20px;
 
             &:not(legend) {
                 padding-left: 10px;
@@ -591,6 +626,9 @@
         }
         input {
             margin-bottom: 5px;
+        }
+        input[type=radio] {
+            display: inline-block;
         }
     }
 }

@@ -14,11 +14,17 @@
 
 		$setConfig = new SetConfig();
 
-		$currentSettings = $setConfig -> getConfigSet();
+		$textSettings = $setConfig -> getConfigSet('text');
 
-		//print_r($currentSettings);
+		$boolSettings = $setConfig -> getConfigSet('bool');
 
-		
+		$selectSettings = $setConfig -> getConfigSet('select');
+
+		$avaliableBoolean = array(0 => 'no', 1 => 'yes');
+
+		$avaliablePlayers = $setConfig -> getPlayers($directPath);
+
+		//print_r($boolSettings);
 
 		//Get options of user to make the select
 
