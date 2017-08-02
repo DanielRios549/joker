@@ -13,7 +13,10 @@ $(document).ready(function() {
     
     $("body > section").ready(function() {
         $("section[id$='Interface']").css('min-height' , ($(document).height() - 100) + 'px');
-    });
+	});
+	$("#header").on('click', function() {
+		$('#configBar').toggleClass('configBarOpen');
+	});
 });
 
 //Set the menu open and close

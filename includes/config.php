@@ -14,6 +14,8 @@
 
 	$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 	
+	$directPath = '/var/www/html/joker/';
+	
 	$baseCon = true;
 
 	require 'connect.php';

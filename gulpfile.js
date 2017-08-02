@@ -5,25 +5,67 @@ var sass = require('gulp-sass');
 var watch = require('watch');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync');
+var uglify = require('gulp-uglify');
+var htmlmin = require('gulp-htmlmin');
 
 //Files
 
-var styles = ['css/sass/userSite/userStyle.scss', 'css/sass/adminSite/adminStyle.scss'];
+var styles = [
+    'css/sass/userSite/userStyle.scss',
+    'css/sass/adminSite/adminStyle.scss'
+];
 
-var scripts = ['javascript/userScript.js', 'javascript/adminScript.js'];
+var scripts = [
+    'javascript/userScript.js',
+    'javascript/adminScript.js',
+    'javascript/userAjax.js',
+    'player/file.js',
+    'player/joker/jokerPlayer.js',
+    'player/joker/mouseStop.js'
+];
 
 var userStyle = styles[0];
 var adminStyle = styles[1];
 
 var userScript = scripts[0];
 var adminScript = scripts[1];
+var userAjax = scripts[2];
+var PlayerFile = scripts[3];
+var jokerPlayer = scripts[4];
+var mouseStop = scripts[5];
 
-//Run this task before the commit and mainly, before the push
+//Execute all minifies tasks, run this task before the commit and mainly, before the push
 
-gulp.task('prod', function() {
+gulp.task('prod', ['minicss', 'minijs', 'minihtml']);
+
+//minify only the html
+
+gulp.task('minihtml', function() {
+    return gulp.src(['layout/*.html', 'layout/admin/*.html'])
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('test/'));
+});
+
+//minify only the css
+
+gulp.task('minicss', function() {
     return gulp.src(styles)
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(gulp.dest('css/'));
+});
+
+//minify only the javascript
+
+gulp.task('minijs', function() {
+    //return gulp.src(scripts)
+    //.pipe(rename(scripts))
+    //.pipe(gulp.dest('_backup/'));
+    return gulp.src(['test/folder1/adminScript.js', 'test/folder2/file.js'])
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest(function(file) {
+        return file.base;
+    }));
 });
 
 //Task to copy only components the project needs
@@ -56,6 +98,8 @@ gulp.task('sass', function() {
 gulp.task('watch', function() {
     gulp.watch('css/sass/**/*.scss', ['sass']);
 });
+
+//Use to sync the web browser
 
 gulp.task('sync', function() {
     browserSync({
