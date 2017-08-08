@@ -48,6 +48,8 @@
 	
 	$mediaImageFolder = $getConfig -> configQuery('mediaImageFolder');
 	
+	$userImageFolder = $getConfig -> configQuery('userImageFolder');
+	
 	$streamPlayer = $getConfig -> configQuery('streamPlayer');
 	
 	$livePlayer = $getConfig -> configQuery('livePlayer');

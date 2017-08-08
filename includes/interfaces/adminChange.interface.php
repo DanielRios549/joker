@@ -6,13 +6,11 @@
  ***************************************************************
 */
 	if(!isset($baseCon)) {
-		require '../_redirect.php';
+		require '../../_redirect.php';
 		header("Location:" . $base . "404");
 	}
-	function alert($message) {
-		return "<script>alert('" . $message . "');</script>";
-	}
-	function script($message) {
-		return "<script>" . $message . "</script>";
-	}
+
+    abstract class AdminChange {
+        
+    }
 ?>

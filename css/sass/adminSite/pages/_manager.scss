@@ -268,7 +268,7 @@
 				height: 100%;
 				width: 100%;
 
-				#contentRowEdit,
+				#contentRowChange,
 				.contentRow {
 					position: relative;
 					box-sizing: border-box;
@@ -280,13 +280,65 @@
 						background: var(--darkGray);
 					};
 				}
-				#contentRowEdit {
+				#contentRowChange {
 					position: relative;
 					width: 100%;
 					height: 100%;
 					min-height: 200px;
 					padding-bottom: 30px;
 
+					#removeDiv {
+						position: relative;
+						width: 90%;
+						margin: 0 auto;
+
+						.removeAlert:nth-of-type(1) {
+							font-size: 3em !important;
+							font-weight: bold;
+							text-decoration: underline;
+						}
+						.removeAlert {
+							font-family: Calibri, sans-serif;
+							font-size: 2em;
+							margin-bottom: 10px;
+
+							@include css4 {
+								color: var(--errorColor);
+							};
+						}
+						#buttonsDiv {
+							position: relative;
+							display: flex;
+
+							.removeConfirm {
+								@include css4 {
+									background: var(--errorColor) !important;
+								};
+							}
+							.deleteButton {
+								position: relative;
+								top: 20px;
+								box-sizing: border-box;
+								border-radius: 3px;
+								height: 50px;
+								width: 100%;
+								margin: 10px;
+								
+								@extend %alignCenter;
+
+								@include css4 {
+									background: var(--gray);
+								};
+
+								.buttonSpan {
+									font: 2em Calibri, sans-serif;
+									@include css4 {
+									color: var(--lightGray);
+								};
+								}
+							}
+						}
+					}
 					#closeEditDiv {
 						position: absolute;
 						right: 10px;
@@ -381,10 +433,13 @@
 								border-right: 1px solid var(--lightGray);
 							};
 							.contentLink {
-								width: 70%;
+								position: relative;
+								width: 100%;
 								height: 100%;
 								text-decoration: none;
 								display: flex;
+
+								@extend %alignCenter;
 
 								@include css4 {
 									border-right: 1px solid var(--white);
@@ -393,8 +448,6 @@
 									content: '\f044';
 									font: 1.2em FontAwesome;
 									position: relative;
-									top: 12px;
-									left: 10px;
 									opacity: 0;
 
 									@include css4 {
@@ -415,9 +468,8 @@
 								span {
 									position: relative;
 									text-align: center;
-									line-height: 32px;
+									line-height: 38px;
 									font-size: 1.6em;
-									display: block;
 									width: 80%;
 									height: 100%;
 
@@ -426,20 +478,17 @@
 									};
 								}
 							}
-							.moreOptions {
+							.removeOption {
 								position: relative;
-								right: 0;
-								top: 0;
-								width: 25%;
+								width: 40px;
 								height: 100%;
 								cursor: pointer;
 
+								@extend %alignCenter;
+
 								&:after {
-									content: '\f142';
+									content: '\f1f8';
 									font: 2em FontAwesome;
-									position: relative;
-									top: 7px;
-									left: 8px;
 
 									@include css4 {
 										color: var(--white);

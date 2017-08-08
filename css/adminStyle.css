@@ -170,9 +170,9 @@ html body fieldset {
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
-#header #settingsOpen, .interface .formAdd .formFieldset .selectDivFile .fileInput:after,
-.interface .formAdd .formFieldset .selectedDivFile .fileInput:after, .interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDivFile .fileInput:after,
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile .fileInput:after {
+#header #settingsOpen, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface .formAdd .formFieldset .selectDivFile .fileInput:after,
+.interface .formAdd .formFieldset .selectedDivFile .fileInput:after, .interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv .deleteButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .fileInput:after,
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput:after, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -753,10 +753,9 @@ html body fieldset {
 
 .interface #pageAddress {
   position: relative;
-  top: 10px;
-  left: 0;
   height: 40px;
   display: flex;
+  margin-top: 20px;
 }
 
 .interface #pageAddress .pageLink,
@@ -917,10 +916,9 @@ html body fieldset {
 
 .interface #pageAddress {
   position: relative;
-  top: 10px;
-  left: 0;
   height: 40px;
   display: flex;
+  margin-top: 20px;
 }
 
 .interface #pageAddress .pageLink,
@@ -1058,12 +1056,12 @@ html body fieldset {
 .interface .formAdd {
   position: relative;
   width: 80%;
-  margin: 40px auto 0 auto;
+  margin: 20px auto 0 auto;
 }
 
 .interface .formAdd .formFieldset {
-  border: none;
   position: relative;
+  border: none;
   margin-bottom: 10px;
 }
 
@@ -1071,6 +1069,86 @@ html body fieldset {
   position: relative;
   font: 2em Calibri, sans-serif;
   color: var(--lightGray);
+}
+
+.interface .formAdd .formFieldset .fileInput {
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  display: none;
+}
+
+.interface .formAdd .formFieldset #coverImageLabel {
+  --width: 100%;
+  --height: 200px;
+  --radius: 0;
+  z-index: 98;
+}
+
+.interface .formAdd .formFieldset #imageLabel {
+  --height: 80px;
+  --width: 80px;
+  --radius: 10%;
+  top: -30px !important;
+  left: 20px !important;
+  z-index: 99;
+}
+
+.interface .formAdd .formFieldset .selectedInputLabel {
+  border-radius: var(--radius);
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: var(--height);
+  width: var(--width);
+}
+
+.interface .formAdd .formFieldset .selectedInputLabel:hover .labelFigure .labelFigcaption {
+  opacity: .6;
+}
+
+.interface .formAdd .formFieldset .selectedInputLabel .labelFigure {
+  border-radius: var(--radius);
+  position: relative;
+  height: var(--height);
+  width: var(--width);
+  background: black;
+}
+
+.interface .formAdd .formFieldset .selectedInputLabel .labelFigure img {
+  border-radius: var(--radius);
+  position: absolute;
+  max-height: var(--height);
+  max-width: var(--width);
+  z-index: 97;
+}
+
+.interface .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption {
+  border-radius: var(--radius);
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 98;
+  background: var(--black);
+  opacity: 0;
+  -webkit-transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -ms-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
+}
+
+.interface .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption:after {
+  position: relative;
+  font: 2em FontAwesome;
+  color: var(--lightGray);
+}
+
+.interface .formAdd .formFieldset .inputImageLabel .labelFigure .labelFigcaption:after {
+  content: '\f1c5';
+}
+
+.interface .formAdd .formFieldset .inputVideoLabel .labelFigure .labelFigcaption:after {
+  content: '\f1c8';
 }
 
 .interface .formAdd .formFieldset .selectDiv {
@@ -1242,12 +1320,10 @@ html body fieldset {
 .interface .formAdd .formFieldset .submitButton {
   position: relative;
   top: 20px;
-  box-sizing: border-box;
-  border: none;
-  outline: none;
   border-radius: 3px;
   height: 50px;
   width: 100%;
+  cursor: pointer;
   background: var(--gray);
   color: var(--lightGray);
   -webkit-transition: all 200ms linear;
@@ -1261,20 +1337,15 @@ html body fieldset {
 }
 
 .interface .formAdd .formFieldset .submitButton .submitSpan {
-  display: block;
-  cursor: pointer;
   font-size: 1.6em;
   height: 100%;
-  padding: 10px;
-  line-height: 30px;
 }
 
 .interface #pageAddress {
   position: relative;
-  top: 10px;
-  left: 0;
   height: 40px;
   display: flex;
+  margin-top: 20px;
 }
 
 .interface #pageAddress .pageLink,
@@ -1623,7 +1694,7 @@ html body fieldset {
   width: 100%;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit,
+.interface #showContents #contentTable #tableBody #contentRowChange,
 .interface #showContents #contentTable #tableBody .contentRow {
   position: relative;
   box-sizing: border-box;
@@ -1633,7 +1704,7 @@ html body fieldset {
   background: var(--darkGray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit {
+.interface #showContents #contentTable #tableBody #contentRowChange {
   position: relative;
   width: 100%;
   height: 100%;
@@ -1641,7 +1712,51 @@ html body fieldset {
   padding-bottom: 30px;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit #closeEditDiv {
+.interface #showContents #contentTable #tableBody #contentRowChange #removeDiv {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange #removeDiv .removeAlert:nth-of-type(1) {
+  font-size: 3em !important;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange #removeDiv .removeAlert {
+  font-family: Calibri, sans-serif;
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: var(--errorColor);
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv {
+  position: relative;
+  display: flex;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv .removeConfirm {
+  background: var(--errorColor) !important;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv .deleteButton {
+  position: relative;
+  top: 20px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 50px;
+  width: 100%;
+  margin: 10px;
+  background: var(--gray);
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv .deleteButton .buttonSpan {
+  font: 2em Calibri, sans-serif;
+  color: var(--lightGray);
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange #closeEditDiv {
   position: absolute;
   right: 10px;
   height: 40px;
@@ -1649,7 +1764,7 @@ html body fieldset {
   cursor: pointer;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit #closeEditDiv a {
+.interface #showContents #contentTable #tableBody #contentRowChange #closeEditDiv a {
   position: relative;
   height: 100%;
   width: 100%;
@@ -1657,25 +1772,25 @@ html body fieldset {
   text-decoration: none;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit #closeEditDiv a:after {
+.interface #showContents #contentTable #tableBody #contentRowChange #closeEditDiv a:after {
   content: '\e900';
   font: 4em PlayerIcon;
   color: var(--gray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit #userErrorNone {
+.interface #showContents #contentTable #tableBody #contentRowChange #userErrorNone {
   display: none;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit #userErrorDisplay {
+.interface #showContents #contentTable #tableBody #contentRowChange #userErrorDisplay {
   background: var(--errorColor);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit #newAccountCreatedDisplay {
+.interface #showContents #contentTable #tableBody #contentRowChange #newAccountCreatedDisplay {
   background: var(--joker02);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .userError {
+.interface #showContents #contentTable #tableBody #contentRowChange .userError {
   box-sizing: border-box;
   position: fixed;
   top: 115px;
@@ -1687,7 +1802,7 @@ html body fieldset {
   z-index: 100;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .userError #errorMsg {
+.interface #showContents #contentTable #tableBody #contentRowChange .userError #errorMsg {
   width: 80%;
   height: 100%;
   margin: 0 auto;
@@ -1695,12 +1810,12 @@ html body fieldset {
   line-height: 43px;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .userError #errorMsg #spanUserError {
+.interface #showContents #contentTable #tableBody #contentRowChange .userError #errorMsg #spanUserError {
   font-size: 2em;
   color: var(--lightGray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .userError #errorMsgClose {
+.interface #showContents #contentTable #tableBody #contentRowChange .userError #errorMsgClose {
   position: absolute;
   right: 10px;
   top: 0;
@@ -1709,7 +1824,7 @@ html body fieldset {
   cursor: pointer;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .userError #errorMsgClose:after {
+.interface #showContents #contentTable #tableBody #contentRowChange .userError #errorMsgClose:after {
   content: '\f00d';
   font: 5em FontAwesome;
   position: absolute;
@@ -1718,76 +1833,156 @@ html body fieldset {
   color: var(--lightGray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd {
   position: relative;
   width: 80%;
-  margin: 40px auto 0 auto;
+  margin: 20px auto 0 auto;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset {
-  border: none;
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset {
   position: relative;
+  border: none;
   margin-bottom: 10px;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .fieldsetLegend {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .fieldsetLegend {
   position: relative;
   font: 2em Calibri, sans-serif;
   color: var(--lightGray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDiv {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .fileInput {
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  display: none;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #coverImageLabel {
+  --width: 100%;
+  --height: 200px;
+  --radius: 0;
+  z-index: 98;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #imageLabel {
+  --height: 80px;
+  --width: 80px;
+  --radius: 10%;
+  top: -30px !important;
+  left: 20px !important;
+  z-index: 99;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel {
+  border-radius: var(--radius);
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: var(--height);
+  width: var(--width);
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel:hover .labelFigure .labelFigcaption {
+  opacity: .6;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure {
+  border-radius: var(--radius);
+  position: relative;
+  height: var(--height);
+  width: var(--width);
+  background: black;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure img {
+  border-radius: var(--radius);
+  position: absolute;
+  max-height: var(--height);
+  max-width: var(--width);
+  z-index: 97;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption {
+  border-radius: var(--radius);
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 98;
+  background: var(--black);
+  opacity: 0;
+  -webkit-transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -ms-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption:after {
+  position: relative;
+  font: 2em FontAwesome;
+  color: var(--lightGray);
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputImageLabel .labelFigure .labelFigcaption:after {
+  content: '\f1c5';
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputVideoLabel .labelFigure .labelFigcaption:after {
+  content: '\f1c8';
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv {
   position: relative;
   margin-right: 20px;
   display: inline-block;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDiv .selectLabel {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv .selectLabel {
   position: relative;
   font: 1.6em Calibri, sans-serif;
   color: var(--lightGray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDiv .select {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv .select {
   position: relative;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDivFile {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile {
   width: 40px;
   height: 40px;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDivFile .fileInput {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .fileInput {
   top: -28px;
   width: 100%;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile {
   width: 180px;
   height: 40px;
   z-index: 95;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile:after {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile:after {
   content: '';
   position: absolute;
   height: 100%;
   background: var(--gray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile .fileInput {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput {
   top: 10px;
   left: -70px;
   z-index: 96;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile .fileInput:after {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput:after {
   content: '';
   opacity: 0;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDivFile,
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile,
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile {
   border-radius: 3px;
   position: relative;
   margin-right: 10px;
@@ -1801,34 +1996,34 @@ html body fieldset {
   transition: width 400ms linear;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDivFile .inputImage:after,
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile .inputImage:after {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .inputImage:after,
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .inputImage:after {
   content: '\f1c5';
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDivFile .inputVideo:after,
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile .inputVideo:after {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .inputVideo:after,
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .inputVideo:after {
   content: '\f1c8';
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDivFile .fileInput,
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile .fileInput {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .fileInput,
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput {
   outline: none;
   position: absolute;
   height: calc(100% + 30px);
   cursor: pointer;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectDivFile .fileInput:after,
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .selectedDivFile .fileInput:after {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .fileInput:after,
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput:after {
   position: relative;
   top: 20px;
   font: 2em FontAwesome;
   color: var(--lightGray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText,
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputTextError {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText,
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputTextError {
   box-sizing: border-box;
   outline: none;
   border-radius: 3px;
@@ -1846,40 +2041,40 @@ html body fieldset {
   transition: border 300ms linear;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText + .inputLabel {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText + .inputLabel {
   background: var(--gray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText + .inputLabel:before {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText + .inputLabel:before {
   color: var(--gray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText:hover, .interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText:focus {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText:hover, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText:focus {
   border: 3px solid var(--joker02);
   color: var(--gray);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText:hover + .inputLabel, .interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText:focus + .inputLabel {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText:hover + .inputLabel, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText:focus + .inputLabel {
   background: var(--joker02);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText:hover + .inputLabel:before, .interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputText:focus + .inputLabel:before {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText:hover + .inputLabel:before, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText:focus + .inputLabel:before {
   color: var(--white);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputTextError {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputTextError {
   border: 3px solid var(--errorColor);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputTextError + .inputLabel {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputTextError + .inputLabel {
   background: var(--errorColor);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputTextError + .inputLabel:before {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputTextError + .inputLabel:before {
   color: var(--white);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputLabel {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputLabel {
   border-radius: 3px 0 0 3px;
   position: relative;
   left: 0;
@@ -1893,7 +2088,7 @@ html body fieldset {
   transition: background 300ms linear;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .inputLabel:before {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputLabel:before {
   position: relative;
   font-family: FontAwesome;
   -webkit-transition: color 300ms linear;
@@ -1902,15 +2097,13 @@ html body fieldset {
   transition: color 300ms linear;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .submitButton {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .submitButton {
   position: relative;
   top: 20px;
-  box-sizing: border-box;
-  border: none;
-  outline: none;
   border-radius: 3px;
   height: 50px;
   width: 100%;
+  cursor: pointer;
   background: var(--gray);
   color: var(--lightGray);
   -webkit-transition: all 200ms linear;
@@ -1919,17 +2112,13 @@ html body fieldset {
   transition: all 200ms linear;
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .submitButton:hover, .interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .submitButton:focus {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .submitButton:hover, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .submitButton:focus {
   background: var(--joker02);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowEdit .formAdd .formFieldset .submitButton .submitSpan {
-  display: block;
-  cursor: pointer;
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .submitButton .submitSpan {
   font-size: 1.6em;
   height: 100%;
-  padding: 10px;
-  line-height: 30px;
 }
 
 .interface #showContents #contentTable #tableBody .contentRow {
@@ -1992,7 +2181,8 @@ html body fieldset {
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink {
-  width: 70%;
+  position: relative;
+  width: 100%;
   height: 100%;
   text-decoration: none;
   display: flex;
@@ -2003,8 +2193,6 @@ html body fieldset {
   content: '\f044';
   font: 1.2em FontAwesome;
   position: relative;
-  top: 12px;
-  left: 10px;
   opacity: 0;
   color: var(--white);
 }
@@ -2024,29 +2212,23 @@ html body fieldset {
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink span {
   position: relative;
   text-align: center;
-  line-height: 32px;
+  line-height: 38px;
   font-size: 1.6em;
-  display: block;
   width: 80%;
   height: 100%;
   color: var(--white);
 }
 
-.interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .moreOptions {
+.interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption {
   position: relative;
-  right: 0;
-  top: 0;
-  width: 25%;
+  width: 40px;
   height: 100%;
   cursor: pointer;
 }
 
-.interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .moreOptions:after {
-  content: '\f142';
+.interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption:after {
+  content: '\f1f8';
   font: 2em FontAwesome;
-  position: relative;
-  top: 7px;
-  left: 8px;
   color: var(--white);
 }
 

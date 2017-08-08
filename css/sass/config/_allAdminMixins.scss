@@ -10,10 +10,9 @@
 @mixin pageAddress() {
 	#pageAddress {
 		position: relative;
-		top: 10px;
-		left: 0;
 		height: 40px;
 		display: flex;
+		margin-top: 20px;
 		
 		.pageLink,
 		#activePage	{
@@ -177,15 +176,11 @@
 	.formAdd {
 		position: relative;
 		width: 80%;
-		margin: 40px auto 0 auto;
+		margin: 20px auto 0 auto;
 
-		.formFieldsetInline {
-			//display: flex;
-		}
 		.formFieldset {
-		//.seasonDiv {
-			border: none;
 			position: relative;
+			border: none;
 			margin-bottom: 10px;
 
 			.fieldsetLegend {
@@ -195,6 +190,98 @@
 				@include css4 {
 					color: var(--lightGray);
 				};
+			}
+			.fileInput {
+				position: fixed;
+				top: -100%;
+				left: -100%;
+				display: none;
+			}
+			#coverImageLabel {
+				--width: 100%;
+				--height: 200px;
+				--radius: 0;
+				z-index: 98;
+			}
+			#imageLabel {
+				--height: 80px;
+				--width: 80px;
+				--radius: 10%;
+				top: -30px !important;
+				left: 20px !important;
+				z-index: 99;
+			}
+			.selectedInputLabel {
+				border-radius: var(--radius);
+				position: relative;
+				display: block;
+				cursor: pointer;
+				height: var(--height);
+				width: var(--width);
+
+				&:hover {
+					.labelFigure {
+						.labelFigcaption {
+							@include css4 {
+								opacity: .6;
+							};
+						}
+					}
+				}
+				.labelFigure {
+					border-radius: var(--radius);
+					position: relative;
+					height: var(--height);
+					width: var(--width);
+					
+					@extend %alignCenter;
+
+					@include css4 {
+						background: black;
+					};
+					img {
+						border-radius: var(--radius);
+						position: absolute;
+						max-height: var(--height);
+						max-width: var(--width);
+						z-index: 97;
+					}
+					.labelFigcaption {
+						border-radius: var(--radius);
+						position: relative;
+						height: 100%;
+						width: 100%;
+						z-index: 98;
+
+						@extend %alignCenter;
+
+						@include css4 {
+							background: var(--black);
+							opacity: 0;
+						};
+
+						@include transition(opacity, 200ms, linear);
+
+						&:after {
+							position: relative;
+							font: 2em FontAwesome;
+
+							@include css4 {
+								color: var(--lightGray);
+							};
+						}
+					}
+				}
+			}
+			.inputImageLabel .labelFigure .labelFigcaption {
+				&:after {
+					content: '\f1c5';
+				}
+			}
+			.inputVideoLabel .labelFigure .labelFigcaption {
+				&:after {
+					content: '\f1c8';
+				}
 			}
 			.selectDiv {
 				position: relative;
@@ -375,12 +462,10 @@
 			.submitButton {
 				position: relative;
 				top: 20px;
-				box-sizing: border-box;
-				border: none;
-				outline: none;
 				border-radius: 3px;
 				height: 50px;
 				width: 100%;
+				cursor: pointer;
 
 				@include css4 {
 					background: var(--gray);
@@ -395,12 +480,8 @@
 					};
 				}
 				.submitSpan {
-					display: block;
-					cursor: pointer;
 					font-size: 1.6em;
 					height: 100%;
-					padding: 10px;
-					line-height: 30px;
 				}
 			}
 		}

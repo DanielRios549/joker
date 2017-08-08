@@ -49,7 +49,7 @@
 
 			$userId = @$_SESSION['user_id'];
 			$endFirstName = strpos($_SESSION['name'], ' ');
-        		$firstName = substr($_SESSION['name'], 0, $endFirstName);
+        	$firstName = substr($_SESSION['name'], 0, $endFirstName);
 		}
 		else {
 			//Create user or do the login
@@ -62,8 +62,6 @@
 		require 'activeUser.php';
 		
 		//Check the user style
-		
-		require 'userStyle.php';
 		
 		//Configure the Stats in profile page
 		

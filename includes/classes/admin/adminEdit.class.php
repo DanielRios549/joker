@@ -11,7 +11,7 @@
 	}
     
     class AdminEdit extends Connect {
-        public function edit($page, $type, $edit) {
+        public function edit($page, $edit) {
 			$pdo = $this -> getConnection();
 
             $getEdit = (int) isset($_GET['edited']) ? $_GET['edited'] : 0;
@@ -32,14 +32,13 @@
                 $email = @$edit['editEmail'];
 
                 $editRow = $pdo -> prepare("UPDATE user SET active = :active, category = :category, premium = :premium,
-                lang = :lang, style = :style, name = :name, username = :username, email = :email
+                lang = :lang, name = :name, username = :username, email = :email
                 WHERE user_id = :user LIMIT 1");
                 
                 $editRow -> bindValue(":active", $active);
                 $editRow -> bindValue(":category", $category);
                 $editRow -> bindValue(":premium", $premium);
                 $editRow -> bindValue(":lang", $lang);
-                $editRow -> bindValue(":style", $style);
                 $editRow -> bindValue(":name", $name);
                 $editRow -> bindValue(":username", $username);
                 $editRow -> bindValue(":email", $email);
@@ -105,7 +104,9 @@
             if($getEdit >= 1) {
                 try {
                     if($editRow -> execute()) {
-                        echo "<script>alert('" . $editType . " \"" . $editIdentfyer . "\" Edited, id " . $getEdit . "');history.go(-2);</script>";
+                        echo alert($editType . ' ' . $editIdentfyer . ' ' .  'Edited, id ' . $getEdit);
+                        echo script('history.go(-2)');
+                        //echo "<script>alert('" . $editType . " \"" . $editIdentfyer . "\" Edited, id " . $getEdit . "');history.go(-2);</script>";
                     }
                 }
                 catch(PDOException $error) {

@@ -23,7 +23,6 @@
                     $category = 'user';
                     $premium = 'no';
                     $lang = $cookieLang;
-                    $style = 'D';
 
                     //Sigin Imputs
 		
@@ -44,7 +43,6 @@
                     $category = @$data['category'];
                     $premium = @$data['premium'];
                     $lang = @$data['lang'];
-                    $style = @$data['style'];
 
                     //Create Imputs
                 
@@ -134,8 +132,8 @@
                     }
                     elseif(($siginNick == 0) and ($siginEmail == 0) and ($vPassword == true)) {
                         try {
-                            $insertPrepare = $pdo -> prepare("INSERT INTO user(name, username, email, password, active, category, premium, lang, style) 
-                            VALUES (:name, :username, :email, :password, :active, :category, :premium, :lang, :style)");
+                            $insertPrepare = $pdo -> prepare("INSERT INTO user(name, username, email, password, active, category, premium, lang) 
+                            VALUES (:name, :username, :email, :password, :active, :category, :premium, :lang)");
                             
                             $insertPrepare -> bindValue(":name", $newUserName, PDO::PARAM_STR);
                             $insertPrepare -> bindValue(":username", $newUserNick, PDO::PARAM_STR);
@@ -146,7 +144,6 @@
                             $insertPrepare -> bindValue(":category", $category, PDO::PARAM_STR);
                             $insertPrepare -> bindValue(":premium", $premium, PDO::PARAM_STR);
                             $insertPrepare -> bindValue(":lang", $lang, PDO::PARAM_STR);
-                            $insertPrepare -> bindValue(":style", $style, PDO::PARAM_STR);
                         }
                         catch(PDOException $error) {
                             echo $error -> getMessage();

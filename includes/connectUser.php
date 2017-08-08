@@ -10,7 +10,7 @@
 		header("Location:" . $base . "404");
 	}
 	
-	$sessionUser = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
+	$sessionUser = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : false;
 
 	//Verify if the user is connected
 	
@@ -30,6 +30,8 @@
 		$loginCheck = false;
 		$loginRestore = true;
 	}
+
+	//var_dump($loginRestore);
 	
 	//Verify if the user connected is premium
 	
@@ -72,6 +74,7 @@
 		unset($_SESSION['image']);
 		unset($_SESSION['USER_AGENT']);
 		unset($_SESSION['USER_ADDRESS']);
+		setcookie("rememberLogin", "", time()-3600);
 		
 		session_regenerate_id();
 	}

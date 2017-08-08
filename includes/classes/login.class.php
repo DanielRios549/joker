@@ -82,10 +82,26 @@
                                 }
 
                                 if($restore == true) {
-                                    $setLogin = $pdo -> prepare("INSERT INTO user_restore(user_id, location) VALUES (:user, :loginInfo)");
-                                    $setLogin -> bindValue(":user", $_SESSION['user_id']);
-                                    $setLogin -> bindValue(":loginInfo", $session);
-                                    $setLogin -> execute();
+                                    try {
+                                        $rememberToken = sha1($session . 'jndkdlglor85784y33bfd7374jgk049jndeu3yrw97wq9389');
+                                        
+                                        $verifyToken = $pdo -> prepare("SELECT * FROM user_restore WHERE location = :session");
+                                        $verifyToken -> bindValue(":session", $rememberToken);
+                                        $verifyToken -> execute();
+                                        
+                                        if($verifyToken -> rowCount() == 0) {
+                                            $setRememberLogin = $pdo -> prepare("INSERT INTO user_restore(user_id, location) VALUES (:user, :loginInfo)");
+                                            $setRememberLogin -> bindValue(":user", $_SESSION['user_id']);
+                                            $setRememberLogin -> bindValue(":loginInfo", $rememberToken);
+                                            
+                                            if($setRememberLogin -> execute()) {
+                                                setcookie("rememberLogin", $session, time() + 3600 * 24 * 30);
+                                            }
+                                        }
+                                    }
+                                    catch(PDOException $error) {
+                                        echo $error -> getMessage();
+                                    }
                                 }
                                 
                                 header("Location:" .  $base);
@@ -102,11 +118,13 @@
                 }
             }
             elseif($method == 'restore') {
+                $rememberToken = sha1($session . 'jndkdlglor85784y33bfd7374jgk049jndeu3yrw97wq9389');
+                
                 //Get the connected user
 
                 try {
                     $loginRestore = $pdo -> prepare("SELECT user_id FROM user_restore WHERE location = :restore");
-                    $loginRestore -> bindValue(":restore", $session, PDO::PARAM_STR);
+                    $loginRestore -> bindValue(":restore", $rememberToken, PDO::PARAM_STR);
 
                     if($loginRestore -> execute()) {
                         $userRestored = $loginRestore -> fetch(PDO::FETCH_ASSOC);

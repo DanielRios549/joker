@@ -14,7 +14,7 @@ $(document).ready(function() {
     $("body > section").ready(function() {
         $("section[id$='Interface']").css('min-height' , ($(document).height() - 100) + 'px');
 	});
-	$("#header").on('click', function() {
+	$("#header").on('click', '#settingsOpen', function() {
 		$('#configBar').toggleClass('configBarOpen');
 	});
 });
@@ -71,6 +71,20 @@ function advancedOptions(button, show) {
 
 function showSelectedFile(div) {
 	$(div).on('change', '.fileInput', function() {
-		$(this).parent().removeClass('selectDivFile').addClass('selectedDivFile');
+		var $this = $(this);
+		var files = $(this).prop('files');
+		var fileReader = new FileReader();
+
+		fileReader.addEventListener('load', function() {
+			var imageSelected = fileReader.result;
+			//console.log(imageSelected);
+			$this.next('.fileInputLabel').removeClass('fileInputLabel').addClass('selectedInputLabel');
+			$this.next('.selectedInputLabel').find('img').attr('src', imageSelected);
+		});
+
+		fileReader.onload = function(e) {
+			
+		};
+		fileReader.readAsDataURL(files[0]);
 	});
 }

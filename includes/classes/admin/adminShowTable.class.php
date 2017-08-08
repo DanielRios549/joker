@@ -20,8 +20,9 @@
 		public $itemsOrder;
 		public $itemEdit;
 		public $editOpions;
-		public $closeEdit;
+		public $closeChange;
 		public $seasonEpisodes;
+		public $itemRemove;
 
 		//Get the user
 		
@@ -37,9 +38,11 @@
 				$getOrder = (int) isset($_GET['o']) ? $_GET['o'] : 1;
 				$getPage = (int) isset($_GET['p']) ? $_GET['p'] : 1;
 				$getEdit = (int) isset($_GET['edit']) ? $_GET['edit'] : 0;
+				$getRemove = (int) isset($_GET['remove']) ? $_GET['remove'] : 0;
 
 				$this -> seasonEpisodes = $getEpisodes;
 				$this -> itemEdit = $getEdit;
+				$this -> itemRemove = $getRemove;
 				$positionUrl = strpos($thisUrl, '?');
 
 				//Get the limit items and order, both are in the same form 
@@ -70,7 +73,7 @@
 					}
 				}
 
-				$this -> closeEdit = $newUrl;
+				$this -> closeChange = $newUrl;
 
 				//Corret the order to query
 

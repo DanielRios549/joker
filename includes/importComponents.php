@@ -27,6 +27,7 @@
 	//import the interfaces
 	
 	require_once $interfacesDir . 'verify.interface.php';
+	require_once $interfacesDir . 'adminChange.interface.php';
 
 	//Import the  classes
 	
@@ -51,5 +52,6 @@
 	require_once $classesDir . 'admin/adminCreate.class.php';
     require_once $classesDir . 'admin/adminShowTable.class.php';
     require_once $classesDir . 'admin/adminEdit.class.php';
+    require_once $classesDir . 'admin/adminRemove.class.php';
 	require_once $classesDir . 'admin/settings.class.php';
 ?>

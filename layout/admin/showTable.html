@@ -51,15 +51,35 @@
 					$thisShowName = $key[$current2];
 				}
 				if ($key[$current1] == $editRow) {
+					$currentImage = $userImageFolder . $editRow . '/profile.jpg';
+					$currentCoverImage = $userImageFolder . $editRow . '/cover.jpg';
 			?>
-			<div id="contentRowEdit">
+			<div id="contentRowChange">
 				<div id="closeEditDiv"><a href="<?php echo $setNewUrl;?>" title="Close"></a></div>
 				<form class="formAdd" method="post" action="?edited=<?php echo $key[$current1];?>" enctype="multipart/form-data">
+					<fielset class="formFieldset">
+						<input type="file" id="userCoverImage" class="fileInput inputImage" accept="image/jpeg">
+						<label id="coverImageLabel" for="userCoverImage" class="selectedInputLabel inputImageLabel">
+							<figure class="labelFigure">
+								<img src="<?php echo $currentCoverImage;?>"/>
+								<figcaption class="labelFigcaption"></figcaption>
+							</figure>
+						</label>
+						<input type="file" id="userImage" class="fileInput inputImage" accept="image/jpeg">
+						<label id="imageLabel" for="userImage" class="selectedInputLabel inputImageLabel">
+							<figure class="labelFigure">
+								<img src="<?php echo $currentImage;?>"/>
+								<figcaption class="labelFigcaption"></figcaption>
+							</figure>
+						</label>
+					</fielset>
 					<fieldset class="formFieldset">
         				<?php require $selectFormFile;?>
 					</fieldset>
 					<fieldset class="formFieldset">
-						<?php if(THIS_PAGE == 'admin_users_manager') {?>
+						<?php
+							if(THIS_PAGE == 'admin_users_manager') {
+						?>
 						<input type="text" id="editName" name="editName" class="inputText" value="<?php echo $key[$current2];?>"/>
 						<label for="editName" id="dateLabel" class="inputLabel"></label>
 						
@@ -68,7 +88,9 @@
 						
 						<input type="text" id="editEmail" name="editEmail" class="inputText" value="<?php echo $key[$current4];?>"/>
 						<label for="editEmail" id="dateLabel" class="inputLabel"></label>
-						<?php } elseif(THIS_PAGE != 'admin_episodes_manager') {?>
+						<?php }
+							elseif(THIS_PAGE != 'admin_episodes_manager') {
+						?>
 						<input type="text" id="editProcuder" name="editProcuder" class="inputText" value="<?php echo $key[$current2];?>"/>
 						<label for="editProcuder" id="dateLabel" class="inputLabel"></label>
 						
@@ -89,7 +111,9 @@
 
 						<input type="text" id="editSynBR" name="editSynBR" class="inputText" value="<?php echo $thisShowSynBR;?>"/>
 						<label for="editSynBR" id="dateLabel" class="inputLabel"></label>
-						<?php } else {?>
+						<?php }
+							else {
+						?>
 						<input type="text" id="editTitleUS" name="editTitleUS" class="inputText" value="<?php echo $thisShowNameUS;?>"/>
 						<label for="editTitleUS" id="dateLabel" class="inputLabel"></label>
 
@@ -105,6 +129,24 @@
 						<button type="submit" class="submitButton"><span class="submitSpan">Save</span></button>
 					</fieldset>
 				</form>
+			</div>
+			<?php } elseif($key[$current1] == $removeRow) {?>
+			<div id="contentRowChange">
+				<div id="closeEditDiv"><a href="<?php echo $setNewUrl;?>" title="Close"></a></div>
+				<div id="removeDiv">
+					<p class="removeAlert"><?php echo langCode('attention') . '!';?></p>
+					<p class="removeAlert"><?php echo langCode('remove_alert');?></p>
+					<p class="removeAlert"><?php echo langCode('remove_alternative');?></p>
+
+					<div id="buttonsDiv">
+						<a class="deleteButton" href="<?php echo $setNewUrl;?>" title="Close">
+							<span class="buttonSpan"><?php echo langCode('settings_cancel');?></span>
+						</a>
+						<a class="deleteButton removeConfirm" href="?removed=<?php echo $key[$current1];?>" title="Confirm">
+							<span class="buttonSpan"><?php echo langCode('confirm');?></span>
+						</a>
+					</div>
+				</div>
 			</div>
 			<?php } else {?>
 			<div class="contentRow">
@@ -125,7 +167,7 @@
 								<?php echo langCode('admin_edit');?>
 							</span>
 						</a>
-						<div class="moreOptions"></div>
+						<a href="<?php echo $linkRemove . $key[$current1];?>" data-id="<?php echo $key[$current1];?>" class="removeOption"></a>
 					</div>
 				</div>
 			</div>

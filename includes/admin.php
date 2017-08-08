@@ -32,7 +32,6 @@
 		$userCategories = getEnum('user', 'category');
 		$userPremium = getEnum('user', 'premium');
 		$userLang = getEnum('user', 'lang');
-		$userStyle = getEnum('user', 'style');
 
 		//Get options of content to make the select
 
@@ -83,6 +82,7 @@
 			$getLimit = $classManager -> itemsLimit;
 			$getOrder = $classManager -> itemsOrder;
 			$editRow = $classManager -> itemEdit;
+			$removeRow = $classManager -> itemRemove;
 
 			$addRow = $classManager -> contentRow;
 			$totalRows = $classManager -> totalContents;
@@ -90,11 +90,19 @@
 
 			if($editRow >= 1) {
 				$keyEdit = $classManager -> editOpions;
-				$setNewUrl = $classManager -> closeEdit;
+				$setNewUrl = $classManager -> closeChange;
+			}
+			if($removeRow >= 1) {
+				//$keyRemove = $classManager -> removeOpiton;
+				$setNewUrl = $classManager -> closeChange;
 			}
 			if(@$_GET['edited'] >=  1) {
 				$classEdit = new AdminEdit();
-				$classEdit -> edit(THIS_PAGE, PAGE_TYPE, $_POST, $cookieLang);
+				$classEdit -> edit(THIS_PAGE, $_POST);
+			}
+			if(@$_GET['removed'] >=  1) {
+				$classRemove = new AdminRemove();
+				$classRemove -> remove(THIS_PAGE, $directPath);
 			}
 
 			if($totalRows >= 1) {
@@ -135,12 +143,15 @@
 
 			if(($getLimit == 10) and ($pageActive == 1) and($getOrder == 1)) {
 				$linkEdit = "?edit=";
+				$linkRemove = "?remove=";
 			}
 			elseif(($getLimit != 10) or ($pageActive != 1) or ($getOrder != 1)) {
 				$linkEdit = $completeLink . $pageActive . "&edit=";
+				$linkRemove = $completeLink . $pageActive . "&remove=";
 			}
 			else {
 				$linkEdit = $completeLink . $pageActive . "&edit=";
+				$linkRemove = $completeLink . $pageActive . "&remove=";
 			}
 
 			//Get the selected limit

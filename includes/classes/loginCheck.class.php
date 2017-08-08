@@ -17,42 +17,52 @@
 		public function check($userSession, $userRestore) {
 			$pdo = $this -> getConnection();
 
-			if($userSession != '') {
+			if($userSession != false) {
 				try {
 					$userQuery = $pdo -> prepare("SELECT * FROM user WHERE user_id = :session AND active = 'yes'");
 					$userQuery -> bindValue(":session", $userSession);
+					$userQuery -> execute();
 					
-					if($userQuery -> execute()) {
-						if($userQuery -> rowCount() !== 1) {
-							$user = false;
-						}
-						elseif($userQuery -> rowCount() == 1) {
-							$user = true;
-						}
-						$this -> loginUser = $user;
+					if($userQuery -> rowCount() !== 1) {
+						$user = false;
 					}
+					elseif($userQuery -> rowCount() == 1) {
+						$user = true;
+					}
+					$this -> loginUser = $user;
 				}
 				catch(PDOException $error) {
 					echo $error -> getMessage();
 				}
 			}
-			elseif($userRestore != '') {
-				try {
-					$userQuery = $pdo -> prepare("SELECT * FROM user_restore WHERE location = :session");
-					$userQuery -> bindValue(":session", $userRestore);
-					
-					if($userQuery -> execute()) {
-						if($userQuery -> rowCount() !== 1) {
+			elseif($userRestore != false) {
+				$rememberCookie = isset($_COOKIE['rememberLogin']) ? $_COOKIE['rememberLogin'] : false;
+				$rememberToken = sha1($rememberCookie . 'jndkdlglor85784y33bfd7374jgk049jndeu3yrw97wq9389');
+				
+				if($rememberCookie == false) {
+					$this -> loginUserRestore = false;
+				}
+				elseif($rememberCookie != $userRestore) {
+					$this -> loginUserRestore = false;
+				}
+				else {
+					 try {
+						$verifyToken = $pdo -> prepare("SELECT * FROM user_restore WHERE location = :session");
+						$verifyToken -> bindValue(":session", $rememberToken);
+						$verifyToken -> execute();
+						
+						if($verifyToken -> rowCount() != 1) {
 							$userRestore = false;
 						}
-						elseif($userQuery -> rowCount() == 1) {
+						elseif($verifyToken -> rowCount() == 1) {
 							$userRestore = true;
 						}
 						$this -> loginUserRestore = $userRestore;
 					}
-				}
-				catch(PDOException $error) {
-					echo $error -> getMessage();
+
+					catch(PDOException $error) {
+						echo $error -> getMessage();
+					}
 				}
 			}
 		}

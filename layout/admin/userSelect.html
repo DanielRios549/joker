@@ -75,20 +75,4 @@
         <?php }?>
     </select>
 </div>
-<div class="selectDiv">
-    <label for="style" class="selectLabel" >Style</label>
-    <select class="select" name="style">
-        <?php 
-            foreach($userStyle as $userStyle => $select) {
-                if($select == @$keyEdit['style']) {
-                    $optionSelected5 = 'selected';
-                }
-                else {
-                    $optionSelected5 = '';
-                }
-        ?>
-        <option value="<?php echo $select;?>" <?php echo @$optionSelected5;?>><?php echo ucfirst($select);?></option>
-        <?php }?>
-    </select>
-</div>
 <?php }?>
