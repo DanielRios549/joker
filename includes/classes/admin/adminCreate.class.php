@@ -15,7 +15,7 @@
         private $videoDir;
         public $showError;
 
-        public function content($page, $data, $file, $submit) {
+        public function content($url, $page, $data, $file, $submit) {
             $pdo = $this -> getConnection();
 
             if(isset($submit)) {
@@ -117,18 +117,41 @@
                                 //Make the user directory and copy the commoms images
                                 
                                 $contentDirData = $contentrDirQuery -> fetch(PDO::FETCH_ASSOC);
-                                $contentImageDir = '../images/media/' . $type . "s/" . $contentDirData['content_id'];
-                                $contentVideoDir = '../media/' . $type . "s/" . $contentDirData['content_id'];
+                                $contentImageDir = $url . 'images/media/' . $type . "s/" . $contentDirData['content_id'];
+                                $contentVideoDir = $url . 'media/' . $type . "s/" . $contentDirData['content_id'];
 
                                 $this -> imageDir = $contentImageDir;
                                 $this -> videoDir = $contentVideoDir;
 
-                                if(!file_exists($contentImageDir)) {
+                                //echo alert($contentImageDir . "   " . $contentVideoDir);
+                                
+                                if(system('/bin/mkdir ' . $contentImageDir)) {
+                                    echo alert('crei as imagens');
+                                }
+                                else {
+                                    echo alert('imagens ops');
+                                }
+                                if(system('/bin/mkdir ' . $contentVideoDir)) {
+                                    echo alert('crei os videos');
+                                }
+                                else {
+                                    echo alert('videos ops');
+                                }
+
+                                /*if(!file_exists($contentImageDir)) {
                                     mkdir($contentImageDir);
+                                    echo alert('crei as imagens');
+                                }
+                                else {
+                                    echo alert('imagens ops');
                                 }
                                 if(!file_exists($contentVideoDir)) {
                                     mkdir($contentVideoDir);
+                                    echo alert('crei os videos');
                                 }
+                                else {
+                                    echo alert('videos ops');
+                                }*/
 
                                 //Upload Image if exists or copy the default
 
@@ -187,7 +210,7 @@
                 }
             }
         }
-        public function contentEpisode($content, $data, $file, $season, $episode, $submit, $message) {
+        public function contentEpisode($url, $content, $data, $file, $season, $episode, $submit, $message) {
             $pdo = $this -> getConnection();
 
             if(isset($submit)) {

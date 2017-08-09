@@ -13,11 +13,11 @@
 	//If the user is logged
 	
 	if($loginCheck == true) {
-		$contentPage = @$_GET['id'];
+		$contentPage = isset($_GET['id']) ? $_GET['id'] : false;
 
 		//If doesn't exist the id get
 		
-		if(!isset($contentPage)) {
+		if($contentPage == false) {
 			header("Location:" . $baseUrl . "404");
 		}
 
@@ -99,7 +99,12 @@
 					//Define the folder for movies
 				
 					$contentFolder = $mediaImageFolder . 'movies/' . $contentData['content_id'];
-					
+					$contentWatchLink = $baseUrl . langCode('watch_link') . "?id=" . $contentId;
+				}
+				elseif($contentType == 'live') {
+					$contentTime = 'Live';
+
+					$contentFolder = $mediaImageFolder . 'lives/' . $contentData['content_id'];
 					$contentWatchLink = $baseUrl . langCode('watch_link') . "?id=" . $contentId;
 				}
 				elseif($contentType == 'serie') {

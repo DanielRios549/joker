@@ -13,13 +13,11 @@ function checkFormats(videoTag) {
 
     if(contentType == 'movie') {
         var mediaFolder = baseUrl + 'media/movies/';
-        //var mediaFolder = 'http://127.0.0.1/media/movies/';
 
         videoPath = mediaFolder + dataId;
     }
     else if(contentType == 'serie') {
         var mediaFolder = baseUrl + 'media/series/';
-        //var mediaFolder = 'http://127.0.0.1/media/series/';
         var contentSeason = document.getElementById("watchInterface").getAttribute("data-season");
         var contentEpisode = document.getElementById("watchInterface").getAttribute("data-episode");
         
@@ -35,7 +33,6 @@ function checkFormats(videoTag) {
     hlsExtension = 'm3u8';
 
     if(videoTag == true) {
-        //mediaHolder.innerHTML = "<video autoplay data-dashjs-player id='videoTag'></video>";
         mediaHolder.innerHTML = "<video id='videoTag'></video>";
 	    video = document.getElementById('videoTag');
     }

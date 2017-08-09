@@ -12,6 +12,13 @@
 	}
 	if($contentVerify -> rowCount() == 1) {
 ?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		autoPlay = true;
+		liveUrl = '<?php echo $contentUrl;?>';
+	});
+</script>
 <main id="watchInterface"
 	data-type="<?php echo $contentType;?>"
 	data-id="<?php echo $contentId;?>"

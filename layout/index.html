@@ -58,7 +58,15 @@
 				<span class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>">
 					
 				</span>
-				<a href="<?php echo $contentPagesLink . $key['content_id'];?>" class="sliderLink ajaxLink">
+				<?php
+					if($key['type'] == 'live') {
+						$sliderLink = getLink('watchMovie', $key['content_id']);
+					}
+					else {
+						$sliderLink = $contentPagesLink . $key['content_id'];
+					}
+				?>
+				<a href="<?php echo $sliderLink;?>" class="sliderLink ajaxLink">
 					<span class="linkSpan">
 						<?php echo langCode('details');?>
 					</span>

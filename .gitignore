@@ -5,6 +5,7 @@ media/movies/*
 media/series/*
 images/media/movies/*
 images/media/series/*
-images/user/*/*
+images/media/lives/*
+images/user/*
 _fontIcon.txt
 /.project

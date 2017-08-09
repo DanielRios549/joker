@@ -55,7 +55,9 @@ if($contentVerify -> rowCount() == 1) {
 						<span id="synopsisSpan"><?php echo $contentSynopsis;?></span>
 					</div>
 					<div id="contentSortcuts">
-						<?php 
+						<?php if($contentType == 'live') {?>
+						<div id="startBtn" class="contentBtn"><a href="<?php echo getLink('watchMovie', $contentId);?>"><span class="btnSpan"><?php echo ucfirst(langCode('watch_link'));?></span></a></div>
+						<?php }
 							if(continueWatching($contentId) == true) {
 								$buttonText = langCode('continue');
 							}

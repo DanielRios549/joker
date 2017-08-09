@@ -10,20 +10,22 @@
 		header("Location:" .  $base . "404");
 	}
 ?>
-<section id="playerBox" class="playerBoxHide">
+<section id="playerBox" class="playerBoxShow">
+    <?php if(ADMIN_PAGE == 'no') {?>
     <article id="browserBack">
-        <a id="backButton" href="<?php echo getLink('title', $_GET['id']);?>"></a>
+        <a id="backButton" href="<?php echo $returnLink;?>"></a>
     </article>
+    <?php }?>
     <article id="videoStats">
        
     </article>
     <article id="mediaHolder">
         
     </article>
-    <article id="mediaLoading" class="loading"></article>
-    <article id="controlsDiv" class="controlsDivHide">
+    <article id="mediaLoading" class="videoPaused"></article>
+    <article id="controlsDiv" class="controlsDivShow">
         <div id="leftControls">
-            <div id="playBtn" class="playBtn2 playerIcon"></div>
+            <div id="playBtn" class="playBtn playerIcon"></div>
             <div id="videoTime">
                 <div id="progressContainer">
                     <div id='progressDiv'>
@@ -48,6 +50,7 @@
                     </div>
                 </div>
             </div>
+            <?php /*?>
             <div id="qualityButton" class="rightButton qualityButton"></div>
             <div id="qualitySelectorDiv">
                 <?php
@@ -58,7 +61,7 @@
                 </div>
                 <?php $qualityInterval *= 10;}?>
             </div>
-            <?php if($contentType == 'serie') {?>
+            <?php */if(($contentType == 'serie') and (ADMIN_PAGE == 'no')) {?>
             <div id="episodesButton" class="rightButton"></div>
             <div id="episodesDiv" class="episodesDiv">
                 <div id="seasonSelect" class="seasonSelectHide">
@@ -138,12 +141,13 @@
     });
     function playerConfig() {
         var config = {
+            autoplay: autoPlay,
             source: {
                 dash: dataSource,
                 //hls: "hls.m3u8"
             },
         };
-        console.log(config);
+        //console.log(config);
         showPlayer(config);
     }
 </script>

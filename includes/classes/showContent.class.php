@@ -41,7 +41,7 @@
 				//Index recently added
 				
 				elseif($date != false) {
-					$query = $pdo -> query("SELECT * FROM content WHERE active = 'yes' ORDER BY date_add DESC LIMIT 20");
+					$query = $pdo -> query("SELECT * FROM content WHERE active = 'yes' AND type != 'live' ORDER BY date_add DESC LIMIT 20");
 				}
 				
 				//Index categories

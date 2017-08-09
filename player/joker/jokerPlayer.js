@@ -30,12 +30,41 @@ function showPlayer(configObject) {
 		dash = config.source.dash || false;
 		hls = config.source.hls || false;
 		progressive = config.source.progressive || false;
+		autoplay = config.autoplay;
 
-		intializePlayer();
-	
-		$(playerBox).removeClass('playerBoxHide').addClass('playerBoxShow');
-		
-		$(buttonPlay).removeClass("playBtn").addClass('playBtn2');
+		playerBox = document.getElementById('playerBox');
+		mediaHolder = document.getElementById('mediaHolder');
+		buttonPlay = document.getElementById('playBtn');
+
+		videoLoad = document.getElementById('mediaLoading');
+		controlsDiv = document.getElementById('controlsDiv');
+		slider = document.getElementById('progressCurrent');
+		bufferDiv = document.getElementById('progressBuffer');
+		setTime = document.getElementById('progressContainer');
+		timePreview = document.getElementById('timePreview');
+		currentTime = document.getElementById('currentVideoTime');
+		totalTime = document.getElementById('totalVideoTime');
+		mute = document.getElementById('muteButton');
+		volumeSlider = document.getElementById('volumeCurrent');
+		setVolume = document.getElementById('volumeSliderDiv');
+		episodesButton = document.getElementById('episodesButton');
+		fullScreen = document.getElementById('fullScreenButton');
+
+		if(autoplay == true) {
+			$(buttonPlay).removeClass("playBtn").addClass('playBtn2');
+			$(videoLoad).removeClass("videoPaused").addClass('loading');
+
+			setTimeout(function() {
+				$(controlsDiv).removeClass("controlsDivShow").addClass('controlsDivHide');
+			},3000);
+
+			startVideo();
+		}
+		else {
+			buttonPlay.addEventListener("click", startVideo);
+			video.addEventListener("click", startVideo);
+			videoLoad.addEventListener("click", startVideo);
+		}
 		
 		$("body").on("contextmenu", function() {
 			//return false;
@@ -50,24 +79,10 @@ function showPlayer(configObject) {
 	}
 }
 
-function intializePlayer() {
-	playerBox = document.getElementById('playerBox');
-	mediaHolder = document.getElementById('mediaHolder');
-	buttonPlay = document.getElementById('playBtn');
-
-	videoLoad = document.getElementById('mediaLoading');
-	controlsDiv = document.getElementById('controlsDiv');
-	slider = document.getElementById('progressCurrent');
-	bufferDiv = document.getElementById('progressBuffer');
-	setTime = document.getElementById('progressContainer');
-	timePreview = document.getElementById('timePreview');
-	currentTime = document.getElementById('currentVideoTime');
-	totalTime = document.getElementById('totalVideoTime');
-	mute = document.getElementById('muteButton');
-	volumeSlider = document.getElementById('volumeCurrent');
-	setVolume = document.getElementById('volumeSliderDiv');
-	episodesButton = document.getElementById('episodesButton');
-	fullScreen = document.getElementById('fullScreenButton');
+function startVideo() {
+	buttonPlay.removeEventListener("click", startVideo);
+	video.removeEventListener("click", startVideo);
+	videoLoad.removeEventListener("click", startVideo);
 
 	if (dash != false) {
 		loadVideoDash();
@@ -85,10 +100,10 @@ function loadVideoDash() {
 	var player = dashjs.MediaPlayer();
 	var dashPlayer = player.create();
 	//dashPlayer.getDebug().setLogToBrowserConsole(false)
-     dashPlayer.initialize(videoTag, dash, true);
+    dashPlayer.initialize(videoTag, dash, autoplay);
 
 	//console.log();
-     addEvents();
+    addEvents();
 }
 
 function loadVideoHls() {
@@ -109,12 +124,18 @@ function addEvents() {
 	setVolume.addEventListener("dragover", videoVolumeDrag);
 	fullScreen.addEventListener("click", toggleFullScreen);
 	video.addEventListener("dblclick", toggleFullScreen);
-	
+	document.addEventListener('webkitfullscreenchange', exitFullScreen, false);
+    document.addEventListener('mozfullscreenchange', exitFullScreen, false);
+    document.addEventListener('fullscreenchange', exitFullScreen, false);
+	document.addEventListener('MSFullscreenChange', exitFullScreen, false);
+
+	video.play();
 	hideControls();
 	hotKeys();
 	episodeSelectPlayer();
-	
-	$(videoLoad).removeClass("videoPaused").removeClass("loading").addClass("loadingNone");
+
+	$(buttonPlay).removeClass("playBtn").addClass('playBtn2');
+	$(videoLoad).removeClass("loading").addClass('loadingNone');
 	
 	//bufferPercent = ((video.buffered.end(0) / video.duration) * 100);
 }
@@ -351,21 +372,17 @@ function toggleFullScreen() {
 }
 
 function exitFullScreen() {
-	if (document.fullScreen) {
-		document.cancelFullScreen();
-	} 
-	else if (document.mozFullScreen) {
-		document.mozCancelFullScreen();
+	var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
+	var event = state ? 'FullscreenOn' : 'FullscreenOff';
+
+	if(event == 'FullscreenOff') {
+		$('#playerBox').removeClass('playerBoxShowFull').addClass('playerBoxShow');
 	}
-	else if (document.webkitIsFullScreen) {
-		document.webkitCancelFullScreen();
-	}
-	alert('Esc key is press');
-	$('#playerBox').removeClass('playerBoxShowFull').addClass('playerBoxShow');
 }
 
 function hotKeys() {
 	$(document).on('keyup', function (e) {
+		e.preventDefault();
 		var keyPress = e.which || e.keyCode;
 		
 		//Space == Play and Pause
@@ -374,17 +391,10 @@ function hotKeys() {
 			playPause();
 		}
 
-		//Enter == Mute and Unmute
+		//M == Mute and Unmute
 		
 		if(keyPress == 77) {
 			muteVideo();
-		}
-
-		//ESC or F11 == Exit FullScreen
-
-		if((keyPress == 27)  || (keyPress == 122)) {
-			//e.preventDefault();
-			exitFullScreen();
 		}
 
 		//F  == Toggle FullScreen

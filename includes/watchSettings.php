@@ -13,11 +13,16 @@
     //If the user is logged
 	
 	if($loginCheck == true) {
-		$contentPage = @$_GET['id'];
+        if(ADMIN_PAGE == 'no') {
+            $contentPage = isset($_GET['id']) ? $_GET['id'] : false;
+        }
+		elseif(ADMIN_PAGE == 'yes') {
+            $contentPage = isset($adminContent) ? $adminContent : false;
+        }
 
 		//If doesn't exist the id get
 		
-		if(!isset($contentPage)) {
+		if($contentPage == false) {
 			header("Location:" . $baseUrl . "404");
 		}
 
@@ -28,7 +33,7 @@
 		}
 		else {
             try {
-				$contentVerify = $pdo -> prepare("SELECT content_id, type, live FROM content WHERE content_id = :contentPage AND active = 'yes'");
+				$contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage AND active = 'yes'");
 				$contentVerify -> bindValue(":contentPage", $contentPage);
 
 				if($contentVerify -> execute()) {
@@ -47,14 +52,16 @@
 			elseif($contentVerify -> rowCount() == 1) {
                 //set the player
 
-                if($contentTrue['live'] == 'no') {
-                    $videoPlayer = $streamPlayer;
+                if($contentTrue['type'] == 'live') {
+                    $videoPlayer = $livePlayer;
+                    $returnLink = $baseUrl;
                 }
                 else {
-                    $videoPlayer = $livePlayer;
+                    $videoPlayer = $streamPlayer;
+                    $returnLink = getLink('title', $contentPage);
                 }
                 
-                //set The values for movies
+                //Set the values for movies
 
                 if($contentTrue['type'] == 'movie') {
                     $contentQuery = $pdo -> prepare("SELECT content_id, $cookieLang FROM content WHERE content_id = :content");
@@ -80,64 +87,102 @@
                         $dataSeason = 'none';
                         $dataEpisode = 'none';
 					}
-                    $mediaFolder = 'media/movies/';
+                    if(ADMIN_PAGE == 'no') {
+                        $mediaFolder = 'media/movies/';
+                    }
+                    elseif(ADMIN_PAGE == 'yes') {
+                        $mediaFolder = '../media/movies/';
+                    }
                     $videoPath = $mediaFolder . $contentId;
                 }
 
-                //set The values for series
+                //Set the values for series
 
                 elseif($contentTrue['type'] == 'serie') {
-		            $contentReference = @$_GET['e'];
+                    if(ADMIN_PAGE == 'no') {
+                        $contentReference = isset($_GET['e']) ? $_GET['e'] : false;
+                        $mediaFolder = 'media/series/';
+                    }
+                    elseif(ADMIN_PAGE == 'yes') {
+                        $contentReference = isset($adminEpisode) ? $adminEpisode : false;
+                        $mediaFolder = '../media/series/';
+                    }
 
-                    if(!isset($contentReference)) {
+                    if($contentReference == false) {
                         header("Location:" . $baseUrl . "404");
                     }
-                    else {
-                        if($contentReference == '') {
+                    elseif($contentReference == '') {
+                        header("Location:" . $baseUrl . "404");
+                    }
+                    elseif($contentReference != '') {
+                        $contentQuery = $pdo -> prepare("SELECT c.content_id, e.episode_id, e.season, e.episode, e.$cookieLang FROM content AS c INNER JOIN content_episodes AS e ON c.content_id = e.episode_ref WHERE e.episode_id = :contentReference AND c.content_id = :content AND e.active = 'yes'");
+                        $contentQuery -> bindValue(":content", $contentPage);
+                        $contentQuery -> bindValue(":contentReference", $contentReference);
+                        $contentQuery -> execute();
+                        
+                        if($contentQuery -> rowCount() == 0) {
                             header("Location:" . $baseUrl . "404");
                         }
-                        else {
-                            $contentQuery = $pdo -> prepare("SELECT c.content_id, e.episode_id, e.season, e.episode, e.$cookieLang FROM content AS c INNER JOIN content_episodes AS e ON c.content_id = e.episode_ref WHERE e.episode_id = :contentReference AND c.content_id = :content AND e.active = 'yes'");
-                            $contentQuery -> bindValue(":content", $contentPage);
-                            $contentQuery -> bindValue(":contentReference", $contentReference);
+                        elseif($contentQuery -> rowCount() == 1) {
+                            $contentFetch = $contentQuery -> fetch(PDO::FETCH_ASSOC);
+                            
+                            $divisorPosition = strpos($contentFetch[$cookieLang], "|");
 
-                            if($contentQuery -> execute()) {
-                                if($contentQuery -> rowCount() == 0) {
-                                    header("Location:" . $baseUrl . "404");
-                                }
-                                elseif($contentQuery -> rowCount() == 1) {
-                                    $contentFetch = $contentQuery -> fetch(PDO::FETCH_ASSOC);
-                                    
-                                    $divisorPosition = strpos($contentFetch[$cookieLang], "|");
+                            $contentData = array (
+                                'content_id' => $contentFetch['content_id'],
+                                'episode_id' => $contentFetch['episode_id'],
+                                'season' => $contentFetch['season'],
+                                'episode' => $contentFetch['episode'],
+                                'name' => substr($contentFetch[$cookieLang], 0, $divisorPosition),
+                                'synopsis' => substr($contentFetch[$cookieLang], $divisorPosition + 1)
+                            );
+                            //print_r($contentData);
 
-                                    $contentData = array (
-                                        'content_id' => $contentFetch['content_id'],
-                                        'episode_id' => $contentFetch['episode_id'],
-                                        'season' => $contentFetch['season'],
-                                        'episode' => $contentFetch['episode'],
-                                        'name' => substr($contentFetch[$cookieLang], 0, $divisorPosition),
-                                        'synopsis' => substr($contentFetch[$cookieLang], $divisorPosition + 1)
-                                    );
-                                    //print_r($contentData);
+                            define('WATCH_TITLE' , $contentData['name']);
+                            $contentType = $contentTrue['type'];
+                            $contentId = $contentData['content_id'];
+                            $episodeId = $contentData['episode_id'];
+                            $contentSynopsis = $contentData['synopsis'];
 
-                                    define('WATCH_TITLE' , $contentData['name']);
-                                    $contentType = $contentTrue['type'];
-                                    $contentId = $contentData['content_id'];
-                                    $episodeId = $contentData['episode_id'];
-                                    $contentSynopsis = $contentData['synopsis'];
-
-                                    require 'getEpisodes.php';
-                                    
-                                    $dataSeason = $contentData['season'];
-                                    $dataEpisode = $contentData['episode'];
-                                    $contentFolder = $mediaImageFolder . 'series/' . $contentData['content_id'];
-					                $contentWatchLink = $baseUrl . langCode('watch_link') . "?id=" . $contentId . "&e=". $firstEpisode['episode_id'];
-                                }
-                            }
+                            require 'getEpisodes.php';
+                            
+                            $dataSeason = $contentData['season'];
+                            $dataEpisode = $contentData['episode'];
+                            $contentFolder = $mediaImageFolder . 'series/' . $contentData['content_id'];
+                            $contentWatchLink = $baseUrl . langCode('watch_link') . "?id=" . $contentId . "&e=". $firstEpisode['episode_id'];
                         }
                     }
-                    $mediaFolder = 'media/series/';
                     $videoPath = $mediaFolder . $contentId . '/season' . $dataSeason . '/episode' . $dataEpisode;
+                }
+
+                //Set the values for lives
+
+                elseif($contentTrue['type'] == 'live') {
+                    $contentQuery = $pdo -> prepare("SELECT content_id, link, $cookieLang FROM content WHERE content_id = :content AND active = 'yes'");
+                    $contentQuery -> bindValue(":content", $contentPage);
+                    $contentQuery -> execute();
+
+                    if($contentQuery -> rowCount() == 1) {
+                        $contentFetch = $contentQuery -> fetch(PDO::FETCH_ASSOC);
+                        
+                        $divisorPosition = strpos($contentFetch[$cookieLang], "|");
+
+                        $contentData = array (
+                            'content_id' => $contentFetch['content_id'],
+                            'name' => substr($contentFetch[$cookieLang], 0, $divisorPosition),
+                            'description' => substr($contentFetch[$cookieLang], $divisorPosition + 1),
+                            'link' => $contentFetch['link']
+                        );
+
+                        define('WATCH_TITLE' , $contentData['name']);
+                        $contentType = $contentTrue['type'];
+                        $contentId = $contentData['content_id'];
+                        $contentSynopsis = $contentData['description'];
+                        $contentUrl = $contentData['link'];
+
+                        $dataSeason = 'none';
+                        $dataEpisode = 'none';
+                    }
                 }
                 
                 $dashFile = 'no';
@@ -145,10 +190,6 @@
 
                 $fileName = 'output_dash';
                 $fileToCheck = $videoPath . '/' . $fileName . '.';
-                //$currentDate = new DateTime();
-                //$videoToCheck = sha1($videoPath . '/' . $videoName . '.', 'test');
-
-                //echo $currentDate -> format('m');
 
                 if(file_exists($fileToCheck . 'mpd')) {
                     $dashFile = 'yes';
@@ -156,6 +197,7 @@
                 if(file_exists($fileToCheck . 'm3u8')) {
                     $hlsFile = 'yes';
                 }
+                //echo alert($fileToCheck);
             }
         }
     }

@@ -104,6 +104,8 @@
 				$classRemove = new AdminRemove();
 				$classRemove -> remove(THIS_PAGE, $directPath);
 			}
+			
+			//print_r($addRow);
 
 			if($totalRows >= 1) {
 				if($totalRows == 1) {
@@ -222,7 +224,7 @@
 				$seasonNumber = @$_POST['seasonNumber'];
 				$episodeNumber = @$_POST['episodeNumber'];
 
-				$classCreate -> contentEpisode($episodeContent, $_POST, $_FILES, $seasonNumber, $episodeNumber, $addSubmit, true);
+				$classCreate -> contentEpisode($directPath, $episodeContent, $_POST, $_FILES, $seasonNumber, $episodeNumber, $addSubmit, true);
 				
 				//Display the error
 				
@@ -239,7 +241,7 @@
 				$classCreate = new AdminCreate();
 				$addSubmit = @$_GET['go'];
 
-				$classCreate -> content(THIS_PAGE, $_POST, $_FILES, $addSubmit);
+				$classCreate -> content($directPath, THIS_PAGE, $_POST, $_FILES, $addSubmit);
 
 				//Display the error
 				

@@ -20,6 +20,9 @@
 			elseif($type == 'serie') {
 				$folder = $imageFolder . 'series/';
 			}
+			elseif($type == 'live') {
+				$folder = $imageFolder . 'lives/';
+			}
 		}
 		return $folder;
 	}

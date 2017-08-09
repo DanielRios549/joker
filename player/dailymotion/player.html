@@ -12,15 +12,18 @@
 ?>
 <section id="playerBox">
     <article id="browserBack">
-        <a id="backButton" href="<?php echo getLink('title', $_GET['id']);?>"></a>
+        <a id="backButton" href="<?php echo $returnLink;?>"></a>
     </article>
     <article id="mediaHolder"></article>
 </section>
+<?php if($contentTrue['type'] != 'live') {?>
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/file.js'?>"></script>
+<?php }?>
 <script src="https://api.dmcdn.net/all.js"></script>
 <script>
     $(document).ready(function() {
-         checkFormats(false);
+        //checkFormats(false);
+        playerConfig();
     });
     function playerConfig() {
         var player = DM.player(document.getElementById("mediaHolder"), {
@@ -30,7 +33,7 @@
                 'sharing-enable': 0,
                 api: 'location',//postMessage, location, 1
                 origin: baseUrl,
-                video: 'xxtuy6',
+                video: liveUrl,
                 //video: dataSource,
                 'ui-logo': false,
                 autoplay: true,
