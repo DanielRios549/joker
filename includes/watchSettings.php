@@ -33,7 +33,12 @@
 		}
 		else {
             try {
-				$contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage AND active = 'yes'");
+                if(ADMIN_PAGE == 'no') {
+                    $contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage AND active = 'yes'");
+                }
+                elseif(ADMIN_PAGE == 'yes') {
+                    $contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage");
+                }   
 				$contentVerify -> bindValue(":contentPage", $contentPage);
 
 				if($contentVerify -> execute()) {

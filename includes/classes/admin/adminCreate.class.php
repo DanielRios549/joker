@@ -119,39 +119,17 @@
                                 $contentDirData = $contentrDirQuery -> fetch(PDO::FETCH_ASSOC);
                                 $contentImageDir = $url . 'images/media/' . $type . "s/" . $contentDirData['content_id'];
                                 $contentVideoDir = $url . 'media/' . $type . "s/" . $contentDirData['content_id'];
+                                
+                                $openFolder = 'cd ' . $contentVideoDir;
+                                $MP4BoxDecode = $openFolder . ' && MP4Box -dash-profile dashavc264:live -dash 4000 -frag 4000 -segment-name video_0/segment video.mp4 -out output_dash.mpd';
 
                                 $this -> imageDir = $contentImageDir;
                                 $this -> videoDir = $contentVideoDir;
 
                                 //echo alert($contentImageDir . "   " . $contentVideoDir);
                                 
-                                if(system('/bin/mkdir ' . $contentImageDir)) {
-                                    echo alert('crei as imagens');
-                                }
-                                else {
-                                    echo alert('imagens ops');
-                                }
-                                if(system('/bin/mkdir ' . $contentVideoDir)) {
-                                    echo alert('crei os videos');
-                                }
-                                else {
-                                    echo alert('videos ops');
-                                }
-
-                                /*if(!file_exists($contentImageDir)) {
-                                    mkdir($contentImageDir);
-                                    echo alert('crei as imagens');
-                                }
-                                else {
-                                    echo alert('imagens ops');
-                                }
-                                if(!file_exists($contentVideoDir)) {
-                                    mkdir($contentVideoDir);
-                                    echo alert('crei os videos');
-                                }
-                                else {
-                                    echo alert('videos ops');
-                                }*/
+                                system('/bin/mkdir ' . $contentImageDir);
+                                system('/bin/mkdir ' . $contentVideoDir);
 
                                 //Upload Image if exists or copy the default
 
@@ -186,12 +164,18 @@
                                     else {
                                         copy('../media/video.mp4' , $contentVideoDir . '/video.mp4');
                                     }
-                                    
+
+                                    system($MP4BoxDecode);
+                                    system('chmod -R 770 ' . $url . 'images/media/movies/*');
+                                    system('chmod -R 770 ' . $url . 'media/movies/*');
+                                    system('/bin/rm -rf ' . $contentVideoDir . '/video.mp4');
+
                                     $msg = 'Movie Added';
                                 }
                                 elseif($type == 'serie') {
                                     $this -> contentEpisode($contentDirData['content_id'], $data, $file, 1 , 1, true, false);
-                                    
+
+                                    system($MP4BoxDecode);
                                     $msg = 'Serie Added';
                                 }
 
