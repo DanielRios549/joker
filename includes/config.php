@@ -14,7 +14,7 @@
 
 	$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 	
-	$directPath = '/var/www/html/joker/';
+	$directPath = '/var/www/html/';
 	
 	$baseCon = true;
 
