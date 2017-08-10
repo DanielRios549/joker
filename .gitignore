@@ -7,5 +7,10 @@ images/media/movies/*
 images/media/series/*
 images/media/lives/*
 images/user/*
+_categoriesId.txt
 _fontIcon.txt
 /.project
+bower.json
+gulpfile.js
+package.json
+READEME.txt

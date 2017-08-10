@@ -14,8 +14,6 @@
 
 	$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 	
-	$directPath = '/var/www/html/';
-	
 	$baseCon = true;
 
 	require 'connect.php';
@@ -28,7 +26,9 @@
     
     $allowNewUser = $getConfig -> configQuery('allowNewUser');
 
-	$baseUrl = $currentServerUrl . $getConfig -> configQuery('baseUrl');
+	$baseUrl = $currentServerUrl . $getConfig -> configQuery('subFolder');
+	
+	$directPath = '/var/www/html/' . $getConfig -> configQuery('subFolder');
 
 	$atomoBaseUrl = $getConfig -> configQuery('atomoBaseUrl');
 

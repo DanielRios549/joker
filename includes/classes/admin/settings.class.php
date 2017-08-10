@@ -15,9 +15,10 @@
 
 		public function getConfigSet($type) {
 			$pdo = $this -> getConnection();
+			$table = $this -> getConfigTable();
 			//global $thisUrl;
 
-			$getValues = $pdo -> prepare("SELECT * FROM config WHERE type = :type");
+			$getValues = $pdo -> prepare("SELECT * FROM $table WHERE type = :type");
 			$getValues -> bindValue(':type', $type);
 			
 			if($getValues -> execute()) {
