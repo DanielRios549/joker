@@ -17,8 +17,8 @@
 		public function __construct() {
 			$name = 'joker';
 			$user = 'root';
-			$pass = 'cftwy';
-			$host = '127.0.0.1';
+			$pass = 'atomoinc2014';
+			$host = 'localhost';
 
 			try {
 				$selectDb = "mysql:host=" . $host . ";dbname=" . $name;
