@@ -12,12 +12,13 @@
 	
 	class GetConfig extends Connect {
 		public $selectValue;
-		
+
 		public function configQuery($config) {
 			$pdo = $this -> getConnection();
+			$table = $this -> getConfigTable();
 			
 			try {
-				$setConfig = $pdo -> prepare("SELECT name, value FROM config WHERE name = :config");
+				$setConfig = $pdo -> prepare("SELECT name, value FROM $table WHERE name = :config");
 				$setConfig -> bindValue(":config", $config, PDO::PARAM_STR);
 				
 				if($setConfig -> execute()) {
