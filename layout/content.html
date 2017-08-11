@@ -10,11 +10,6 @@
 		header("Location:" .  $base . "404");
 	}
 ?>
-<script type="text/javascript">
-    $('.contentDiv').on('click', '.contentOpen', function(e) {
-        e.preventDefault();
-    });
-</script>
 <div class="content" data-id="<?php echo $key['content_id'];?>">
     <a class="contentLink" href="<?php echo getLink('title', $key['content_id']);?>" data-url="<?php echo $thisUrl;?>" data-title="<?php echo $titleFile;?>">
         <figure class="contentFigure">

@@ -173,12 +173,10 @@ html body fieldset {
 #header #settingsOpen, .interface .formAdd .openFieldset .openSpan, .interface .formAdd .formFieldset .linkDiv .link, .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
 .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .rightButton,
 .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .playerIcon,
-.interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface .formAdd .formFieldset .selectDivFile .fileInput:after,
-.interface .formAdd .formFieldset .selectedDivFile .fileInput:after, .interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv .deleteButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .openFieldset .openSpan, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .linkDiv .link, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
+.interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface .formAdd .formFieldset .inputVideoLabel span, .interface .formAdd .formFieldset #selectedVideoDiv, .interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv .deleteButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .openFieldset .openSpan, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .linkDiv .link, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
 .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .rightButton,
 .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .playerIcon,
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .fileInput:after,
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput:after, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputVideoLabel span, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #selectedVideoDiv, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1113,6 +1111,22 @@ html body fieldset {
   display: block;
   overflow: hidden;
   margin-bottom: 20px;
+}
+
+.interface .formAdd .formFieldset .selectDiv {
+  position: relative;
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.interface .formAdd .formFieldset .selectDiv .selectLabel {
+  position: relative;
+  font: 1.6em Calibri, sans-serif;
+  color: var(--lightGray);
+}
+
+.interface .formAdd .formFieldset .selectDiv .select {
+  position: relative;
 }
 
 .interface .formAdd .formFieldset .linkDiv {
@@ -2150,7 +2164,7 @@ html body fieldset {
 
 .interface .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption:after {
   position: relative;
-  font: 2em FontAwesome;
+  font: 4em FontAwesome;
   color: var(--lightGray);
 }
 
@@ -2158,99 +2172,37 @@ html body fieldset {
   content: '\f1c5';
 }
 
-.interface .formAdd .formFieldset .inputVideoLabel .labelFigure .labelFigcaption:after {
-  content: '\f1c8';
-}
-
-.interface .formAdd .formFieldset .selectDiv {
+.interface .formAdd .formFieldset .inputVideoLabel {
   position: relative;
-  margin-right: 20px;
-  display: inline-block;
-}
-
-.interface .formAdd .formFieldset .selectDiv .selectLabel {
-  position: relative;
-  font: 1.6em Calibri, sans-serif;
-  color: var(--lightGray);
-}
-
-.interface .formAdd .formFieldset .selectDiv .select {
-  position: relative;
-}
-
-.interface .formAdd .formFieldset .selectDivFile {
-  width: 40px;
-  height: 40px;
-}
-
-.interface .formAdd .formFieldset .selectDivFile .fileInput {
-  top: -28px;
-  width: 100%;
-}
-
-.interface .formAdd .formFieldset .selectedDivFile {
-  width: 180px;
-  height: 40px;
-  z-index: 95;
-}
-
-.interface .formAdd .formFieldset .selectedDivFile:after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  background: var(--gray);
-}
-
-.interface .formAdd .formFieldset .selectedDivFile .fileInput {
-  top: 10px;
-  left: -70px;
-  z-index: 96;
-}
-
-.interface .formAdd .formFieldset .selectedDivFile .fileInput:after {
-  content: '';
-  opacity: 0;
-}
-
-.interface .formAdd .formFieldset .selectDivFile,
-.interface .formAdd .formFieldset .selectedDivFile {
-  border-radius: 3px;
-  position: relative;
-  margin-right: 10px;
-  overflow: hidden;
-  display: inline-block;
-  background: var(--gray);
-  color: var(--lightGray);
-  -webkit-transition: width 400ms linear;
-  -moz-transition: width 400ms linear;
-  -ms-transition: width 400ms linear;
-  transition: width 400ms linear;
-}
-
-.interface .formAdd .formFieldset .selectDivFile .inputImage:after,
-.interface .formAdd .formFieldset .selectedDivFile .inputImage:after {
-  content: '\f1c5';
-}
-
-.interface .formAdd .formFieldset .selectDivFile .inputVideo:after,
-.interface .formAdd .formFieldset .selectedDivFile .inputVideo:after {
-  content: '\f1c8';
-}
-
-.interface .formAdd .formFieldset .selectDivFile .fileInput,
-.interface .formAdd .formFieldset .selectedDivFile .fileInput {
-  outline: none;
-  position: absolute;
-  height: calc(100% + 30px);
+  display: block;
   cursor: pointer;
+  height: 30px;
+  width: 120px;
+  margin-bottom: 20px;
+  background: var(--joker01);
 }
 
-.interface .formAdd .formFieldset .selectDivFile .fileInput:after,
-.interface .formAdd .formFieldset .selectedDivFile .fileInput:after {
+.interface .formAdd .formFieldset .inputVideoLabel span {
   position: relative;
-  top: 20px;
-  font: 2em FontAwesome;
+  height: 100%;
+  width: 100%;
+  font: 1.8em Calibri, sans-serif;
   color: var(--lightGray);
+}
+
+.interface .formAdd .formFieldset #selectedVideoDiv {
+  background: black;
+  position: relative;
+  height: 340px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.interface .formAdd .formFieldset #selectedVideoDiv #selectedVideo {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .interface .formAdd .formFieldset .inputText,
@@ -2897,6 +2849,22 @@ html body fieldset {
   display: block;
   overflow: hidden;
   margin-bottom: 20px;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv {
+  position: relative;
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv .selectLabel {
+  position: relative;
+  font: 1.6em Calibri, sans-serif;
+  color: var(--lightGray);
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv .select {
+  position: relative;
 }
 
 .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .linkDiv {
@@ -3934,7 +3902,7 @@ html body fieldset {
 
 .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption:after {
   position: relative;
-  font: 2em FontAwesome;
+  font: 4em FontAwesome;
   color: var(--lightGray);
 }
 
@@ -3942,99 +3910,37 @@ html body fieldset {
   content: '\f1c5';
 }
 
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputVideoLabel .labelFigure .labelFigcaption:after {
-  content: '\f1c8';
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputVideoLabel {
   position: relative;
-  margin-right: 20px;
-  display: inline-block;
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv .selectLabel {
-  position: relative;
-  font: 1.6em Calibri, sans-serif;
-  color: var(--lightGray);
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDiv .select {
-  position: relative;
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile {
-  width: 40px;
-  height: 40px;
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .fileInput {
-  top: -28px;
-  width: 100%;
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile {
-  width: 180px;
-  height: 40px;
-  z-index: 95;
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile:after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  background: var(--gray);
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput {
-  top: 10px;
-  left: -70px;
-  z-index: 96;
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput:after {
-  content: '';
-  opacity: 0;
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile,
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile {
-  border-radius: 3px;
-  position: relative;
-  margin-right: 10px;
-  overflow: hidden;
-  display: inline-block;
-  background: var(--gray);
-  color: var(--lightGray);
-  -webkit-transition: width 400ms linear;
-  -moz-transition: width 400ms linear;
-  -ms-transition: width 400ms linear;
-  transition: width 400ms linear;
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .inputImage:after,
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .inputImage:after {
-  content: '\f1c5';
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .inputVideo:after,
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .inputVideo:after {
-  content: '\f1c8';
-}
-
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .fileInput,
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput {
-  outline: none;
-  position: absolute;
-  height: calc(100% + 30px);
+  display: block;
   cursor: pointer;
+  height: 30px;
+  width: 120px;
+  margin-bottom: 20px;
+  background: var(--joker01);
 }
 
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectDivFile .fileInput:after,
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedDivFile .fileInput:after {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputVideoLabel span {
   position: relative;
-  top: 20px;
-  font: 2em FontAwesome;
+  height: 100%;
+  width: 100%;
+  font: 1.8em Calibri, sans-serif;
   color: var(--lightGray);
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #selectedVideoDiv {
+  background: black;
+  position: relative;
+  height: 340px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #selectedVideoDiv #selectedVideo {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputText,

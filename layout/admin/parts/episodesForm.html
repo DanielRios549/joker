@@ -5,6 +5,10 @@
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
+    if(!isset($baseUrl)) {
+		require '../../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
     if($adminCheck == true) {
 ?>
 <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this episode';?></legend>

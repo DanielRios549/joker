@@ -203,7 +203,7 @@
 				$createUserClass = new Sigin();
 				$createSubmit = @$_GET['go'];
 
-				$createUserClass -> siginUser(ADMIN_PAGE, $_POST, $_FILES, $createSubmit);
+				$createUserClass -> siginUser($directPath, $verificationEmail, ADMIN_PAGE, $_POST, $_FILES, $createSubmit);
 				
 				//Display the error on login or sigin
 				

@@ -45,6 +45,8 @@
 	$scriptDir = $baseUrl . $getConfig -> configQuery('scriptDir');
 
 	$fontDir = $baseUrl . $getConfig -> configQuery('fontDir');
+
+	$verificationEmail = $getConfig -> configQuery('verificationEmail');
 	
 	$mediaImageFolder = $getConfig -> configQuery('mediaImageFolder');
 	

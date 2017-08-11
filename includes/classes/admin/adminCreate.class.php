@@ -48,6 +48,10 @@
                 $duration = 'N/D';
 
                 //Verify if there are empty inputs
+
+                /****************************************
+                A problem is showing text fields empty when select a vidoe file
+                ****************************************/
                 
                 if(($producer == '') or ($director == '') or ($date == '') or ($titleEn == '') or ($synEn == '') or ($titlePt == '') or ($synPt == '')) {
                     $show = 'userErrorDisplay';
@@ -119,9 +123,6 @@
                                 $contentDirData = $contentrDirQuery -> fetch(PDO::FETCH_ASSOC);
                                 $contentImageDir = $url . 'images/media/' . $type . "s/" . $contentDirData['content_id'];
                                 $contentVideoDir = $url . 'media/' . $type . "s/" . $contentDirData['content_id'];
-                                
-                                $openFolder = 'cd ' . $contentVideoDir;
-                                $MP4BoxDecode = $openFolder . ' && MP4Box -dash-profile dashavc264:live -dash 4000 -frag 4000 -segment-name video_0/segment video.mp4 -out output_dash.mpd';
 
                                 $this -> imageDir = $contentImageDir;
                                 $this -> videoDir = $contentVideoDir;
@@ -139,7 +140,7 @@
                                     move_uploaded_file($image['tmp_name'], $contentImageDir . "/" . $imageName);
                                 }
                                 else {
-                                    copy('../images/contentImage.jpg' , $contentImageDir . '/image.jpg');
+                                    copy('../images/media/image.jpg' , $contentImageDir . '/image.jpg');
                                 }
                                 
                                 //Upload Background Image if exists or copy the default
@@ -150,7 +151,7 @@
                                     move_uploaded_file($backImage['tmp_name'], $contentImageDir . "/" . $backImageName);
                                 }
                                 else {
-                                    copy('../images/contentBackground.jpg' , $contentImageDir . '/background.jpg');
+                                    copy('../images/media/background.jpg' , $contentImageDir . '/background.jpg');
                                 }
                                 
                                 //Upload video if exists or copy the default
@@ -165,17 +166,23 @@
                                         copy('../media/video.mp4' , $contentVideoDir . '/video.mp4');
                                     }
 
+                                    $openFolder = 'cd ' . $contentVideoDir;
+                                    $MP4BoxDecode = $openFolder . ' && MP4Box -dash-profile dashavc264:live -dash 4000 -frag 4000 -segment-name video_0/segment video.mp4 -out output_dash.mpd';;
+                                    
                                     system($MP4BoxDecode);
+                                    system('/bin/rm -rf ' . $contentVideoDir . '/video.mp4');
+
+                                    $this -> fixMPDFile($contentVideoDir);
+
                                     system('chmod -R 770 ' . $url . 'images/media/movies/*');
                                     system('chmod -R 770 ' . $url . 'media/movies/*');
-                                    system('/bin/rm -rf ' . $contentVideoDir . '/video.mp4');
 
                                     $msg = 'Movie Added';
                                 }
                                 elseif($type == 'serie') {
                                     $this -> contentEpisode($contentDirData['content_id'], $data, $file, 1 , 1, true, false);
 
-                                    system($MP4BoxDecode);
+                                    //system($MP4BoxDecode);
                                     $msg = 'Serie Added';
                                 }
 
@@ -268,7 +275,7 @@
                                     move_uploaded_file($firstImage['tmp_name'], $episodeImageDir . "/" . $imageName);
                                 }
                                 else {
-                                    copy('../images/episodeImage.jpg', $episodeImageDir . '/image.jpg');
+                                    copy('../images/media/episodeImage.jpg', $episodeImageDir . '/image.jpg');
                                 }
 
                                 //Episode Video
@@ -301,6 +308,33 @@
                     $this -> showError = $errorPos;
                 }
             }
+        }
+        private function fixMPDFile($dir) {
+            system('/bin/mv ' . $dir . '/output_dash.mpd ' . $dir . '/output_dash.xml');
+            
+            $elementToRemove = 'ContentComponent';
+            $xmlFileToLoad   = $dir . '/output_dash.xml';
+            $xmlFileToSave   = $dir . '/output_dash.mpd';
+
+            $dom = new DOMDocument();
+            $dom -> load($xmlFileToLoad);
+
+            $matchingElements = $dom -> getElementsByTagName($elementToRemove);
+            $totalMatches     = $matchingElements -> length;
+
+            $elementsToDelete = array();
+
+            for ($i = 0; $i < $totalMatches; $i++) {
+                $elementsToDelete[] = $matchingElements -> item($i);
+            }
+
+            foreach ( $elementsToDelete as $elementToDelete ) {
+                $elementToDelete -> parentNode -> removeChild($elementToDelete);
+            }
+
+            $dom -> save($xmlFileToSave);
+
+            system('/bin/rm -rf ' . $dir . '/output_dash.xml');
         }
     }
 ?>
