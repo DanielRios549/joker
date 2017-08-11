@@ -5,6 +5,10 @@
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
+    if(!isset($baseUrl)) {
+		require '../../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
     if($adminCheck == true) {
 ?>
 <?php if(isset($_GET['go'])) {?>
@@ -20,14 +24,11 @@
         <?php require $selectFormFile;?>
     </fieldset>
     <?php if(MENU_GROUP == 'users') {?>
+    <div class="openFieldset"><span class="openSpan"><?php echo 'Images';?></span></div>
     <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this user';?></legend>
-        <div class="selectDivFile">
-            <input type="file" name="userImage" class="fileInput inputImage" accept="image/jpeg" title="Add a image"/>
-        </div>
-        <div class="selectDivFile">
-            <input type="file" name="userCoverImage" class="fileInput inputImage" accept="image/jpeg" title="Add a cover image"/>
-        </div>
+        <?php require 'add/selectUserImages.html';?>
     </fieldset>
+    <div class="openFieldset fieldsetOpen"><span class="openSpan"><?php echo 'Dados';?></span></div>
     <fieldset id="userFieldset" class="formFieldset">
         <input type="text" name="firstName" id="firstName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_first_name_placeholder');?>" required/>
         <label for="firstName" id="firstNameLabel" class="inputLabel"></label>
@@ -46,24 +47,29 @@
         
         <input type="password" name="password2" id="password2" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder_2');?>" required/>
         <label for="password2" id="passwordLabel2" class="inputLabel"></label>
-        
-        <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo langCode('sigin_submit');?></span></button>
+    </fieldset>
+    <fieldset class="formFieldset">
+        <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add Content';?></span></button>
     </fieldset>
     <?php } else {?>
+    <div class="openFieldset"><span class="openSpan"><?php echo 'Images';?></span></div>
     <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this content';?></legend>
-        <div class="selectDivFile">
-            <input type="file" name="contentImage" class="fileInput inputImage" accept="image/jpeg" title="Add an image"/>
-        </div>
-        <div class="selectDivFile">
-            <input type="file" name="backImage" class="fileInput inputImage" accept="image/jpeg" title="Add a background image"/>
-        </div>
-        <?php if(THIS_PAGE == 'admin_movies_add'){?>
-        <div class="selectDivFile">
-            <input type="file" name="contentVideo" class="fileInput inputVideo" accept="video/mp4" title="Add a video"/>
-        </div>
-        <?php }?>
+        <?php require 'add/selectContentImages.html';?>
     </fieldset>
-    <?php if(THIS_PAGE == 'admin_series_add') {require 'episodesForm.html';}?>
+    <div class="openFieldset openFieldsetVideo"><span class="openSpan"><?php echo 'Media';?></span></div>
+    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Video for this user';?></legend>
+        <input type="file" id="contentVideo" name="contentVideo" class="fileInput inputVideo" accept="video/mp4"  title="Add a video">
+        <label id="videoLabel" for="contentVideo" class="inputVideoLabel"><span>Change Video</span></label>
+        <div id="selectedVideoDiv">
+            <video id="selectedVideo" src="<?php echo $baseUrl . 'media/video.mp4';?>" controls="controls"></video>
+        </div>
+    </fieldset>
+    <?php
+        if(THIS_PAGE == 'admin_series_add') {
+            require 'episodesForm.html';
+        }
+    ?>
+    <div class="openFieldset fieldsetOpen"><span class="openSpan"><?php echo 'Dados';?></span></div>
     <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Title and Synopsis for this content';?></legend>
         <input type="text" name="producerName" id="producerName" class="inputText" placeholder="<?php echo 'Producer Name';?>" required/>
         <label for="producerName" id="producerNameLabel" class="inputLabel"></label>
@@ -85,9 +91,27 @@
         
         <input type="text" name="synPt" id="synPt" class="inputText" placeholder="<?php echo 'English Synopsis';?>" required/>
         <label for="synPt" id="synPtLabel" class="inputLabel"></label>
-        
+    </fieldset>
+    <fieldset class="formFieldset">
         <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add Content';?></span></button>
     </fieldset>
     <?php }?>
 </form>
+<script lang="text/javascript">
+	$(document).ready(function() {
+        $('.formAdd').on('click', '.openFieldset', function() {
+			$(this).toggleClass('fieldsetOpen');
+        })
+		.on('click', '.openFieldsetVideo', function() {
+            var video = document.getElementById("selectedVideo");
+
+			if(!video.paused) {
+                video.pause();
+			}
+		});
+
+        closeMessage('.userError', '#errorMsgClose');
+		showSelectedFile('.formFieldset');
+	});
+</script>
 <?php }?>

@@ -13,13 +13,19 @@
 	class Sigin extends Connect {
 		public $showError;
 		
-		public function siginUser($admin, $data, $file, $submit) {
+		public function siginUser($url, $verification, $admin, $data, $file, $submit) {
             $pdo = $this -> getConnection();
             global $cookieLang;
 
 			if(isset($submit)) {
                 if($admin == 'no') {
-                    $active = 'no';
+                    if($verification == 'yes') {
+                        $active = 'no';
+                    }
+                    elseif($verification == 'no') {
+                        $active = 'yes';
+                    }
+
                     $category = 'user';
                     $premium = 'no';
                     $lang = $cookieLang;
@@ -160,16 +166,16 @@
                                 
                                 $userDirData = $userDirQuery -> fetch(PDO::FETCH_ASSOC);
 
+                                $userDir = $url . 'images/user/' . $userDirData['user_id'];
+
                                 if($admin == 'no') {
-                                    $userDir = 'images/user/' . $userDirData['user_id'];
-                                    mkdir($userDir);
+                                    system('mkdir ' . $userDir);
 
                                     $copyImageProfile = copy('images/user/profile.jpg' , $userDir . '/profile.jpg');
                                     $copyImageCover = copy('images/user/cover.jpg' , $userDir . '/cover.jpg');
                                 }
                                 elseif($admin == 'yes') {
-                                    $userDir = '../images/user/' . $userDirData['user_id'];
-                                    mkdir($userDir);
+                                    system('mkdir ' . $userDir);
 
                                     //Upload the image if exists or copy the default 
 
@@ -179,7 +185,7 @@
                                         move_uploaded_file($image['tmp_name'], $userDir . "/" . $imageName);
                                     }
                                     else {
-                                        $copyImageProfile = copy('../images/profile.jpg' , $userDir . '/profile.jpg');
+                                        $copyImageProfile = copy('../images/user/profile.jpg' , $userDir . '/profile.jpg');
                                     }
 
                                     //Upload the cover image if exists or copy the default
@@ -190,13 +196,14 @@
                                         move_uploaded_file($coverImage['tmp_name'], $userDir . "/" . $coverImageName);
                                     }
                                     else {
-                                        $copyImageCover = copy('../images/cover.jpg' , $userDir . '/cover.jpg');
+                                        $copyImageCover = copy('../images/user/cover.jpg' , $userDir . '/cover.jpg');
                                     }
                                 }
+                                system('chmod -R 770 ' . $url . 'images/user/*');
 
-                                //Dend the email if necessary
+                                //Send the email if necessary
 
-                                if($active == 'no') {
+                                if($verification == 'yes') {
                                     $newUserCryptEmail = sha1($newUserEmail . 'mifirofrpo95ui8u74ht7giti9t86856ntntg');
                                     $subjectEmail = 'Ative sua conta';
                                     $messageEmail = 'Vc se cadastrou para ter uma conta no nosso site de filmes www.streamovie.com.br, agora você tem que ativar sua conta. Para isso, clique no link: www.streamovie.com.br/?active=' . $newUserEmail . '&activeId=' . $newUserCryptEmail;
@@ -211,7 +218,7 @@
                                         $msg = langCode('sigin_success_email_not_sent');
                                     }
                                 }
-                                elseif($active == 'yes') {
+                                elseif($verification == 'no') {
                                     $show = 'newAccountCreatedDisplay';
                                     $msg = 'Account Created';
                                 }

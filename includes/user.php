@@ -26,7 +26,7 @@
 			
 			//Access the functions of login and sigin
 			
-			$siginUser = $sigin -> siginUser(ADMIN_PAGE, $_POST, $_FILES, $siginSubmit);
+			$siginUser = $sigin -> siginUser($directPath, $verificationEmail, ADMIN_PAGE, $_POST, $_FILES, $siginSubmit);
 			$loginUser = $login -> loginUser('normal', $_POST, $userSubmit, $imageDir, $baseUrl, $sessionAddress, $sessionAgent, $sessionToDB, $cookieLang);
 			
 			//Display the error on login or sigin

@@ -235,7 +235,24 @@
 			display: block;
 			overflow: hidden;
 			margin-bottom: 20px;
+			
+			.selectDiv {
+				position: relative;
+				margin-right: 20px;
+				display: inline-block;
 
+				.selectLabel {
+					position: relative;
+					font: 1.6em Calibri, sans-serif;
+					
+					@include css4 {
+						color: var(--lightGray);
+					};
+				}
+				.select {
+					position: relative;
+				}
+			}
 			.linkDiv {
 				position: relative;
 				width: 200px;
@@ -365,7 +382,7 @@
 
 						&:after {
 							position: relative;
-							font: 2em FontAwesome;
+							font: 4em FontAwesome;
 
 							@include css4 {
 								color: var(--lightGray);
@@ -379,104 +396,44 @@
 					content: '\f1c5';
 				}
 			}
-			.inputVideoLabel .labelFigure .labelFigcaption {
-				&:after {
-					content: '\f1c8';
-				}
-			}
-			.selectDiv {
+			.inputVideoLabel {
 				position: relative;
-				margin-right: 20px;
-				display: inline-block;
+				display: block;
+				cursor: pointer;
+				height: 30px;
+				width: 120px;
+				margin-bottom: 20px;
 
-				.selectLabel {
+				@include css4 {
+					background: var(--joker01);
+				};
+				span {
 					position: relative;
-					font: 1.6em Calibri, sans-serif;
-					
+					height: 100%;
+					width: 100%;
+					font: 1.8em Calibri, sans-serif;
+
+					@extend %alignCenter;
+
 					@include css4 {
 						color: var(--lightGray);
 					};
 				}
-				.select {
-					position: relative;
-				}
 			}
-			.selectDivFile {
-				width: 40px;
-				height: 40px;
-
-				.fileInput {
-					top: -28px;
-					width: 100%;
-				}
-			}
-			.selectedDivFile {
-				width: 180px;
-				height: 40px;
-				z-index: 95;
-
-				&:after {
-					content: '';
-					position: absolute;
-					height: 100%;
-					
-					@include css4 {
-						background: var(--gray);
-					};
-				}
-				.fileInput {
-					top: 10px;
-					left: -70px;
-					z-index: 96;
-
-					&:after {
-						content: '';
-						opacity: 0;
-					}
-				}
-			}
-			.selectDivFile,
-			.selectedDivFile {
-				border-radius: 3px;
+			#selectedVideoDiv {
+				background: black;
 				position: relative;
-				margin-right: 10px;
-				overflow: hidden;
-				display: inline-block;
+				height: 340px;
+				max-width: 600px;
+				width: 100%;
+				margin: 0 auto;
+				
+				@extend %alignCenter;
 
-				@include css4 {
-					background: var(--gray);
-					color: var(--lightGray);
-				};
-
-				@include transition(width, 400ms, linear);
-
-				.inputImage {
-					&:after {
-						content: '\f1c5';
-					}
-				}
-				.inputVideo {
-					&:after {
-						content: '\f1c8';
-					}
-				}
-				.fileInput {
-					outline: none;
-					position: absolute;
-					height: calc(100% + 30px);
-					cursor: pointer;
-
-					&:after {
-						position: relative;
-						top: 20px;
-						font: 2em FontAwesome;
-
-						@extend %alignCenter;
-
-						@include css4 {
-							color: var(--lightGray);
-						};
-					}
+				#selectedVideo {
+					position: relative;
+					height: 100%;
+					width: 100%;
 				}
 			}
 			.inputText,

@@ -12,11 +12,13 @@
 ?>
 
 <header id="header" class="header">
+	<?php if($loginCheck == true) {?>
 	<input type="checkbox" name="menuBtInput" id="menuBtInput"/>
 	<label for="menuBtInput" id="menuBt"></label>
+	<?php }?>
 	<section id="itemHome">
 		<a title="<?php echo langCode('home_hover');?>" href="<?php echo $baseUrl;?>" class="ajaxLink">
-			<img src="<?php echo $imageDir . 'streamovie.png';?>" alt="header">
+			<img src="<?php echo $imageDir . 'logo.png';?>" alt="header">
 		</a>
 	</section>
 	<?php if($loginCheck == false) {?>

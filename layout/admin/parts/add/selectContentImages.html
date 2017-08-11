@@ -1,0 +1,28 @@
+<?php
+/*
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!defined('THIS_PAGE')) {
+		require '../_redirect.php';
+		header("Location:" . $base . "404");
+	}
+?>
+<input type="file" id="backImage" name="backImage" class="fileInput inputImage" accept="image/jpeg">
+<label id="coverImageLabel" for="backImage" class="selectedInputLabel inputImageLabel">
+    <figure class="labelFigure">
+        <img src="<?php echo $imageDir . 'media/background.jpg';?>"/>
+        <figcaption class="labelFigcaption"></figcaption>
+    </figure>
+</label>
+<?php if(THIS_PAGE != 'admin_episodes_add') {?>
+<input type="file" id="contentImage" name="contentImage" class="fileInput inputImage" accept="image/jpeg">
+<label id="imageLabel" for="contentImage" class="selectedInputLabel inputImageLabel">
+    <figure class="labelFigure">
+        <img src="<?php echo $imageDir . 'media/image.jpg';?>"/>
+        <figcaption class="labelFigcaption"></figcaption>
+    </figure>
+</label>
+<?php }?>

@@ -14,13 +14,6 @@
 ?>
 <section class="interface addInterface bodyMenuOpened">
 	<div id="pageAddress"><span class="pageLink"><a href="<?php echo $baseUrl . 'admin';?>"><?php echo langCode('admin_home');?></a></span><span class="pageLink"><?php echo langCode('admin_users');?></span><span id="activePage"><?php echo langCode('admin_add');?></span></div>
-	<?php require 'createForm.html';?>
+	<?php require 'parts/createForm.html';?>
 </section>
-<script lang="text/javascript">
-	$(document).ready(function() {
-		closeMessage('.userError', '#errorMsgClose');
-
-		showSelectedFile('.selectDivFile');
-	});
-</script>
 <?php }?>

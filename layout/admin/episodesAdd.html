@@ -24,7 +24,7 @@
     <?php }?>
     <form method="post" action="?go=create" class="formAdd" enctype="multipart/form-data">
         <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Select the serie and the visibility';?></legend>
-            <?php require 'episodeSelect.html';?>
+            <?php require 'parts/episodeSelect.html';?>
         </fieldset>
         <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Select the serie and episode numbers';?></legend>
             <div class="selectDiv">
@@ -36,17 +36,10 @@
                 <input type="number" name="episodeNumber" min="1" max="200"/>
             </div>
         </fieldset>
-        <?php require 'episodesForm.html';?>
+        <?php require 'parts/episodesForm.html';?>
         <fieldset class="formFieldset">
             <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add Episode';?></span></button>
         </fieldset>
     </form>
 </section>
-<script lang="text/javascript">
-	$(document).ready(function() {
-		closeMessage('.userError', '#errorMsgClose');
-
-		showSelectedFile('.selectDivFile');
-	});
-</script>
 <?php }?>

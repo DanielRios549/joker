@@ -70,21 +70,29 @@ function advancedOptions(button, show) {
 //Upload
 
 function showSelectedFile(div) {
-	$(div).on('change', '.fileInput', function() {
+	$(div).on('change', '.inputImage', function() {
 		var $this = $(this);
-		var files = $(this).prop('files');
+		var files = $this.prop('files');
 		var fileReader = new FileReader();
 
 		fileReader.addEventListener('load', function() {
 			var imageSelected = fileReader.result;
-			//console.log(imageSelected);
 			$this.next('.fileInputLabel').removeClass('fileInputLabel').addClass('selectedInputLabel');
 			$this.next('.selectedInputLabel').find('img').attr('src', imageSelected);
 		});
 
-		fileReader.onload = function(e) {
-			
-		};
 		fileReader.readAsDataURL(files[0]);
+	})
+	.on('change', '.inputVideo', function() {
+		var $this = $(this);
+		var files = $this.prop('files');
+		var fileReader = new FileReader();
+		
+		var blob = new Blob([files[0]], {type: files.type});
+		var video = document.getElementById("selectedVideo");
+		var url = (URL || webkitURL).createObjectURL(blob);
+
+		video.src = url;
+		fileReader.readAsArrayBuffer(files[0]);
 	});
 }

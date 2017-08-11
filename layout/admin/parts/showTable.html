@@ -79,24 +79,19 @@
 			<div id="contentRowChange">
 				<div id="closeEditDiv"><a href="<?php echo $setNewUrl;?>" title="Close"></a></div>
 				<form class="formAdd" method="post" action="?edited=<?php echo $key[$current1];?>" enctype="multipart/form-data">
+					<fieldset class="formFieldset">
+        				<?php require $selectFormFile;?>
+					</fieldset>
 					<div class="openFieldset"><span class="openSpan"><?php echo 'Images';?></span></div>
 					<fielset class="formFieldset">
-						<input type="file" id="userCoverImage" class="fileInput inputImage" accept="image/jpeg">
-						<label id="coverImageLabel" for="userCoverImage" class="selectedInputLabel inputImageLabel">
-							<figure class="labelFigure">
-								<img src="<?php echo $currentCoverImage;?>"/>
-								<figcaption class="labelFigcaption"></figcaption>
-							</figure>
-						</label>
-						<?php if(THIS_PAGE != 'admin_episodes_manager') {?>
-						<input type="file" id="userImage" class="fileInput inputImage" accept="image/jpeg">
-						<label id="imageLabel" for="userImage" class="selectedInputLabel inputImageLabel">
-							<figure class="labelFigure">
-								<img src="<?php echo $currentImage;?>"/>
-								<figcaption class="labelFigcaption"></figcaption>
-							</figure>
-						</label>
-						<?php }?>
+						<?php 
+						if(MENU_GROUP == 'users') {
+							require 'manager/selectUserImages.html';
+						}
+						else {
+							require 'manager/selectContentImages.html';
+						}
+						?>
 					</fielset>
 					<?php if((THIS_PAGE != 'admin_users_manager') and (THIS_PAGE != 'admin_series_manager')) {?>
 					<div class="openFieldset openFieldsetVideo"><span class="openSpan"><?php echo 'Media';?></span></div>
@@ -128,9 +123,7 @@
 						</div>
 					</fieldset>
 					<?php }?>
-					<fieldset class="formFieldset">
-        				<?php require $selectFormFile;?>
-					</fieldset>
+					<div class="openFieldset fieldsetOpen"><span class="openSpan"><?php echo 'Dados';?></span></div>
 					<fieldset class="formFieldset">
 						<?php
 							if(THIS_PAGE == 'admin_users_manager') {
@@ -181,7 +174,9 @@
 						<input type="text" id="editSynBR" name="editSynBR" class="inputText" value="<?php echo $thisShowSynBR;?>"/>
 						<label for="editSynBR" id="dateLabel" class="inputLabel"></label>
 						<?php }?>
-						<button type="submit" class="submitButton"><span class="submitSpan">Save</span></button>
+					</fieldset>
+					<fieldset class="formFieldset">
+					<button type="submit" class="submitButton"><span class="submitSpan">Save</span></button>
 					</fieldset>
 				</form>
 			</div>
@@ -233,7 +228,7 @@
 		<?php require 'managerOption.html';?>
 	</div>
 </div>
-<script type="text/javascript">
+<script lang="text/javascript">
 	$(document).ready(function() {
 		$('.formAdd').on('click', '.openFieldset', function() {
 			$(this).toggleClass('fieldsetOpen');
@@ -243,6 +238,8 @@
 				playPause();
 			}
 		});
+		advancedOptions($("#managerOptions"), $("#advancedSearchDiv"));
+		showSelectedFile('.formFieldset');
 	});
 </script>
 <?php }?>

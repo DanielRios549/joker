@@ -16,10 +16,11 @@
 
             $getRemove = (int) isset($_GET['removed']) ? $_GET['removed'] : 0;
 
-            $userDir = $url . 'images/user/' . $getRemove;
-
             if($page == 'admin_users_manager') {
                 $removeType = 'User';
+
+                //Verify if the user exists
+
                 $getUser = $pdo -> prepare("SELECT * FROM user WHERE user_id = :user");
                 $getUser -> bindValue(':user', $getRemove);
                 $getUser -> execute();
@@ -27,61 +28,72 @@
                 if($getUser -> rowCount() == 1) {
                     $user = $getUser -> fetch(PDO::FETCH_ASSOC);
                     $userName = $user['username'];
-
+                    $userId = $user['user_id'];
+                    $deleteDir = $url . 'images/user/' . $userId;
                     $removeIndentifyer = $userName;
 
                     //Prepare to remove the use, remove the foreign datas before
 
                     try {
-                        $pdo -> beginTransaction();
+                        //Verify if there is replies from others users in this user's comments
 
-                        /*$removeReply = $pdo -> prepare("DELETE FROM comment_reply WHERE user = ?");
-                        $removeReply -> execute($getRemove);
+                        $replyFrom = $pdo -> prepare(
+                        "DELETE rp.* FROM user AS u
+                        INNER JOIN comment AS cm ON cm.user = u.user_id
+                        INNER JOIN comment_reply AS rp ON rp.comment = cm.comment_id
+                        WHERE u.user_id = :user");
+                        
+                        $replyFrom -> bindValue(':user', $userId);
 
-                        $removeComment = $pdo -> prepare("DELETE FROM comment WHERE user = ?");
-                        $removeComment -> execute($getRemove);
+                        if($replyFrom -> execute()) {
+                            $pdo -> beginTransaction();
 
-                        $removeFollow = $pdo -> prepare("DELETE FROM follow WHERE user = ?");
-                        $removeFollow -> execute($getRemove);
+                            $removeReply = $pdo -> exec("DELETE FROM comment_reply WHERE user = $getRemove");
 
-                        $removeFollow2 = $pdo -> prepare("DELETE FROM follow WHERE follow = ?");
-                        $removeFollow2 -> execute($getRemove);
+                            $removeComment = $pdo -> exec("DELETE FROM comment WHERE user = $getRemove");
 
-                        $removeRestore = $pdo -> prepare("DELETE FROM user_restore WHERE user_id = ?");
-                        $removeRestore -> execute($getRemove);
+                            $removeFollow = $pdo -> exec("DELETE FROM follow WHERE user = $getRemove");
 
-                        $removeWatched = $pdo -> prepare("DELETE FROM watched WHERE user = ?");
-                        $removeWatched -> execute($getRemove);
+                            $removeFollow2 = $pdo -> exec("DELETE FROM follow WHERE follow = $getRemove");
 
-                        $removeWatchlist = $pdo -> prepare("DELETE FROM watchlist WHERE user_id = ?");
-                        $removeWatchlist -> execute($getRemove);
+                            $removeRestore = $pdo -> exec("DELETE FROM user_restore WHERE user_id = $getRemove");
 
-                        $removeUser = $pdo -> prepare("DELETE FROM user WHERE user_id = ?");
-                        $removeUser -> execute($getRemove);
+                            $removeWatched = $pdo -> exec("DELETE FROM watched WHERE user = $getRemove");
 
-                        if($pdo -> commit()) {
-                            if($removeUser -> rowCount() == 0) {
-                                echo alert("Sintax ok, but there is an error to delete the user " . $removeIndentifyer);
+                            $removeWatchlist = $pdo -> exec("DELETE FROM watchlist WHERE user_id = $getRemove");
+
+                            if($pdo -> commit()) {
+                                $removeUser = $pdo -> prepare("DELETE FROM user WHERE user_id = :user");
+                                $removeUser -> bindValue(':user', $getRemove);
+                                $removeUser -> execute();
+
+                                if($removeUser -> rowCount() == 0) {
+                                    echo alert("Sintax ok, but the user " . $removeIndentifyer . " was not deleted");
+                                }
+                                elseif($removeUser -> rowCount() == 1) {
+                                    system('/bin/rm -rf ' . escapeshellarg($deleteDir));
+                                    echo alert($removeType . ' ' . $removeIndentifyer . ' ' .  'Removed, id ' . $userId);
+                                }
+                                echo script('history.go(-2)');
                             }
-                            elseif($removeUser -> rowCount() == 1) {
-                                echo alert($removeType . ' ' . $removeIndentifyer . ' ' .  'Removed, id ' . $getRemove);
+                            else {
+                                echo alert("Error to delete the user " . $removeIndentifyer);
+                                $pdo -> rollBack();
+                                echo script('history.go(-2)');
                             }
                         }
                         else {
-                            $pdo -> rollBack();
-                            echo alert('Sintax Error to remove the user ' . $removeIndentifyer);
-                        }*/
-
-                        system('/bin/rm -rf ' . escapeshellarg($userDir));
-
-                        //echo alert($userDir);
-
-                        echo script('history.go(-2)');
+                            echo alert("Error to delete a reply from user " . $removeIndentifyer);
+                            echo script('history.go(-2)');
+                        }
                     }
                     catch(PDOException $error) {
                         $pdo -> rollBack();
                         echo $error -> getMessage();
                     }
+                }
+                else {
+                    echo script('history.go(-2)');
                 }
             }
         }

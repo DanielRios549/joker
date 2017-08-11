@@ -14,15 +14,6 @@
 ?>
 <section class="interface managerInterface bodyMenuOpened">
 	<div id="pageAddress"><span class="pageLink"><a href="<?php echo $baseUrl . 'admin';?>"><?php echo langCode('admin_home');?></a></span><span class="pageLink"><?php echo langCode('series');?></span><span id="activePage"><?php echo langCode('admin_manager');?></span></div>
-	<?php require 'showTable.html';?>
+	<?php require 'parts/showTable.html';?>
 </section>
-<script lang="text/javascript">
-	//User tabs
-    $(document).ready(function() {
-		//Advanced Search
-    
-		advancedOptions($("#managerOptions"), $("#advancedSearchDiv"));
-		showSelectedFile('.formFieldset');
-	});
-</script>
 <?php }?>

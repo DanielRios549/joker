@@ -28,6 +28,22 @@
     </select>
 </div>
 <div class="selectDiv">
+    <label for="category" class="selectLabel" >Category</label>
+    <select class="select" name="category">
+        <?php 
+            foreach($contentCategories as $contentCategories => $select) {
+                if($select == @$keyEdit['category']) {
+                    $optionSelected4 = 'selected';
+                }
+                else {
+                    $optionSelected4 = '';
+                }
+        ?>
+        <option value="<?php echo $select;?>" <?php echo @$optionSelected4;?>><?php echo ucfirst($select);?></option>
+        <?php }?>
+    </select>
+</div>
+<div class="selectDiv">
     <label for="feature" class="selectLabel" >Feature</label>
     <select class="select" name="feature">
         <?php 
@@ -56,22 +72,6 @@
                 }
         ?>
         <option value="<?php echo $select;?>" <?php echo @$optionSelected3;?>><?php echo ucfirst($select);?></option>
-        <?php }?>
-    </select>
-</div>
-<div class="selectDiv">
-    <label for="category" class="selectLabel" >Category</label>
-    <select class="select" name="category">
-        <?php 
-            foreach($contentCategories as $contentCategories => $select) {
-                if($select == @$keyEdit['category']) {
-                    $optionSelected4 = 'selected';
-                }
-                else {
-                    $optionSelected4 = '';
-                }
-        ?>
-        <option value="<?php echo $select;?>" <?php echo @$optionSelected4;?>><?php echo ucfirst($select);?></option>
         <?php }?>
     </select>
 </div>
