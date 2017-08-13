@@ -166,13 +166,7 @@
                                         copy('../media/video.mp4' , $contentVideoDir . '/video.mp4');
                                     }
 
-                                    $openFolder = 'cd ' . $contentVideoDir;
-                                    $MP4BoxDecode = $openFolder . ' && MP4Box -dash-profile dashavc264:live -dash 4000 -frag 4000 -segment-name video_0/segment video.mp4 -out output_dash.mpd';;
-                                    
-                                    system($MP4BoxDecode);
-                                    system('/bin/rm -rf ' . $contentVideoDir . '/video.mp4');
-
-                                    $this -> fixMPDFile($contentVideoDir);
+                                    $this -> createDashVideo($contentVideoDir);
 
                                     system('chmod -R 770 ' . $url . 'images/media/movies/*');
                                     system('chmod -R 770 ' . $url . 'media/movies/*');
@@ -180,10 +174,11 @@
                                     $msg = 'Movie Added';
                                 }
                                 elseif($type == 'serie') {
-                                    $this -> contentEpisode($contentDirData['content_id'], $data, $file, 1 , 1, true, false);
+                                    //$this -> contentEpisode($contentDirData['content_id'], $data, $file, 1 , 1, true, false);
+                                    system('chmod -R 770 ' . $url . 'images/media/series/*');
+                                    system('chmod -R 770 ' . $url . 'media/series/*');
 
-                                    //system($MP4BoxDecode);
-                                    $msg = 'Serie Added';
+                                    $msg = 'Serie Added, now you need to add episodes';
                                 }
 
                                 $show = 'newAccountCreatedDisplay';
@@ -201,113 +196,125 @@
                 }
             }
         }
-        public function contentEpisode($url, $content, $data, $file, $season, $episode, $submit, $message) {
+        public function contentEpisode($url, $content, $data, $file, $season, $episode, $message) {
             $pdo = $this -> getConnection();
 
-            if(isset($submit)) {
-                //inputs
+            //inputs
+            
+            $active = isset($data['active']) ? $data['active'] : 'no';
+            $episodeUS = @$data['episodeTitleUS'] . "|" . @$data['episodeSynUS'];
+            $episodeBR = @$data['episodeTitleBR'] . "|" . @$data['episodeSynBR'];
 
-                $active = isset($data['active']) ? $data['active'] : 'no';
-                $episodeUS = @$data['episodeTitleUS'] . "|" . @$data['episodeSynUS'];
-                $episodeBR = @$data['episodeTitleBR'] . "|" . @$data['episodeSynBR'];
+            //Files
 
-                //Files
+            $firstImage = @$file['firstImage'];
+            $firstVideo = @$file['firstVideo'];
 
-                $firstImage = @$file['firstImage'];
-				$firstVideo = @$file['firstVideo'];
+            $getContent = $pdo -> prepare("SELECT * FROM content WHERE content_id = :content");
+            $getContent -> bindValue(":content", $content);
+            $getContent-> execute();
 
-                $getContent = $pdo -> prepare("SELECT * FROM content WHERE content_id = :content");
-                $getContent -> bindValue(":content", $content);
+            if($getContent -> rowCount() == 1) {
+                $getEpisode = $pdo -> prepare("SELECT * FROM content_episodes WHERE episode_ref = :content AND season = :season AND episode = :episode");
+                $getEpisode -> bindValue(":content", $content);
+                $getEpisode -> bindValue(":season", $season);
+                $getEpisode -> bindValue(":episode", $episode);
+                $getEpisode -> execute();
+                
+                if($getEpisode -> rowCount() == 0) {
+                    $addEpisode = $pdo -> prepare("INSERT INTO content_episodes(active, episode_ref, season, episode, en_US, pt_BR)
+                    VALUES (:active, :content, :season, :episode, :episodeUS, :episodeBR)");
 
-                $getContent-> execute();
+                    $addEpisode -> bindValue(":active", $active);
+                    $addEpisode -> bindValue(":content", $content);
+                    $addEpisode -> bindValue(":season", $season);
+                    $addEpisode -> bindValue(":episode", $episode);
+                    $addEpisode -> bindValue(":episodeUS", $episodeUS);
+                    $addEpisode -> bindValue(":episodeBR", $episodeBR);
+                    $addEpisode -> execute();
 
-                if($getContent -> rowCount() == 1) {
-                    $getEpisode = $pdo -> prepare("SELECT * FROM content_episodes WHERE episode_ref = :content AND season = :season AND episode = :episode");
-                    $getEpisode -> bindValue(":content", $content);
-                    $getEpisode -> bindValue(":season", $season);
-                    $getEpisode -> bindValue(":episode", $episode);
+                    if($addEpisode -> rowCount() == 1)  {
+                        $episodeImageParentDir = $url . "images/media/series/" . $content;
+                        $episodeVideoParentDir = $url . "media/series/" . $content;
+                        $episodeAddDir = "/season" . $season;
+                        $episodeAddDir2 = "/episode" . $episode;
 
-                    if($getEpisode -> execute()) {
-                        if($getEpisode -> rowCount() >= 1) {
-                            if($message == true) {
-                                $msg = "Episode Already Exist";
-                                $show = 'newAccountCreatedDisplay';
-                            }
+                        //system('/bin/mkdir ' . $episodeImageParentDir);
+                        system('/bin/mkdir ' . $episodeImageParentDir . $episodeAddDir);
+                        system('/bin/mkdir ' . $episodeImageParentDir . $episodeAddDir . $episodeAddDir2);
+
+                        //system('/bin/mkdir ' . $episodeVideoParentDir);
+                        system('/bin/mkdir ' . $episodeVideoParentDir . $episodeAddDir);
+                        system('/bin/mkdir ' . $episodeVideoParentDir . $episodeAddDir . $episodeAddDir2);
+
+                        $episodeImageDir = $episodeImageParentDir . $episodeAddDir . $episodeAddDir2;
+                        $episodeVideoDir = $episodeVideoParentDir . $episodeAddDir . $episodeAddDir2;
+
+                        //Episode Image
+
+                        if($firstImage['name'] != '') {
+                            $imageExtension = strtolower(substr($firstImage['name'], -4));
+                            $imageName = "image" . $imageExtension;
+                            move_uploaded_file($firstImage['tmp_name'], $episodeImageDir . "/" . $imageName);
                         }
                         else {
-                            $addEpisode = $pdo -> prepare("INSERT INTO content_episodes(active, episode_ref, season, episode, en_US, pt_BR)
-                            VALUES (:active, :content, :season, :episode, :episodeUS, :episodeBR)");
+                            copy('../images/media/episodeImage.jpg', $episodeImageDir . '/image.jpg');
+                        }
 
-                            $addEpisode -> bindValue(":active", $active);
-                            $addEpisode -> bindValue(":content", $content);
-                            $addEpisode -> bindValue(":season", $season);
-                            $addEpisode -> bindValue(":episode", $episode);
-                            $addEpisode -> bindValue(":episodeUS", $episodeUS);
-                            $addEpisode -> bindValue(":episodeBR", $episodeBR);
+                        //Episode Video
 
-                            if($addEpisode -> execute()) {
-                                $episodeImageParentDir = "../images/media/series/" . $content;
-                                $episodeVideoParentDir = "../media/series/" . $content;
-                                $episodeAddDir = "/season" . $season;
-                                $episodeAddDir2 = "/episode" . $episode;
+                        if($firstVideo['name'] != '') {
+                            $videoExtension = strtolower(substr($firstVideo['name'], -4));
+                            $videoName = "video" . $videoExtension;
+                            move_uploaded_file($firstVideo['tmp_name'], $episodeVideoDir . "/" . $videoName);
+                        }
+                        else {
+                            copy('../media/video.mp4', $episodeVideoDir . '/video.mp4');
+                        }
 
-                                if(!file_exists($episodeImageParentDir . $episodeAddDir)) {
-                                    mkdir($episodeImageParentDir . $episodeAddDir);
-                                }
-                                if(!file_exists($episodeImageParentDir . $episodeAddDir . $episodeAddDir2)) {
-                                    mkdir($episodeImageParentDir . $episodeAddDir . $episodeAddDir2);
-                                }
-                                if(!file_exists($episodeVideoParentDir . $episodeAddDir)) {
-                                    mkdir($episodeVideoParentDir . $episodeAddDir);
-                                }
-                                if(!file_exists($episodeVideoParentDir . $episodeAddDir . $episodeAddDir2)) {
-                                    mkdir($episodeVideoParentDir . $episodeAddDir . $episodeAddDir2);
-                                }
+                        $this -> createDashVideo($episodeVideoDir);
 
-                                $episodeImageDir = $episodeImageParentDir . $episodeAddDir . $episodeAddDir2;
-                                $episodeVideoDir = $episodeVideoParentDir . $episodeAddDir . $episodeAddDir2;
+                        system('chmod -R 770 ' . $url . 'images/media/series/' . $content . '/*');
+                        system('chmod -R 770 ' . $url . 'media/series/*' . $content . '/*');
 
-                                //Episode Image
-
-                                if($firstImage['name'] != '') {
-                                    $imageExtension = strtolower(substr($firstImage['name'], -4));
-                                    $imageName = "image" . $imageExtension;
-                                    move_uploaded_file($firstImage['tmp_name'], $episodeImageDir . "/" . $imageName);
-                                }
-                                else {
-                                    copy('../images/media/episodeImage.jpg', $episodeImageDir . '/image.jpg');
-                                }
-
-                                //Episode Video
-
-                                if($firstVideo['name'] != '') {
-                                    $videoExtension = strtolower(substr($firstVideo['name'], -4));
-                                    $videoName = "video" . $videoExtension;
-                                    move_uploaded_file($firstVideo['tmp_name'], $episodeVideoDir . "/" . $videoName);
-                                }
-                                else {
-                                    copy('../media/video.mp4', $episodeVideoDir . '/video.mp4');
-                                }
-
-                                if($message == true) {
-                                    $show = 'newAccountCreatedDisplay';
-                                    $msg = 'Episode Added';
-                                    $errorPos = array($show, $msg);
-                                }
-                            }
+                        if($message == true) {
+                            $msg = 'Episode Added';
+                            $show = 'newAccountCreatedDisplay';
                         }
                     }
-                    if($message == true) {
-                        $errorPos = array($show, $msg);
+                    else {
+                        if($message == true) {
+                            $msg = "Error to add the episode";
+                            $show = 'newAccountCreatedDisplay';
+                        }
                     }
                 }
-
-                //Show the Error
-                    
-                if($message == true) {
-                    $this -> showError = $errorPos;
+                elseif($getEpisode -> rowCount() >= 1) {
+                    if($message == true) {
+                        $msg = "Episode Already Exist";
+                        $show = 'newAccountCreatedDisplay';
+                    }
                 }
             }
+
+            //Show the Error
+                
+            if($message == true) {
+                $errorPos = array($show, $msg);
+                $this -> showError = $errorPos;
+            }
+        }
+
+        //function used as complement for 2 above
+
+        private function createDashVideo($dir) {
+            $openFolder = 'cd ' . $dir;
+            $MP4BoxDecode = $openFolder . ' && MP4Box -dash-profile dashavc264:live -dash 4000 -frag 4000 -segment-name video_0/segment video.mp4 -out output_dash.mpd';
+            
+            system($MP4BoxDecode);
+            system('/bin/rm -rf ' . $dir . '/video.mp4');
+
+            $this -> fixMPDFile($dir);
         }
         private function fixMPDFile($dir) {
             system('/bin/mv ' . $dir . '/output_dash.mpd ' . $dir . '/output_dash.xml');

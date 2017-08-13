@@ -1,0 +1,19 @@
+<!-- Admin Lives Add -->
+<?php
+/* 
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+	if(!isset($baseUrl)) {
+		require '../../_redirect.php';
+		header("Location:" .  $base . "404");
+	}
+	if($adminCheck == true) {
+?>
+<section class="interface addInterface bodyMenuOpened">
+	<div id="pageAddress"><span class="pageLink"><a href="<?php echo $baseUrl . 'admin';?>"><?php echo langCode('admin_home');?></a></span><span class="pageLink"><?php echo langCode('movies');?></span><span id="activePage"><?php echo langCode('admin_add');?></span></div>
+	<?php require 'parts/createForm.html';?>
+</section>
+<?php }?>

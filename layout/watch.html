@@ -16,7 +16,9 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		autoPlay = true;
-		liveUrl = '<?php echo $contentUrl;?>';
+	<?php if(isset($liveUrl)) {?>
+		liveUrl = $('#watchInterface').attr('data-link');
+	<?php }?>
 	});
 </script>
 <main id="watchInterface"
@@ -25,7 +27,8 @@
 	data-season="<?php echo $dataSeason;?>"
 	data-episode="<?php echo $dataEpisode;?>"
 	data-dash="<?php echo $dashFile;?>"
-	data-hls="<?php echo $hlsFile;?>">
+	data-hls="<?php echo $hlsFile;?>"
+	data-link="<?php echo $liveUrl?>">
 
 	<?php require 'player/' . $videoPlayer . '/player.html';?>
 

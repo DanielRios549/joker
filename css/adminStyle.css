@@ -577,6 +577,14 @@ html body fieldset {
   left: 16px;
 }
 
+.menuOpened #ulMenu .itemMenu:nth-of-type(6):before,
+.menuOpened #ulMenu .itemMenuActive:nth-of-type(6):before {
+  content: '\f1e8';
+  font-size: 1.5em;
+  top: 0px;
+  left: 16px;
+}
+
 .menuOpened #ulMenu .itemMenu .itemMenuSpan,
 .menuOpened #ulMenu .itemMenuActive .itemMenuSpan {
   border-bottom: 1px solid #565656;
@@ -747,6 +755,7 @@ html body fieldset {
 .interface {
   box-shadow: -5px 0 3px rgba(0, 0, 0, 0.6);
   position: relative;
+  min-height: 500px;
   top: 50px;
   right: 0;
   float: right;
@@ -4058,46 +4067,42 @@ html body fieldset {
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentId {
-  box-sizing: border-box;
   position: relative;
   top: 0;
   left: 0;
   height: 40px;
-  width: 15%;
+  width: 150px;
   text-align: center;
   border-right: 1px solid var(--lightGray);
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentDetails {
-  box-sizing: border-box;
   position: relative;
   top: 0;
   left: 0;
   height: 40px;
-  width: 70%;
+  width: 100%;
   text-indent: 20px;
-  border-right: 1px solid var(--lightGray);
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions {
-  box-sizing: border-box;
   position: relative;
-  top: 0;
-  left: 0;
-  width: 15%;
+  min-width: 120px;
   height: 40px;
+  display: flex;
+  justify-content: center;
+  border-left: 1px solid var(--lightGray);
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit {
-  box-sizing: border-box;
+  position: relative;
   border-radius: 3px;
   width: 100px;
   height: 100%;
-  margin: 0 auto;
   padding: 3px;
   display: flex;
+  flex: 0 0 auto;
   background: var(--joker02);
-  border-right: 1px solid var(--lightGray);
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink {
@@ -4106,7 +4111,6 @@ html body fieldset {
   height: 100%;
   text-decoration: none;
   display: flex;
-  border-right: 1px solid var(--white);
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink:before {
@@ -4144,6 +4148,7 @@ html body fieldset {
   width: 40px;
   height: 100%;
   cursor: pointer;
+  border-left: 1px solid var(--white);
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption:after {

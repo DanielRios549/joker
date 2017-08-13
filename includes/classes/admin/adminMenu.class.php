@@ -43,7 +43,7 @@
 			$menu_on = 'Active';
 			$page = MENU_GROUP;
 			
-			if ($page == 'users') {
+			if ($page == 'user') {
 				$menu = $menu_on;
 			}
 			else {
@@ -55,7 +55,7 @@
 			$menu_on = 'Active';
 			$page = MENU_GROUP;
 			
-			if ($page == 'movies') {
+			if ($page == 'movie') {
 				$menu = $menu_on;
 			}
 			else {
@@ -67,7 +67,19 @@
 			$menu_on = 'Active';
 			$page = MENU_GROUP;
 			
-			if ($page == 'series') {
+			if ($page == 'serie') {
+				$menu = $menu_on;
+			}
+			else {
+				$menu = '';
+			}
+			return $menu;
+		}
+		public function menu5() {
+			$menu_on = 'Active';
+			$page = MENU_GROUP;
+			
+			if ($page == 'live') {
 				$menu = $menu_on;
 			}
 			else {
@@ -93,7 +105,7 @@
 			$menuGroup_off = 'Close';
 			$page = MENU_GROUP;
 			
-			if ($page == 'users') {
+			if ($page == 'user') {
 				$menuGroup = $menuGroup_on;
 			}
 			else {
@@ -106,7 +118,7 @@
 			$menuGroup_off = 'Close';
 			$page = MENU_GROUP;
 			
-			if ($page == 'movies') {
+			if ($page == 'movie') {
 				$menuGroup = $menuGroup_on;
 			}
 			else {
@@ -119,7 +131,20 @@
 			$menuGroup_off = 'Close';
 			$page = MENU_GROUP;
 			
-			if ($page == 'series') {
+			if ($page == 'serie') {
+				$menuGroup = $menuGroup_on;
+			}
+			else {
+				$menuGroup = $menuGroup_off;
+			}
+			return $menuGroup;
+		}
+		public function menuGroup5() {
+			$menuGroup_on = 'Open';
+			$menuGroup_off = 'Close';
+			$page = MENU_GROUP;
+			
+			if ($page == 'live') {
 				$menuGroup = $menuGroup_on;
 			}
 			else {
@@ -196,17 +221,6 @@
 		public function subMenu4_2() {
 			$page = THIS_PAGE;
 			
-			if ($page == 'admin_episodes_manager') {
-				$menu = 'Selected';
-			}
-			else {
-				$menu = '';
-			}
-			return $menu;
-		}
-		public function subMenu4_3() {
-			$page = THIS_PAGE;
-			
 			if ($page == 'admin_series_add') {
 				$menu = 'Selected';
 			}
@@ -215,10 +229,21 @@
 			}
 			return $menu;
 		}
-		public function subMenu4_4() {
+		public function subMenu5_1() {
 			$page = THIS_PAGE;
 			
-			if ($page == 'admin_episodes_add') {
+			if ($page == 'admin_lives_manager') {
+				$menu = 'Selected';
+			}
+			else {
+				$menu = '';
+			}
+			return $menu;
+		}
+		public function subMenu5_2() {
+			$page = THIS_PAGE;
+			
+			if ($page == 'admin_lives_add') {
 				$menu = 'Selected';
 			}
 			else {

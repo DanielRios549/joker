@@ -21,8 +21,8 @@
 		public $itemEdit;
 		public $editOpions;
 		public $closeChange;
-		public $seasonEpisodes;
 		public $itemRemove;
+		public $itemEpisode;
 
 		//Get the user
 		
@@ -33,16 +33,16 @@
 			//all manager pages
 
 			if($type == 'manager') {
-				$getEpisodes = (int) isset($_GET['s']) ? $_GET['s'] : 0;
 				$getLimit = (int) isset($_GET['l']) ? $_GET['l'] : 10;
 				$getOrder = (int) isset($_GET['o']) ? $_GET['o'] : 1;
 				$getPage = (int) isset($_GET['p']) ? $_GET['p'] : 1;
 				$getEdit = (int) isset($_GET['edit']) ? $_GET['edit'] : 0;
 				$getRemove = (int) isset($_GET['remove']) ? $_GET['remove'] : 0;
+				$getEpisode = (int) isset($_GET['ep']) ? $_GET['ep'] : 0;
 
-				$this -> seasonEpisodes = $getEpisodes;
 				$this -> itemEdit = $getEdit;
 				$this -> itemRemove = $getRemove;
+				$this -> itemEpisode = $getEpisode;
 				$positionUrl = strpos($thisUrl, '?');
 
 				//Get the limit items and order, both are in the same form 
@@ -148,17 +148,31 @@
 					$count = "SELECT * FROM content WHERE type = 'serie'";
 					$queryEdit = "SELECT * FROM content WHERE content_id = $getEdit";
 				}
-				elseif($page == 'admin_episodes_manager') {
+				elseif($page == 'admin_lives_manager') {
+					if($column == 'id') {
+						$columnName = 'content_id';
+					}
+					elseif($column == 'name') {
+						$columnName = 'producer';
+					}
+					$queryPage = "SELECT * FROM content WHERE type = 'live' ORDER BY $columnName $orderQuery";
+					$count = "SELECT * FROM content WHERE type = 'live'";
+					$queryEdit = "SELECT * FROM content WHERE type = 'live' AND content_id = $getEdit";
+				}
+
+				//The episodes are inside Series section
+
+				elseif($getEpisode >= 1) {
 					if($column == 'id') {
 						$columnName = 'episode_id';
 					}
 					elseif($column == 'name') {
 						$columnName = $lang;
 					}
-					$queryPage = "SELECT * FROM content_episodes ORDER BY $columnName $orderQuery LIMIT $pageNumber, $limit";
+					$queryPage = "SELECT * FROM content_episodes ORDER BY $columnName $orderQuery";
 					$count = "SELECT * FROM content_episodes";
 					$queryEdit = "SELECT e.episode_ref, e.active AS episode_active, e.season, e.episode, c.active AS content_active, e.en_US AS episodeUS, e.pt_BR AS episodeBR, c.en_US AS contentUS,  c.pt_BR AS contentBR FROM content_episodes AS e
-					INNER JOIN content AS c ON e.episode_ref = c.content_id WHERE e.episode_id = $getEdit";
+					INNER JOIN content AS c ON e.episode_ref = c.content_id WHERE e.episode_id = $getEpisode";
 				}
 
 				//Make the Edit Query

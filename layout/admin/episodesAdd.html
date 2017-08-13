@@ -13,7 +13,19 @@
     elseif($adminCheck == true) {
 ?>
 <section class="interface addInterface bodyMenuOpened">
-	<div id="pageAddress"><span class="pageLink"><a href="<?php echo $baseUrl . 'admin';?>"><?php echo langCode('admin_home');?></a></span><span class="pageLink"><?php echo langCode('episodes');?></span><span id="activePage"><?php echo langCode('admin_add');?></span></div>
+	<div id="pageAddress">
+        <span class="pageLink">
+            <a href="<?php echo $baseUrl . 'admin';?>">
+                <?php echo langCode('admin_home');?>
+            </a>
+        </span>
+        <span class="pageLink">
+            <?php echo langCode('series_manager_hover');?>
+        </span>
+        <span id="activePage">
+            <?php echo langCode('admin_add') . ' ' . langCode('episodes');?>
+        </span>
+    </div>
     <?php if(isset($_GET['go'])) {?>
     <div id="<?php echo $showError;?>" class="userError">
         <div id="errorMsg">
@@ -42,4 +54,21 @@
         </fieldset>
     </form>
 </section>
+<script lang="text/javascript">
+	$(document).ready(function() {
+        $('.formAdd').on('click', '.openFieldset', function() {
+			$(this).toggleClass('fieldsetOpen');
+        })
+		.on('click', '.openFieldsetVideo', function() {
+            var video = document.getElementById("selectedVideo");
+
+			if(!video.paused) {
+                video.pause();
+			}
+		});
+
+        closeMessage('.userError', '#errorMsgClose');
+		showSelectedFile('.formFieldset');
+	});
+</script>
 <?php }?>

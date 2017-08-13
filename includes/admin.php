@@ -52,7 +52,7 @@
 
 		//print_r($allSeries);
 
-		if(MENU_GROUP == 'users') {
+		if(MENU_GROUP == 'user') {
 			$selectFormFile = 'userSelect.html';
 			$pageType = langCode('admin_users');
 		}
@@ -64,6 +64,9 @@
 			}
 			elseif(THIS_PAGE == 'admin_series_manager') {
 				$pageType = langCode('series');
+			}
+			elseif(THIS_PAGE == 'admin_lives_manager') {
+				$pageType = langCode('lives');
 			}
 		}
 		else {
@@ -83,18 +86,18 @@
 			$getOrder = $classManager -> itemsOrder;
 			$editRow = $classManager -> itemEdit;
 			$removeRow = $classManager -> itemRemove;
+			$episodeRow = $classManager -> itemEpisode;
 
 			$addRow = $classManager -> contentRow;
 			$totalRows = $classManager -> totalContents;
 			$totalPages = $classManager -> totalPages;
+			$setNewUrl = $classManager -> closeChange;
 
 			if($editRow >= 1) {
 				$keyEdit = $classManager -> editOpions;
-				$setNewUrl = $classManager -> closeChange;
 			}
 			if($removeRow >= 1) {
 				//$keyRemove = $classManager -> removeOpiton;
-				$setNewUrl = $classManager -> closeChange;
 			}
 			if(@$_GET['edited'] >=  1) {
 				$classEdit = new AdminEdit();
@@ -146,14 +149,17 @@
 			if(($getLimit == 10) and ($pageActive == 1) and($getOrder == 1)) {
 				$linkEdit = "?edit=";
 				$linkRemove = "?remove=";
+				$linkEpisode = "?ep=";
 			}
 			elseif(($getLimit != 10) or ($pageActive != 1) or ($getOrder != 1)) {
 				$linkEdit = $completeLink . $pageActive . "&edit=";
 				$linkRemove = $completeLink . $pageActive . "&remove=";
+				$linkEpisode = $completeLink . $pageActive . "&ep=";
 			}
 			else {
 				$linkEdit = $completeLink . $pageActive . "&edit=";
 				$linkRemove = $completeLink . $pageActive . "&remove=";
+				$linkEpisode = $completeLink . $pageActive . "&ep=";
 			}
 
 			//Get the selected limit
@@ -194,6 +200,15 @@
 			elseif($getOrder == 4) {
 				$selectedOrder4 = "selected";
 			}
+
+			//Get the Episodes
+
+			if($episodeRow >= 1) {
+				$contentPage = $episodeRow;
+				require 'getEpisodes.php';
+
+				//print_r($episodesList);
+			}
 		}
 
 		//All create pages
@@ -224,18 +239,13 @@
 				$seasonNumber = @$_POST['seasonNumber'];
 				$episodeNumber = @$_POST['episodeNumber'];
 
-				$classCreate -> contentEpisode($directPath, $episodeContent, $_POST, $_FILES, $seasonNumber, $episodeNumber, $addSubmit, true);
-				
-				//Display the error
-				
-				$error = array('userErrorNone', 'The Error is display here', '#2cafec');
-				
 				if(isset($addSubmit)) {
+					$classCreate -> contentEpisode($directPath, $episodeContent, $_POST, $_FILES, $seasonNumber, $episodeNumber, true);
+					
 					$error = $classCreate -> showError;
+					$showError = $error[0];
+					$errorMsg = $error[1];
 				}
-
-				$showError = $error[0];
-				$errorMsg = $error[1];
 			}
 			else {
 				$classCreate = new AdminCreate();

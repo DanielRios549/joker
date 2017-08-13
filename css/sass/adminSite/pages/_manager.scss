@@ -386,12 +386,11 @@
 						}
 					}
 					.contentId {
-						box-sizing: border-box;
 						position: relative;
 						top: 0;
 						left: 0;
 						height: 40px;
-						width: 15%;
+						width: 150px;
 						text-align: center;
 
 						@include css4 {
@@ -399,38 +398,34 @@
 						};
 					}
 					.contentDetails {
-						box-sizing: border-box;
 						position: relative;
 						top: 0;
 						left: 0;
 						height: 40px;
-						width: 70%;
+						width: 100%;
 						text-indent: 20px;
-
-						@include css4 {
-							border-right: 1px solid var(--lightGray);
-						};
 					}
 					.contentOptions {
-						box-sizing: border-box;
 						position: relative;
-						top: 0;
-						left: 0;
-						width: 15%;
+						min-width: 120px;
 						height: 40px;
-						
+						display: flex;
+						justify-content: center;
+
+						@include css4 {
+							border-left: 1px solid var(--lightGray);
+						};
 						.contentEdit {
-							box-sizing: border-box;
+							position: relative;
 							border-radius: 3px;
 							width: 100px;
 							height: 100%;
-							margin: 0 auto;
 							padding: 3px;
 							display: flex;
+							flex: 0 0 auto;
 
 							@include css4 {
 								background: var(--joker02);
-								border-right: 1px solid var(--lightGray);
 							};
 							.contentLink {
 								position: relative;
@@ -441,9 +436,6 @@
 
 								@extend %alignCenter;
 
-								@include css4 {
-									border-right: 1px solid var(--white);
-								};
 								&:before {
 									content: '\f044';
 									font: 1.2em FontAwesome;
@@ -486,6 +478,9 @@
 
 								@extend %alignCenter;
 
+								@include css4 {
+									border-left: 1px solid var(--white);
+								};
 								&:after {
 									content: '\f1f8';
 									font: 2em FontAwesome;

@@ -96,6 +96,84 @@
                     echo script('history.go(-2)');
                 }
             }
+            elseif($page == 'admin_movies_manager') {
+                $removeType = 'Movie';
+
+                //Verify if the user exists
+
+                $getMovie = $pdo -> prepare("SELECT * FROM content WHERE content_id = :content");
+                $getMovie -> bindValue(':content', $getRemove);
+                $getMovie -> execute();
+
+                if($getMovie -> rowCount() == 1) {
+                    $movie = $getMovie -> fetch(PDO::FETCH_ASSOC);
+                    $divisorPosition = strpos($movie[$cookieLang], "|");
+
+                    $movieName = substr($movie[$cookieLang], 0, $divisorPosition);
+                    $movieId = $movie['content_id'];
+                    $deleteDir = $url . 'images/media/movies/' . $movieId;
+                    $deleteDir2 = $url . 'media/movies/' . $movieId;
+                    $removeIndentifyer = $movieName;
+
+                    //Prepare to remove the use, remove the foreign datas before
+
+                    try {
+                        //Verify if there is replies from others users in this user's comments
+
+                        $replyFrom = $pdo -> prepare(
+                        "DELETE rp.* FROM content AS c
+                        INNER JOIN comment AS cm ON cm.content = c.content_id
+                        INNER JOIN comment_reply AS rp ON rp.comment = cm.comment_id
+                        WHERE c.content_id = :content");
+                        
+                        $replyFrom -> bindValue(':content', $movieId);
+
+                        if($replyFrom -> execute()) {
+                            $pdo -> beginTransaction();
+
+                            $removeReply = $pdo -> exec("DELETE FROM comment_reply WHERE comment = $getRemove");
+
+                            $removeComment = $pdo -> exec("DELETE FROM comment WHERE content = $getRemove");
+
+                            $removeWatched = $pdo -> exec("DELETE FROM watched WHERE content = $getRemove");
+
+                            $removeWatchlist = $pdo -> exec("DELETE FROM watchlist WHERE content_id = $getRemove");
+
+                            if($pdo -> commit()) {
+                                $removeUser = $pdo -> prepare("DELETE FROM content WHERE content_id = :content");
+                                $removeUser -> bindValue(':content', $getRemove);
+                                $removeUser -> execute();
+
+                                if($removeUser -> rowCount() == 0) {
+                                    echo alert("Sintax ok, but the movie " . $removeIndentifyer . " was not deleted");
+                                }
+                                elseif($removeUser -> rowCount() == 1) {
+                                    system('/bin/rm -rf ' . escapeshellarg($deleteDir));
+                                    system('/bin/rm -rf ' . escapeshellarg($deleteDir2));
+                                    echo alert($removeType . ' ' . $removeIndentifyer . ' ' .  'Removed, id ' . $userId);
+                                }
+                                echo script('history.go(-2)');
+                            }
+                            else {
+                                echo alert("Error to delete the movie " . $removeIndentifyer);
+                                $pdo -> rollBack();
+                                echo script('history.go(-2)');
+                            }
+                        }
+                        else {
+                            echo alert("Error to delete a reply from movie " . $removeIndentifyer);
+                            echo script('history.go(-2)');
+                        }
+                    }
+                    catch(PDOException $error) {
+                        $pdo -> rollBack();
+                        echo $error -> getMessage();
+                    }
+                }
+                else {
+                    echo script('history.go(-2)');
+                }
+            }
         }
     }
 ?>
