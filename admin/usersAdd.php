@@ -9,7 +9,7 @@
 	
 	define ('ADMIN_PAGE' , 'yes');
 	
-	define ('MENU_GROUP' , 'users');
+	define ('MENU_GROUP' , 'user');
 	
 	define ('PAGE_TYPE' , 'add');
 	

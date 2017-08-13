@@ -91,18 +91,22 @@
 					</a>
 				</li>
 				<li class="subMenuItem">
-					<a class="allMenus" title="<?php echo langCode('admin_episodes_manager_hover');?>" href="<?php echo $adminDir . langCode('admin_episodes_manager_link');?>">
-						<span class="<?php echo 'menuSpan' . $subMenu4_2;?>"><?php echo langCode('admin_manage') . ' ' . langCode('episodes');?></span>
-					</a>
-				</li>
-				<li class="subMenuItem">
 					<a class="allMenus" title="<?php echo langCode('admin_series_add_hover');?>" href="<?php echo $adminDir . langCode('admin_series_add_link');?>">
-						<span class="<?php echo 'menuSpan' . $subMenu4_3;?>"><?php echo langCode('admin_add') . ' ' . langCode('series');?></span>
+						<span class="<?php echo 'menuSpan' . $subMenu4_2;?>"><?php echo langCode('admin_add') . ' ' . langCode('series');?></span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="<?php echo 'itemMenu' . $menu5 . " itemMenu" . $menuGroup5;?>"><span class="itemMenuSpan"><?php echo langCode('lives');?></span>
+			<ul class="subMenuItems">
+				<li class="subMenuItem">
+					<a class="allMenus" title="<?php echo langCode('admin_lives_manager_hover');?>" href="<?php echo $adminDir . langCode('admin_lives_manager_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu5_1;?>"><?php echo langCode('admin_manage') . ' ' . langCode('lives');?></span>
 					</a>
 				</li>
 				<li class="subMenuItem">
-					<a class="allMenus" title="<?php echo langCode('admin_episodes_add_hover');?>" href="<?php echo $adminDir . langCode('admin_episodes_add_link');?>">
-						<span class="<?php echo 'menuSpan' . $subMenu4_4;?>"><?php echo langCode('admin_add') . ' ' . langCode('episodes');?></span>
+					<a class="allMenus" title="<?php echo langCode('admin_lives_add_hover');?>" href="<?php echo $adminDir . langCode('admin_lives_add_link');?>">
+						<span class="<?php echo 'menuSpan' . $subMenu5_2;?>"><?php echo langCode('admin_add') . ' ' . langCode('lives');?></span>
 					</a>
 				</li>
 			</ul>
@@ -125,23 +129,22 @@
 				$selected = $setting['value'];
 		?>
 		</fieldset>
-		<fieldset id="loginConfigs" class="settingsFieldset"><legend class="settingsLegend">Login</legend>
-			<p class="settingsLabel"><?php echo $name;?></p>
-		<?php
-			foreach($avaliableBoolean as $avaliableBoolean => $boolean) {
+		<fieldset id="loginConfigs" class="settingsFieldset"><legend class="settingsLegend"><?php echo $name;?></legend>
+			<?php
+			foreach($avaliableBoolean as $boolean) {
 				if($selected == $boolean) {
 					$selectedOption = 'checked';
 				}
 				else {
 					$selectedOption = '';
 				}
-		?>
+			?>
 			<input type="radio" name="<?php echo $name;?>" id="<?php echo $boolean;?>" value="<?php echo $boolean;?>" <?php echo $selectedOption;?> <?php echo $selectedOption;?>/><label for="<?php echo $boolean;?>"><?php echo $boolean;?></label>
 			<?php }?>
 		</fieldset>
+		<?php }?>
 		<fieldset id="playerConfigs" class="settingsFieldset"><legend class="settingsLegend">Player</legend>
-		<?php }
-			//Select Options
+		<?php 
 			foreach($selectSettings as $selectSettings => $setting) {
 				$name = $setting['name'];
 				$selected = $setting['value'];

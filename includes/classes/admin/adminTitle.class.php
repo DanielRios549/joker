@@ -46,6 +46,15 @@
 			elseif ($page == 'admin_episodes_add') {
 				$title = langCode('admin_add') . ' ' . langCode('episodes');
 			}
+			elseif ($page == 'admin_episodes_add') {
+				$title = langCode('admin_add') . ' ' . langCode('episodes');
+			}
+			elseif ($page == 'admin_lives_manager') {
+				$title = langCode('admin_manager') . ' ' . langCode('lives');
+			}
+			elseif ($page == 'admin_livess_add') {
+				$title = langCode('admin_add') . ' ' . langCode('lives');
+			}
 			return $title;
 		}
 	}

@@ -23,13 +23,13 @@
     <fieldset class="formFieldset formFieldsetInline">
         <?php require $selectFormFile;?>
     </fieldset>
-    <?php if(MENU_GROUP == 'users') {?>
+    <?php if(MENU_GROUP == 'user') {?>
     <div class="openFieldset"><span class="openSpan"><?php echo 'Images';?></span></div>
-    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this user';?></legend>
+    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this ' . MENU_GROUP;?></legend>
         <?php require 'add/selectUserImages.html';?>
     </fieldset>
-    <div class="openFieldset fieldsetOpen"><span class="openSpan"><?php echo 'Dados';?></span></div>
-    <fieldset id="userFieldset" class="formFieldset">
+    <div class="openFieldset"><span class="openSpan"><?php echo 'Datas';?></span></div>
+    <fieldset id="userFieldset" class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Datas for this ' . MENU_GROUP;?></legend>
         <input type="text" name="firstName" id="firstName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_first_name_placeholder');?>" required/>
         <label for="firstName" id="firstNameLabel" class="inputLabel"></label>
         
@@ -48,29 +48,23 @@
         <input type="password" name="password2" id="password2" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder_2');?>" required/>
         <label for="password2" id="passwordLabel2" class="inputLabel"></label>
     </fieldset>
-    <fieldset class="formFieldset">
-        <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add Content';?></span></button>
-    </fieldset>
     <?php } else {?>
     <div class="openFieldset"><span class="openSpan"><?php echo 'Images';?></span></div>
-    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this content';?></legend>
+    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this ' . MENU_GROUP;?></legend>
         <?php require 'add/selectContentImages.html';?>
     </fieldset>
+    <?php if(MENU_GROUP == 'movie') {?>
     <div class="openFieldset openFieldsetVideo"><span class="openSpan"><?php echo 'Media';?></span></div>
-    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Video for this user';?></legend>
+    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Video for this ' . MENU_GROUP;?></legend>
         <input type="file" id="contentVideo" name="contentVideo" class="fileInput inputVideo" accept="video/mp4"  title="Add a video">
         <label id="videoLabel" for="contentVideo" class="inputVideoLabel"><span>Change Video</span></label>
         <div id="selectedVideoDiv">
             <video id="selectedVideo" src="<?php echo $baseUrl . 'media/video.mp4';?>" controls="controls"></video>
         </div>
     </fieldset>
-    <?php
-        if(THIS_PAGE == 'admin_series_add') {
-            require 'episodesForm.html';
-        }
-    ?>
-    <div class="openFieldset fieldsetOpen"><span class="openSpan"><?php echo 'Dados';?></span></div>
-    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Title and Synopsis for this content';?></legend>
+    <?php }?>
+    <div class="openFieldset"><span class="openSpan"><?php echo 'Datas';?></span></div>
+    <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Datas for this ' . MENU_GROUP;?></legend>
         <input type="text" name="producerName" id="producerName" class="inputText" placeholder="<?php echo 'Producer Name';?>" required/>
         <label for="producerName" id="producerNameLabel" class="inputLabel"></label>
         
@@ -92,10 +86,10 @@
         <input type="text" name="synPt" id="synPt" class="inputText" placeholder="<?php echo 'English Synopsis';?>" required/>
         <label for="synPt" id="synPtLabel" class="inputLabel"></label>
     </fieldset>
-    <fieldset class="formFieldset">
-        <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add Content';?></span></button>
-    </fieldset>
     <?php }?>
+    <fieldset class="formFieldset">
+        <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add ' . ucfirst(MENU_GROUP);?></span></button>
+    </fieldset>
 </form>
 <script lang="text/javascript">
 	$(document).ready(function() {

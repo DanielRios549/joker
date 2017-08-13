@@ -183,7 +183,7 @@
                         $contentType = $contentTrue['type'];
                         $contentId = $contentData['content_id'];
                         $contentSynopsis = $contentData['description'];
-                        $contentUrl = $contentData['link'];
+                        $liveUrl = $contentData['link'];
 
                         $dataSeason = 'none';
                         $dataEpisode = 'none';
@@ -194,7 +194,7 @@
                 $hlsFile = 'no';
 
                 $fileName = 'output_dash';
-                $fileToCheck = $videoPath . '/' . $fileName . '.';
+                $fileToCheck = @$videoPath . '/' . $fileName . '.';
 
                 if(file_exists($fileToCheck . 'mpd')) {
                     $dashFile = 'yes';

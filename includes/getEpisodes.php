@@ -13,7 +13,7 @@
 	//If the user is logged
 	
 	elseif($loginCheck == true) {
-        if((THIS_PAGE == 'title') or (THIS_PAGE == 'watch')) {
+        if((THIS_PAGE == 'title') or (THIS_PAGE == 'watch') or (THIS_PAGE == 'admin_series_manager')) {
             //Get season number
 
             try {
@@ -40,7 +40,7 @@
             $contentToFetch = $contentPage;
         }
         else {
-            $contentToFetch = $contentScroll;
+            $contentToFetch = @$contentScroll;
         }
 
         //Get episodes number
@@ -61,7 +61,7 @@
         //Define the folder for series
 
         $firstEpisodeIndex = array_keys($episodesList);
-        $firstEpisodeAll = $episodesList[$firstEpisodeIndex[0]];
+        $firstEpisodeAll = @$episodesList[$firstEpisodeIndex[0]];
         $firstEpisode = $firstEpisodeAll[0];
 
         //print_r($firstEpisode);

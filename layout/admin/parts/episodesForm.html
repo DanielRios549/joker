@@ -11,14 +11,25 @@
 	}
     if($adminCheck == true) {
 ?>
-<fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for this episode';?></legend>
-    <div class="selectDivFile">
-        <input type="file" name="firstImage" class="fileInput inputImage" accept="image/jpeg" title="Add a image for the first episode"/>
-    </div>
-    <div class="selectDivFile">
-        <input type="file" name="firstVideo" class="fileInput inputVideo" accept="video/mp4" title="Add a video for the first episode"/>
+<div class="openFieldset"><span class="openSpan"><?php echo 'First Episode Image';?></span></div>
+<fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Images for the first episode';?></legend>
+    <input type="file" id="firstImage" name="firstImage" class="fileInput inputImage" accept="image/jpeg">
+    <label id="coverImageLabel" for="firstImage" class="selectedInputLabel inputImageLabel">
+        <figure class="labelFigure">
+            <img src="<?php echo $imageDir . 'media/episodeImage.jpg';?>"/>
+            <figcaption class="labelFigcaption"></figcaption>
+        </figure>
+    </label>
+</fieldset>
+<div class="openFieldset openFieldsetVideo"><span class="openSpan"><?php echo 'First Episode Video';?></span></div>
+<fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Video for the first episode';?></legend>
+    <input type="file" id="firstVideo" name="firstVideo" class="fileInput inputVideo" accept="video/mp4"  title="Add a video">
+    <label id="videoLabel" for="firstVideo" class="inputVideoLabel"><span>Change Video</span></label>
+    <div id="selectedVideoDiv">
+        <video id="selectedVideo" src="<?php echo $baseUrl . 'media/video.mp4';?>" controls="controls"></video>
     </div>
 </fieldset>
+<div class="openFieldset"><span class="openSpan"><?php echo 'First epidsode Datas';?></span></div>
 <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Title and Synopsis for the first episode';?></legend>
     <input type="text" name="episodeTitleUS" id="episodeTitleUS" class="inputText" placeholder="<?php echo 'Title Episode English';?>" required/>
     <label for="episodeTitleUS" id="episodeTitleUSLabel" class="inputLabel"></label>

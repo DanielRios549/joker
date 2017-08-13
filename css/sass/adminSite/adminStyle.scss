@@ -366,6 +366,14 @@
                     left: 16px;
                 }
             }
+            &:nth-of-type(6) {
+                &:before {
+                    content: '\f1e8';
+                    font-size: 1.5em;
+                    top: 0px;
+                    left: 16px;
+                }
+            }
             .itemMenuSpan {
                 border-bottom: 1px solid #565656;
                 box-sizing: border-box;
@@ -553,12 +561,12 @@
 .interface {
     box-shadow: -5px 0 3px rgba(0,0,0,.6);
     position: relative;
+    min-height: 500px;
     top: 50px;
     right: 0;
     float: right;
     z-index: 100;
     padding-bottom: 60px;
-    //min-height: 500px;
 
     @include css4 {
         background: var(--darkGray);

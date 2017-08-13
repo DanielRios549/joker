@@ -58,16 +58,21 @@
 		global $thisLang;
 		global $forceEnglish;
 		global $cookieLang;
-		$langPrefer = $thisLang[$name][$cookieLang];
+		$langPrefer = @$thisLang[$name][$cookieLang];
 
 		if($langPrefer != '') {
-			$langName = $langPrefer;
+			$langName = @$langPrefer;
 		}
 		else {
-			$langName = $forceEnglish[$name]['en_US'];
+			$langName = @$forceEnglish[$name]['en_US'];
 		}
-		
-		return $langName;
+
+		if($langName == '') {
+			return $name;
+		}
+		else {
+			return $langName;
+		}
 	}
 	//echo langCode('test');
 ?>

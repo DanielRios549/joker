@@ -9,7 +9,7 @@
 	
 	define ('ADMIN_PAGE' , 'yes');
 	
-	define ('MENU_GROUP' , 'movies');
+	define ('MENU_GROUP' , 'movie');
 	
 	define ('PAGE_TYPE' , 'add');
 	

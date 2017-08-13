@@ -33,7 +33,9 @@
 			<div id="headRow">
 				<div id="contentId"><span class="contentSpan"><?php echo '#';?></span></div>
 				<div id="contentDetails"><span class="contentSpan"><?php echo 'Details';?></span></div>
-				<div id="contentOptions"><span class="contentSpan"><?php echo 'More';?></span></div>
+				<div id="contentOptions">
+					<span class="contentSpan"><?php echo 'More';?></span>
+				</div>
 			</div>
 		</div>
 		<div id="tableBody">
@@ -71,9 +73,10 @@
 						$currentImage = $currentFolder . '/image.jpg';
 						$currentCoverImage = $currentFolder . '/background.jpg';
 					}
-					elseif(THIS_PAGE == 'admin_episodes_manager') {
-						$currentFolder = $mediaImageFolder . 'series/' . $key['episode_ref'] . '/season' . $key['season'] . '/episode' . $key['episode'];
-						$currentCoverImage = $currentFolder . '/image.jpg';
+					elseif(THIS_PAGE == 'admin_lives_manager') {
+						$currentFolder = $mediaImageFolder . 'lives/' . $editRow;
+						$currentImage = $currentFolder . '/image.jpg';
+						$currentCoverImage = $currentFolder . '/background.jpg';
 					}
 			?>
 			<div id="contentRowChange">
@@ -85,7 +88,7 @@
 					<div class="openFieldset"><span class="openSpan"><?php echo 'Images';?></span></div>
 					<fielset class="formFieldset">
 						<?php 
-						if(MENU_GROUP == 'users') {
+						if(MENU_GROUP == 'user') {
 							require 'manager/selectUserImages.html';
 						}
 						else {
@@ -101,10 +104,14 @@
 								$adminContent = $key[$current1];
 								$watchLink = getLink('watchMovie', $adminContent);
 							}
-							elseif(THIS_PAGE == 'admin_episodes_manager') {
+							elseif(THIS_PAGE == 'admin_series_manager') {
 								$adminContent = $key[$current2];
 								$adminEpisode = $key[$current1];
 								$watchLink = getLink('watchSerie', $adminContent) . $adminEpisode;
+							}
+							elseif(THIS_PAGE == 'admin_lives_manager') {
+								$adminContent = $key[$current1];
+								$watchLink = getLink('watchMovie', $adminContent);
 							}
 							require '../includes/watchSettings.php';
 						?>
@@ -117,13 +124,14 @@
 							data-season="<?php echo $dataSeason;?>"
 							data-episode="<?php echo $dataEpisode;?>"
 							data-dash="<?php echo $dashFile;?>"
-							data-hls="<?php echo $hlsFile;?>">
+							data-hls="<?php echo $hlsFile;?>"
+							data-link="<?php echo @$liveUrl;?>">
 
 							<?php require '../player/' . $videoPlayer . '/player.html';?>
 						</div>
 					</fieldset>
 					<?php }?>
-					<div class="openFieldset fieldsetOpen"><span class="openSpan"><?php echo 'Dados';?></span></div>
+					<div class="openFieldset"><span class="openSpan"><?php echo 'Dados';?></span></div>
 					<fieldset class="formFieldset">
 						<?php
 							if(THIS_PAGE == 'admin_users_manager') {
@@ -198,7 +206,11 @@
 					</div>
 				</div>
 			</div>
-			<?php } else {?>
+			<?php } elseif($key[$current1] == $episodeRow) { if(THIS_PAGE == 'admin_series_manager') {?>
+			<div id="contentRowChange">
+				<div id="closeEditDiv"><a href="<?php echo $setNewUrl;?>" title="Close"></a></div>
+			</div>
+			<?php }} else {?>
 			<div class="contentRow">
 				<div class="contentId">
 					<span class="contentSpan">
@@ -210,6 +222,17 @@
 						<?php echo $thisShowName . " / " . $key[$current3] . " / " . $key[$current4];?>
 					</span>
 				</div>
+				<?php if(THIS_PAGE == 'admin_series_manager') {?>
+				<div class="contentOptions">
+					<div class="contentEdit">
+						<a href="<?php echo $linkEpisode . $key[$current1];?>" data-id="<?php echo $key[$current1];?>" class="contentLink">
+							<span>
+								<?php echo langCode('episodes');?>
+							</span>
+						</a>
+					</div>
+				</div>
+				<?php }?>
 				<div class="contentOptions">
 					<div class="contentEdit">
 						<a href="<?php echo $linkEdit . $key[$current1];?>" data-id="<?php echo $key[$current1];?>" class="contentLink">
@@ -232,12 +255,14 @@
 	$(document).ready(function() {
 		$('.formAdd').on('click', '.openFieldset', function() {
 			$(this).toggleClass('fieldsetOpen');
-		})
-		.on('click', '.openFieldsetVideo', function() {
+		});
+		<?php if(MENU_GROUP != 'live') {?>
+		$('.formAdd').on('click', '.openFieldsetVideo', function() {
 			if(!video.paused) {
 				playPause();
 			}
 		});
+		<?php }?>
 		advancedOptions($("#managerOptions"), $("#advancedSearchDiv"));
 		showSelectedFile('.formFieldset');
 	});
