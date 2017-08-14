@@ -154,7 +154,7 @@
                             $dataSeason = $contentData['season'];
                             $dataEpisode = $contentData['episode'];
                             $contentFolder = $mediaImageFolder . 'series/' . $contentData['content_id'];
-                            $contentWatchLink = $baseUrl . langCode('watch_link') . "?id=" . $contentId . "&e=". $firstEpisode['episode_id'];
+                            //$contentWatchLink = getLink('watch', false) . "?id=" . $contentId . "&e=". $firstEpisode['episode_id'];
                         }
                     }
                     $videoPath = $mediaFolder . $contentId . '/season' . $dataSeason . '/episode' . $dataEpisode;

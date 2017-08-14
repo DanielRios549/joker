@@ -14,7 +14,7 @@
 	
 	if($loginCheck == true) {
 		$userConnected = $_SESSION['user_id'];
-		$userSettingsPage = $baseUrl . langcode('settings_link');
+		$userSettingsPage = getLink('settings', false);
 		
 		$btnChange = langCode('settings_change');
 		$btnCancel = langCode('settings_cancel');

@@ -125,7 +125,7 @@
 			<?php } elseif($categoryContent == 'recent_add') {?>
 			<p class="contentDivHeader"><?php echo langCode('recent_add');?></p>
 			<?php } else {?>
-			<p class="contentDivHeader"><?php echo langCode($categoryContent);?><span><a class="ajaxLink" href="<?php echo $baseUrl . langCode('category_link') . '?c=' . categoryId($categoryContent);?>"><?php echo langCode('view_more');?></a></span></p>
+			<p class="contentDivHeader"><?php echo langCode($categoryContent);?><span><a class="ajaxLink" href="<?php echo getLink('category', $categoryContent);?>"><?php echo langCode('view_more');?></a></span></p>
 			<?php }?>
 			<div class="contentDiv">
 				<div class="contentGroupScroll">

@@ -32,7 +32,7 @@
 			//Verify if the session is invalid to device
 			
 			if(($_SESSION['USER_AGENT'] !== $sessionAgent) or ($_SESSION['USER_ADDRESS'] !== $sessionAddress)) {
-				header("Location:" .  $baseUrl . langCode('logoff_link'));
+				header("Location:" .  $baseUrl . getLink('logoff', false));
 			}
 
 			//echo $_COOKIE['PHPSESSID'];
@@ -49,7 +49,11 @@
 
 			$userId = @$_SESSION['user_id'];
 			$endFirstName = strpos($_SESSION['name'], ' ');
-        	$firstName = substr($_SESSION['name'], 0, $endFirstName);
+			$firstName = substr($_SESSION['name'], 0, $endFirstName);
+			
+			//Make the continue watching
+
+			require 'continueWatching.php';
 		}
 		else {
 			//Create user or do the login
@@ -94,16 +98,23 @@
 				header("Location:" . $baseUrl . langCode("login_link"));
 			}
 			if(THIS_PAGE == 'category') {
-				DEFINE('CATEGORY_TITLE' , langCode(categoryName(@$_GET['c'])));
-			}
-			if(THIS_PAGE == 'search') {
-				$searchGet = $_GET['q'];
-
-				if(!isset($searchGet) or $searchGet == '') {
+				$categoryQuery = @$_GET['c'];
+				
+				if(!isset($categoryQuery) or $categoryQuery == '') {
 					header("Location:" . $baseUrl . '404');
 				}
 				else {
-					DEFINE('SEARCH_TITLE' , $searchGet);
+					DEFINE('CATEGORY_TITLE' , langCode(categoryName($categoryQuery)));
+				}
+			}
+			if(THIS_PAGE == 'search') {
+				$searchQuery = @$_GET['q'];
+
+				if(!isset($searchQuery) or $searchQuery == '') {
+					header("Location:" . $baseUrl . '404');
+				}
+				else {
+					DEFINE('SEARCH_TITLE' , $searchQuery);
 				}
 			}
 
@@ -118,10 +129,6 @@
 			//Define if the page show only the body or no
 
 			$onlyBody = $_POST['body'] ?? false;
-
-			//Make the continue watching
-
-			require 'continueWatching.php';
 			
 			//Configure the titles and menus
 

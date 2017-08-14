@@ -28,7 +28,7 @@
 	data-episode="<?php echo $dataEpisode;?>"
 	data-dash="<?php echo $dashFile;?>"
 	data-hls="<?php echo $hlsFile;?>"
-	data-link="<?php echo $liveUrl?>">
+	data-link="<?php echo @$liveUrl?>">
 
 	<?php require 'player/' . $videoPlayer . '/player.html';?>
 

@@ -26,7 +26,7 @@
 						//$userInfo = $userQuery -> fetch(PDO::FETCH_ASSOC);
 						
 						if($userVerify == 1) {
-							header("Location:" . $url . langCode('logoff_link'));
+							header("Location:" . $url . getLink('logoff', false));
 							$this -> logOffUser = true;
 						}
 					}
