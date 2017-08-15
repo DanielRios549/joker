@@ -28,7 +28,7 @@
 
 	$baseUrl = $currentServerUrl . $getConfig -> configQuery('subFolder');
 	
-	$directPath = '/var/www/html/' . $getConfig -> configQuery('subFolder');
+	$directPath = $getConfig -> configQuery('directPath');
 
 	$atomoBaseUrl = $getConfig -> configQuery('atomoBaseUrl');
 

@@ -54,7 +54,7 @@
 
 		if(MENU_GROUP == 'user') {
 			$selectFormFile = 'userSelect.html';
-			$pageType = langCode('admin_users');
+			$pageType = langCode('users');
 			$addPageLink = getLink('users_add', false);
 		}
 		elseif(THIS_PAGE != 'admin_episodes_manager') {
