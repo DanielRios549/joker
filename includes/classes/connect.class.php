@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -9,12 +9,12 @@
 		require '../../_redirect.php';
 		header("Location:" . $base . "404");
 	}
-	
+
 	class Connect {
 		private $name;
 		private $connection;
 		private $config;
-		
+
 		public function __construct() {
 			$url = 	$_SERVER['HTTP_HOST'];
 
@@ -26,8 +26,8 @@
 				$config = 'config_dev';
 			}
 			else {
-				$name = 'joker';
-				$user = 'root';
+				$name = 'id2576407_joker';
+				$user = 'id2576407_root';
 				$pass = 'atomoinc2014';
 				$host = 'localhost';
 				$config = 'config_prod';
@@ -42,7 +42,7 @@
 				$this -> connection = $con;
 				$this -> config = $config;
 				$this -> name = $name;
-				
+
 				//print_r($con);
 			}
 			catch(PDOException $error) {
