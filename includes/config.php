@@ -13,22 +13,22 @@
 	$currentServerUrl  = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 
 	$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-	
+
 	$baseCon = true;
 
 	require 'connect.php';
 
 	require 'importComponents.php';
-	
+
 	require 'install.php';
 
 	$getConfig = new GetConfig();
-    
-    $allowNewUser = $getConfig -> configQuery('allowNewUser');
+
+  $allowNewUser = $getConfig -> configQuery('allowNewUser');
 
 	$baseUrl = $currentServerUrl . $getConfig -> configQuery('subFolder');
-	
-	$directPath = '/var/www/html/' . $getConfig -> configQuery('subFolder');
+
+	$directPath = $getConfig -> configQuery('directPath');
 
 	$atomoBaseUrl = $getConfig -> configQuery('atomoBaseUrl');
 
@@ -47,14 +47,14 @@
 	$fontDir = $baseUrl . $getConfig -> configQuery('fontDir');
 
 	$verificationEmail = $getConfig -> configQuery('verificationEmail');
-	
+
 	$mediaImageFolder = $getConfig -> configQuery('mediaImageFolder');
-	
+
 	$userImageFolder = $getConfig -> configQuery('userImageFolder');
-	
+
 	$streamPlayer = $getConfig -> configQuery('streamPlayer');
-	
+
 	$livePlayer = $getConfig -> configQuery('livePlayer');
-	
+
 	require 'common.php';
 ?>

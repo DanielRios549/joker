@@ -99,19 +99,19 @@
 					//Define the folder for movies
 				
 					$contentFolder = $mediaImageFolder . 'movies/' . $contentData['content_id'];
-					$contentWatchLink = $baseUrl . langCode('watch_link') . "?id=" . $contentId;
+					$contentWatchLink = getLink('watch', false) . "?id=" . $contentId;
 				}
 				elseif($contentType == 'live') {
 					$contentTime = 'Live';
 
 					$contentFolder = $mediaImageFolder . 'lives/' . $contentData['content_id'];
-					$contentWatchLink = $baseUrl . langCode('watch_link') . "?id=" . $contentId;
+					$contentWatchLink = getLink('watch', false) . "?id=" . $contentId;
 				}
 				elseif($contentType == 'serie') {
 					require 'getEpisodes.php';
 
 					$contentFolder = $mediaImageFolder . 'series/' . $contentData['content_id'];
-					$contentWatchLink = $baseUrl . langCode('watch_link') . "?id=" . $contentId . "&e=". $firstEpisode['episode_id'];
+					$contentWatchLink = getLink('watch', false) . "?id=" . $contentId . "&e=". $firstEpisode['episode_id'];
 				}
 				
 				//Define the category

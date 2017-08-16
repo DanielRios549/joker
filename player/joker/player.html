@@ -106,7 +106,7 @@
                                 <div class="episodeContent">
                                     <figure class="episodeFigure">
                                         <?php if($addLinkPlayer == true) {?>
-                                        <a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId . '&e=' . $episode['episode_id'];?>">
+                                        <a href="<?php echo getLink('watch', false) . '?id=' . $contentId . '&e=' . $episode['episode_id'];?>">
                                         <?php }?>
                                             <img src="<?php echo $contentFolder . '/season' . $getEpisodes . '/episode' . $episode['episode'] . '/image.jpg';?>"/>
                                             <figcaption></figcaption>

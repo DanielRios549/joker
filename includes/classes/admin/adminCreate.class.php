@@ -126,11 +126,9 @@
 
                                 $this -> imageDir = $contentImageDir;
                                 $this -> videoDir = $contentVideoDir;
-
-                                //echo alert($contentImageDir . "   " . $contentVideoDir);
                                 
-                                system('/bin/mkdir ' . $contentImageDir);
-                                system('/bin/mkdir ' . $contentVideoDir);
+                                mkdir($contentImageDir);
+                                mkdir($contentVideoDir);
 
                                 //Upload Image if exists or copy the default
 
@@ -168,15 +166,15 @@
 
                                     $this -> createDashVideo($contentVideoDir);
 
-                                    system('chmod -R 770 ' . $url . 'images/media/movies/*');
-                                    system('chmod -R 770 ' . $url . 'media/movies/*');
+                                    system('chmod -R 770 ' . $contentImageDir);
+                                    system('chmod -R 770 ' . $contentVideoDir);
 
                                     $msg = 'Movie Added';
                                 }
                                 elseif($type == 'serie') {
                                     //$this -> contentEpisode($contentDirData['content_id'], $data, $file, 1 , 1, true, false);
-                                    system('chmod -R 770 ' . $url . 'images/media/series/*');
-                                    system('chmod -R 770 ' . $url . 'media/series/*');
+                                    system('chmod -R 770 ' . $contentImageDir);
+                                    system('chmod -R 770 ' . $contentVideoDir);
 
                                     $msg = 'Serie Added, now you need to add episodes';
                                 }
@@ -240,12 +238,14 @@
                         $episodeAddDir2 = "/episode" . $episode;
 
                         //system('/bin/mkdir ' . $episodeImageParentDir);
-                        system('/bin/mkdir ' . $episodeImageParentDir . $episodeAddDir);
-                        system('/bin/mkdir ' . $episodeImageParentDir . $episodeAddDir . $episodeAddDir2);
+                        //system('/bin/mkdir ' . $episodeImageParentDir . $episodeAddDir);
+                        //system('/bin/mkdir ' . $episodeImageParentDir . $episodeAddDir . $episodeAddDir2);
+                        mkdir($episodeImageParentDir . $episodeAddDir . $episodeAddDir2, 770);
 
                         //system('/bin/mkdir ' . $episodeVideoParentDir);
-                        system('/bin/mkdir ' . $episodeVideoParentDir . $episodeAddDir);
-                        system('/bin/mkdir ' . $episodeVideoParentDir . $episodeAddDir . $episodeAddDir2);
+                        //system('/bin/mkdir ' . $episodeVideoParentDir . $episodeAddDir);
+                        //system('/bin/mkdir ' . $episodeVideoParentDir . $episodeAddDir . $episodeAddDir2);
+                        mkdir($episodeVideoParentDir . $episodeAddDir . $episodeAddDir2, 770);
 
                         $episodeImageDir = $episodeImageParentDir . $episodeAddDir . $episodeAddDir2;
                         $episodeVideoDir = $episodeVideoParentDir . $episodeAddDir . $episodeAddDir2;
@@ -273,9 +273,6 @@
                         }
 
                         $this -> createDashVideo($episodeVideoDir);
-
-                        system('chmod -R 770 ' . $url . 'images/media/series/' . $content . '/*');
-                        system('chmod -R 770 ' . $url . 'media/series/*' . $content . '/*');
 
                         if($message == true) {
                             $msg = 'Episode Added';
@@ -312,12 +309,12 @@
             $MP4BoxDecode = $openFolder . ' && MP4Box -dash-profile dashavc264:live -dash 4000 -frag 4000 -segment-name video_0/segment video.mp4 -out output_dash.mpd';
             
             system($MP4BoxDecode);
-            system('/bin/rm -rf ' . $dir . '/video.mp4');
-
+            unlink($dir . '/video.mp4');
             $this -> fixMPDFile($dir);
         }
         private function fixMPDFile($dir) {
-            system('/bin/mv ' . $dir . '/output_dash.mpd ' . $dir . '/output_dash.xml');
+            //system('/bin/mv ' . $dir . '/output_dash.mpd ' . $dir . '/output_dash.xml');
+            rename($dir . '/output_dash.mpd', $dir . '/output_dash.xml');
             
             $elementToRemove = 'ContentComponent';
             $xmlFileToLoad   = $dir . '/output_dash.xml';
@@ -341,7 +338,7 @@
 
             $dom -> save($xmlFileToSave);
 
-            system('/bin/rm -rf ' . $dir . '/output_dash.xml');
+            unlink($dir . '/output_dash.xml');
         }
     }
 ?>

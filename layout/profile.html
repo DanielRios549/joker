@@ -27,7 +27,7 @@
 				</div>
 				<?php } elseif($loggedUserPage == true) {?>
 				<div class="userButtonDiv">
-					<a class="buttonSpan ajaxLink" href="<?php echo $baseUrl . langCode('settings_link');?>"><?php echo langCode('settings');?></a>
+					<a class="buttonSpan ajaxLink" href="<?php echo getLink('settings', false);?>"><?php echo langCode('settings');?></a>
 				</div>
 				<?php }}?>
 			</div>
@@ -46,12 +46,12 @@
 				<?php foreach($followersFound as $getFollowers => $key) {if($loggedUserPage == false) { $followId = $key['user_id']; require $contentDir . 'verifyFollow.php';}?>
 				<div class="follower">
 					<div class="followerLeft">
-						<a class="followerLink" href="<?php echo $baseUrl . langCode('profile_link')  . '?id=' . $key['user_id'];?>">
+						<a class="followerLink" href="<?php echo getLink('profile', $key['user_id']);?>">
 							<img class="followerImage"  src="<?php echo $baseUrl . 'images/user/' . $key['user_id'] . '/profile.jpg';?>"/>
 						</a>
 					</div>
 					<div class="followerRight">
-						<a class="followerLink" href="<?php echo $baseUrl . langCode('profile_link')  . '?id=' . $key['user_id'];?>">	
+						<a class="followerLink" href="<?php echo getLink('profile', $key['user_id']);?>">	
 							<span class="followerSpan"><?php echo $key['name'];?></span>
 						</a>
 						<div class="followAction">

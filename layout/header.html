@@ -23,7 +23,7 @@
 	</section>
 	<?php if($loginCheck == false) {?>
 	<section id="loginDiv">
-		<a href="<?php echo $baseUrl . langCode('login_link');?>" id="loginLink" class="ajaxLink">
+		<a href="<?php echo getLink('login', false);?>" id="loginLink" class="ajaxLink">
 			<span id="loginSpan"><?php echo langCode('login');?></span>
 		</a>
 	</section>
@@ -46,7 +46,7 @@
 			</ul>
 		</nav>
 		<article id="searchDiv">
-			<form id="searchForm" method="get" action="<?php echo langCode('search_link');?>">
+			<form id="searchForm" method="get" action="<?php echo getLink('search', false);?>">
 				<input type="text" value="<?php if(THIS_PAGE == 'search'){echo $searchQuery;}?>" name="q" id="searchInput" placeholder="<?php echo langCode('input_search');?>" autocomplete="off" required/>
 				
 				<button type="submit" id="submitSearch" value=""></button>
@@ -68,8 +68,8 @@
                     <li id="adminLink" class="subMenuItem"><a href="<?php echo $adminDir;?>" class="subMenuLink"><span class="subMenuSpan"><?php echo 'Admin';?></span></a></li>
                     <li id="profileLink" class="subMenuItem"><a href="<?php echo getLink('userProfile', $_SESSION['user_id']);?>" class="subMenuLink ajaxLink"><span class="subMenuSpan"><?php echo langCode('profile');?></span></a></li>
 					<?php }?>
-					<li id="settingsLink" class="subMenuItem"><a href="<?php echo $baseUrl . langCode('settings_link');?>" class="subMenuLink ajaxLink"><span class="subMenuSpan"><?php echo langCode('settings');?></span></a></li>
-					<li id="logoffLink" class="subMenuItem"><a href="<?php echo $baseUrl . langCode('logoff_link');?>" class="subMenuLink ajaxLink"><span class="subMenuSpan"><?php echo langCode('logoff');?></span></a></li>
+					<li id="settingsLink" class="subMenuItem"><a href="<?php echo getLink('settings', false);?>" class="subMenuLink ajaxLink"><span class="subMenuSpan"><?php echo langCode('settings');?></span></a></li>
+					<li id="logoffLink" class="subMenuItem"><a href="<?php echo getLink('logoff', false);?>" class="subMenuLink ajaxLink"><span class="subMenuSpan"><?php echo langCode('logoff');?></span></a></li>
 				</ul>
 			</li>
 		</ul>

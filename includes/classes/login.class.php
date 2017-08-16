@@ -151,13 +151,13 @@
                     
                     $errorPos = array($show, $msg);
 
-                    header($base . langCode('logoff_link'));
+                    header($base . getLink('logoff', false));
                 }
                 elseif($loginRestore -> rowCount() == 1) {
                     $data = $loginRestore -> fetch(PDO::FETCH_ASSOC);
                     
                     if($data['active'] == 'no') {
-                        header("Location: " . $base . langCode('logoff_link'));
+                        header("Location: " . $base . getLink('logoff', false));
                     }
                     elseif($data['active'] == 'yes') {
                         $_SESSION['user_id'] = $data['user_id'];

@@ -59,8 +59,9 @@ gulp.task('minicss', function() {
 gulp.task('minijs', function() {
     //return gulp.src(scripts)
     //.pipe(rename(scripts))
-    //.pipe(gulp.dest('_backup/'));
-    return gulp.src(['test/folder1/adminScript.js', 'test/folder2/file.js'])
+    //.pipe(gulp.dest('backup/'));
+
+    return gulp.src(['javascript/*.js', 'player/file.js', 'player/joker/*.js'])
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest(function(file) {

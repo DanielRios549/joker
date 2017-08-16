@@ -18,7 +18,9 @@
 	});
 </script>
 <section class="interface managerInterface bodyMenuOpened">
-	<div id="pageAddress"><span class="pageLink"><a href="<?php echo $baseUrl . 'admin';?>"><?php echo langCode('admin_home');?></a></span><span class="pageLink"><?php echo langCode('movies');?></span><span id="activePage"><?php echo langCode('admin_manager');?></span></div>
-	<?php require 'parts/showTable.html';?>
+	<?php 
+		require 'parts/pageAddress.html';
+		require 'parts/showTable.html';
+	?>
 </section>
 <?php }?>

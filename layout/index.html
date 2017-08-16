@@ -1,6 +1,6 @@
 <!-- Index -->
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -56,7 +56,7 @@
 			<div class="<?php echo $imageShow;?>">
 				<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
 				<span class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>">
-					
+
 				</span>
 				<?php
 					if($key['type'] == 'live') {
@@ -125,11 +125,11 @@
 			<?php } elseif($categoryContent == 'recent_add') {?>
 			<p class="contentDivHeader"><?php echo langCode('recent_add');?></p>
 			<?php } else {?>
-			<p class="contentDivHeader"><?php echo langCode($categoryContent);?><span><a class="ajaxLink" href="<?php echo $baseUrl . langCode('category_link') . '?c=' . categoryId($categoryContent);?>"><?php echo langCode('view_more');?></a></span></p>
+			<p class="contentDivHeader"><?php echo langCode($categoryContent);?><span><a class="ajaxLink" href="<?php echo getLink('category', $categoryContent);?>"><?php echo langCode('view_more');?></a></span></p>
 			<?php }?>
 			<div class="contentDiv">
 				<div class="contentGroupScroll">
-				<?php 
+				<?php
 					$contentNumber = 1;
 					foreach($addRow as $showContent => $key) {
 						if($key['type'] == 'serie') {
@@ -165,7 +165,7 @@
 
 		if($('#contentSlider #changeDiv').length) {
 			intervalId = setInterval(slideIndex, 5000);
-			
+
 			changeIndex('#contentSlider');
 		}
 

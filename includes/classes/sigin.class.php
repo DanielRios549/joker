@@ -167,15 +167,16 @@
                                 $userDirData = $userDirQuery -> fetch(PDO::FETCH_ASSOC);
 
                                 $userDir = $url . 'images/user/' . $userDirData['user_id'];
+                                mkdir($userDir);
 
                                 if($admin == 'no') {
-                                    system('mkdir ' . $userDir);
+                                    //system('mkdir ' . $userDir);
 
                                     $copyImageProfile = copy('images/user/profile.jpg' , $userDir . '/profile.jpg');
                                     $copyImageCover = copy('images/user/cover.jpg' , $userDir . '/cover.jpg');
                                 }
                                 elseif($admin == 'yes') {
-                                    system('mkdir ' . $userDir);
+                                    //system('mkdir ' . $userDir);
 
                                     //Upload the image if exists or copy the default 
 
@@ -199,7 +200,7 @@
                                         $copyImageCover = copy('../images/user/cover.jpg' , $userDir . '/cover.jpg');
                                     }
                                 }
-                                system('chmod -R 770 ' . $url . 'images/user/*');
+                                system('chmod -R 770 ' . $userDir);
 
                                 //Send the email if necessary
 

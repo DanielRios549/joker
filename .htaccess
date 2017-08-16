@@ -31,64 +31,40 @@ RewriteRule ^home()$ index.php [NC,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^login()$ login.php [NC,L]
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^entrar()$ login.php [NC,L]
-
 #Logoff Page
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^logoff()$ logoff.php [NC,L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^sair()$ logoff.php [NC,L]
 
 #Profile Page
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^profile()$ profile.php [NC,L]
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^perfil()$ profile.php [NC,L]
-
 #Settings Page
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^settings()$ settings.php [NC,L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^configuracoes()$ settings.php [NC,L]
 
 #Title Page
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^title()$ title.php [NC,L]
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^titulo()$ title.php [NC,L]
-
 #Watch Page
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^watch()$ watch.php [NC,L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^assistir()$ watch.php [NC,L]
 
 #Category Page
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^category()$ category.php [NC,L]
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^categoria()$ category.php [NC,L]
-
 #Search Page
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^search()$ search.php [NC,L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^busca()$ search.php [NC,L]
 
 #Info Page
 

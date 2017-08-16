@@ -1,4 +1,4 @@
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -13,7 +13,7 @@
 		height: 40px;
 		display: flex;
 		margin-top: 20px;
-		
+
 		.pageLink,
 		#activePage	{
 			position: relative;
@@ -39,18 +39,18 @@
 					color: var(--gray);
 				};
 			}
-			
+
 			&:nth-of-type(1) {
 				border-radius: 3px 0 0 3px;
 			}
-			
+
 			&:nth-of-type(2):before,
 			&:nth-of-type(3):before,
 			&:nth-of-type(4):before,
 			&:nth-of-type(5):before,{
 				content: "";
 				position: absolute;
-				top: 50%; 
+				top: 50%;
 				margin-top: -1.25em;
 				border-width: 1.25em 0 1.25em 1em;
 				border-style: solid;
@@ -63,7 +63,7 @@
 			&:after{
 				content: "";
 				position: absolute;
-				top: 50%; 
+				top: 50%;
 				margin-top: -1.25em;
 				border-top: 1.25em solid transparent;
 				border-bottom: 1.25em solid transparent;
@@ -84,8 +84,8 @@
 			&:before{
 				content: "";
 				position: absolute;
-				top: 50%; 
-				margin-top: -1.25em;   
+				top: 50%;
+				margin-top: -1.25em;
 				border-width: 1.25em 0 1.25em 1em;
 				border-style: solid;
 				left: -1em;
@@ -97,7 +97,7 @@
 			&:after{
 				content: "";
 				position: absolute;
-				top: 50%; 
+				top: 50%;
 				margin-top: -1.25em;
 				border-top: 1.25em solid transparent;
 				border-bottom: 1.25em solid transparent;
@@ -137,14 +137,14 @@
 		margin: 0 0 0 5%;
 		display: block;
 		z-index: 100;
-		
+
 		#errorMsg {
 			width: 80%;
 			height: 100%;
 			margin: 0 auto;
 			text-align: center;
 			line-height: 43px;
-			
+
 			#spanUserError {
 				font-size: 2em;
 				@include css4 {
@@ -177,7 +177,7 @@
 		position: relative;
 		width: 80%;
 		margin: 20px auto 0 auto;
-		
+
 		.fieldsetOpen {
 			+ .formFieldset {
 				height: auto !important;
@@ -189,7 +189,7 @@
 			width: 100%;
 			margin-bottom: 20px;
 			cursor: pointer;
-			
+
 			@include css4 {
 				background: var(--lightGray);
 			};
@@ -224,7 +224,7 @@
 				font: 2em Calibri, sans-serif;
 
 				@extend %alignCenter;
-				
+
 				@include css4 {
 					color: var(--gray);
 				};
@@ -235,7 +235,7 @@
 			display: block;
 			overflow: hidden;
 			margin-bottom: 20px;
-			
+
 			.selectDiv {
 				position: relative;
 				margin-right: 20px;
@@ -244,7 +244,7 @@
 				.selectLabel {
 					position: relative;
 					font: 1.6em Calibri, sans-serif;
-					
+
 					@include css4 {
 						color: var(--lightGray);
 					};
@@ -353,7 +353,7 @@
 					width: var(--width);
 					overflow: hidden;
 					margin: 0 auto;
-					
+
 					@extend %alignCenter;
 
 					@include css4 {
@@ -427,7 +427,7 @@
 				max-width: 600px;
 				width: 100%;
 				margin: 0 auto;
-				
+
 				@extend %alignCenter;
 
 				#selectedVideo {
@@ -451,7 +451,7 @@
 					border: 3px solid var(--gray);
 					color: var(--gray);
 				};
-				
+
 				@include transition(border, 300ms, linear);
 			}
 			.inputText {
@@ -505,13 +505,13 @@
 				height: 60px;
 				width: 60px;
 				margin-top: -40px;
-				
+
 				@include transition(background, 300ms, linear);
-				
+
 				&:before {
 					position: relative;
 					font-family: FontAwesome;
-					
+
 					@include transition(color, 300ms, linear);
 				}
 			}
@@ -528,9 +528,9 @@
 					background: var(--gray);
 					color: var(--lightGray);
 				};
-				
+
 				@include transition(all, 200ms, linear);
-				
+
 				&:hover, &:focus {
 					@include css4 {
 						background: var(--joker02);
