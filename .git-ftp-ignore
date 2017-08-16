@@ -1,0 +1,11 @@
+css/sass/**/*
+README.txt
+gulpfile.js
+package.json
+bower.json
+.git-ftp-ignore
+.git-ftp-tmp
+.gitignore
+_fontIcon.txt
+_categoriesId.txt
+.project
