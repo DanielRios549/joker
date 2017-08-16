@@ -6,7 +6,7 @@
  ***************************************************************
 */
 	if(!isset($baseUrl)) {
-		require '../../_redirect.php';
+		require '../../../_redirect.php';
 		header("Location:" . $base . "404");
 	}
     elseif($adminCheck == true) {
@@ -17,7 +17,7 @@
 	});
 </script>
 <div id="managerOptions">
-	<a class="managerLink" href="<?php echo $adminDir . langCode('admin_users_add_link');?>"><?php echo langCode('admin_add');?></a>
+	<a class="managerLink" href="<?php echo $addPageLink;?>"><?php echo langCode('admin_add');?></a>
 	<div id="advancedClose" class="searchAdvancedClose"><?php echo langCode('admin_advanced_search');?></div>
 </div>
 <div id="advancedSearchDiv" class="advancedSearchHide">

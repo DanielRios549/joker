@@ -23,10 +23,10 @@
 				$title = langCode('admin_manage') . ' ' . langCode('admin_feedback');
 			}
 			elseif ($page == 'admin_users_manager') {
-				$title = langCode('admin_manage') . ' ' . langCode('admin_users');
+				$title = langCode('admin_manage') . ' ' . langCode('users');
 			}
 			elseif ($page == 'admin_users_add') {
-				$title = langCode('admin_add') . ' ' . langCode('admin_users');
+				$title = langCode('admin_add') . ' ' . langCode('users');
 			}
 			elseif ($page == 'admin_movies_manager') {
 				$title = langCode('admin_manage') . ' ' . langCode('movies');
@@ -52,7 +52,7 @@
 			elseif ($page == 'admin_lives_manager') {
 				$title = langCode('admin_manager') . ' ' . langCode('lives');
 			}
-			elseif ($page == 'admin_livess_add') {
+			elseif ($page == 'admin_lives_add') {
 				$title = langCode('admin_add') . ' ' . langCode('lives');
 			}
 			return $title;

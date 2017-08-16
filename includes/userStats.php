@@ -28,10 +28,10 @@
 	
 	if(!isset($userPage)) {
 		if($loginCheck == false) {
-			header("Location:" . $baseUrl . langCode('login_link'));
+			header("Location:" . $baseUrl . getLink('login'));
 		}
 		elseif($loginCheck == true) {
-			header("Location:" . $baseUrl . langCode('profile_link') . "?id=" . $userConnected);
+			header("Location:" . getLink('profile', $userConnected));
 		}
 	}
 	

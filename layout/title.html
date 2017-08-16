@@ -56,7 +56,7 @@ if($contentVerify -> rowCount() == 1) {
 					</div>
 					<div id="contentSortcuts">
 						<?php if($contentType == 'live') {?>
-						<div id="startBtn" class="contentBtn"><a href="<?php echo getLink('watchMovie', $contentId);?>"><span class="btnSpan"><?php echo ucfirst(langCode('watch_link'));?></span></a></div>
+						<div id="startBtn" class="contentBtn"><a href="<?php echo getLink('watchMovie', $contentId);?>"><span class="btnSpan"><?php echo ucfirst(getLink('watch', false));?></span></a></div>
 						<?php }
 							if(continueWatching($contentId) == true) {
 								$buttonText = langCode('continue');
@@ -69,7 +69,7 @@ if($contentVerify -> rowCount() == 1) {
 						<div id="startBtn" class="contentBtn"><a href="<?php echo getLink('watchMovie', $contentId);?>"><span class="btnSpan"><?php echo $buttonText;?></span></a></div>
 						<?php } elseif($contentType == 'serie') {
 							if(continueWatching($contentId) == true) {
-								$continueEpidode = $continues[$contentId] [0] ['continueContent'];
+								$continueEpidode = $continues[$contentId][0]['continueContent'];
 							}
 							else {
 								$continueEpidode = $firstEpisode['episode_id'];
@@ -106,7 +106,7 @@ if($contentVerify -> rowCount() == 1) {
 									<div class="episode<?php echo $episode['episode'];?> episode">
 										<figure class="episodeFigure">
 											<img src="<?php echo $contentFolder . $key['content_id'] . '/season' . $getEpisodes . '/episode' . $episode['episode'] . '/image.jpg';?>"/>
-											<a href="<?php echo $baseUrl . langCode('watch_link') . '?id=' . $contentId . '&e=' . $episode['episode_id'];?>">
+											<a href="<?php echo getLink('watch', false) . '?id=' . $contentId . '&e=' . $episode['episode_id'];?>">
 												<img src="<?php echo $contentFolder . '/season' . $getEpisodes . '/episode' . $episode['episode'] . '/image.jpg';?>"/>
 												<figcaption>
 													

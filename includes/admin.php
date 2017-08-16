@@ -54,16 +54,23 @@
 
 		if(MENU_GROUP == 'user') {
 			$selectFormFile = 'userSelect.html';
-			$pageType = langCode('admin_users');
+			$pageType = langCode('users');
+			$addPageLink = getLink('users_add', false);
 		}
 		elseif(THIS_PAGE != 'admin_episodes_manager') {
 			$selectFormFile = 'contentSelect.html';
 
 			if(THIS_PAGE == 'admin_movies_manager') {
 				$pageType = langCode('movies');
+				$addPageLink = getLink('movies_add', false);
 			}
 			elseif(THIS_PAGE == 'admin_series_manager') {
 				$pageType = langCode('series');
+				$addPageLink = getLink('series_add', false);
+			}
+			elseif(THIS_PAGE == 'admin_lives_manager') {
+				$pageType = langCode('lives');
+				$addPageLink = getLink('lives_add', false);
 			}
 			elseif(THIS_PAGE == 'admin_lives_manager') {
 				$pageType = langCode('lives');

@@ -23,10 +23,10 @@
                 $query -> bindValue(":email", $userToActive);
                 
                 if($query -> execute()) {
-                    header("Location:" .  $baseUrl . langCode('login_link') . "?n=1");
+                    header("Location:" .  $baseUrl . getLink('login', false) . "?n=1");
                 }
                 else {
-                    header("Location:" .  $baseUrl . langCode('login_link') . "?n=2");
+                    header("Location:" .  $baseUrl . getLink('login', false) . "?n=2");
                 }
             }
             catch(PDOException $error) {

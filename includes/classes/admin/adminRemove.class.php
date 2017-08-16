@@ -98,6 +98,7 @@
             }
             elseif($page == 'admin_movies_manager') {
                 $removeType = 'Movie';
+                $lang = $_SESSION['lang'];
 
                 //Verify if the user exists
 
@@ -107,9 +108,9 @@
 
                 if($getMovie -> rowCount() == 1) {
                     $movie = $getMovie -> fetch(PDO::FETCH_ASSOC);
-                    $divisorPosition = strpos($movie[$cookieLang], "|");
+                    $divisorPosition = strpos($movie[$lang], "|");
 
-                    $movieName = substr($movie[$cookieLang], 0, $divisorPosition);
+                    $movieName = substr($movie[$lang], 0, $divisorPosition);
                     $movieId = $movie['content_id'];
                     $deleteDir = $url . 'images/media/movies/' . $movieId;
                     $deleteDir2 = $url . 'media/movies/' . $movieId;
@@ -150,7 +151,7 @@
                                 elseif($removeUser -> rowCount() == 1) {
                                     system('/bin/rm -rf ' . escapeshellarg($deleteDir));
                                     system('/bin/rm -rf ' . escapeshellarg($deleteDir2));
-                                    echo alert($removeType . ' ' . $removeIndentifyer . ' ' .  'Removed, id ' . $userId);
+                                    echo alert($removeType . ' ' . $removeIndentifyer . ' ' .  'Removed, id ' . $movieId);
                                 }
                                 echo script('history.go(-2)');
                             }
