@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -11,7 +11,7 @@
 	}
 
     //If the user is logged
-	
+
 	if($loginCheck == true) {
         if(ADMIN_PAGE == 'no') {
             $contentPage = isset($_GET['id']) ? $_GET['id'] : false;
@@ -21,7 +21,7 @@
         }
 
 		//If doesn't exist the id get
-		
+
 		if($contentPage == false) {
 			header("Location:" . $baseUrl . "404");
 		}
@@ -38,7 +38,7 @@
                 }
                 elseif(ADMIN_PAGE == 'yes') {
                     $contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage");
-                }   
+                }
 				$contentVerify -> bindValue(":contentPage", $contentPage);
 
 				if($contentVerify -> execute()) {
@@ -65,7 +65,7 @@
                     $videoPlayer = $streamPlayer;
                     $returnLink = getLink('title', $contentPage);
                 }
-                
+
                 //Set the values for movies
 
                 if($contentTrue['type'] == 'movie') {
@@ -74,7 +74,7 @@
 
 					if($contentQuery -> execute()) {
 						$contentFetch = $contentQuery -> fetch(PDO::FETCH_ASSOC);
-						
+
 						$divisorPosition = strpos($contentFetch[$cookieLang], "|");
 
 						$contentData = array (
@@ -124,13 +124,13 @@
                         $contentQuery -> bindValue(":content", $contentPage);
                         $contentQuery -> bindValue(":contentReference", $contentReference);
                         $contentQuery -> execute();
-                        
+
                         if($contentQuery -> rowCount() == 0) {
                             header("Location:" . $baseUrl . "404");
                         }
                         elseif($contentQuery -> rowCount() == 1) {
                             $contentFetch = $contentQuery -> fetch(PDO::FETCH_ASSOC);
-                            
+
                             $divisorPosition = strpos($contentFetch[$cookieLang], "|");
 
                             $contentData = array (
@@ -150,7 +150,7 @@
                             $contentSynopsis = $contentData['synopsis'];
 
                             require 'getEpisodes.php';
-                            
+
                             $dataSeason = $contentData['season'];
                             $dataEpisode = $contentData['episode'];
                             $contentFolder = $mediaImageFolder . 'series/' . $contentData['content_id'];
@@ -163,13 +163,18 @@
                 //Set the values for lives
 
                 elseif($contentTrue['type'] == 'live') {
-                    $contentQuery = $pdo -> prepare("SELECT content_id, link, $cookieLang FROM content WHERE content_id = :content AND active = 'yes'");
+					if(ADMIN_PAGE == 'no') {
+	                    $contentQuery = $pdo -> prepare("SELECT content_id, link, $cookieLang FROM content WHERE content_id = :content AND active = 'yes'");
+	                }
+					if(ADMIN_PAGE == 'yes') {
+	                    $contentQuery = $pdo -> prepare("SELECT content_id, link, $cookieLang FROM content WHERE content_id = :content");
+	                }
                     $contentQuery -> bindValue(":content", $contentPage);
                     $contentQuery -> execute();
 
                     if($contentQuery -> rowCount() == 1) {
                         $contentFetch = $contentQuery -> fetch(PDO::FETCH_ASSOC);
-                        
+
                         $divisorPosition = strpos($contentFetch[$cookieLang], "|");
 
                         $contentData = array (
@@ -189,7 +194,7 @@
                         $dataEpisode = 'none';
                     }
                 }
-                
+
                 $dashFile = 'no';
                 $hlsFile = 'no';
 

@@ -1,4 +1,4 @@
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -30,12 +30,12 @@
         height: 100%;
         width: 200px;
         flex: 0 0 auto;
-        
+
         a {
             position: relative;
             height: 100%;
             width: 100%;
-            
+
             @extend %alignCenter;
         }
     }
@@ -45,9 +45,9 @@
 		height: 100%;
 		min-width: 160px;
 		flex: 0 0 auto;
-		
+
 		//If the user is not conected
-		
+
 		#loginLink {
 			border-bottom: 3px solid transparent;
 			position: relative;
@@ -56,9 +56,9 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
-			
+
 			@include transition(all, 400ms, ease);
-			
+
 			&:hover {
 				@include css4 {
 					border-bottom: 3px solid var(--gray);
@@ -74,20 +74,20 @@
 					color: var(--white);
 				};
 			}
-            #loginSpan,
+      #loginSpan,
 			#userName {
 				position: relative;
 				font-size: 2em;
-                margin: 10px;
+        margin: 10px;
 
 				@include css4 {
 					color: var(--white);
 				};
 			}
 		}
-		
+
 		//If the user is conected
-		
+
 		#userUl {
 			position: relative;
 			height: 60px;
@@ -117,7 +117,7 @@
 			#userLi {
 				height: 100%;
 				width: 100%;
-				
+
 				#userLink {
 					height: 100%;
 					width: 100%;
@@ -150,7 +150,7 @@
 							@include css4 {
 								color: var(--lightGray);
 							};
-							
+
 							@include transform(rotate(-45deg));
 						}
 					}
@@ -204,7 +204,7 @@
 						list-style: none;
 						width: 100%;
 						height: 40px;
-                        
+
 						.subMenuLink {
 							width: 100%;
 							height: 100%;
@@ -215,9 +215,9 @@
 							@include css4 {
 								color: var(--gray);
 							};
-							
+
 							@include transition(all, 300ms, ease);
-							
+
 							&:hover {
 								@include css4 {
 									background: var(--joker02);
@@ -240,7 +240,7 @@
 								@include css4 {
 									color: var(--gray);
 								};
-								
+
 								@include transition(color, 300ms, ease);
 							}
 							.subMenuSpan {
@@ -315,7 +315,7 @@
             flex-flow: var(--settingsAlignOptions);
             justify-content: var(--settingsJustify);
             align-items: var(--settingsAlign);
-        };  
+        };
     }
     .category,.search,.settings {
         min-height: 320px;
@@ -337,7 +337,7 @@
             width: 90%;
             margin: 0 auto;
         }
-        
+
         @include home();
 
         @include login();
@@ -376,7 +376,7 @@
         width: 40px;
         height: 40px;
         cursor: pointer;
-        
+
         @extend %alignCenter;
 
         @include css4 {
@@ -412,13 +412,13 @@
             margin: 0 auto;
             text-align: center;
             display: flex;
-            
+
             .atomoLink {
                 position: relative;
                 height: 100%;
                 text-decoration: none;
                 margin-left: 10px;
-                
+
                 &:after {
                     content: '';
                     position: absolute;
@@ -456,11 +456,11 @@
         right: 5%;
         top: 0;
         height: 50px;
-        
+
         #langForm {
             line-height: 50px;
         }
-        
+
         #langDiv {
             display: none;
         }
@@ -476,9 +476,9 @@
         @include css4 {
             background: var(--darkGray);
         };
-        
+
         @include transition(all, 300ms, linear);
-        
+
         &:hover {
             @include css4 {
                 background: var(--joker02);
@@ -491,7 +491,7 @@
             width: 100%;
             text-align: center;
             line-height: 40px;
-            
+
             #adminSpan {
                 font-size: 2em;
 
@@ -530,7 +530,7 @@
         left: 4%;
         height: 50px;
         width: 50%;
-        
+
         #socialLinks {
             position: relative;
             margin-left: 10px;
@@ -538,7 +538,7 @@
             width: 400px;
             text-align: center;
             display: flex;
-            
+
             .socialLink {
                 box-sizing: border-box;
                 border-radius: 5px;
@@ -551,18 +551,18 @@
                 @include css4 {
                     background: var(--darkGray);
                 };
-                
+
                 @include transition(all, 300ms, linear);
-                
+
                 &:before {
                     position: relative;
                     font-family: FontAwesome;
-                    
+
                     @include transition(all, 300ms, linear);
                 }
                 &:nth-of-type(1) {
                     width: 110px;
-                    
+
                     &:hover {
                         @include css4 {
                             background: var(--facebook);
@@ -585,7 +585,7 @@
                 }
                 &:nth-of-type(2) {
                     width: 100px;
-                    
+
                     &:hover {
                         @include css4 {
                             background: var(--twitter);
@@ -608,7 +608,7 @@
                 }
                 &:nth-of-type(3) {
                     width: 115px;
-                    
+
                     &:hover {
                         @include css4 {
                             background: var(--google);
@@ -638,14 +638,14 @@
                         color: var(--fontColor);
                     };
                 }
-            }	
+            }
         }
     }
     #footerCopy {
         position: absolute;
         right: 5%;
         bottom: 20px;
-        
+
         #spanCopy {
             font-size: 1.6em;
 

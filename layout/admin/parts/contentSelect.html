@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -14,7 +14,7 @@
 <div class="selectDiv">
     <label for="active" class="selectLabel" >Active</label>
     <select class="select" name="active">
-        <?php 
+        <?php
             foreach($contentActive as $contentActive => $select) {
                 if($select == @$keyEdit['active']) {
                     $optionSelected1 = 'selected';
@@ -27,10 +27,11 @@
         <?php }?>
     </select>
 </div>
+<?php if (MENU_GROUP != 'live') {?>
 <div class="selectDiv">
     <label for="category" class="selectLabel" >Category</label>
     <select class="select" name="category">
-        <?php 
+        <?php
             foreach($contentCategories as $contentCategories => $select) {
                 if($select == @$keyEdit['category']) {
                     $optionSelected4 = 'selected';
@@ -43,10 +44,11 @@
         <?php }?>
     </select>
 </div>
+<?php }?>
 <div class="selectDiv">
     <label for="feature" class="selectLabel" >Feature</label>
     <select class="select" name="feature">
-        <?php 
+        <?php
             foreach($contentFeature as $contentFeature => $select) {
                 if($select == @$keyEdit['feature']) {
                     $optionSelected2 = 'selected';
@@ -62,7 +64,7 @@
 <div class="selectDiv">
     <label for="age" class="selectLabel" >Age</label>
     <select class="select" name="age">
-        <?php 
+        <?php
             foreach($contentAges as $contentAges => $select) {
                 if($select == @$keyEdit['age']) {
                     $optionSelected3 = 'selected';

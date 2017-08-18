@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -9,10 +9,10 @@
 		require '../../_redirect.php';
 		header("Location:" . $base . "404");
 	}
-	
+
 	class LogOff extends Connect {
 		public $logOffUser;
-		
+
 		public function disconnect($page, $url, $userSession, $userRestore) {
 			$pdo = $this -> getConnection();
 
@@ -20,13 +20,13 @@
 				try {
 					$userQuery = $pdo -> prepare("SELECT * FROM user WHERE user_id = :session AND active = 'no'");
 					$userQuery -> bindValue(":session", $userSession);
-					
+
 					if($userQuery -> execute()) {
 						$userVerify = $userQuery -> rowCount();
 						//$userInfo = $userQuery -> fetch(PDO::FETCH_ASSOC);
-						
+
 						if($userVerify == 1) {
-							header("Location:" . $url . getLink('logoff', false));
+							//header("Location:" . $url);
 							$this -> logOffUser = true;
 						}
 					}
