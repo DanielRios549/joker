@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -19,7 +19,7 @@
             $pdo = $this -> getConnection();
 
             if(isset($submit)) {
-                //Selectes
+            	//Selectes
 
 				$active = @$data['active'];
 				$feature = @$data['feature'];
@@ -28,6 +28,7 @@
 
 				//Inputs
 
+				$liveUrl = @$data['liveUrl'];
 				$producer = @$data['producerName'];
 				$director = @$data['directorName'];
 				$date = @$data['date'];
@@ -35,12 +36,12 @@
 				$synEn = @$data['synEn'];
 				$titlePt = @$data['titlePt'];
 				$synPt = @$data['synPt'];
-                
-                $en = $titleEn . "|" . $synEn;
-                $pt = $titlePt . "|" . $synPt;
+
+				$en = $titleEn . "|" . $synEn;
+				$pt = $titlePt . "|" . $synPt;
 
 				//Files
-				
+
 				$image = @$file['contentImage'];
 				$backImage = @$file['backImage'];
 				$video = @$file['contentVideo'];
@@ -52,11 +53,11 @@
                 /****************************************
                 A problem is showing text fields empty when select a vidoe file
                 ****************************************/
-                
+
                 if(($producer == '') or ($director == '') or ($date == '') or ($titleEn == '') or ($synEn == '') or ($titlePt == '') or ($synPt == '')) {
                     $show = 'userErrorDisplay';
 					$msg = 'Fill in all fields, please';
-                    
+
                     $errorPos = array($show, $msg);
                 }
                 else {
@@ -68,9 +69,12 @@
                     elseif($page == 'admin_series_add') {
                         $type = 'serie';
                     }
+                    elseif($page == 'admin_lives_add') {
+                        $type = 'live';
+                    }
 
                     //Verify if the content exist
-                    
+
                     try {
                         $verifyContent = $pdo -> prepare("SELECT * FROM content WHERE en_US = :en OR pt_BR = :pt");
                         $verifyContent -> bindValue(":en", $en, PDO::PARAM_STR);
@@ -81,19 +85,19 @@
                     catch(PDOException $error) {
                         echo $error -> getMessage();
                     }
-                    
+
                     //If exist the sigin get, the sigin will be do or will be return a error.
-                    
+
                     if($contentVerified == 1) {
                         $show = 'userErrorDisplay';
-                        $msg = 'This content already exists';
+                        $msg = 'This ' . $type . ' already exists';
                     }
                     elseif($contentVerified == 0) {
                         try {
                             date_default_timezone_set('America/Sao_Paulo');
-                            $insertPrepare = $pdo -> prepare("INSERT INTO content(producer, director, date, en_US, pt_BR, active, feature, type, duration, category, date_add) 
-                            VALUES (:producer, :director, :date, :en, :pt, :active, :feature, :type, :duration, :category, :date_add)");
-                            
+                            $insertPrepare = $pdo -> prepare("INSERT INTO content(producer, director, date, en_US, pt_BR, active, feature, type, duration, category, date_add, link)
+                            VALUES (:producer, :director, :date, :en, :pt, :active, :feature, :type, :duration, :category, :date_add, :link)");
+
                             $insertPrepare -> bindValue(":producer", $producer, PDO::PARAM_STR);
                             $insertPrepare -> bindValue(":director", $director, PDO::PARAM_STR);
                             $insertPrepare -> bindValue(":date", $date, PDO::PARAM_STR);
@@ -106,6 +110,7 @@
                             $insertPrepare -> bindValue(":duration", $duration, PDO::PARAM_STR);
                             $insertPrepare -> bindValue(":category", $category, PDO::PARAM_STR);
                             $insertPrepare -> bindValue(":date_add", date('Y-m-d'));
+                            $insertPrepare -> bindValue(":link", $liveUrl, PDO::PARAM_STR);
                         }
                         catch(PDOException $error) {
                             echo $error -> getMessage();
@@ -116,19 +121,21 @@
                         if($insertPrepare -> execute()) {
                             $contentrDirQuery = $pdo -> prepare("SELECT * FROM content WHERE en_US = :en");
                             $contentrDirQuery -> bindValue(":en", $en, PDO::PARAM_STR);
-                            
-                            if($contentrDirQuery -> execute()) {
-                                //Make the user directory and copy the commoms images
-                                
-                                $contentDirData = $contentrDirQuery -> fetch(PDO::FETCH_ASSOC);
-                                $contentImageDir = $url . 'images/media/' . $type . "s/" . $contentDirData['content_id'];
-                                $contentVideoDir = $url . 'media/' . $type . "s/" . $contentDirData['content_id'];
 
+                            if($contentrDirQuery -> execute()) {
+                                //Make the user directory and copy the images and video
+
+                                $contentDirData = $contentrDirQuery -> fetch(PDO::FETCH_ASSOC);
+
+                                $contentImageDir = $url . 'images/media/' . $type . "s/" . $contentDirData['content_id'];
                                 $this -> imageDir = $contentImageDir;
-                                $this -> videoDir = $contentVideoDir;
-                                
                                 mkdir($contentImageDir);
-                                mkdir($contentVideoDir);
+
+								if ($type != 'live') {
+									$contentVideoDir = $url . 'media/' . $type . "s/" . $contentDirData['content_id'];
+	                                $this -> videoDir = $contentVideoDir;
+									mkdir($contentVideoDir);
+								}
 
                                 //Upload Image if exists or copy the default
 
@@ -140,7 +147,7 @@
                                 else {
                                     copy('../images/media/image.jpg' , $contentImageDir . '/image.jpg');
                                 }
-                                
+
                                 //Upload Background Image if exists or copy the default
 
                                 if($backImage['name'] != '') {
@@ -151,9 +158,11 @@
                                 else {
                                     copy('../images/media/background.jpg' , $contentImageDir . '/background.jpg');
                                 }
-                                
+
+								system('chmod -R 770 ' . $contentImageDir);
+
                                 //Upload video if exists or copy the default
-                                
+
                                 if($type == 'movie') {
                                     if($video['name'] != '') {
                                         $videoExtension = strtolower(substr($video['name'], -4));
@@ -166,29 +175,29 @@
 
                                     $this -> createDashVideo($contentVideoDir);
 
-                                    system('chmod -R 770 ' . $contentImageDir);
                                     system('chmod -R 770 ' . $contentVideoDir);
-
                                     $msg = 'Movie Added';
                                 }
                                 elseif($type == 'serie') {
                                     //$this -> contentEpisode($contentDirData['content_id'], $data, $file, 1 , 1, true, false);
-                                    system('chmod -R 770 ' . $contentImageDir);
                                     system('chmod -R 770 ' . $contentVideoDir);
 
                                     $msg = 'Serie Added, now you need to add episodes';
                                 }
+								elseif($type == 'live') {
+									$msg = 'Live Added';
+								}
 
                                 $show = 'newAccountCreatedDisplay';
                             }
                         }
                     }
-                    
+
                     $errorPos = array($show, $msg);
                 }
-                
+
                 //Show the Error
-                
+
                 if(isset($errorPos)) {
                     $this -> showError = $errorPos;
                 }
@@ -198,7 +207,7 @@
             $pdo = $this -> getConnection();
 
             //inputs
-            
+
             $active = isset($data['active']) ? $data['active'] : 'no';
             $episodeUS = @$data['episodeTitleUS'] . "|" . @$data['episodeSynUS'];
             $episodeBR = @$data['episodeTitleBR'] . "|" . @$data['episodeSynBR'];
@@ -218,7 +227,7 @@
                 $getEpisode -> bindValue(":season", $season);
                 $getEpisode -> bindValue(":episode", $episode);
                 $getEpisode -> execute();
-                
+
                 if($getEpisode -> rowCount() == 0) {
                     $addEpisode = $pdo -> prepare("INSERT INTO content_episodes(active, episode_ref, season, episode, en_US, pt_BR)
                     VALUES (:active, :content, :season, :episode, :episodeUS, :episodeBR)");
@@ -295,7 +304,7 @@
             }
 
             //Show the Error
-                
+
             if($message == true) {
                 $errorPos = array($show, $msg);
                 $this -> showError = $errorPos;
@@ -307,7 +316,7 @@
         private function createDashVideo($dir) {
             $openFolder = 'cd ' . $dir;
             $MP4BoxDecode = $openFolder . ' && MP4Box -dash-profile dashavc264:live -dash 4000 -frag 4000 -segment-name video_0/segment video.mp4 -out output_dash.mpd';
-            
+
             system($MP4BoxDecode);
             unlink($dir . '/video.mp4');
             $this -> fixMPDFile($dir);
@@ -315,7 +324,7 @@
         private function fixMPDFile($dir) {
             //system('/bin/mv ' . $dir . '/output_dash.mpd ' . $dir . '/output_dash.xml');
             rename($dir . '/output_dash.mpd', $dir . '/output_dash.xml');
-            
+
             $elementToRemove = 'ContentComponent';
             $xmlFileToLoad   = $dir . '/output_dash.xml';
             $xmlFileToSave   = $dir . '/output_dash.mpd';

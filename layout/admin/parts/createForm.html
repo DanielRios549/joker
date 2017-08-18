@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -32,19 +32,19 @@
     <fieldset id="userFieldset" class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Datas for this ' . MENU_GROUP;?></legend>
         <input type="text" name="firstName" id="firstName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_first_name_placeholder');?>" required/>
         <label for="firstName" id="firstNameLabel" class="inputLabel"></label>
-        
+
         <input type="text" name="lastName" id="lastName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_last_name_placeholder');?>" required/>
         <label for="lastName" id="lastNameLabel" class="inputLabel"></label>
-        
+
         <input type="text" name="userName" id="userName" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_username_placeholder');?>" required/>
         <label for="userName" id="siginUserNameLabel" class="inputLabel"></label>
-        
+
         <input type="email" name="email" id="email" class="inputText" maxlength="60" placeholder="<?php echo langCode('sigin_email_placeholder');?>" required/>
         <label for="email" id="emailLabel" class="inputLabel"></label>
-        
+
         <input type="password" name="password" id="password" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder');?>" required/>
         <label for="password" id="passwordLabel" class="inputLabel"></label>
-        
+
         <input type="password" name="password2" id="password2" class="inputText" maxlength="16" placeholder="<?php echo langCode('sigin_password_placeholder_2');?>" required/>
         <label for="password2" id="passwordLabel2" class="inputLabel"></label>
     </fieldset>
@@ -65,24 +65,27 @@
     <?php }?>
     <div class="openFieldset"><span class="openSpan"><?php echo 'Datas';?></span></div>
     <fieldset class="formFieldset"><legend class="fieldsetLegend"><?php echo 'Datas for this ' . MENU_GROUP;?></legend>
+        <input type="text" name="liveUrl" id="liveUrl" class="inputText" placeholder="<?php echo 'Live URL';?>" required/>
+        <label for="liveUrl" id="liveUrlLabel" class="inputLabel"></label>
+
         <input type="text" name="producerName" id="producerName" class="inputText" placeholder="<?php echo 'Producer Name';?>" required/>
         <label for="producerName" id="producerNameLabel" class="inputLabel"></label>
-        
+
         <input type="text" name="directorName" id="directorName" class="inputText" placeholder="<?php echo 'Director Name';?>" required/>
         <label for="directorName" id="directorNameLabel" class="inputLabel"></label>
-        
+
         <input type="text" name="date" id="date" class="inputText" placeholder="<?php echo 'Date';?>" required/>
         <label for="date" id="dateLabel" class="inputLabel"></label>
-        
+
         <input type="text" name="titleEn" id="titleEn" class="inputText" placeholder="<?php echo 'English Name';?>" required/>
         <label for="titleEn" id="titleEnLabel" class="inputLabel"></label>
-        
+
         <input type="text" name="synEn" id="synEn" class="inputText" placeholder="<?php echo 'English Synopsis';?>" required/>
         <label for="synEn" id="synEnLabel" class="inputLabel"></label>
 
         <input type="text" name="titlePt" id="titlePt" class="inputText" placeholder="<?php echo 'English Name';?>" required/>
         <label for="titlePt" id="titlePtLabel" class="inputLabel"></label>
-        
+
         <input type="text" name="synPt" id="synPt" class="inputText" placeholder="<?php echo 'English Synopsis';?>" required/>
         <label for="synPt" id="synPtLabel" class="inputLabel"></label>
     </fieldset>
