@@ -19,7 +19,11 @@
             $pdo = $this -> getConnection();
 
             if(isset($submit)) {
+<<<<<<< HEAD
             	//Selects
+=======
+            	//Selectes
+>>>>>>> 6dfffad0f8c1419f805d75579d817ed16c9f2671
 
 				$active = @$data['active'];
 				$feature = @$data['feature'];
