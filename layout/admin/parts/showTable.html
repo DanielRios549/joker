@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -49,7 +49,7 @@
 					$episodeDivisorUS = strpos($key['en_US'], "|");
 					$thisShowNameUS = substr($key['en_US'], 0, $episodeDivisorUS);
 					$thisShowSynUS = substr($key['en_US'], $episodeDivisorUS + 1);
-					
+
 					$episodeDivisorBR = strpos($key['pt_BR'], "|");
 					$thisShowNameBR = substr($key['pt_BR'], 0, $episodeDivisorBR);
 					$thisShowSynBR = substr($key['pt_BR'], $episodeDivisorBR + 1);
@@ -87,7 +87,7 @@
 					</fieldset>
 					<div class="openFieldset"><span class="openSpan"><?php echo 'Images';?></span></div>
 					<fielset class="formFieldset">
-						<?php 
+						<?php
 						if(MENU_GROUP == 'user') {
 							require 'manager/selectUserImages.html';
 						}
@@ -119,12 +119,12 @@
 							<a href="<?php echo $watchLink?>" class="link" target="_blank"><?php echo 'Go to Page';?></a>
 						</div>
 						<div id="watchInterface"
-							data-type="<?php echo $contentType;?>"
-							data-id="<?php echo $contentId;?>"
-							data-season="<?php echo $dataSeason;?>"
-							data-episode="<?php echo $dataEpisode;?>"
-							data-dash="<?php echo $dashFile;?>"
-							data-hls="<?php echo $hlsFile;?>"
+							data-type="<?php echo @$contentType;?>"
+							data-id="<?php echo @$contentId;?>"
+							data-season="<?php echo @$dataSeason;?>"
+							data-episode="<?php echo @$dataEpisode;?>"
+							data-dash="<?php echo @$dashFile;?>"
+							data-hls="<?php echo @$hlsFile;?>"
 							data-link="<?php echo @$liveUrl;?>">
 
 							<?php require '../player/' . $videoPlayer . '/player.html';?>
@@ -138,18 +138,23 @@
 						?>
 						<input type="text" id="editName" name="editName" class="inputText" value="<?php echo $key[$current2];?>"/>
 						<label for="editName" id="dateLabel" class="inputLabel"></label>
-						
+
 						<input type="text" id="editUserName" name="editUserName" class="inputText" value="<?php echo $key[$current3];?>"/>
 						<label for="editUserName" id="dateLabel" class="inputLabel"></label>
-						
+
 						<input type="text" id="editEmail" name="editEmail" class="inputText" value="<?php echo $key[$current4];?>"/>
 						<label for="editEmail" id="dateLabel" class="inputLabel"></label>
 						<?php }
 							elseif(THIS_PAGE != 'admin_episodes_manager') {
+								if(MENU_GROUP == 'live') {
 						?>
+						<input type="text" id="liveUrl" name="liveUrl" class="inputText" value="<?php echo $key[$getKeys[13]];?>"/>
+						<label for="liveUrl" id="liveUrlLabel" class="inputLabel"></label>
+						<?php }?>
+
 						<input type="text" id="editProcuder" name="editProcuder" class="inputText" value="<?php echo $key[$current2];?>"/>
 						<label for="editProcuder" id="dateLabel" class="inputLabel"></label>
-						
+
 						<input type="text" id="editDirector" name="editDirector" class="inputText" value="<?php echo $key[$current3];?>"/>
 						<label for="editDirector" id="dateLabel" class="inputLabel"></label>
 

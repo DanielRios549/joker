@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
@@ -48,7 +48,7 @@
 
 		if($getSeries -> execute()) {
 			$allSeries = $getSeries -> fetchAll(PDO::FETCH_ASSOC);
-		} 
+		}
 
 		//print_r($allSeries);
 
@@ -82,7 +82,7 @@
 		}
 
 		//All manager pages
-		
+
 		if(PAGE_TYPE == 'manager') {
 			$classManager = new AdminShow();
 			$classManager -> content(THIS_PAGE, PAGE_TYPE, $cookieLang);
@@ -114,7 +114,7 @@
 				$classRemove = new AdminRemove();
 				$classRemove -> remove(THIS_PAGE, $directPath);
 			}
-			
+
 			//print_r($addRow);
 
 			if($totalRows >= 1) {
@@ -226,11 +226,11 @@
 				$createSubmit = @$_GET['go'];
 
 				$createUserClass -> siginUser($directPath, $verificationEmail, ADMIN_PAGE, $_POST, $_FILES, $createSubmit);
-				
+
 				//Display the error on login or sigin
-				
+
 				$error = array('userErrorNone', 'The Error is display here', '#2cafec');
-				
+
 				if(isset($createSubmit)) {
 					$error = $createUserClass -> showError;
 				}
@@ -248,7 +248,7 @@
 
 				if(isset($addSubmit)) {
 					$classCreate -> contentEpisode($directPath, $episodeContent, $_POST, $_FILES, $seasonNumber, $episodeNumber, true);
-					
+
 					$error = $classCreate -> showError;
 					$showError = $error[0];
 					$errorMsg = $error[1];
@@ -261,9 +261,9 @@
 				$classCreate -> content($directPath, THIS_PAGE, $_POST, $_FILES, $addSubmit);
 
 				//Display the error
-				
+
 				$error = array('userErrorNone', 'The Error is display here', '#2cafec');
-				
+
 				if(isset($addSubmit)) {
 					$error = $classCreate -> showError;
 				}
