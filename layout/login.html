@@ -81,7 +81,7 @@
 		//Close the message displayed when has some error
 
 		inputError($(".userDiv"));
-		closeMessage('.userError', '#errorMsgClose');
+		userScript.closeMessage('.userError', '#errorMsgClose');
 
 		<?php if($onlyBody == true) {?>
 			 $('title').empty().text("<?php echo $titleFile;?>");

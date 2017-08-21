@@ -8,7 +8,7 @@
 	if(!isset($baseCon)) {
 		require '../../../_redirect.php';
 		header("Location:" . $base . "404");
-	}
+    }
 
     class AdminCreate extends Connect {
         private $imageDir;

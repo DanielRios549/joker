@@ -38,13 +38,15 @@
     <link rel="icon" href="<?php echo $imageDir . 'favicon.png';?>"/>
 	<link rel="stylesheet" href="<?php echo $styleDir . 'userStyle.css';?>"/>
     <script type="text/javascript" src="<?php echo $scriptDir . 'libraries/jquery.js';?>"></script>
+    <script type="text/javascript" src="<?php echo $scriptDir . 'userScript.js';?>"></script>
+    <script type="text/javascript" src="<?php echo $scriptDir . 'userAjax.js';?>"></script>
     <?php //<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>?>
     <script type="text/javascript">
         var baseUrl = '<?php echo $baseUrl;?>';
         <?php if($loginCheck == true) {?>
             var cookieId = '<?php echo session_id();?>';
             $(document).ready(function() {
-                intervalLogoff = setInterval(secureLogoff, 250);
+                intervalLogoff = setInterval(userScript.secureLogoff(), 250);
             });
         <?php }?>
     </script>

@@ -191,19 +191,19 @@ if($contentVerify -> rowCount() == 1) {
 		</article>
 		<script lang="text/javascript">
 			$(window).ready(function() {
-				tabSelect();
+				userScript.tabSelect();
 
-				hideReply(".commentGroup");
-				episodeSelect("#seasonBrowse");
+				userScript.hideReply(".commentGroup");
+				userScript.episodeSelect("#seasonBrowse");
 				
-				$('#contentSortcuts').on('click', '.addWatchList', addWatchList);
-				$('#contentSortcuts').on('click', '.removeWatchList', removeWatchList);
+				$('#contentSortcuts').on('click', '.addWatchList', userAjax.addWatchList);
+				$('#contentSortcuts').on('click', '.removeWatchList', userAjax.removeWatchList);
 
-				$('#commentFormDiv').on('click', '#commentSubmit', makeComment);
-				$('#commentOptionsDiv').on('click', '#buttonEdit', editComment);
-				$('#commentOptionsDiv').on('click', '#buttonDelete', deleteComment);
+				$('#commentFormDiv').on('click', '#commentSubmit', userAjax.makeComment);
+				$('#commentOptionsDiv').on('click', '#buttonEdit', userAjax.editComment);
+				$('#commentOptionsDiv').on('click', '#buttonDelete', userAjax.deleteComment);
 
-				disableEnable();
+				userScript.disableEnable();
 				//posterParalax('#contentImage');
 
 				<?php if($onlyBody == true) {?>

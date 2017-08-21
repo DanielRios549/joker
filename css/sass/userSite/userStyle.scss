@@ -74,11 +74,11 @@
 					color: var(--white);
 				};
 			}
-      #loginSpan,
+            #loginSpan,
 			#userName {
 				position: relative;
 				font-size: 2em;
-        margin: 10px;
+                margin: 10px;
 
 				@include css4 {
 					color: var(--white);

@@ -12,12 +12,6 @@
 	}
 	if($adminCheck == true) {
 ?>
-<script lang="text/javascript">
-    $(document).ready(function() {
-		//User tabs
-		tabSelect();
-	});
-</script>
 <section class="interface bodyMenuOpened">
 	<pre style="font-size: 2.2em;"><?php //print_r($_SESSION);?></pre>
 	<div id="tabHeader" class="tabHeader">
@@ -43,4 +37,10 @@
 		</div>
 	</div>
 </section>
+<script lang="text/javascript">
+    $(document).ready(function() {
+		//User tabs
+		userScript.tabSelect();
+	});
+</script>
 <?php }?>
