@@ -20,7 +20,7 @@
 				$title = langCode('admin_home');
 			}
 			elseif ($page == 'admin_feedback_manager') {
-				$title = langCode('admin_manage') . ' ' . langCode('admin_feedback');
+				$title = langCode('admin_manage') . ' ' . langCode('feedback');
 			}
 			elseif ($page == 'admin_users_manager') {
 				$title = langCode('admin_manage') . ' ' . langCode('users');

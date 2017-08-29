@@ -11,7 +11,7 @@ var userAjax = {
     //function for simple ajax, without sent and received datas, if you want to receive and/or send datas, create anoter one
 
     changeUrl: function(url) {
-        history.pushState("object or string", "Title", url);
+        history.pushState({}, '', url);
     },
 
     getPage: function(page, parameters, callback) {

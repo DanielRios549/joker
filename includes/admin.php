@@ -10,6 +10,21 @@
 		header("Location:" . $base . "404");
 	}
 	elseif ($adminCheck == true) {
+		//Set the home page for each section
+		
+		$sectionHome1 = getLink('feedback_manager', false);
+		$sectionHome2 = getLink('users_manager', false);
+		$sectionHome3 = getLink('movies_manager', false);
+		$sectionHome4 = getLink('series_manager', false);
+		$sectionHome5 = getLink('lives_manager', false);
+
+		if(MENU_GROUP == 'feedback') {
+			$sectionHome = getLink(MENU_GROUP . '_manager', false);
+		}
+		else {
+			$sectionHome = getLink(MENU_GROUP . 's_manager', false);
+		}
+
 		//Make the settings inside the congig table
 
 		$setConfig = new SetConfig();
@@ -25,6 +40,22 @@
 		$avaliablePlayers = $setConfig -> getPlayers($directPath);
 
 		//print_r($boolSettings);
+
+		$homeUsers = new AdminShow();
+		$homeUsers -> getTotal('user', false);
+		$usersTotal = $homeUsers -> totalContents;
+		
+		$homeMovies = new AdminShow();
+		$homeMovies -> getTotal('content', 'movie');
+		$moviesTotal = $homeMovies -> totalContents;
+		
+		$homeSeries = new AdminShow();
+		$homeSeries -> getTotal('content', 'serie');
+		$seriesTotal = $homeSeries -> totalContents;
+		
+		$homeLives = new AdminShow();
+		$homeLives -> getTotal('content', 'live');
+		$livesTotal = $homeLives -> totalContents;
 
 		//Get options of user to make the select
 

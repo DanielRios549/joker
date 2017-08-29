@@ -170,7 +170,7 @@ html body fieldset {
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
-#header #settingsOpen, .interface .formAdd .openFieldset .openSpan, .interface .formAdd .formFieldset .linkDiv .link, .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
+#header #settingsOpen, .interface .sectionDiv .section .icon, .interface .sectionDiv .section .details, .interface .formAdd .openFieldset .openSpan, .interface .formAdd .formFieldset .linkDiv .link, .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
 .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .rightButton,
 .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .playerIcon,
 .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface .formAdd .formFieldset .inputVideoLabel span, .interface .formAdd .formFieldset #selectedVideoDiv, .interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv .deleteButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .openFieldset .openSpan, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .linkDiv .link, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
@@ -772,7 +772,7 @@ html body fieldset {
 }
 
 .interface #pageAddress .pageLink,
-.interface #pageAddress #activePage {
+.interface #pageAddress .activePage {
   position: relative;
   font-size: 1.6em;
   text-decoration: none;
@@ -820,13 +820,13 @@ html body fieldset {
   border-left: 1em solid var(--lightGray);
 }
 
-.interface #pageAddress #activePage {
+.interface #pageAddress .activePage {
   margin: 0 .5em 0 1em;
   background: var(--joker02);
   color: var(--white);
 }
 
-.interface #pageAddress #activePage:before {
+.interface #pageAddress .activePage:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -837,7 +837,7 @@ html body fieldset {
   border-color: var(--joker02) var(--joker02) var(--joker02) transparent;
 }
 
-.interface #pageAddress #activePage:after {
+.interface #pageAddress .activePage:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -848,83 +848,91 @@ html body fieldset {
   border-left: 1em solid var(--joker02);
 }
 
-.interface #tabHeader {
-  box-sizing: border-box;
-  background: transparent;
+.interface .sectionDiv {
   position: relative;
-  top: 10px;
-  left: 0;
-  height: 40px;
-  width: 95%;
+  top: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
   margin: 0 auto;
-  z-index: 98;
 }
 
-.interface #tabHeader .tabs {
-  display: block;
+.interface .sectionDiv .section {
+  border-radius: 5px;
+  position: relative;
+  width: calc(25% - 10px);
+  height: 150px;
+}
+
+.interface .sectionDiv .section:nth-of-type(1) {
+  --icon: '\f007';
+  background: var(--facebook);
+}
+
+.interface .sectionDiv .section:nth-of-type(2) {
+  --icon: '\f008';
+  background: var(--errorColor);
+}
+
+.interface .sectionDiv .section:nth-of-type(3) {
+  --icon: '\f1c8';
+  background: var(--blue);
+}
+
+.interface .sectionDiv .section:nth-of-type(4) {
+  --icon: '\f1e8';
+  background: var(--google);
+}
+
+.interface .sectionDiv .section .totalNumber {
+  font-size: 4em;
+  font-weight: bold;
+}
+
+.interface .sectionDiv .section .type {
+  font-size: 2em;
+}
+
+.interface .sectionDiv .section span {
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 50px;
+  font-family: Calibri, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  color: var(--lightGray);
 }
 
-.interface #tabHeader .tabs .tab,
-.interface #tabHeader .tabs .tabSelected {
-  background: transparent;
-  width: 80px;
+.interface .sectionDiv .section .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 70%;
+}
+
+.interface .sectionDiv .section .icon:after {
+  font: 7em FontAwesome;
+  content: var(--icon);
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.interface .sectionDiv .section .details {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   height: 30px;
-  text-align: center;
-  padding: 5px 0 0 0;
-  cursor: pointer;
-  float: left;
-  -webkit-transition: border 300ms ease;
-  -moz-transition: border 300ms ease;
-  -ms-transition: border 300ms ease;
-  transition: border 300ms ease;
-}
-
-.interface #tabHeader .tabs .tab:hover,
-.interface #tabHeader .tabs .tabSelected:hover {
-  border-bottom: 4px solid var(--joker02);
-}
-
-.interface #tabHeader .tabs .tab span,
-.interface #tabHeader .tabs .tabSelected span {
-  font-size: 1.5em;
+  font: 2em Calibri, sans-serif;
+  background: rgba(0, 0, 0, 0.3);
   color: var(--lightGray);
 }
 
-.interface #tabHeader .tabs .tab {
-  border-bottom: 4px solid transparent;
-}
-
-.interface #tabHeader .tabs .tabSelected {
-  border-bottom: 4px solid var(--joker02);
-}
-
-.interface #tabContents {
-  background: transparent;
-  box-sizing: border-box;
-  position: relative;
-  top: 50px;
-  width: 95%;
-  height: 400px;
-  margin: 0 auto;
-}
-
-.interface #tabContents .contentShow,
-.interface #tabContents .contentHide {
-  height: 100%;
-  width: 100%;
-  color: var(--lightGray);
-}
-
-.interface #tabContents .contentShow {
-  opacity: 1;
-  display: block;
-}
-
-.interface #tabContents .contentHide {
-  opacity: 0;
-  display: none;
+.interface .sectionDiv .section .details:after {
+  content: '\f0a9';
+  font: 1em FontAwesome;
+  margin-left: 10px;
 }
 
 .interface #pageAddress {
@@ -935,7 +943,7 @@ html body fieldset {
 }
 
 .interface #pageAddress .pageLink,
-.interface #pageAddress #activePage {
+.interface #pageAddress .activePage {
   position: relative;
   font-size: 1.6em;
   text-decoration: none;
@@ -983,13 +991,13 @@ html body fieldset {
   border-left: 1em solid var(--lightGray);
 }
 
-.interface #pageAddress #activePage {
+.interface #pageAddress .activePage {
   margin: 0 .5em 0 1em;
   background: var(--joker02);
   color: var(--white);
 }
 
-.interface #pageAddress #activePage:before {
+.interface #pageAddress .activePage:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -1000,7 +1008,7 @@ html body fieldset {
   border-color: var(--joker02) var(--joker02) var(--joker02) transparent;
 }
 
-.interface #pageAddress #activePage:after {
+.interface #pageAddress .activePage:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -2320,7 +2328,7 @@ html body fieldset {
 }
 
 .interface #pageAddress .pageLink,
-.interface #pageAddress #activePage {
+.interface #pageAddress .activePage {
   position: relative;
   font-size: 1.6em;
   text-decoration: none;
@@ -2368,13 +2376,13 @@ html body fieldset {
   border-left: 1em solid var(--lightGray);
 }
 
-.interface #pageAddress #activePage {
+.interface #pageAddress .activePage {
   margin: 0 .5em 0 1em;
   background: var(--joker02);
   color: var(--white);
 }
 
-.interface #pageAddress #activePage:before {
+.interface #pageAddress .activePage:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -2385,7 +2393,7 @@ html body fieldset {
   border-color: var(--joker02) var(--joker02) var(--joker02) transparent;
 }
 
-.interface #pageAddress #activePage:after {
+.interface #pageAddress .activePage:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -2514,7 +2522,7 @@ html body fieldset {
   font-size: 2em;
   font-weight: bold;
   padding-left: 1%;
-  color: var(--gray);
+  color: var(--lightGray);
 }
 
 .interface #showContents #selectDiv {

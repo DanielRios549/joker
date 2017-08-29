@@ -31,9 +31,6 @@
         elseif($type == 'title') {
             $link = $baseUrl . 'title?id=' . $id;
         }
-        elseif($type == 'watch') {
-            $link = $baseUrl . 'watch';
-        }
         elseif($type == 'category') {
             $link = $baseUrl . 'category?c=' . categoryId($id);
         }
@@ -42,6 +39,9 @@
         }
         elseif($type == 'profile') {
             $link = $baseUrl . 'profile?id=' . $id;
+        }
+        elseif($type == 'watch') {
+            $link = $baseUrl . 'watch';
         }
         elseif($type == 'login') {
             $link = $baseUrl . 'login';
@@ -66,40 +66,18 @@
         }
 
         //Admin Pages
-
         
-        elseif($type == 'feedback_manager') {
-            $link = $adminDir . 'feedback/manager';
-        }
-        elseif($type == 'users_manager') {
-            $link = $adminDir . 'users/manager';
-        }
-        elseif($type == 'users_add') {
-            $link = $adminDir . 'users/add';
-        }
-        elseif($type == 'movies_manager') {
-            $link = $adminDir . 'movies/manager';
-        }
-        elseif($type == 'movies_add') {
-            $link = $adminDir . 'movies/add';
-        }
-        elseif($type == 'series_manager') {
-            $link = $adminDir . 'series/manager';
-        }
-        elseif($type == 'series_add') {
-            $link = $adminDir . 'series/add';
-        }
-        elseif($type == 'episodes_manager') {
-            $link = $adminDir . 'series/manager/episodes';
-        }
-        elseif($type == 'episodes_add') {
-            $link = $adminDir . 'series/add/episodes';
-        }
-        elseif($type == 'lives_manager') {
-            $link = $adminDir . 'lives/manager';
-        }
-        elseif($type == 'lives_add') {
-            $link = $adminDir . 'lives/add';
+        else {
+            $getPosition = strpos($type, '_');
+            $dedidePosition1 = substr($type, 0, $getPosition);
+            $dedidePosition2 = substr($type, $getPosition + 1);
+
+            if($dedidePosition2 == 'home') {
+                $link = $adminDir . $dedidePosition1;
+            }
+            else {
+                $link = $adminDir . $dedidePosition1 . '/' . $dedidePosition2;
+            }
         }
         return $link;
     }

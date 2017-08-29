@@ -261,5 +261,22 @@
 				}
 			}
 		}
+		public function getTotal($table, $type) {
+			$pdo = $this -> getConnection();
+			
+			if($type == false) {
+				$query = "SELECT * FROM $table";
+			}
+			else {
+				$query = "SELECT * FROM $table WHERE type = '$type'";
+			}
+
+			$totalQuery = $pdo -> query($query);
+			
+			if($totalQuery -> execute()) {
+				$total = $totalQuery -> rowCount();
+				$this -> totalContents = $total;
+			}
+		}
 	}
 ?>

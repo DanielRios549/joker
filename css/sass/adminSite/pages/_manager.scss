@@ -2,81 +2,82 @@
 	@include pageAddress();
 
 	#managerOptions {
-    position: relative;
-    top: 20px;
-    height: 50px;
-    width: 100%;
+		position: relative;
+		top: 20px;
+		height: 50px;
+		width: 100%;
 		display: flex;
 		justify-content: flex-end;
 
-    .managerLink,
-    #advancedClose {
-      box-sizing: border-box;
-      border-radius: 3px;
-      position: relative;
-      top: 0;
-      height: 40px;
-      width: auto;
-      font: 2em Calibri, sans-serif;
-      text-decoration: none;
-      padding: 5px;
+		.managerLink,
+		#advancedClose {
+			box-sizing: border-box;
+			border-radius: 3px;
+			position: relative;
+			top: 0;
+			height: 40px;
+			width: auto;
+			font: 2em Calibri, sans-serif;
+			text-decoration: none;
+			padding: 5px;
 
 			@include css4 {
-      	background: var(--joker02);
-        color: var(--lightGray);
-      };
-      &:after {
-	      top: 3px;
-	      left: 3px;
-	      position: relative;
-	      font-family: FontAwesome;
+				background: var(--joker02);
+				color: var(--lightGray);
+			};
+			&:after {
+				top: 3px;
+				left: 3px;
+				position: relative;
+				font-family: FontAwesome;
 
 				@include css4 {
 					color: var(--lightGray);
 				};
-      }
-    }
-    .managerLink {
+			}
+		}
+		.managerLink {
 			margin: 0 10px 0 0;
-          &:after {
-              content: '\f067';
-              font-size: 1em;
-          }
-      }
-      #advancedClose {
-        cursor: pointer;
-        line-height: 20px;
 
-          &:after {
-            content: '\f107';
-            font-size: 1.5em;
-            font-weight: bold;
-            position: relative;
-            right: 0;
-            top: 0;
+			&:after {
+				content: '\f067';
+				font-size: 1em;
+			}
+		}
+		#advancedClose {
+			cursor: pointer;
+			line-height: 20px;
 
-            @include transition(all, 300ms, linear);
-          }
-      }
-      .searchAdvancedClose {
-          border: 3px solid transparent;
-      }
-      .searchAdvancedOpen {
-				@include css4 {
-	        border: 3px solid var(--lightGray);
-				};
+			&:after {
+				content: '\f107';
+				font-size: 1.5em;
+				font-weight: bold;
+				position: relative;
+				right: 0;
+				top: 0;
 
-	      &:after {
-	        @include transform(rotate(180deg));
-	      }
-    	}
+				@include transition(all, 300ms, linear);
+			}
+		}
+		.searchAdvancedClose {
+			border: 3px solid transparent;
+		}
+		.searchAdvancedOpen {
+			@include css4 {
+				border: 3px solid var(--lightGray);
+			};
+
+			&:after {
+				@include transform(rotate(180deg));
+			}
+		}
     }
     #advancedSearchDiv {
-      position: relative;
-      top: 30px;
-      overflow: hidden;
+		position: relative;
+		top: 30px;
+		overflow: hidden;
 
-      @include transition(height, 300ms, linear);
+		@include transition(height, 300ms, linear);
     }
     .advancedSearchHide {
         height: 0;
@@ -109,7 +110,7 @@
 			padding-left: 1%;
 
 			@include css4 {
-				color: var(--gray);
+				color: var(--lightGray);
 			};
 		}
 		#selectDiv {

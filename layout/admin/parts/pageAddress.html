@@ -18,9 +18,11 @@
         </a>
     </span>
     <span class="pageLink">
-        <?php echo langCode(MENU_GROUP . 's');?>
+        <a href="<?php echo $sectionHome;?>">
+            <?php echo langCode(MENU_GROUP . 's');?>
+        </a>
     </span>
-    <span id="activePage">
+    <span class="activePage">
         <?php echo ucfirst(langCode(PAGE_TYPE));?>
     </span>
 </div>

@@ -15,7 +15,7 @@
 		margin-top: 20px;
 
 		.pageLink,
-		#activePage	{
+		.activePage	{
 			position: relative;
 			font-size: 1.6em;
 			text-decoration: none;
@@ -74,7 +74,7 @@
 				};
 			}
 		}
-		#activePage  {
+		.activePage  {
 			margin: 0 .5em 0 1em;
 
 			@include css4 {

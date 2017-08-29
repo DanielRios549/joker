@@ -14,33 +14,36 @@
 ?>
 <section class="interface bodyMenuOpened">
 	<pre style="font-size: 2.2em;"><?php //print_r($_SESSION);?></pre>
-	<div id="tabHeader" class="tabHeader">
-		<div class="tabs">
-			<div class="tab"><span><?php echo langCode('about');?></span></div>
-			<div class="tab tabSelected"><span><?php echo langCode('accounts');?></span></div>
-			<div class="tab"><span><?php echo langCode('movies');?></span></div>
-			<div class="tab"><span><?php echo langCode('series');?></span></div>
+	<article class="sectionDiv">
+		<div class="section">
+			<span class="totalNumber"><?php echo $usersTotal;?></span>
+			<span class="type"><?php echo langCode('users');?></span>
+			<div class="icon"></div>
+			<a href="<?php echo $sectionHome2;?>" class="details"><?php echo langCode('more_info');?></a>
 		</div>
-	</div>
-	<div id="tabContents">
-		<div class="contentHide">
-			Conteúdo da aba 1
+		<div class="section">
+			<span class="totalNumber"><?php echo $moviesTotal;?></span>
+			<span class="type"><?php echo langCode('movies');?></span>
+			<div class="icon"></div>
+			<a href="<?php echo $sectionHome3;?>" class="details"><?php echo langCode('more_info');?></a>
 		</div>
-		<div class="contentShow">
-			Conteúdo da aba 2
+		<div class="section">
+			<span class="totalNumber"><?php echo $seriesTotal;?></span>
+			<span class="type"><?php echo langCode('series');?></span>
+			<div class="icon"></div>
+			<a href="<?php echo $sectionHome4;?>" class="details"><?php echo langCode('more_info');?></a>
 		</div>
-		<div class="contentHide">
-			Conteúdo da aba 3
+		<div class="section">
+			<span class="totalNumber"><?php echo $livesTotal;?></span>
+			<span class="type"><?php echo langCode('lives');?></span>
+			<div class="icon"></div>
+			<a href="<?php echo $sectionHome5;?>" class="details"><?php echo langCode('more_info');?></a>
 		</div>
-		<div class="contentHide">
-			Conteúdo da aba 4
-		</div>
-	</div>
+	</article>
 </section>
 <script lang="text/javascript">
     $(document).ready(function() {
-		//User tabs
-		userScript.tabSelect();
+		
 	});
 </script>
 <?php }?>
