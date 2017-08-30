@@ -26,6 +26,8 @@ $colorBlack: #101010;
 $colorBlue: #4e297e;//#2cafec
 $colorWhite: #f1f1f1;*/
 :root {
+  --active: #00C93E;
+  --inactive: #F02225;
   --shadowColor: rgba(0, 0, 0, 0.8);
   --errorColor: #fd0b3e;
   --bodyColor: #141414;

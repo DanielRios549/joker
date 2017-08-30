@@ -41,6 +41,12 @@
 		<div id="tableBody">
 			<?php
 			foreach($addRow as $addRow => $key) {
+				if($key['active'] == 'yes') {
+					$currentActive = 'active';
+				}
+				elseif($key['active'] == 'no') {
+					$currentActive = 'inactive';
+				}
 				if($divisorData == true) {
 					$episodeDivisor = strpos($key[$cookieLang], "|");
 					$thisShowName = substr($key[$cookieLang], 0, $episodeDivisor);
@@ -63,18 +69,8 @@
 						$currentImage = $currentFolder . '/profile.jpg';
 						$currentCoverImage = $currentFolder . '/cover.jpg';
 					}
-					elseif(THIS_PAGE == 'admin_movies_manager') {
-						$currentFolder = $mediaImageFolder . 'movies/' . $editRow;
-						$currentImage = $currentFolder . '/image.jpg';
-						$currentCoverImage = $currentFolder . '/background.jpg';
-					}
-					elseif(THIS_PAGE == 'admin_series_manager') {
-						$currentFolder = $mediaImageFolder . 'series/' . $editRow;
-						$currentImage = $currentFolder . '/image.jpg';
-						$currentCoverImage = $currentFolder . '/background.jpg';
-					}
-					elseif(THIS_PAGE == 'admin_lives_manager') {
-						$currentFolder = $mediaImageFolder . 'lives/' . $editRow;
+					else {
+						$currentFolder = $mediaImageFolder . MENU_GROUP . 's/' . $editRow;
 						$currentImage = $currentFolder . '/image.jpg';
 						$currentCoverImage = $currentFolder . '/background.jpg';
 					}
@@ -216,7 +212,7 @@
 				<div id="closeEditDiv"><a href="<?php echo $setNewUrl;?>" title="Close"></a></div>
 			</div>
 			<?php }} else {?>
-			<div class="contentRow">
+			<div class="contentRow <?php echo $currentActive;?>">
 				<div class="contentId">
 					<span class="contentSpan">
 						<?php echo $key[$current1];?>

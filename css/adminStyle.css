@@ -26,6 +26,8 @@ $colorBlack: #101010;
 $colorBlue: #4e297e;//#2cafec
 $colorWhite: #f1f1f1;*/
 :root {
+  --active: #00C93E;
+  --inactive: #F02225;
   --shadowColor: rgba(0, 0, 0, 0.8);
   --errorColor: #fd0b3e;
   --bodyColor: #141414;
@@ -862,26 +864,35 @@ html body fieldset {
   position: relative;
   width: calc(25% - 10px);
   height: 150px;
+  overflow: hidden;
+  background: var(--back);
+}
+
+.interface .sectionDiv .section:hover .icon {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .interface .sectionDiv .section:nth-of-type(1) {
   --icon: '\f007';
-  background: var(--facebook);
+  --back: var(--facebook);
 }
 
 .interface .sectionDiv .section:nth-of-type(2) {
   --icon: '\f008';
-  background: var(--errorColor);
+  --back: var(--errorColor);
 }
 
 .interface .sectionDiv .section:nth-of-type(3) {
   --icon: '\f1c8';
-  background: var(--blue);
+  --back: var(--blue);
 }
 
 .interface .sectionDiv .section:nth-of-type(4) {
   --icon: '\f1e8';
-  background: var(--google);
+  --back: var(--google);
 }
 
 .interface .sectionDiv .section .totalNumber {
@@ -911,6 +922,10 @@ html body fieldset {
   right: 0;
   width: 100px;
   height: 70%;
+  -webkit-transition: transform 200ms linear;
+  -moz-transition: transform 200ms linear;
+  -ms-transition: transform 200ms linear;
+  transition: transform 200ms linear;
 }
 
 .interface .sectionDiv .section .icon:after {
@@ -927,6 +942,14 @@ html body fieldset {
   font: 2em Calibri, sans-serif;
   background: rgba(0, 0, 0, 0.3);
   color: var(--lightGray);
+  -webkit-transition: background 200ms linear;
+  -moz-transition: background 200ms linear;
+  -ms-transition: background 200ms linear;
+  transition: background 200ms linear;
+}
+
+.interface .sectionDiv .section .details:hover {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .interface .sectionDiv .section .details:after {
@@ -4056,6 +4079,25 @@ html body fieldset {
 .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .submitButton .submitSpan {
   font-size: 1.6em;
   height: 100%;
+}
+
+.interface #showContents #contentTable #tableBody .active:before,
+.interface #showContents #contentTable #tableBody .inactive:before {
+  position: relative;
+  top: 10px;
+  left: 20px;
+}
+
+.interface #showContents #contentTable #tableBody .active:before {
+  content: '\f14a';
+  font: 2em FontAwesome;
+  color: var(--active);
+}
+
+.interface #showContents #contentTable #tableBody .inactive:before {
+  content: '\f2d3';
+  font: 1.8em FontAwesome;
+  color: var(--inactive);
 }
 
 .interface #showContents #contentTable #tableBody .contentRow {

@@ -14,30 +14,31 @@
             position: relative;
             width: calc(25% - 10px);
             height: 150px;
-            
+            overflow: hidden;
+
+            @include css4 {
+                background: var(--back);
+            };
+            &:hover {
+                .icon {
+                    @include transform(scale(1.2));
+                }
+            }
             &:nth-of-type(1) {
                 --icon: '\f007';
-                @include css4 {
-                    background: var(--facebook);
-                };
+                --back: var(--facebook);
             }
             &:nth-of-type(2) {
                 --icon: '\f008';
-                @include css4 {
-                    background: var(--errorColor);
-                };
+                --back: var(--errorColor);
             }
             &:nth-of-type(3) {
                 --icon: '\f1c8';
-                @include css4 {
-                    background: var(--blue);
-                };
+                --back: var(--blue);
             }
             &:nth-of-type(4) {
                 --icon: '\f1e8';
-                @include css4 {
-                    background: var(--google);
-                };
+                --back: var(--google);
             }
             .totalNumber {
                 font-size: 4em;
@@ -67,6 +68,8 @@
                 width: 100px;
                 height: 70%;
 
+                @include transition(transform, 200ms, linear);
+
                 @extend %alignCenter;
 
                 &:after {
@@ -86,11 +89,18 @@
                 font: 2em Calibri, sans-serif;
                 background: rgba(0,0,0,.3);
 
+                &:hover {
+                    background: rgba(0,0,0,.5);
+                }
+
                 @extend %alignCenter;
 
                 @include css4 {
                     color: var(--lightGray);
                 };
+
+                @include transition(background, 200ms,linear);
+
                 &:after {
                     content: '\f0a9';
                     font: 1em FontAwesome;
