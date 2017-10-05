@@ -27,19 +27,29 @@
 
 		//Make the settings inside the congig table
 
-		$setConfig = new SetConfig();
+		$getConfig = new Settings();
 
-		$textSettings = $setConfig -> getConfigSet('text');
+		$textSettings = $getConfig -> getConfig('text');
 
-		$boolSettings = $setConfig -> getConfigSet('bool');
+		$boolSettings = $getConfig -> getConfig('bool');
 
-		$selectSettings = $setConfig -> getConfigSet('select');
+		$selectSettings = $getConfig -> getConfig('select');
 
 		$avaliableBoolean = array(0 => 'no', 1 => 'yes');
 
-		$avaliablePlayers = $setConfig -> getPlayers($directPath);
+		$avaliablePlayers = $getConfig -> getPlayers($directPath);
 
 		//print_r($boolSettings);
+
+		//Set the new configs
+
+		$setConfigGet =  $_GET['go'] ?? false;
+
+		if($setConfigGet == 'config') {
+			$setConfig = new Settings();
+
+			$setConfig -> setConfig($_POST);
+		}
 
 		$homeUsers = new AdminShow();
 		$homeUsers -> getTotal('user', false);

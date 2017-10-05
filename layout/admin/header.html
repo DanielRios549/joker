@@ -114,14 +114,14 @@
 	</ul>
 </nav>
 <aside id="configBar">
-	<form action="" id="settingsForm">
+	<form method="POST" action="?go=config" id="settingsForm">
 		<fieldset id="generalConfigs" class="settingsFieldset"><legend class="settingsLegend">General</legend>
 		<?php
 			//Text Options
 			foreach($textSettings as $textSettings => $setting) {
 		?>
 			<lable class="settingsLabel"><?php echo $setting['name'];?></lable>
-			<input type="text" value="<?php echo $setting['value'];?>"/>
+			<input type="text" name="<?php echo $setting['name'];?>" value="<?php echo $setting['value'];?>"/>
 		<?php }
 			//Boolean Options
 			foreach($boolSettings as $boolSettings => $setting) {
@@ -165,6 +165,9 @@
 			<?php }?>
 			</select>
 			<?php }?>
+		</fieldset>
+		<fieldset id="submitFieldset" class="settingsFieldset submitFieldset">
+			<button type="submit" name="configSubmit" id="configSubmit" class="submitButton"><span class="submitSpan"><?php echo langCode('Change');?></span></button>
 		</fieldset>
 	</form>
 </aside>

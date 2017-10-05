@@ -32,7 +32,7 @@
 					<input type="password" name="loginPassword" id="loginPassword" class="inputText" maxlength="60" placeholder="<?php echo langCode('login_password_placeholder');?>" required/>
 					<label for="loginPassword" id="loginPasswordLabel" class="inputLabel"></label>
 
-					<?php if($allowRestoreLogin == true) {?>
+					<?php if($allowSaveLogin == 'yes') {?>
 					<input type="checkbox" name="loginRestore" id="loginRestore"/>
 					<label for="loginRestore" id="loginRestoreLabel"><span class="checkIcon"></span><span class="spanText"><?php echo langCode('remember_login');?></span></label>
 					<?php }?>
@@ -67,7 +67,7 @@
 			</form>
 		</article>
 		<?php }?>
-		<?php if($allowNewUser == 'false') {?>
+		<?php if($allowNewUser == 'no') {?>
 		<article id="siginDiv" class="userDiv">
 			<p style="font-size: 3em;"><?php echo langCode('block_sigin');?></p>
 		</article>
@@ -80,7 +80,7 @@
 	$(document).ready(function() {
 		//Close the message displayed when has some error
 
-		inputError($(".userDiv"));
+		userScript.inputError($(".userDiv"));
 		userScript.closeMessage('.userError', '#errorMsgClose');
 
 		<?php if($onlyBody == true) {?>

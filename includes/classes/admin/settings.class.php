@@ -10,10 +10,10 @@
 		header("Location:" . $base . "404");
 	}
 
-    class SetConfig extends Connect {
+    class Settings extends Connect {
 		//Get the current values
 
-		public function getConfigSet($type) {
+		public function getConfig($type) {
 			$pdo = $this -> getConnection();
 			$table = $this -> getConfigTable();
 			//global $thisUrl;
@@ -41,6 +41,23 @@
 			}
 
 			return $dirs;
+		}
+
+		public function setConfig($data) {
+			$pdo = $this -> getConnection();
+			$table = $this -> getConfigTable();
+			$configKeys = array_keys($data);
+			//print_r($configKeys);
+
+			foreach ($configKeys as $key) {
+				$setConfig = $pdo -> prepare("UPDATE $table set value = :value WHERE name = :column");
+				$setConfig -> bindValue(":value", $data[$key]);
+				$setConfig -> bindValue(":column", $key);
+				$setConfig -> execute();
+			}
+			
+			echo alert('Atualizado');
+			echo script('history.go(-1)');
 		}
 	}
 ?>

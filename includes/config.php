@@ -26,6 +26,8 @@
 
 	$allowNewUser = $getConfig -> configQuery('allowNewUser');
 
+	$allowSaveLogin = $getConfig -> configQuery('allowSaveLogin');
+
 	$baseUrl = $currentServerUrl . $getConfig -> configQuery('subFolder');
 
 	$directPath = $getConfig -> configQuery('directPath');

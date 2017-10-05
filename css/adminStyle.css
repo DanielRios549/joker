@@ -4238,10 +4238,7 @@ html body fieldset {
   height: auto;
   display: flex;
   margin-bottom: 20px;
-}
-
-#configBar #settingsForm .settingsFieldset:not(legend) {
-  padding-left: 10px;
+  padding: 0 5px;
 }
 
 #configBar #settingsForm .settingsFieldset .settingsLegend {
@@ -4254,6 +4251,17 @@ html body fieldset {
 #configBar #settingsForm .settingsFieldset .settingsLabel {
   font: 1.6em Calibri, sans-serif;
   color: var(--lightGray);
+}
+
+#configBar #settingsForm .settingsFieldset #configSubmit {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  cursor: pointer;
+}
+
+#configBar #settingsForm .settingsFieldset #configSubmit .submitSpan {
+  font: 1.6em Calibri, sans-serif;
 }
 
 #configBar #settingsForm input {

@@ -21,7 +21,7 @@
 			if(($url == 'localhost') or ($url == '127.0.0.1')) {
 				$name = 'joker';
 				$user = 'root';
-				$pass = 'cftwy';
+				$pass = 'cftwy549';
 				$host = '127.0.0.1';
 				$config = 'config_dev';
 			}
