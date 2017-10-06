@@ -172,7 +172,7 @@ html body fieldset {
 /*using on various styles.*/
 /*using on various styles.*/
 /*using on various styles.*/
-.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, #header #itemHome a, #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
+.interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching, .interface .mainSection .contentContainer .contentDiv .contentGroup .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .contentLink .contentFigure figcaption .continueWatching:before, .interface .mainSection .contentContainer .contentDiv .contentGroup .active:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .inactive:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .active:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .inactive:after, #header #itemHome a, #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
 #watchInterface #playerBox #controlsDiv #leftControls .rightButton,
 #watchInterface #playerBox #controlsDiv #rightControls .playerIcon,
 #watchInterface #playerBox #controlsDiv #rightControls .rightButton, #footer #topDiv {
@@ -778,6 +778,28 @@ html body fieldset {
 
 .interface .mainSection .contentContainer .contentDiv .contentGroup .content .removeWatchList:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .contentOpen .removeWatchList:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .content .removeWatchList:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .contentOpen .removeWatchList:after {
   content: '\f058';
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .active:after, .interface .mainSection .contentContainer .contentDiv .contentGroup .inactive:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .active:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .inactive:after {
+  border-radius: 3px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 24px;
+  height: 23px;
+  background: var(--darkGray);
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .active:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .active:after {
+  content: '\f14a';
+  font: 2em FontAwesome;
+  color: var(--active);
+}
+
+.interface .mainSection .contentContainer .contentDiv .contentGroup .inactive:after, .interface .mainSection .contentContainer .contentDiv .contentGroupScroll .inactive:after {
+  content: '\f2d3';
+  font: 1.8em FontAwesome;
+  color: var(--inactive);
 }
 
 .interface .mainSection .contentContainer .titleDetails, .interface .mainSection .contentContainer .titleDetailsOpen {

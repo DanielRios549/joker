@@ -230,6 +230,43 @@
 						}
 					}
 				}
+				.active,
+				.inactive {
+					&:after {
+						border-radius: 3px;
+						position: absolute;
+						bottom: 10px;
+						left: 10px;
+						width: 24px;
+						height: 23px;
+
+						@extend %alignCenter;
+
+						@include css4 {
+							background: var(--darkGray);
+						};
+					}
+				}
+				.active {
+					&:after {
+						content: '\f14a';
+						font: 2em FontAwesome;
+					
+						@include css4 {
+							color: var(--active);
+						};
+					}
+				}
+				.inactive {
+					&:after {
+						content: '\f2d3';
+						font: 1.8em FontAwesome;
+					
+						@include css4 {
+							color: var(--inactive);
+						};
+					}
+				}
 			}
 		}
 		.titleDetails,

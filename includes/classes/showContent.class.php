@@ -19,8 +19,17 @@
 		public $currentCategory;
 		public $contentName;
 		
-		public function showContent($category, $date, $querySearch, $page, $user) {
+		public function showContent($category, $date, $querySearch, $page, $user, $admin) {
 			$pdo = $this -> getConnection();
+
+			if($admin == true) {
+				$adminSufix = '';
+				$adminWhere = "WHERE type != 'live'";
+			}
+			elseif($admin == false) {
+				$adminSufix = "AND active = 'yes'";
+				$adminWhere = "WHERE active = 'yes' AND type != 'live'";
+			}
 			//General Pages
 			
 			if($querySearch == false) {
@@ -28,26 +37,26 @@
 				//Index feature
 				
 				if($category == 'feature') {
-					$query = $pdo -> query("SELECT * FROM content WHERE feature = 'yes' AND active = 'yes'");
+					$query = $pdo -> query("SELECT * FROM content WHERE feature = 'yes' $adminSufix");
 				}
 				
 				//index watchlist
 				
 				elseif($category == 'watchlist') {
-					$query = $pdo -> prepare("SELECT c.content_id, c.type FROM watchlist AS w INNER JOIN content AS c ON w.content_id = c.content_id WHERE w.user_id = :user  AND c.active = 'yes' ORDER BY w.wish_id DESC");
+					$query = $pdo -> prepare("SELECT c.content_id, c.type FROM watchlist AS w INNER JOIN content AS c ON w.content_id = c.content_id WHERE w.user_id = :user $adminSufix ORDER BY w.wish_id DESC");
 					$query -> bindValue(":user", $user);
 				}
 				
 				//Index recently added
 				
 				elseif($date != false) {
-					$query = $pdo -> query("SELECT * FROM content WHERE active = 'yes' AND type != 'live' ORDER BY date_add DESC LIMIT 20");
+					$query = $pdo -> query("SELECT * FROM content $adminWhere ORDER BY date_add DESC LIMIT 20");
 				}
 				
 				//Index categories
 				
 				elseif(($category != false) and ($page == false)) {
-					$query = $pdo -> prepare("SELECT * FROM content WHERE category = :category AND active = 'yes' ORDER BY content_id DESC LIMIT 20");
+					$query = $pdo -> prepare("SELECT * FROM content WHERE category = :category $adminSufix ORDER BY content_id DESC LIMIT 20");
 					$query -> bindValue(":category", $category);
 				}
 				
@@ -57,7 +66,7 @@
                     $categoryId = categoryName($_GET['c']);
 					$category = langCode($categoryId);
 
-					$query = $pdo -> prepare("SELECT * FROM content WHERE category = :id AND active = 'yes' ORDER BY content_id");
+					$query = $pdo -> prepare("SELECT * FROM content WHERE category = :id $adminSufix ORDER BY content_id");
 					$query -> bindValue(":id", $categoryId);
 				}
 				try {
@@ -91,10 +100,10 @@
 			elseif($querySearch !== false) {
 				try {
 					if($category == 'name') {
-						$query = $pdo -> query("SELECT content_id, type FROM content WHERE en_US LIKE '%" . $querySearch . "%' OR pt_BR LIKE '%" . $querySearch . "%'  OR producer LIKE '%" . $querySearch . "%' OR director LIKE '%" . $querySearch . "%' AND active = 'yes' ORDER BY date_add DESC");
+						$query = $pdo -> query("SELECT * FROM content WHERE en_US LIKE '%" . $querySearch . "%' OR pt_BR LIKE '%" . $querySearch . "%'  OR producer LIKE '%" . $querySearch . "%' OR director LIKE '%" . $querySearch . "%' $adminSufix ORDER BY date_add DESC");
 					}
 					elseif($category == 'producer') {
-						$query = $pdo -> query("SELECT producer, director FROM content WHERE producer LIKE '%" . $querySearch . "%' OR director LIKE '%" . $querySearch . "%' AND active = 'yes' ORDER BY date_add DESC");
+						$query = $pdo -> query("SELECT * FROM content WHERE producer LIKE '%" . $querySearch . "%' OR director LIKE '%" . $querySearch . "%' $adminSufix ORDER BY date_add DESC");
 					}
 					
 					$content = $query -> execute();

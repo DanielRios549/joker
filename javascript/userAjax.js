@@ -66,7 +66,7 @@ var userAjax = {
     addWatchList: function() {
         dataId = $(this).attr('data-id');
         
-        ajax(
+        userAjax.ajax(
             'POST',
             'addWatchList',
             dataId,
@@ -79,7 +79,7 @@ var userAjax = {
     removeWatchList: function() {
         dataId = $(this).attr('data-id');
         
-        ajax(
+        userAjax.ajax(
             'POST',
             'removeWatchList',
             dataId,

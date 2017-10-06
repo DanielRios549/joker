@@ -32,6 +32,12 @@
 					<?php 
 						$contentNumber = 1;
 						foreach($addRow as $showContent => $key) {
+							if($key['active'] == 'yes') {
+								$currentActive = 'active';
+							}
+							elseif($key['active'] == 'no') {
+								$currentActive = 'inactive';
+							}
 							if($key['type'] == 'serie') {
 								$contentScroll = $key['content_id'];
 								require $contentDir . 'getEpisodes.php';
@@ -50,11 +56,11 @@
 <?php }?>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.contentFigure').on('click', '.addWatchList', addWatchList);
-        	$('.contentFigure').on('click', '.removeWatchList', removeWatchList);
+		$('.contentFigure').on('click', '.addWatchList', userAjax.addWatchList);
+        	$('.contentFigure').on('click', '.removeWatchList', userAjax.removeWatchList);
 
-		$('.contentGroup').on('click', '.content', showDetails);
-		$('.contentContainer').on('click', '.closeButton', closeDetails);
+		$('.contentGroup').on('click', '.content', userAjax.showDetails);
+		$('.contentContainer').on('click', '.closeButton', userAjax.closeDetails);
 		
 		<?php if($onlyBody == true) {?>
 			 $('title').empty().text("<?php echo $titleFile;?>");
