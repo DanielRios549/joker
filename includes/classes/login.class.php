@@ -7,7 +7,7 @@
 */
 	if(!isset($baseCon)) {
 		require '../../_redirect.php';
-		header("Location:" . $base . "404");
+        header("Location:" . $base . "404");
 	}
 	
 	class Login extends Connect {

@@ -436,7 +436,7 @@
 					}
 					.contentOptions {
 						position: relative;
-						min-width: 120px;
+						padding: 0 10px;
 						height: 40px;
 						display: flex;
 						justify-content: center;
@@ -447,9 +447,8 @@
 						.contentEdit {
 							position: relative;
 							border-radius: 3px;
-							width: 100px;
 							height: 100%;
-							padding: 3px;
+							padding: 5px;
 							display: flex;
 							flex: 0 0 auto;
 
@@ -458,10 +457,8 @@
 							};
 							.contentLink {
 								position: relative;
-								width: 100%;
 								height: 100%;
 								text-decoration: none;
-								display: flex;
 
 								@extend %alignCenter;
 
@@ -491,8 +488,10 @@
 									text-align: center;
 									line-height: 38px;
 									font-size: 1.6em;
-									width: 80%;
 									height: 100%;
+									padding: 0 3px 0 3px;
+
+									@extend %alignCenter;
 
 									@include css4 {
 										color: var(--white);
@@ -501,9 +500,9 @@
 							}
 							.removeOption {
 								position: relative;
-								width: 40px;
 								height: 100%;
 								cursor: pointer;
+								padding: 5px;
 
 								@extend %alignCenter;
 
@@ -517,6 +516,8 @@
 									@include css4 {
 										color: var(--white);
 									};
+
+									@extend %alignCenter;
 								}
 							}
 						}

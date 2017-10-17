@@ -66,7 +66,11 @@
         }
 
         //Admin Pages
-        
+
+        elseif($type == 'episode_add') {
+            $link = $adminDir . 'series/add/episodes?id=' . $id;
+        }
+
         else {
             $getPosition = strpos($type, '_');
             $dedidePosition1 = substr($type, 0, $getPosition);

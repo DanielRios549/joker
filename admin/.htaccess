@@ -50,9 +50,6 @@ RewriteRule ^series/add()$ seriesAdd.php [NC,L]
 
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^series/manager/episodes()$ episodesManager.php [NC,L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^series/add/episodes()$ episodesAdd.php [NC,L]
 
 

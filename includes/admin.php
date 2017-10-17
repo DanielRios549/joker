@@ -93,12 +93,14 @@
 
 		//print_r($allSeries);
 
+		//Get the add link and the page type
+
 		if(MENU_GROUP == 'user') {
 			$selectFormFile = 'userSelect.html';
 			$pageType = langCode('users');
 			$addPageLink = getLink('users_add', false);
 		}
-		elseif(THIS_PAGE != 'admin_episodes_manager') {
+		else {
 			$selectFormFile = 'contentSelect.html';
 
 			if(THIS_PAGE == 'admin_movies_manager') {
@@ -114,10 +116,6 @@
 				$addPageLink = getLink('lives_add', false);
 			}
 		}
-		else {
-			$selectFormFile = 'episodeSelect.html';
-			$pageType = langCode('episodes');
-		}
 
 		//All manager pages
 
@@ -132,6 +130,7 @@
 			$editRow = $classManager -> itemEdit;
 			$removeRow = $classManager -> itemRemove;
 			$episodeRow = $classManager -> itemEpisode;
+			$editEpisodeRow = $classManager -> editEpisodeOpions;
 
 			$addRow = $classManager -> contentRow;
 			$totalRows = $classManager -> totalContents;
@@ -151,6 +150,13 @@
 			if(@$_GET['removed'] >=  1) {
 				$classRemove = new AdminRemove();
 				$classRemove -> remove(THIS_PAGE, $directPath);
+			}
+
+			if((THIS_PAGE == 'admin_series_manager') and ($episodeRow >= 1)) {
+				$episodeEdit = true;
+			}
+			else {
+				$episodeEdit = false;
 			}
 
 			//print_r($addRow);

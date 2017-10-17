@@ -10,7 +10,10 @@
 		header("Location:" . $base . "404");
 	}
 	else {
-		session_start();
+		session_name('login');
+		session_start([
+			'cookie_lifetime' => 86400 * 30
+		]);
 
 		//Define the language
 

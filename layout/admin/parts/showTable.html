@@ -141,7 +141,7 @@
 						<input type="text" id="editEmail" name="editEmail" class="inputText" value="<?php echo $key[$current4];?>"/>
 						<label for="editEmail" id="dateLabel" class="inputLabel"></label>
 						<?php }
-							elseif(THIS_PAGE != 'admin_episodes_manager') {
+							else {
 								if(MENU_GROUP == 'live') {
 						?>
 						<input type="text" id="liveUrl" name="liveUrl" class="inputText" value="<?php echo $key[$getKeys[13]];?>"/>
@@ -157,20 +157,6 @@
 						<input type="text" id="editDate" name="editDate" class="inputText" value="<?php echo $key[$getKeys[10]];?>"/>
 						<label for="editDate" id="dateLabel" class="inputLabel"></label>
 
-						<input type="text" id="editTitleUS" name="editTitleUS" class="inputText" value="<?php echo $thisShowNameUS;?>"/>
-						<label for="editTitleUS" id="dateLabel" class="inputLabel"></label>
-
-						<input type="text" id="editSynUS" name="editSynUS" class="inputText" value="<?php echo $thisShowSynUS;?>"/>
-						<label for="editSynUS" id="dateLabel" class="inputLabel"></label>
-
-						<input type="text" id="editTitleBR" name="editTitleBR" class="inputText" value="<?php echo $thisShowNameBR;?>"/>
-						<label for="editTitleBR" id="dateLabel" class="inputLabel"></label>
-
-						<input type="text" id="editSynBR" name="editSynBR" class="inputText" value="<?php echo $thisShowSynBR;?>"/>
-						<label for="editSynBR" id="dateLabel" class="inputLabel"></label>
-						<?php }
-							else {
-						?>
 						<input type="text" id="editTitleUS" name="editTitleUS" class="inputText" value="<?php echo $thisShowNameUS;?>"/>
 						<label for="editTitleUS" id="dateLabel" class="inputLabel"></label>
 
@@ -210,6 +196,7 @@
 			<?php } elseif($key[$current1] == $episodeRow) { if(THIS_PAGE == 'admin_series_manager') {?>
 			<div id="contentRowChange">
 				<div id="closeEditDiv"><a href="<?php echo $setNewUrl;?>" title="Close"></a></div>
+				<?php print_r($editEpisodeRow);?>
 			</div>
 			<?php }} else {?>
 			<div class="contentRow <?php echo $currentActive;?>">
@@ -224,6 +211,15 @@
 					</span>
 				</div>
 				<?php if(THIS_PAGE == 'admin_series_manager') {?>
+				<div class="contentOptions">
+					<div class="contentEdit">
+						<a href="<?php echo getLink('episode_add', $key[$current1]);?>" data-id="<?php echo $key[$current1];?>" class="contentLink">
+							<span>
+								<?php echo langCode('episodes_add');?>
+							</span>
+						</a>
+					</div>
+				</div>
 				<div class="contentOptions">
 					<div class="contentEdit">
 						<a href="<?php echo $linkEpisode . $key[$current1];?>" data-id="<?php echo $key[$current1];?>" class="contentLink">

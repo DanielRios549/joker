@@ -304,7 +304,7 @@ var userScript = {
 	},
 
 	secureLogoff: function() {
-		if(!document.cookie.match('PHPSESSID')) {
+		if(!document.cookie.match('login')) {
 			location.replace(baseUrl + 'logoff');
 		}
 	},

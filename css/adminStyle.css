@@ -178,7 +178,7 @@ html body fieldset {
 .interface .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface .formAdd .formFieldset .inputVideoLabel span, .interface .formAdd .formFieldset #selectedVideoDiv, .interface #showContents #contentTable #tableBody #contentRowChange #removeDiv #buttonsDiv .deleteButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .openFieldset .openSpan, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .linkDiv .link, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .playerIcon,
 .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #leftControls .rightButton,
 .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .playerIcon,
-.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputVideoLabel span, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #selectedVideoDiv, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption {
+.interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #watchInterface #playerBox #controlsDiv #rightControls .rightButton, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .selectedInputLabel .labelFigure .labelFigcaption, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset .inputVideoLabel span, .interface #showContents #contentTable #tableBody #contentRowChange .formAdd .formFieldset #selectedVideoDiv, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink span, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption, .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption:after {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4137,7 +4137,7 @@ html body fieldset {
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions {
   position: relative;
-  min-width: 120px;
+  padding: 0 10px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -4147,9 +4147,8 @@ html body fieldset {
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit {
   position: relative;
   border-radius: 3px;
-  width: 100px;
   height: 100%;
-  padding: 3px;
+  padding: 5px;
   display: flex;
   flex: 0 0 auto;
   background: var(--joker02);
@@ -4157,10 +4156,8 @@ html body fieldset {
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink {
   position: relative;
-  width: 100%;
   height: 100%;
   text-decoration: none;
-  display: flex;
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .contentLink:before {
@@ -4188,16 +4185,16 @@ html body fieldset {
   text-align: center;
   line-height: 38px;
   font-size: 1.6em;
-  width: 80%;
   height: 100%;
+  padding: 0 3px 0 3px;
   color: var(--white);
 }
 
 .interface #showContents #contentTable #tableBody .contentRow .contentOptions .contentEdit .removeOption {
   position: relative;
-  width: 40px;
   height: 100%;
   cursor: pointer;
+  padding: 5px;
   border-left: 1px solid var(--white);
 }
 
