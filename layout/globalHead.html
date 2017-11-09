@@ -46,7 +46,8 @@
         <?php if($loginCheck == true) {?>
             var cookieId = '<?php echo session_id();?>';
             $(document).ready(function() {
-                intervalLogoff = setInterval(userScript.secureLogoff(), 250);
+                userScript = new userScript();
+                intervalLogoff = setInterval(userScript.secureLogoff(baseUrl), 250);
             });
         <?php }?>
     </script>

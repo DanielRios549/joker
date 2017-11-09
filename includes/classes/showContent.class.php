@@ -43,7 +43,7 @@
 				//index watchlist
 				
 				elseif($category == 'watchlist') {
-					$query = $pdo -> prepare("SELECT c.content_id, c.type FROM watchlist AS w INNER JOIN content AS c ON w.content_id = c.content_id WHERE w.user_id = :user $adminSufix ORDER BY w.wish_id DESC");
+					$query = $pdo -> prepare("SELECT c.content_id, c.type, c.active FROM watchlist AS w INNER JOIN content AS c ON w.content_id = c.content_id WHERE w.user_id = :user $adminSufix ORDER BY w.wish_id DESC");
 					$query -> bindValue(":user", $user);
 				}
 				

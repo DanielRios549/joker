@@ -157,5 +157,6 @@
 				require $adminLayoutDir . 'body.html';
 			}
 		}
+		//$forceFinalError = new FakeClass();
 	}
 ?>

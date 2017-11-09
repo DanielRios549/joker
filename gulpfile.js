@@ -7,6 +7,7 @@ var rename = require('gulp-rename');
 var browserSync = require('browser-sync');
 var uglify = require('gulp-uglify');
 var htmlmin = require('gulp-htmlmin');
+var ts = require('gulp-typescript');
 
 //Files
 
@@ -15,13 +16,17 @@ var styles = [
     'css/sass/adminSite/adminStyle.scss'
 ];
 
-var scripts = [
+/*var scripts = [
     'javascript/userScript.js',
     'javascript/adminScript.js',
     'javascript/userAjax.js',
     'player/file.js',
     'player/joker/jokerPlayer.js',
     'player/joker/mouseStop.js'
+];*/
+var scripts = [
+    'typescript/userScript.ts',
+    'typescript/adminScript.ts'
 ];
 
 var userStyle = styles[0];
@@ -34,40 +39,14 @@ var PlayerFile = scripts[3];
 var jokerPlayer = scripts[4];
 var mouseStop = scripts[5];
 
+//execute the task inside the array only with 'gulp' command
+
+gulp.task('default', ['sass', 'ts']);
+
+
 //Execute all minifies tasks, run this task before the commit and mainly, before the push
 
-gulp.task('prod', ['minicss', 'minijs', 'minihtml']);
-
-//minify only the html
-
-gulp.task('minihtml', function() {
-    return gulp.src(['layout/*.html', 'layout/admin/*.html'])
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('test/'));
-});
-
-//minify only the css
-
-gulp.task('minicss', function() {
-    return gulp.src(styles)
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('css/'));
-});
-
-//minify only the javascript
-
-gulp.task('minijs', function() {
-    //return gulp.src(scripts)
-    //.pipe(rename(scripts))
-    //.pipe(gulp.dest('_backup/'));
-    return gulp.src(['test/folder1/adminScript.js', 'test/folder2/file.js'])
-    .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(function(file) {
-        return file.base;
-    }));
-});
-
+gulp.task('prod', ['sassmin', 'tsmin', 'htmlmin']);
 //Task to copy only components the project needs
 
 gulp.task('bower', function() {
@@ -84,19 +63,65 @@ gulp.task('bower', function() {
     .pipe(gulp.dest(''));
 });
 
+//Compile Typescript into Javascript
+//TSC outputs: 
+
+gulp.task('ts', function() {
+    return gulp.src(scripts)
+    .pipe(ts({
+        noImplicitAny: true,
+        target: 'ES5'
+    }))
+    .pipe(gulp.dest('javascript/'));
+});
+
+//Watch all files including all that are imported, than complile using 'ts' task
+
+gulp.task('tswatch', function() {
+    gulp.watch(scripts, ['ts']);
+});
+
+//minify only the javascript
+
+gulp.task('tsmin', function() {
+    return gulp.src(scripts)
+    .pipe(ts({
+        noImplicitAny: true,
+        target: 'ES5'
+    }))
+    .pipe(uglify())
+    .pipe(gulp.dest('javascript/'));
+});
+
 //Compile only style file with the same name, the imports will be added on file compilled
 //Sass outputs: expanded, compact, compressed
 
 gulp.task('sass', function() {
-    return gulp.src([userStyle, adminStyle])
+    return gulp.src(styles)
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
     .pipe(gulp.dest('css/'));
 });
 
 //Watch all files including all that are imported, than complile using 'sass' task
 
-gulp.task('watch', function() {
+gulp.task('sasswatch', function() {
     gulp.watch('css/sass/**/*.scss', ['sass']);
+});
+
+//minify only the css
+
+gulp.task('sassmin', function() {
+    return gulp.src(styles)
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(gulp.dest('css/'));
+});
+
+//minify only the html
+
+gulp.task('htmlmin', function() {
+    return gulp.src(['layout/*.html', 'layout/admin/*.html'])
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('test/'));
 });
 
 //Use to sync the web browser
@@ -109,7 +134,3 @@ gulp.task('sync', function() {
         notify: false
     });
 });
-
-//execute the task inside the array only with 'gulp' command
-
-gulp.task('default', ['sass', 'watch']);
