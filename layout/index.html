@@ -160,41 +160,6 @@
 	</section>
 <?php if($onlyBody == false) {?>
 </main>
-<?php }?>
-<?php if($loginCheck == false) {?>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(this).on('scroll', function() {
-			userScript.parallaxExternalHome();
-		});
-
-		userScript.tabSelect(true);
-	});
-</script>
-<?php } elseif($loginCheck == true) {?>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		if($('#contentSlider #changeDiv').length) {
-			intervalId = setInterval(userScript.slideIndex, 5000);
-
-			userScript.changeIndex('#contentSlider');
-		}
-
-		$(this).on('scroll', function() {
-			userScript.parallaxInternalHome();
-		});
-
-		$('#imageDiv div').on('click', '.addWatchList', userAjax.addWatchListIndex);
-    	$('#imageDiv div').on('click', '.removeWatchList', userAjax.removeWatchListIndex);
-
-		$('.contentGroupScroll').on('click', '.content .addWatchList', userAjax.addWatchListIndex);
-        $('.contentGroupScroll').on('click', '.content .removeWatchList', userAjax.removeWatchListIndex);
-
-		$('.contentGroupScroll').on('click', '.content', userAjax.showDetails);
-		$('.contentContainer').on('click', '.closeButton', userAjax.closeDetails);
-	});
-</script>
 <?php } if($onlyBody == true) {?>
 <script lang="text/javascript">
 	$(window).ready(function() {

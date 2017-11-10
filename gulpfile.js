@@ -1,13 +1,21 @@
-//Gulp tasks for sass
-
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('watch');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync');
 var uglify = require('gulp-uglify');
-var htmlmin = require('gulp-htmlmin');
+var maps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
+
+var tsConfig = {
+    noImplicitAny: true,
+    target: 'ES5',
+    module: "system",
+    outFile: 'jokerScript.js'
+};
+
+var stylesDir = 'css/';
+var scriptsDir = 'javascript/';
 
 //Files
 
@@ -16,37 +24,18 @@ var styles = [
     'css/sass/adminSite/adminStyle.scss'
 ];
 
-/*var scripts = [
-    'javascript/userScript.js',
-    'javascript/adminScript.js',
-    'javascript/userAjax.js',
-    'player/file.js',
-    'player/joker/jokerPlayer.js',
-    'player/joker/mouseStop.js'
-];*/
 var scripts = [
-    'typescript/userScript.ts',
-    'typescript/adminScript.ts'
+    'typescript/**/*.ts',
 ];
-
-var userStyle = styles[0];
-var adminStyle = styles[1];
-
-var userScript = scripts[0];
-var adminScript = scripts[1];
-var userAjax = scripts[2];
-var PlayerFile = scripts[3];
-var jokerPlayer = scripts[4];
-var mouseStop = scripts[5];
 
 //execute the task inside the array only with 'gulp' command
 
 gulp.task('default', ['sass', 'ts']);
 
-
 //Execute all minifies tasks, run this task before the commit and mainly, before the push
 
-gulp.task('prod', ['sassmin', 'tsmin', 'htmlmin']);
+gulp.task('prod', ['sassmin', 'tsmin']);
+
 //Task to copy only components the project needs
 
 gulp.task('bower', function() {
@@ -64,33 +53,28 @@ gulp.task('bower', function() {
 });
 
 //Compile Typescript into Javascript
-//TSC outputs: 
 
 gulp.task('ts', function() {
     return gulp.src(scripts)
-    .pipe(ts({
-        noImplicitAny: true,
-        target: 'ES5'
-    }))
-    .pipe(gulp.dest('javascript/'));
+    .pipe(maps.init())
+    .pipe(ts(tsConfig))
+    .pipe(maps.write())
+    .pipe(gulp.dest(scriptsDir));
 });
 
 //Watch all files including all that are imported, than complile using 'ts' task
 
 gulp.task('tswatch', function() {
-    gulp.watch(scripts, ['ts']);
+    gulp.watch('typescript/**/*.ts', ['ts']);
 });
 
 //minify only the javascript
 
 gulp.task('tsmin', function() {
     return gulp.src(scripts)
-    .pipe(ts({
-        noImplicitAny: true,
-        target: 'ES5'
-    }))
+    .pipe(ts(tsConfig))
     .pipe(uglify())
-    .pipe(gulp.dest('javascript/'));
+    .pipe(gulp.dest(scriptsDir));
 });
 
 //Compile only style file with the same name, the imports will be added on file compilled
@@ -98,8 +82,10 @@ gulp.task('tsmin', function() {
 
 gulp.task('sass', function() {
     return gulp.src(styles)
+    .pipe(maps.init())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-    .pipe(gulp.dest('css/'));
+    .pipe(maps.write())
+    .pipe(gulp.dest(stylesDir));
 });
 
 //Watch all files including all that are imported, than complile using 'sass' task
@@ -113,15 +99,7 @@ gulp.task('sasswatch', function() {
 gulp.task('sassmin', function() {
     return gulp.src(styles)
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('css/'));
-});
-
-//minify only the html
-
-gulp.task('htmlmin', function() {
-    return gulp.src(['layout/*.html', 'layout/admin/*.html'])
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('test/'));
+    .pipe(gulp.dest(stylesDir));
 });
 
 //Use to sync the web browser

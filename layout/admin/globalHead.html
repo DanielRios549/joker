@@ -13,7 +13,7 @@
 	//Style
 	
 	$styleFile = 'adminStyle.css';
-	$scriptFile = 'adminScript.js';
+	$scriptFile = 'jokerScript.js';
 	$libraryFile = 'jquery.js';
 	
 	if($adminCheck == true) {
@@ -28,7 +28,6 @@
 	<link rel="icon" href="<?php echo $imageDir . 'favicon.png';?>"/>
 	<link rel="stylesheet" href="<?php echo $styleDir . $styleFile;?>"/>
 	<script lang="text/javascript" src="<?php echo $scriptDir . 'libraries/' . $libraryFile;?>"></script>
-    <script type="text/javascript" src="<?php echo $scriptDir . 'userScript.js';?>"></script>
 	<script lang="text/javascript" src="<?php echo $scriptDir . $scriptFile;?>"></script>
 	<?php echo '<script lang="text/javascript">var baseUrl = "' . $baseUrl . '";</script>';?>
 </head>

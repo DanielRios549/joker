@@ -78,11 +78,6 @@
 <?php }?>
 <script lang="text/javascript">
 	$(document).ready(function() {
-		//Close the message displayed when has some error
-
-		userScript.inputError($(".userDiv"));
-		userScript.closeMessage('.userError', '#errorMsgClose');
-
 		<?php if($onlyBody == true) {?>
 			 $('title').empty().text("<?php echo $titleFile;?>");
 		<?php }?>
