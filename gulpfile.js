@@ -7,12 +7,9 @@ var uglify = require('gulp-uglify');
 var maps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 
-var tsConfig = {
-    noImplicitAny: true,
-    target: 'ES5',
-    module: "system",
-    outFile: 'jokerScript.js'
-};
+var tsConfig = ts.createProject('tsconfig.json', {
+    //noImplicitAny: true
+});
 
 var stylesDir = 'css/';
 var scriptsDir = 'javascript/';
@@ -25,7 +22,8 @@ var styles = [
 ];
 
 var scripts = [
-    'typescript/**/*.ts',
+    //'typescript/**/*.ts',
+    'typescript/jokerScript.ts',
 ];
 
 //execute the task inside the array only with 'gulp' command
@@ -57,7 +55,7 @@ gulp.task('bower', function() {
 gulp.task('ts', function() {
     return gulp.src(scripts)
     .pipe(maps.init())
-    .pipe(ts(tsConfig))
+    .pipe(tsConfig())
     .pipe(maps.write())
     .pipe(gulp.dest(scriptsDir));
 });
@@ -72,7 +70,7 @@ gulp.task('tswatch', function() {
 
 gulp.task('tsmin', function() {
     return gulp.src(scripts)
-    .pipe(ts(tsConfig))
+    .pipe(tsConfig())
     .pipe(uglify())
     .pipe(gulp.dest(scriptsDir));
 });

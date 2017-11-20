@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-class Ajax {
+export class Ajax {
     public ajaxFile:string = 'ajax/ajaxRequisitions.php';
     
     //function for simple ajax, without sent and received datas, if you want to receive and/or send datas, create anoter one

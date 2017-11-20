@@ -1,4 +1,11 @@
-class Watchlist {
+/*
+ ***************************************************************
+ | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | @ Author	: Daniel Rios.
+ ***************************************************************
+*/
+
+export class Watchlist {
     addWatchList():void {
         var dataId = $(this).attr('data-id');
         

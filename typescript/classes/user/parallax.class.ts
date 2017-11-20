@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-class Parallax {
+export class Parallax {
     //Effect of external index
 
 	parallaxHome():void {

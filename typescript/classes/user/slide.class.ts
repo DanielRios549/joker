@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-class Slide {
+export class Slide {
     slideIndex():void {
 		if($(this).scrollTop() < 200) {
 			if(($('.imageShow') as any).next().size()) {

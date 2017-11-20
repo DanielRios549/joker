@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-class Details extends Ajax {
+export class Details extends Ajax {
     showDetails(event?:any):void {
         event.preventDefault();
         var contentLink = $(this).find('.contentLink').attr('href');

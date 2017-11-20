@@ -5,35 +5,37 @@
  ***************************************************************
 */
 
-$(document).ready(function() {
-    var parallax = new Parallax();
-    var slide = new Slide();
-    var watchlist = new Watchlist();
-    var details = new Details();
-    var userOthers = new UserOthers();
-
-    //Not connected
-
-    $(this).on('scroll', function() {
-        parallax.parallaxHome();
+export namespace Index {
+    $(document).ready(function() {
+        var parallax = new Parallax();
+        var slide = new Slide();
+        var watchlist = new Watchlist();
+        var details = new Details();
+        var userOthers = new UserOthers();
+    
+        //Not connected
+    
+        $(this).on('scroll', function() {
+            parallax.parallaxHome();
+        });
+    
+        userOthers.tabSelect(true);
+    
+        //Connected
+    
+        if($('#contentSlider #changeDiv').length) {
+            var intervalId = setInterval(slide.slideIndex(), 5000);
+    
+            slide.changeIndex('#contentSlider');
+        }
+    
+        $('#imageDiv div').on('click', '.addWatchList', watchlist.addWatchListIndex);
+        $('#imageDiv div').on('click', '.removeWatchList', watchlist.removeWatchListIndex);
+    
+        $('.contentGroupScroll').on('click', '.content .addWatchList', watchlist.addWatchListIndex);
+        $('.contentGroupScroll').on('click', '.content .removeWatchList', watchlist.removeWatchListIndex);
+    
+        //$('.contentGroupScroll').on('click', '.content', details.showDetails);
+        //$('.contentContainer').on('click', '.closeButton', details.closeDetails);
     });
-
-    userOthers.tabSelect(true);
-
-    //Connected
-
-    if($('#contentSlider #changeDiv').length) {
-        var intervalId = setInterval(slide.slideIndex(), 5000);
-
-        slide.changeIndex('#contentSlider');
-    }
-
-    $('#imageDiv div').on('click', '.addWatchList', watchlist.addWatchListIndex);
-    $('#imageDiv div').on('click', '.removeWatchList', watchlist.removeWatchListIndex);
-
-    $('.contentGroupScroll').on('click', '.content .addWatchList', watchlist.addWatchListIndex);
-    $('.contentGroupScroll').on('click', '.content .removeWatchList', watchlist.removeWatchListIndex);
-
-    //$('.contentGroupScroll').on('click', '.content', details.showDetails);
-    //$('.contentContainer').on('click', '.closeButton', details.closeDetails);
-});
+}

@@ -4,7 +4,8 @@
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
-class UserOthers {
+
+export class UserOthers {
     /**
 	 * hide the replies
 	 */
