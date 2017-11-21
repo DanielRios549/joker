@@ -1,6 +1,5 @@
 .vscode/
 node_modules/
-bower_components/
 media/movies/*
 media/series/*
 images/media/movies/*
