@@ -1,12 +1,14 @@
 {
-  "name": "Joker",
+  "name": "joker",
   "version": "1.0.0",
-  "description": "Streaming de filmes",
+  "description": "Movie Streaming",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "jquery": "^2.1.4"
+  },
   "devDependencies": {
-    "@types/jquery": "^3.2.16",
-    "bower": "^1.8.0",
+    "@types/jquery": "^2.0.48",
     "browser-sync": "^2.18.7",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
@@ -25,10 +27,10 @@
     "url": "git+https://DanielRios549@bitbucket.org/DanielRios549/joker.git"
   },
   "keywords": [
-    "igreja",
-    "batista",
-    "São",
-    "Gonçalo"
+    "joker",
+    "streaming",
+    "movies",
+    "series"
   ],
   "author": "Daniel Rios",
   "license": "ISC",

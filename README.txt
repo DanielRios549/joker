@@ -10,7 +10,7 @@ elas serão criadas automaticamente quando algum filme e/ou série é adicionado
 
 0 - Use a tarefa "prod" apenas na branch master, para compilar o CSS e o JS para produção.
 
-1 - Use a tarefa "bower" para pegar os componentes caso atualize-os pelo bower.
+1 - Use a tarefa "dep" para pegar os componentes caso atualize-os pelo npm.
 
 2 - Use a tarefa "sass" para compilar os estilos do site.
 

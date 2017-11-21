@@ -36,17 +36,17 @@ gulp.task('prod', ['sassmin', 'tsmin']);
 
 //Task to copy only components the project needs
 
-gulp.task('bower', function() {
-    gulp.src('bower_components/jquery/dist/jquery.min.js')
+gulp.task('dep', function() {
+    gulp.src('./node_modules/jquery/dist/jquery.min.js')
     .pipe(rename('jquery.js'))
     .pipe(gulp.dest('./javascript/libraries/'));
 
-    gulp.src('bower_components/font-awesome/fonts/FontAwesome.otf')
+    gulp.src('./node_modules/font-awesome/fonts/FontAwesome.otf')
     .pipe(rename('fontAwesome.otf'))
     .pipe(gulp.dest('./fonts/icons/'));
 
-    gulp.src('bower_components/font-awesome/scss/_variables.scss')
-    .pipe(rename('_fontIcon.txt'))
+    gulp.src('./node_modules/font-awesome/scss/_variables.scss')
+    .pipe(rename('./_fontIcon.txt'))
     .pipe(gulp.dest(''));
 });
 
