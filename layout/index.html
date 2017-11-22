@@ -10,8 +10,8 @@
 		require '../_redirect.php';
 		header("Location:" .  $base . "404");
 	}
+	if($onlyBody == false) {
 ?>
-<?php if($onlyBody == false) {?>
 <main class="interface ajaxReplace">
 	<?php } if($loginCheck == false) {?>
 		<section class="index mainSection">
@@ -89,6 +89,12 @@
 	</section>
 	<section class="home mainSection">
 		<?php } foreach($allSections as $allSections => $categoryContent) {
+			if($key['active'] == 'yes') {
+				$currentActive = 'active';
+			}
+			elseif($key['active'] == 'no') {
+				$currentActive = 'inactive';
+			}
 			if($categoryContent == 'watchlist') {
 				$contentArray = array(
 					'contentCategory' => 'watchlist',
@@ -132,6 +138,12 @@
 				<?php
 					$contentNumber = 1;
 					foreach($addRow as $showContent => $key) {
+						if($key['active'] == 'yes') {
+							$currentActive = 'active';
+						}
+						elseif($key['active'] == 'no') {
+							$currentActive = 'inactive';
+						}
 						if($key['type'] == 'serie') {
 							$contentScroll = $key['content_id'];
 							require $contentDir . 'getEpisodes.php';
@@ -148,41 +160,6 @@
 	</section>
 <?php if($onlyBody == false) {?>
 </main>
-<?php }?>
-<?php if($loginCheck == false) {?>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(this).on('scroll', function() {
-			parallaxExternalHome();
-		});
-
-		tabSelect(true);
-	});
-</script>
-<?php } elseif($loginCheck == true) {?>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		if($('#contentSlider #changeDiv').length) {
-			intervalId = setInterval(slideIndex, 5000);
-
-			changeIndex('#contentSlider');
-		}
-
-		$(this).on('scroll', function() {
-			parallaxInternalHome();
-		});
-
-		$('#imageDiv div').on('click', '.addWatchList', addWatchListIndex);
-    		$('#imageDiv div').on('click', '.removeWatchList', removeWatchListIndex);
-
-		$('.contentGroupScroll').on('click', '.content .addWatchList', addWatchListIndex);
-        	$('.contentGroupScroll').on('click', '.content .removeWatchList', removeWatchListIndex);
-
-		$('.contentGroupScroll').on('click', '.content', showDetails);
-		$('.contentContainer').on('click', '.closeButton', closeDetails);
-	});
-</script>
 <?php } if($onlyBody == true) {?>
 <script lang="text/javascript">
 	$(window).ready(function() {

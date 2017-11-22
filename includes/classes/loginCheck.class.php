@@ -47,8 +47,8 @@
 				}
 				else {
 					 try {
-						$verifyToken = $pdo -> prepare("SELECT * FROM user_restore WHERE location = :session");
-						$verifyToken -> bindValue(":session", $rememberToken);
+						$verifyToken = $pdo -> prepare("SELECT * FROM user_restore WHERE location = :location");
+						$verifyToken -> bindValue(":location", $rememberToken);
 						$verifyToken -> execute();
 						
 						if($verifyToken -> rowCount() != 1) {

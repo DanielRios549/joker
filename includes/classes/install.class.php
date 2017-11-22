@@ -11,7 +11,7 @@
 	}
 	
 	class Install{
-		public function configInstall(){
+		public function configInstall() {
 			$changeBaseUrl = @$_POST['baseUrl'];
 			$changeAdminDir = @$_POST['adminDir'];
 			$changeAdminLayoutDir = @$_POST['adminLayoutDir'];

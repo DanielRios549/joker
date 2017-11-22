@@ -27,8 +27,14 @@
 			header("Location:" . $baseUrl . "404");
 		}
 		else {
+			if($adminCheck == true) {
+				$adminSufix = '';
+			}
+			elseif($adminCheck == false) {
+				$adminSufix = "AND active = 'yes'";
+			}
 			try {
-				$contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage AND active = 'yes'");
+				$contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage $adminSufix");
 				$contentVerify -> bindValue(":contentPage", $contentPage);
 
 				if($contentVerify -> execute()) {

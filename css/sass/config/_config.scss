@@ -40,6 +40,8 @@ $colorWhite: #f1f1f1;*/
 //These are global variables, there is a lot of them especific to make responsive design on the especifics files
 
 $variables: (
+  --active: #00C93E,
+  --inactive: #F02225,
 	--shadowColor: rgba(0, 0, 0, .8),
   --errorColor: #fd0b3e,
   --bodyColor: #141414,

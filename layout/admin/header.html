@@ -46,7 +46,7 @@
 				<span id="menuSpan"><?php echo langCode('admin_home');?></span>
 			</a>
 		</li>
-		<li class="<?php echo 'itemMenu' . $menu1 . " itemMenu" . $menuGroup1;?>"><span class="itemMenuSpan"><?php echo langCode('feedback');?></span>
+		<li class="<?php echo 'itemMenu' . $menu1 . " itemMenu" . $menuGroup1;?>"><a href="<?php echo $sectionHome1;?>" class="itemMenuSpan"><?php echo langCode('feedback');?></a>
 			<ul class="subMenuItems">
 				<li class="subMenuItem">
 					<a class="allMenus" title="<?php echo langCode('admin_feedback_manager_hover');?>" href="<?php echo getLink('feedback_manager', false);?>">
@@ -55,7 +55,7 @@
 				</li>
 			</ul>
 		</li>
-		<li class="<?php echo 'itemMenu' . $menu2 . " itemMenu" . $menuGroup2;?>"><span class="itemMenuSpan"><?php echo langCode('users');?></span>
+		<li class="<?php echo 'itemMenu' . $menu2 . " itemMenu" . $menuGroup2;?>"><a href="<?php echo $sectionHome2;?>" class="itemMenuSpan"><?php echo langCode('users');?></a>
 			<ul class="subMenuItems">
 				<li class="subMenuItem">
 					<a class="allMenus" title="<?php echo langCode('admin_users_manager_hover');?>" href="<?php echo getLink('users_manager', false);?>">
@@ -69,7 +69,7 @@
 				</li>
 			</ul>
 		</li>
-		<li class="<?php echo 'itemMenu' . $menu3 . " itemMenu" . $menuGroup3;?>"><span class="itemMenuSpan"><?php echo langCode('movies');?></span>
+		<li class="<?php echo 'itemMenu' . $menu3 . " itemMenu" . $menuGroup3;?>"><a href="<?php echo $sectionHome3;?>" class="itemMenuSpan"><?php echo langCode('movies');?></a>
 			<ul class="subMenuItems">
 				<li class="subMenuItem">
 					<a class="allMenus" title="<?php echo langCode('admin_movies_manager_hover');?>" href="<?php echo getLink('movies_manager', false);?>">
@@ -83,7 +83,7 @@
 				</li>
 			</ul>
 		</li>
-		<li class="<?php echo 'itemMenu' . $menu4 . " itemMenu" . $menuGroup4;?>"><span class="itemMenuSpan"><?php echo langCode('series');?></span>
+		<li class="<?php echo 'itemMenu' . $menu4 . " itemMenu" . $menuGroup4;?>"><a href="<?php echo $sectionHome4;?>" class="itemMenuSpan"><?php echo langCode('series');?></a>
 			<ul class="subMenuItems">
 				<li class="subMenuItem">
 					<a class="allMenus" title="<?php echo langCode('admin_series_manager_hover');?>" href="<?php echo getLink('series_manager', false);?>">
@@ -97,7 +97,7 @@
 				</li>
 			</ul>
 		</li>
-		<li class="<?php echo 'itemMenu' . $menu5 . " itemMenu" . $menuGroup5;?>"><span class="itemMenuSpan"><?php echo langCode('lives');?></span>
+		<li class="<?php echo 'itemMenu' . $menu5 . " itemMenu" . $menuGroup5;?>"><a href="<?php echo $sectionHome5;?>" class="itemMenuSpan"><?php echo langCode('lives');?></a>
 			<ul class="subMenuItems">
 				<li class="subMenuItem">
 					<a class="allMenus" title="<?php echo langCode('admin_lives_manager_hover');?>" href="<?php echo getLink('lives_manager', false);?>">
@@ -114,14 +114,14 @@
 	</ul>
 </nav>
 <aside id="configBar">
-	<form action="" id="settingsForm">
+	<form method="POST" action="?go=config" id="settingsForm">
 		<fieldset id="generalConfigs" class="settingsFieldset"><legend class="settingsLegend">General</legend>
 		<?php
 			//Text Options
 			foreach($textSettings as $textSettings => $setting) {
 		?>
 			<lable class="settingsLabel"><?php echo $setting['name'];?></lable>
-			<input type="text" value="<?php echo $setting['value'];?>"/>
+			<input type="text" name="<?php echo $setting['name'];?>" value="<?php echo $setting['value'];?>"/>
 		<?php }
 			//Boolean Options
 			foreach($boolSettings as $boolSettings => $setting) {
@@ -165,6 +165,9 @@
 			<?php }?>
 			</select>
 			<?php }?>
+		</fieldset>
+		<fieldset id="submitFieldset" class="settingsFieldset submitFieldset">
+			<button type="submit" name="configSubmit" id="configSubmit" class="submitButton"><span class="submitSpan"><?php echo langCode('Change');?></span></button>
 		</fieldset>
 	</form>
 </aside>

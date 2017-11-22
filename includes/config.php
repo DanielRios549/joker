@@ -24,7 +24,9 @@
 
 	$getConfig = new GetConfig();
 
-  $allowNewUser = $getConfig -> configQuery('allowNewUser');
+	$allowNewUser = $getConfig -> configQuery('allowNewUser');
+
+	$allowSaveLogin = $getConfig -> configQuery('allowSaveLogin');
 
 	$baseUrl = $currentServerUrl . $getConfig -> configQuery('subFolder');
 

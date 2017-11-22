@@ -1,82 +1,112 @@
-@mixin index() {	
+@mixin index() {
     @include pageAddress();
     
-    #tabHeader{
-        box-sizing: border-box;
-        background: transparent;
+    .sectionDiv {
         position: relative;
-        top: 10px;
-        left: 0;
-        height: 40px;
-        width: 95%;
+        top: 20px;
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
         margin: 0 auto;
-        z-index: 98;
-            
-        .tabs {
-            display: block;
-            width: 100%;
-            height: 100%;
-            
-            .tab,
-            .tabSelected {
-                background: transparent;
-                width: 80px;
-                height: 30px;
-                text-align: center;
-                padding: 5px 0 0 0;
-                cursor: pointer;
-                float: left;
-                
-                @include transition(border, 300ms, ease);
-                
-                &:hover {
-                    @include css4 {
-                        border-bottom: 4px solid var(--joker02);
-                    };
-                }
-                span {
-                    font-size: 1.5em;
 
-                    @include css4 {
-                        color: var(--lightGray);
-                    };
-                }
-            }
-            .tab {
-                border-bottom: 4px solid transparent;
-            }
-            .tabSelected {
-                @include css4 {
-                    border-bottom: 4px solid var(--joker02);
-                };
-            }
-        }
-    }
-    #tabContents {
-        background: transparent;
-        box-sizing: border-box;
-        position: relative;
-        top: 50px;
-        width: 95%;
-        height: 400px;
-        margin: 0 auto;
-        
-        .contentShow,
-        .contentHide {
-            height: 100%;
-            width: 100%;
+        .section {
+            border-radius: 5px;
+            position: relative;
+            width: calc(25% - 10px);
+            height: 150px;
+            overflow: hidden;
 
             @include css4 {
-                color: var(--lightGray);
+                background: var(--back);
             };
-        }
-        .contentShow {
-            opacity: 1;
-            display: block;
-        }
-        .contentHide {
-            opacity: 0;
-            display: none;
+            &:hover {
+                .icon {
+                    @include transform(scale(1.2));
+                }
+            }
+            &:nth-of-type(1) {
+                --icon: '\f007';
+                --back: var(--facebook);
+            }
+            &:nth-of-type(2) {
+                --icon: '\f008';
+                --back: var(--errorColor);
+            }
+            &:nth-of-type(3) {
+                --icon: '\f1c8';
+                --back: var(--blue);
+            }
+            &:nth-of-type(4) {
+                --icon: '\f1e8';
+                --back: var(--google);
+            }
+            .totalNumber {
+                font-size: 4em;
+                font-weight: bold;
+            }
+            .type {
+                font-size: 2em;
+            }
+            span {
+                position: relative;
+                width: 100%;
+                height: 50px;
+                font-family: Calibri, sans-serif;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 10px;
+
+                @include css4 {
+                    color: var(--lightGray);
+                };
+            }
+            .icon {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100px;
+                height: 70%;
+
+                @include transition(transform, 200ms, linear);
+
+                @extend %alignCenter;
+
+                &:after {
+                    font: 7em FontAwesome;
+
+                    @include css4 {
+                        content: var(--icon);
+                        color: rgba(0,0,0,.3);
+                    };
+                }
+            }
+            .details {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 30px;
+                font: 2em Calibri, sans-serif;
+                background: rgba(0,0,0,.3);
+
+                &:hover {
+                    background: rgba(0,0,0,.5);
+                }
+
+                @extend %alignCenter;
+
+                @include css4 {
+                    color: var(--lightGray);
+                };
+
+                @include transition(background, 200ms,linear);
+
+                &:after {
+                    content: '\f0a9';
+                    font: 1em FontAwesome;
+                    margin-left: 10px;
+                }
+            }
         }
     }
 }

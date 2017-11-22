@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2017 at 07:02 PM
+-- Generation Time: Aug 30, 2017 at 03:32 PM
 -- Server version: 5.7.19-0ubuntu0.16.04.1
--- PHP Version: 7.0.18-0ubuntu0.16.04.1
+-- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,7 +42,7 @@ CREATE TABLE `comment` (
 INSERT INTO `comment` (`comment_id`, `content`, `user`, `comment`) VALUES
 (3, 4, 3, 'Nossa, ficou show'),
 (4, 4, 2, 'Já vi melhores'),
-(29, 4, 1, 'Teste');
+(5, 3, 1, 'dfg3433');
 
 -- --------------------------------------------------------
 
@@ -63,41 +63,8 @@ CREATE TABLE `comment_reply` (
 
 INSERT INTO `comment_reply` (`reply_id`, `comment`, `user`, `reply`) VALUES
 (1, 3, 2, 'Tbm gostei'),
-(2, 3, 3, 'Opinião é opinião, a minha é que tá uma bosta.Opinião é opinião, a minha é que tá uma bosta.Opinião é opinião, a minha é que tá uma bosta.Opinião é opinião, a minha é que tá uma bosta.Opinião é opinião, a minha é que tá uma bosta.Opinião é opinião, a minha é que tá uma bosta.Opinião é opinião, a minha é que tá uma bosta.Opinião é opinião, a minha é que tá uma bosta'),
-(3, 4, 1, 'O melhor de todos');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `config`
---
-
-CREATE TABLE `config` (
-  `config_id` int(11) NOT NULL,
-  `type` enum('text','bool','select') DEFAULT NULL,
-  `name` varchar(5000) NOT NULL,
-  `value` varchar(5000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `config`
---
-
-INSERT INTO `config` (`config_id`, `type`, `name`, `value`) VALUES
-(1, 'text', 'baseUrl', 'joker/'),
-(2, 'text', 'atomoBaseUrl', 'Atomo/'),
-(3, 'text', 'adminDir', 'admin/'),
-(4, 'text', 'adminLayoutDir', '../layout/admin/'),
-(6, 'text', 'layoutDir', 'layout/'),
-(8, 'text', 'imageDir', 'images/'),
-(9, 'text', 'styleDir', 'css/'),
-(10, 'text', 'scriptDir', 'javascript/'),
-(11, 'text', 'fontDir', 'fonts/'),
-(14, 'text', 'mediaFolder', '/joker/media/'),
-(15, 'text', 'mediaImageFolder', '/joker/images/media/'),
-(18, 'bool', 'allowNewUser', 'yes'),
-(19, 'select', 'streamPlayer', 'joker'),
-(20, 'select', 'livePlayer', 'dailymotion');
+(3, 4, 1, 'O melhor de todos'),
+(4, 5, 3, 'dfbbvvv');
 
 -- --------------------------------------------------------
 
@@ -123,6 +90,78 @@ INSERT INTO `config_admin` (`config_id`, `user`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `config_dev`
+--
+
+CREATE TABLE `config_dev` (
+  `config_id` int(11) NOT NULL,
+  `type` enum('text','bool','select') DEFAULT NULL,
+  `name` varchar(5000) NOT NULL,
+  `value` varchar(5000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `config_dev`
+--
+
+INSERT INTO `config_dev` (`config_id`, `type`, `name`, `value`) VALUES
+(1, 'text', 'subFolder', 'joker/'),
+(2, 'text', 'atomoBaseUrl', 'joker/'),
+(3, 'text', 'adminDir', 'admin/'),
+(4, 'text', 'adminLayoutDir', '../layout/admin/'),
+(5, 'text', 'directPath', '/var/www/html/joker/'),
+(6, 'text', 'layoutDir', 'layout/'),
+(8, 'text', 'imageDir', 'images/'),
+(9, 'text', 'styleDir', 'css/'),
+(10, 'text', 'scriptDir', 'javascript/'),
+(11, 'text', 'fontDir', 'fonts/'),
+(12, 'bool', 'verificationEmail', 'no'),
+(14, 'text', 'mediaFolder', '/joker/media/'),
+(15, 'text', 'mediaImageFolder', '/joker/images/media/'),
+(17, 'text', 'userImageFolder', '/joker/images/user/'),
+(18, 'bool', 'allowNewUser', 'yes'),
+(19, 'select', 'streamPlayer', 'joker'),
+(20, 'select', 'livePlayer', 'dailymotion');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `config_prod`
+--
+
+CREATE TABLE `config_prod` (
+  `config_id` int(11) NOT NULL,
+  `type` enum('text','bool','select') DEFAULT NULL,
+  `name` varchar(5000) NOT NULL,
+  `value` varchar(5000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `config_prod`
+--
+
+INSERT INTO `config_prod` (`config_id`, `type`, `name`, `value`) VALUES
+(1, 'text', 'subFolder', ''),
+(2, 'text', 'atomoBaseUrl', 'Atomo/'),
+(3, 'text', 'adminDir', 'admin/'),
+(4, 'text', 'adminLayoutDir', '../layout/admin/'),
+(5, 'text', 'directPath', '/var/www/html/'),
+(6, 'text', 'layoutDir', 'layout/'),
+(8, 'text', 'imageDir', 'images/'),
+(9, 'text', 'styleDir', 'css/'),
+(10, 'text', 'scriptDir', 'javascript/'),
+(11, 'text', 'fontDir', 'fonts/'),
+(12, 'bool', 'verificationEmail', 'no'),
+(14, 'text', 'mediaFolder', '/media/'),
+(15, 'text', 'mediaImageFolder', '/images/media/'),
+(17, 'text', 'userImageFolder', '/images/user/'),
+(18, 'bool', 'allowNewUser', 'yes'),
+(19, 'select', 'streamPlayer', 'joker'),
+(20, 'select', 'livePlayer', 'dailymotion');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `content`
 --
 
@@ -131,28 +170,28 @@ CREATE TABLE `content` (
   `active` enum('no','yes') NOT NULL DEFAULT 'no',
   `producer` varchar(200) NOT NULL,
   `director` varchar(100) NOT NULL,
-  `category` enum('animation','science','action','suspense','terror','drama','fantasy','spirit','music','comedy','sport','romance','police','war','documentary','indenpendent') NOT NULL,
-  `type` enum('movie','serie') NOT NULL,
-  `live` enum('yes','no') NOT NULL DEFAULT 'no',
+  `category` enum('animation','science','action','suspense','terror','drama','fantasy','spirit','music','comedy','sport','romance','police','war','documentary','indenpendent') DEFAULT NULL,
+  `type` enum('movie','serie','live') NOT NULL,
   `feature` enum('no','yes') NOT NULL DEFAULT 'no',
   `duration` varchar(13) NOT NULL,
   `age` enum('L','10','12','14','16','18') NOT NULL,
   `date` varchar(10) NOT NULL,
   `date_add` date NOT NULL,
   `en_US` varchar(5000) NOT NULL,
-  `pt_BR` varchar(5000) NOT NULL
+  `pt_BR` varchar(5000) NOT NULL,
+  `link` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `content`
 --
 
-INSERT INTO `content` (`content_id`, `active`, `producer`, `director`, `category`, `type`, `live`, `feature`, `duration`, `age`, `date`, `date_add`, `en_US`, `pt_BR`) VALUES
-(1, 'yes', 'Walt Disney', 'Stieve Spielber', 'animation', 'movie', 'yes', 'yes', '1 hr 27 min', 'L', '1940', '2016-01-29', 'Pinochio|Pinocchio synopsis example', 'Pinóquio|Exemplo de sinopse do pinóquio'),
-(2, 'yes', 'Gabriel Guedes', 'Daniel Rios', 'science', 'movie', 'no', 'yes', '1 hr 25 min', '18', '2006-2015', '2016-01-05', 'Back to the future|Back to the future synopsis example', 'De volta par ao futuro|Exemplo de sinopse do de folta para o futuro'),
-(3, 'yes', 'Pixar Pictures', 'Christopher Crown', 'animation', 'movie', 'no', 'no', '1 hr 50 min', '10', '1985', '2015-12-16', 'Big Buck Bunny|Bunny synopsis example', 'Grande Coelho Bunny|Exemplo de sinopse do Bunny'),
-(4, 'yes', 'Warner Pictures', 'Paul Walker', 'documentary', 'serie', 'no', 'yes', 'N/D', '16', '2003-2009', '2016-01-04', 'Tears of steel|Tears synopsis example', 'Lágrimas de aço|Exemplo de sinopse do Lágrimas de Aço'),
-(30, 'yes', 'Teste da Vincci', 'Daniel\'s Gray', 'drama', 'serie', 'no', 'no', 'N/D', 'L', '2010-2015', '2016-10-17', 'Da Vinces\'s Name|Da Vince\'s Synopsis', 'Nome Da Vince|Sinópse Da Vince');
+INSERT INTO `content` (`content_id`, `active`, `producer`, `director`, `category`, `type`, `feature`, `duration`, `age`, `date`, `date_add`, `en_US`, `pt_BR`, `link`) VALUES
+(1, 'yes', 'Walt Disney', 'Stieve Spielber', 'animation', 'movie', 'no', '1 hr 27 min', 'L', '2016-01-29', '2016-01-29', 'Pinochio|Pinocchio synopsis example', 'Pinóquio|Exemplo de sinopse do pinóquio', NULL),
+(2, 'yes', 'Gabriel Guedes', 'Daniel Rios', 'science', 'movie', 'yes', '1 hr 25 min', '18', '2006-2015', '2016-01-05', 'Back to the future|Back to the future synopsis example', 'De volta par ao futuro|Exemplo de sinopse do de folta para o futuro', NULL),
+(3, 'yes', 'Pixar Pictures', 'Christopher Crown', 'animation', 'movie', 'no', '1 hr 50 min', '10', '1985', '2015-12-16', 'Big Buck Bunny|Bunny synopsis example', 'Grande Coelho Bunny|Exemplo de sinopse do Bunny', NULL),
+(4, 'yes', 'Warner Pictures', 'Paul Walker', 'documentary', 'serie', 'yes', 'N/D', '16', '2003-2009', '2016-01-04', 'Tears of steel|Tears synopsis example', 'Lágrimas de aço|Exemplo de sinopse do Lágrimas de Aço', NULL),
+(5, 'yes', 'Daniel', 'Mobile Legend', NULL, 'live', 'yes', '', 'L', '2017-08-09', '2017-08-09', 'Mobile Legend Live guys|Today We will see how it is the Mobile Legend game, a mobile competitive game', 'Live de Mobile Legend galera!| Hoje vamos ver como é um campeonato do jogo Mobile Legend, um jogo competitivo para celulares', 'x5v73pj');
 
 -- --------------------------------------------------------
 
@@ -181,10 +220,7 @@ INSERT INTO `content_episodes` (`episode_id`, `active`, `episode_ref`, `season`,
 (6, 'yes', 4, 2, 1, 'Episode 2.1 Title|Episode 2.1 Synopsis', 'Episódio 2.1 Título|Episódio 2.1 Sinópse'),
 (7, 'yes', 4, 1, 2, 'Episode 1.2 Title|Episode 1.2 Synopsis', 'Episódio 1.2 Título|Episódio 1.2 Sinópse'),
 (9, 'yes', 4, 1, 5, 'Episode 1.5 Title|Episode 1.5 Synopsis', 'Episódio 1.5 Título|Episódio 1.5 Sinópse'),
-(10, 'yes', 4, 2, 2, 'Episode 2.2 Title|Episode 2.2 Synopsis', 'Episódio 2.2 Título|Episódio 2.2 Sinópse'),
-(27, 'yes', 30, 1, 1, 'Episode Title|Episode Synopsis', 'Título do episódio|Sinopse do episódio'),
-(48, 'yes', 30, 1, 2, 'Episode Title2|Episode Synopsis2', 'Título do episódio2|Sinopse do episódio2'),
-(50, 'yes', 30, 2, 1, 'Episode Title3.1|Episode Synopsis3.1', 'Título do episódio3.1|Sinopse do episódio3.1');
+(10, 'yes', 4, 2, 2, 'Episode 2.2 Title|Episode 2.2 Synopsis', 'Episódio 2.2 Título|Episódio 2.2 Sinópse');
 
 -- --------------------------------------------------------
 
@@ -251,53 +287,40 @@ INSERT INTO `language` (`language_id`, `name`, `en_US`, `pt_BR`) VALUES
 (4, 'langs', 'Languages', 'Idiomas'),
 (5, 'en', 'English', 'Inglês'),
 (6, 'pt', 'Portuguese', 'Português'),
-(7, 'meta_description', 'StreaMovie - Watch the best Movies.', 'StreaMovie - Assista aos melhores filmes.'),
+(7, 'meta_description', 'Joker - Watch the best Movies.', 'Joker - Assista aos melhores filmes.'),
 (8, 'input_search', 'Search', 'Pesquisar'),
-(9, 'index_title', 'StreaMovie - Watch the best Movies', 'StreaMovie - Assista aos melhores filmes'),
+(9, 'index_title', 'Joker - Watch the best Movies', 'Joker - Assista aos melhores filmes'),
 (10, 'home_hover', 'Go to home page', 'Ir para página inicial'),
 (11, 'home_title', 'Home Page', 'Página inicial'),
 (12, 'home', 'Home Page', 'Página inicial'),
 (13, 'about_hover', 'Go to about page', 'Ir para página sobre'),
-(14, 'about_link', 'about', 'sobre'),
 (15, 'about_title', 'About Us', 'Sobre nós'),
 (16, 'about', 'About', 'Sobre'),
 (17, 'advertise_hover', 'Go to advertise page', 'Ir para página anuncie'),
-(18, 'advertise_link', 'advertise', 'anuncie'),
 (19, 'advertise_title', 'Advertise your project', 'Anuncie seu projeto'),
 (20, 'advertise', 'Advertise', 'Anuncie'),
 (21, 'jobs_hover', 'Go to jobs page', 'Ir para página trabalhe'),
-(22, 'jobs_link', 'jobs', 'trabalhe'),
 (23, 'jobs_title', 'Jobs with our team', 'Trabalhe conosco'),
 (24, 'job', 'Jobs', 'Trabalhe'),
 (25, 'contact_hover', 'Go to contact page', 'Ir para página contato'),
-(26, 'contact_link', 'contact', 'contato'),
 (27, 'contact_title', 'Contact Us', 'Contate agente'),
 (28, 'contact', 'Contact', 'Contato'),
 (29, 'footer_right', 'All rigth reserved.', 'Todos os direitos reservados'),
-(30, 'login_link', 'login', 'entrar'),
 (31, 'login_title', 'Log in or create your account', 'Entre ou crie sua conta'),
 (32, 'login', 'Login or Create an account', 'Entre ou crie uma conta'),
 (33, 'profile', 'Profile', 'Perfil'),
 (34, 'settings', 'Settings', 'Configurações'),
 (35, 'logoff', 'Logoff', 'Sair'),
-(36, 'movies_link', 'movies', 'filmes'),
 (37, 'movies_title', 'All Movies', 'Todos os Filmes'),
-(38, 'movie', 'Movie', 'Filme'),
 (39, 'movies', 'Movies', 'Filmes'),
-(40, 'series_link', 'series', 'series'),
 (41, 'series_title', 'All Movies', 'Todos os Filmes'),
 (42, 'series', 'Series', 'Séries'),
-(43, 'settings_link', 'settings', 'configuracoes'),
 (44, 'settings_user_connected', 'Settings', 'Configurações'),
-(45, 'search_link', 'search', 'busca'),
 (46, 'search_title', 'Search', 'Busca'),
 (47, 'error_403_title', 'No access', 'Sem acesso'),
 (48, 'error_404_title', 'Page not found', 'Página não encontrada'),
 (49, 'accounts', 'Accounts', 'Contas'),
 (50, 'nav_menu', 'Browse', 'Navegar'),
-(51, 'watch_link', 'watch', 'assistir'),
-(52, 'title_link', 'title', 'titulo'),
-(53, 'category_link', 'category', 'categoria'),
 (54, 'recent_add', 'Recently added', 'Adicionados recentemente'),
 (55, 'details', 'Details', 'Detalhes'),
 (56, 'science', 'Science', 'Ciência'),
@@ -344,7 +367,6 @@ INSERT INTO `language` (`language_id`, `name`, `en_US`, `pt_BR`) VALUES
 (97, 'block_sigin', 'We are working on this website, in the future, you will can creat a account.', 'Nós estamos trabalhando nesse site, no futuro, você poderá criar uma conta.'),
 (98, 'in_category', 'in the category', 'na categoria'),
 (99, 'episodes', 'Episodes', 'Episódios'),
-(100, 'profile_link', 'profile', 'perfil'),
 (101, 'settings_info', 'General', 'Geral'),
 (102, 'settings_lang', 'Language', 'Idioma'),
 (103, 'settings_delete', 'Delete', 'Deletar'),
@@ -370,31 +392,22 @@ INSERT INTO `language` (`language_id`, `name`, `en_US`, `pt_BR`) VALUES
 (123, 'admin_add', 'Add', 'Adicionar'),
 (124, 'admin_advanced_search', 'Advanced Search', 'Pesquisa Avançada'),
 (125, 'admin_home_hover', 'Go to admin home page', 'Ir para página admin incial'),
-(126, 'admin_home_link', 'home', 'home'),
 (127, 'admin_home', 'Home', 'Início'),
 (128, 'admin_feedback_manager_hover', 'Manage the feedbacks', 'Gerenciar os feedbacks'),
-(129, 'admin_feedback_manager_link', 'feedback/manager', 'feedback/gerenciar'),
-(130, 'admin_feedback', 'Feedback', 'Feedback'),
+(130, 'feedback', 'Feedback', 'Feedback'),
 (131, 'admin_users_manager_hover', 'Manage the Users', 'Gerenciar os usuários'),
-(132, 'admin_users_manager_link', 'users/manager', 'usuarios/gerenciar'),
-(133, 'admin_users', 'Users', 'Usuários'),
+(133, 'users', 'Users', 'Usuários'),
 (134, 'admin_users_add_hover', 'Add Users', 'Adicionar usuários'),
-(135, 'admin_users_add_link', 'users/add', 'usuarios/adicionar'),
 (136, 'admin_movies_manager_hover', 'Manage the movies', 'Gerenciar os filmes'),
-(137, 'admin_movies_manager_link', 'movies/manager', 'filmes/gerenciar'),
 (138, 'admin_movies_add_hover', 'Add movies', 'Adicionar filmes'),
-(139, 'admin_movies_add_link', 'movies/add', 'filmes/adicionar'),
 (140, 'admin_series_manager_hover', 'Manage series', 'Gerenciar as séries'),
-(141, 'admin_series_manager_link', 'series/manager', 'series/gerenciar'),
 (142, 'admin_series_add_hover', 'Add series', 'Adicionar séries'),
-(143, 'admin_series_add_link', 'series/add', 'series/adicionar'),
 (144, 'admin_edit', 'Edit', 'Editar'),
 (145, 'admin_found', 'Was found', 'Foi encontrado'),
 (146, 'admin_found_2', 'Were found', 'Foram encontrados'),
 (147, 'admin_manage', 'Manage', 'Gerenciar'),
 (148, 'admin_manager', 'Manager', 'Gerenciador'),
 (154, 'logoff_title', 'Disconnecting', 'Desconectando'),
-(155, 'logoff_link', 'logoff', 'sair'),
 (156, 'logoff', 'Logoff', 'Sair'),
 (157, 'logoff_info', 'Disconnecting', 'Desconectando'),
 (158, 'related', 'Related', 'Relacionados'),
@@ -420,11 +433,22 @@ INSERT INTO `language` (`language_id`, `name`, `en_US`, `pt_BR`) VALUES
 (178, 'comments', 'comments', 'comentários'),
 (179, 'replies', 'replies', 'comentários'),
 (180, 'admin_episodes_add_hover', 'Add more Episodes for a serie', 'Adicionar mais episódios para uma série'),
-(181, 'admin_episodes_add_link', 'episodes/add', 'episodios/adicionar'),
-(182, 'admin_episodes_manager_link', 'episodes/manager', 'episodios/gerenciar'),
 (183, 'admin_episodes_manager_hover', 'Manager episodes', 'Gerenciar episódios'),
 (184, 'continue', 'Continue', 'Continuar'),
-(185, 'test', 'English here!', '');
+(185, 'test', 'English here!', ''),
+(186, 'attention', 'Attention', 'Atenção'),
+(187, 'remove_alert', 'You will delete all the content in database, and all the files, such as images and vídeos.', 'Você está prestes a excluir o conteúdo do banco de dados, assim como todas as coisas relacionadas a ele, e os arquivos, tais como iamgens e vídeos.'),
+(188, 'remove_alternative', 'As alternative, you can only disable, so it will still on database, but it won\'t be accessible, to do that, click in \"Cancel\" and \"Edit\"', 'Como alternativa, você pode desativar, assim ele continuará existindo, porém, não será acessível, se quiser fazer isso, clique em \"Cancelar\" e depois em \"Editar\"'),
+(189, 'confirm', 'Confirm', 'Confirmar'),
+(191, 'lives', 'Lives', 'Lives'),
+(192, 'admin_lives_manager_hover', 'Manage the live streams', 'Gerenciar as lives'),
+(193, 'admin_lives_add_hover', 'Add a Live', 'Adicionar uma Live'),
+(196, 'user', 'User', 'Usuário'),
+(197, 'movie', 'Movie', 'Filme'),
+(198, 'serie', 'Serie', 'Série'),
+(199, 'live', 'Live', 'Live'),
+(200, 'feedbacks', 'Feedbacks', 'Feedbacks'),
+(201, 'more_info', 'More Info', 'Mais informações');
 
 -- --------------------------------------------------------
 
@@ -441,18 +465,17 @@ CREATE TABLE `user` (
   `password` varchar(40) NOT NULL,
   `category` enum('user','admin') NOT NULL DEFAULT 'user',
   `premium` enum('no','yes') NOT NULL DEFAULT 'no',
-  `lang` enum('pt_BR','en_US') NOT NULL DEFAULT 'pt_BR',
-  `style` enum('D','N') NOT NULL DEFAULT 'D'
+  `lang` enum('pt_BR','en_US') NOT NULL DEFAULT 'pt_BR'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `active`, `name`, `username`, `email`, `password`, `category`, `premium`, `lang`, `style`) VALUES
-(1, 'yes', 'Daniel Rios', 'DanielRios549', 'danielrios.flamengo@gmail.com', '97ce58a4a7b39373aadeb73c3dfdc7fc204c6655', 'admin', 'yes', 'en_US', 'N'),
-(2, 'yes', 'Daniel Reis', 'DanielFla', 'daniel_fla@live.com', 'e5d79a4ffb899191b9f69439ab3e947b2b0acbf1', 'user', 'no', 'pt_BR', 'D'),
-(3, 'yes', 'Teste 01', 'teste01', 'email.teste@email.com', 'e5d79a4ffb899191b9f69439ab3e947b2b0acbf1', 'user', 'no', 'pt_BR', 'D');
+INSERT INTO `user` (`user_id`, `active`, `name`, `username`, `email`, `password`, `category`, `premium`, `lang`) VALUES
+(1, 'yes', 'Daniel Rios', 'DanielRios549', 'danielrios.flamengo@gmail.com', '97ce58a4a7b39373aadeb73c3dfdc7fc204c6655', 'admin', 'yes', 'en_US'),
+(2, 'yes', 'Daniel Reis', 'DanielFla', 'daniel_fla@live.com', 'e5d79a4ffb899191b9f69439ab3e947b2b0acbf1', 'user', 'no', 'pt_BR'),
+(3, 'no', 'Teste 01', 'teste01', 'email.teste@email.com', 'e5d79a4ffb899191b9f69439ab3e947b2b0acbf1', 'user', 'no', 'pt_BR');
 
 -- --------------------------------------------------------
 
@@ -471,7 +494,7 @@ CREATE TABLE `user_restore` (
 --
 
 INSERT INTO `user_restore` (`restore_id`, `user_id`, `location`) VALUES
-(6, 1, 'a89e47cd3c3444f28f0b37d5430c8fa248893406');
+(1, 1, '4547c3baf47ad71063370906635850d90c661cbd');
 
 -- --------------------------------------------------------
 
@@ -540,17 +563,23 @@ ALTER TABLE `comment_reply`
   ADD KEY `user` (`user`);
 
 --
--- Indexes for table `config`
---
-ALTER TABLE `config`
-  ADD PRIMARY KEY (`config_id`);
-
---
 -- Indexes for table `config_admin`
 --
 ALTER TABLE `config_admin`
   ADD PRIMARY KEY (`config_id`),
   ADD KEY `user` (`user`);
+
+--
+-- Indexes for table `config_dev`
+--
+ALTER TABLE `config_dev`
+  ADD PRIMARY KEY (`config_id`);
+
+--
+-- Indexes for table `config_prod`
+--
+ALTER TABLE `config_prod`
+  ADD PRIMARY KEY (`config_id`);
 
 --
 -- Indexes for table `content`
@@ -625,32 +654,37 @@ ALTER TABLE `watchlist`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `comment_reply`
 --
 ALTER TABLE `comment_reply`
-  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `config`
---
-ALTER TABLE `config`
-  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `config_admin`
 --
 ALTER TABLE `config_admin`
   MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `config_dev`
+--
+ALTER TABLE `config_dev`
+  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `config_prod`
+--
+ALTER TABLE `config_prod`
+  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `content_episodes`
 --
 ALTER TABLE `content_episodes`
-  MODIFY `episode_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `episode_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `email`
 --
@@ -665,17 +699,17 @@ ALTER TABLE `follow`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_restore`
 --
 ALTER TABLE `user_restore`
-  MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `watched`
 --

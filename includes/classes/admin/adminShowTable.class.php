@@ -23,6 +23,7 @@
 		public $closeChange;
 		public $itemRemove;
 		public $itemEpisode;
+		public $editEpisodeOpions;
 
 		//Get the user
 		
@@ -147,6 +148,17 @@
 					$queryPage = "SELECT * FROM content WHERE type = 'serie' ORDER BY $columnName $orderQuery LIMIT $pageNumber, $limit";
 					$count = "SELECT * FROM content WHERE type = 'serie'";
 					$queryEdit = "SELECT * FROM content WHERE content_id = $getEdit";
+
+					//The episodes are inside Series section
+
+					if($getEpisode >= 1) {
+						$episodesQuery = $pdo -> query("SELECT content_episodes.season, content_episodes.* FROM content_episodes WHERE episode_ref = $getEpisode ORDER BY season, episode");
+
+						if($episodesQuery -> execute()) {
+							$allContentEpisodes = $episodesQuery -> fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_GROUP);
+							$this -> editEpisodeOpions = $allContentEpisodes;
+						}
+					}
 				}
 				elseif($page == 'admin_lives_manager') {
 					if($column == 'id') {
@@ -158,21 +170,6 @@
 					$queryPage = "SELECT * FROM content WHERE type = 'live' ORDER BY $columnName $orderQuery";
 					$count = "SELECT * FROM content WHERE type = 'live'";
 					$queryEdit = "SELECT * FROM content WHERE type = 'live' AND content_id = $getEdit";
-				}
-
-				//The episodes are inside Series section
-
-				elseif($getEpisode >= 1) {
-					if($column == 'id') {
-						$columnName = 'episode_id';
-					}
-					elseif($column == 'name') {
-						$columnName = $lang;
-					}
-					$queryPage = "SELECT * FROM content_episodes ORDER BY $columnName $orderQuery";
-					$count = "SELECT * FROM content_episodes";
-					$queryEdit = "SELECT e.episode_ref, e.active AS episode_active, e.season, e.episode, c.active AS content_active, e.en_US AS episodeUS, e.pt_BR AS episodeBR, c.en_US AS contentUS,  c.pt_BR AS contentBR FROM content_episodes AS e
-					INNER JOIN content AS c ON e.episode_ref = c.content_id WHERE e.episode_id = $getEpisode";
 				}
 
 				//Make the Edit Query
@@ -259,6 +256,23 @@
 						echo $error -> getMessage();
 					}
 				}
+			}
+		}
+		public function getTotal($table, $type) {
+			$pdo = $this -> getConnection();
+			
+			if($type == false) {
+				$query = "SELECT * FROM $table";
+			}
+			else {
+				$query = "SELECT * FROM $table WHERE type = '$type'";
+			}
+
+			$totalQuery = $pdo -> query($query);
+			
+			if($totalQuery -> execute()) {
+				$total = $totalQuery -> rowCount();
+				$this -> totalContents = $total;
 			}
 		}
 	}

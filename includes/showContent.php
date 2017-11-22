@@ -18,7 +18,7 @@
 	//Content for index
 	
 	if(THIS_PAGE == 'index') {
-		$contentClass -> showContent($contentArray['contentCategory'], $contentArray['dateAdd'], $contentArray['querySearch'], '', $_SESSION['user_id']);
+		$contentClass -> showContent($contentArray['contentCategory'], $contentArray['dateAdd'], $contentArray['querySearch'], '', $_SESSION['user_id'], $adminCheck);
 		
 		$showContent = $contentClass -> contentInfo;
 		$addRow = $contentClass -> contentRow;
@@ -31,7 +31,7 @@
 	//Content for search
 	
 	if(THIS_PAGE == 'search') {
-		$contentClass -> showContent($contentArray['contentCategory'], $contentArray['dateAdd'], $contentArray['querySearch'],  '', $_SESSION['user_id']);
+		$contentClass -> showContent($contentArray['contentCategory'], $contentArray['dateAdd'], $contentArray['querySearch'],  '', $_SESSION['user_id'], $adminCheck);
 				
 		$showContent = $contentClass -> contentInfo;
 		$addRow = $contentClass -> contentRow;
@@ -43,7 +43,7 @@
 	//Content for category
 	
 	if(THIS_PAGE == 'category') {
-		$contentClass -> showContent($contentArray['contentCategory'], $contentArray['dateAdd'], $contentArray['querySearch'], $contentArray['page'], $_SESSION['user_id']);
+		$contentClass -> showContent($contentArray['contentCategory'], $contentArray['dateAdd'], $contentArray['querySearch'], $contentArray['page'], $_SESSION['user_id'], $adminCheck);
 				
 		$showContent = $contentClass -> contentInfo;
 		$addRow = $contentClass -> contentRow;

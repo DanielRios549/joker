@@ -10,21 +10,62 @@
 		header("Location:" . $base . "404");
 	}
 	elseif ($adminCheck == true) {
+		//Set the home page for each section
+		
+		$sectionHome1 = getLink('feedback_manager', false);
+		$sectionHome2 = getLink('users_manager', false);
+		$sectionHome3 = getLink('movies_manager', false);
+		$sectionHome4 = getLink('series_manager', false);
+		$sectionHome5 = getLink('lives_manager', false);
+
+		if(MENU_GROUP == 'feedback') {
+			$sectionHome = getLink(MENU_GROUP . '_manager', false);
+		}
+		else {
+			$sectionHome = getLink(MENU_GROUP . 's_manager', false);
+		}
+
 		//Make the settings inside the congig table
 
-		$setConfig = new SetConfig();
+		$getConfig = new Settings();
 
-		$textSettings = $setConfig -> getConfigSet('text');
+		$textSettings = $getConfig -> getConfig('text');
 
-		$boolSettings = $setConfig -> getConfigSet('bool');
+		$boolSettings = $getConfig -> getConfig('bool');
 
-		$selectSettings = $setConfig -> getConfigSet('select');
+		$selectSettings = $getConfig -> getConfig('select');
 
 		$avaliableBoolean = array(0 => 'no', 1 => 'yes');
 
-		$avaliablePlayers = $setConfig -> getPlayers($directPath);
+		$avaliablePlayers = $getConfig -> getPlayers($directPath);
 
 		//print_r($boolSettings);
+
+		//Set the new configs
+
+		$setConfigGet =  $_GET['go'] ?? false;
+
+		if($setConfigGet == 'config') {
+			$setConfig = new Settings();
+
+			$setConfig -> setConfig($_POST);
+		}
+
+		$homeUsers = new AdminShow();
+		$homeUsers -> getTotal('user', false);
+		$usersTotal = $homeUsers -> totalContents;
+		
+		$homeMovies = new AdminShow();
+		$homeMovies -> getTotal('content', 'movie');
+		$moviesTotal = $homeMovies -> totalContents;
+		
+		$homeSeries = new AdminShow();
+		$homeSeries -> getTotal('content', 'serie');
+		$seriesTotal = $homeSeries -> totalContents;
+		
+		$homeLives = new AdminShow();
+		$homeLives -> getTotal('content', 'live');
+		$livesTotal = $homeLives -> totalContents;
 
 		//Get options of user to make the select
 
@@ -52,12 +93,14 @@
 
 		//print_r($allSeries);
 
+		//Get the add link and the page type
+
 		if(MENU_GROUP == 'user') {
 			$selectFormFile = 'userSelect.html';
 			$pageType = langCode('users');
 			$addPageLink = getLink('users_add', false);
 		}
-		elseif(THIS_PAGE != 'admin_episodes_manager') {
+		else {
 			$selectFormFile = 'contentSelect.html';
 
 			if(THIS_PAGE == 'admin_movies_manager') {
@@ -76,10 +119,6 @@
 				$pageType = langCode('lives');
 			}
 		}
-		else {
-			$selectFormFile = 'episodeSelect.html';
-			$pageType = langCode('episodes');
-		}
 
 		//All manager pages
 
@@ -94,6 +133,7 @@
 			$editRow = $classManager -> itemEdit;
 			$removeRow = $classManager -> itemRemove;
 			$episodeRow = $classManager -> itemEpisode;
+			$editEpisodeRow = $classManager -> editEpisodeOpions;
 
 			$addRow = $classManager -> contentRow;
 			$totalRows = $classManager -> totalContents;
@@ -113,6 +153,13 @@
 			if(@$_GET['removed'] >=  1) {
 				$classRemove = new AdminRemove();
 				$classRemove -> remove(THIS_PAGE, $directPath);
+			}
+
+			if((THIS_PAGE == 'admin_series_manager') and ($episodeRow >= 1)) {
+				$episodeEdit = true;
+			}
+			else {
+				$episodeEdit = false;
 			}
 
 			//print_r($addRow);

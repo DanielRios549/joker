@@ -12,7 +12,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo langCode('lang');?>">
-<head>
+<head data-url="<?php echo $baseUrl;?>" data-cookie="<?php echo session_id();?>">
 	<meta charset="<?php echo langCode('charset');?>"/>
     <title><?php echo $titleFile;?></title>
 	<meta name="description" content="<?php echo langCode('meta_description');?>"/>
@@ -38,15 +38,7 @@
     <link rel="icon" href="<?php echo $imageDir . 'favicon.png';?>"/>
 	<link rel="stylesheet" href="<?php echo $styleDir . 'userStyle.css';?>"/>
     <script type="text/javascript" src="<?php echo $scriptDir . 'libraries/jquery.js';?>"></script>
+    <script type="text/javascript" src="<?php echo $scriptDir . 'jokerScript.js';?>"></script>
     <?php //<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>?>
-    <script type="text/javascript">
-        var baseUrl = '<?php echo $baseUrl;?>';
-        <?php if($loginCheck == true) {?>
-            var cookieId = '<?php echo session_id();?>';
-            $(document).ready(function() {
-                intervalLogoff = setInterval(secureLogoff, 250);
-            });
-        <?php }?>
-    </script>
 </head>
 <body>

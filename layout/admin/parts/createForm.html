@@ -98,6 +98,8 @@
 </form>
 <script lang="text/javascript">
 	$(document).ready(function() {
+        userScript = new userScript();
+        adminScript = new adminScript();
         $('.formAdd').on('click', '.openFieldset', function() {
 			$(this).toggleClass('fieldsetOpen');
         })
@@ -109,8 +111,8 @@
 			}
 		});
 
-        closeMessage('.userError', '#errorMsgClose');
-		showSelectedFile('.formFieldset');
+        userScript.closeMessage('.userError', '#errorMsgClose');
+		adminScript.showSelectedFile('.formFieldset');
 	});
 </script>
 <?php }?>

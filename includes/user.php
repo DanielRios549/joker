@@ -27,7 +27,7 @@
 			//Access the functions of login and sigin
 			
 			$siginUser = $sigin -> siginUser($directPath, $verificationEmail, ADMIN_PAGE, $_POST, $_FILES, $siginSubmit);
-			$loginUser = $login -> loginUser('normal', $_POST, $userSubmit, $imageDir, $baseUrl, $sessionAddress, $sessionAgent, $sessionToDB, $cookieLang);
+			$loginUser = $login -> loginUser($_POST, $userSubmit, $imageDir, $baseUrl, $sessionAddress, $sessionAgent, $sessionToDB, $cookieLang);
 			
 			//Display the error on login or sigin
 			
@@ -58,7 +58,7 @@
 		//Restore the use connected
 	
 		elseif($loginRestore == true) {
-			$loginUser = $login -> loginUser('restore', false, false, $imageDir, $baseUrl, $sessionAddress, $sessionAgent, $sessionToDB, $cookieLang);
+			$loginUser = $restore -> restoreUser(false, false, $imageDir, $baseUrl, $sessionAddress, $sessionAgent, $sessionToDB, $cookieLang);
 		}
 	}
 ?>

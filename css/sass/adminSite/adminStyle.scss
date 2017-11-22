@@ -601,7 +601,6 @@
     #settingsForm {
         @extend %allContainer;
         position: relative;
-        //height: 100%;
         padding: 5px;
         overflow: auto;
 
@@ -611,10 +610,8 @@
             height: auto;
             display: flex;
             margin-bottom: 20px;
+            padding: 0 5px;
 
-            &:not(legend) {
-                padding-left: 10px;
-            }
             .settingsLegend {
                 font: 2em Calibri, sans-serif;
                 text-decoration: underline;
@@ -630,6 +627,16 @@
                 @include css4 {
                     color: var(--lightGray); 
                 };
+            }
+            #configSubmit {
+                position: relative;
+                height: 40px;
+                width: 100%;
+                cursor: pointer;
+
+                .submitSpan {
+                    font: 1.6em Calibri, sans-serif;
+                }
             }
         }
         input {

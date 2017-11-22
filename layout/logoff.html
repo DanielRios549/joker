@@ -15,7 +15,7 @@
 <main class="interface ajaxReplace">
 <?php }?>
 	<section class="logoff mainSection">
-    		<p class="logoffText"><?php echo langCode('logoff_info');?></p>
+    	<p class="logoffText"><?php echo langCode('logoff_info');?></p>
 	</section>
 <?php if($onlyBody == false) {?>
 </main>
@@ -23,7 +23,7 @@
 <script lang="text/javascript">
 	$(document).ready(function() {
 		setTimeout(function() {
-			window.location.replace(baseUrl);
+			location.replace(baseUrl);
 		}, 3000);
 	});
 	<?php if($onlyBody == true) {?>

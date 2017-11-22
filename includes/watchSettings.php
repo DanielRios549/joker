@@ -32,9 +32,15 @@
 			header("Location:" . $baseUrl . "404");
 		}
 		else {
+            if($adminCheck == true) {
+				$adminSufix = '';
+			}
+			elseif($adminCheck == false) {
+				$adminSufix = "AND active = 'yes'";
+			}
             try {
                 if(ADMIN_PAGE == 'no') {
-                    $contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage AND active = 'yes'");
+                    $contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage $adminSufix");
                 }
                 elseif(ADMIN_PAGE == 'yes') {
                     $contentVerify = $pdo -> prepare("SELECT content_id, type FROM content WHERE content_id = :contentPage");
@@ -164,7 +170,7 @@
 
                 elseif($contentTrue['type'] == 'live') {
 					if(ADMIN_PAGE == 'no') {
-	                    $contentQuery = $pdo -> prepare("SELECT content_id, link, $cookieLang FROM content WHERE content_id = :content AND active = 'yes'");
+	                    $contentQuery = $pdo -> prepare("SELECT content_id, link, $cookieLang FROM content WHERE content_id = :content $adminSufix");
 	                }
 					if(ADMIN_PAGE == 'yes') {
 	                    $contentQuery = $pdo -> prepare("SELECT content_id, link, $cookieLang FROM content WHERE content_id = :content");

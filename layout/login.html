@@ -24,7 +24,7 @@
 		</article>
 		<?php } ?>
 		<article id="loginDiv" class="userDiv">
-			<form method="post" action="" id="loginForm" class="userFrom">
+			<form method="post" action="?go=login" id="loginForm" class="userFrom">
 				<fieldset id="loginFieldset" class="userFieldset"><legend id="loginLegend" class="userLegend"><?php echo langCode('login_legend');?></legend>
 					<input type="text" name="loginUser" id="loginUser" class="inputText" maxlength="60" placeholder="<?php echo langCode('login_user_placeholder');?>" required/>
 					<label for="loginUser" id="loginUserLabel" class="inputLabel"></label>
@@ -32,7 +32,7 @@
 					<input type="password" name="loginPassword" id="loginPassword" class="inputText" maxlength="60" placeholder="<?php echo langCode('login_password_placeholder');?>" required/>
 					<label for="loginPassword" id="loginPasswordLabel" class="inputLabel"></label>
 
-					<?php if($allowRestoreLogin == true) {?>
+					<?php if($allowSaveLogin == 'yes') {?>
 					<input type="checkbox" name="loginRestore" id="loginRestore"/>
 					<label for="loginRestore" id="loginRestoreLabel"><span class="checkIcon"></span><span class="spanText"><?php echo langCode('remember_login');?></span></label>
 					<?php }?>
@@ -67,7 +67,7 @@
 			</form>
 		</article>
 		<?php }?>
-		<?php if($allowNewUser == 'false') {?>
+		<?php if($allowNewUser == 'no') {?>
 		<article id="siginDiv" class="userDiv">
 			<p style="font-size: 3em;"><?php echo langCode('block_sigin');?></p>
 		</article>
@@ -78,11 +78,6 @@
 <?php }?>
 <script lang="text/javascript">
 	$(document).ready(function() {
-		//Close the message displayed when has some error
-
-		inputError($(".userDiv"));
-		closeMessage('.userError', '#errorMsgClose');
-
 		<?php if($onlyBody == true) {?>
 			 $('title').empty().text("<?php echo $titleFile;?>");
 		<?php }?>
