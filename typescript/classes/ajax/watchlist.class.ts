@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class Watchlist {
+class Watchlist {
     addWatchList():void {
         var dataId = $(this).attr('data-id');
         

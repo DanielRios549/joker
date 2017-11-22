@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class AdminOthers {
+class AdminOthers {
     //Show the advanced options
 
 	advancedOptions(button:string, show:string):void {

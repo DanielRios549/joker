@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class Login {
+class Login {
     inputError(parentDiv:string):void {
 		$(parentDiv).on('focusout', '.inputText', function() {
 			if(($(this) as any).val().length < 1) {

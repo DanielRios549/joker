@@ -5,43 +5,25 @@
  ***************************************************************
 */
 
-//Import all classes and configs
+//Change class of header of all page
 
-import {Config} from './classes/config.class';
+$(document).ready(function() {
+    $(window).on('scroll', function() {
+        var topDiv = $('#topDiv');
 
-//Ajax scripts
+        if ($(this).scrollTop() >= 300) {
+            topDiv.removeClass('topDiv').addClass('topDivFixed');
+        }
+        else {
+            topDiv.removeClass('topDivFixed').addClass('topDiv');
+        }
+    });
 
-import {Ajax} from './classes/ajax/ajax.class';
-import {Details} from './classes/ajax/details.class';
-import {Comments} from './classes/ajax/comments.class';
-import {Follow} from './classes/ajax/follow.class';
-import {Watchlist} from './classes/ajax/watchlist.class';
-
-//User scripts
-
-import {Login} from './classes/user/login.class';
-import {Parallax} from './classes/user/parallax.class';
-import {Slide} from './classes/user/slide.class';
-import {UserOthers} from './classes/user/others.class';
-
-//Admin scripts
-
-import {AdminMenu} from './classes/admin/menu.class';
-import {AdminOthers} from './classes/admin/others.class';
-
-//Create the events
-
-import {} from './events/all';
-import {Index} from './events/index';
-import {} from './events/admin';
-
-var test = {
-    'name': 'Daniel',
-    'surName': 'Rios',
-    'fullName' : function() {
-        return this;
-    },
-    'fullName2': () => {
-        return this;
-    }
-}
+    $('#footer').on("click", "#topDiv", function(event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        },500);
+    });
+    var IndexEvents = new Index();
+});

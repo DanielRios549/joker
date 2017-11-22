@@ -5,12 +5,12 @@
  ***************************************************************
 */
 
-export class Details extends Ajax {
+class Details extends Ajax {
     showDetails(event?:any):void {
         event.preventDefault();
-        var contentLink = $(this).find('.contentLink').attr('href');
-        var contentLinkToBack = $(this).find('.contentLink').attr('data-url');
-        var contentTitleToBack = $(this).find('.contentLink').attr('data-title');
+        var contentLink:string = $(this).find('.contentLink').attr('href');
+        var contentLinkToBack:string = $(this).find('.contentLink').attr('data-url');
+        var contentTitleToBack:string = $(this).find('.contentLink').attr('data-title');
         $('.closeButton').attr('data-url', contentLinkToBack);
         $('.closeButton').attr('data-title', contentTitleToBack);
 
@@ -34,12 +34,12 @@ export class Details extends Ajax {
                 scrollTop: containerDiv.find('.titleDetailsOpen').offset().top - 150
             },500);
         }
-        this.getPage(contentLink, "body=true", function(data) {
+        super.getPage(contentLink, "body=true", function(data:any) {
             var filter:any = $(data).children();
             //console.log(data);
             $('.titleDetailsOpen').find('.sectionContent').html(filter);
-            this.changeUrl(contentLink);
         });
+        super.changeUrl(contentLink);
     }
 
     closeDetails():void {
@@ -58,8 +58,10 @@ export class Details extends Ajax {
             $('.titleDetailsOpen').find('.sectionContent article').remove();
             allcontentDiv.find('.contentOpen').removeClass('contentOpen').addClass('content');
             
-            this.changeUrl(linkToBack);
+            //super.changeUrl(linkToBack);
             $('title').empty().text(titleToBack);
         });
+
+        super.changeUrl(linkToBack);
     }
 }

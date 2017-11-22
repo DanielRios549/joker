@@ -22,8 +22,8 @@ var styles = [
 ];
 
 var scripts = [
-    //'typescript/**/*.ts',
-    'typescript/jokerScript.ts',
+    'typescript/**/*.ts',
+    //'typescript/jokerScript.ts',
 ];
 
 //execute the task inside the array only with 'gulp' command

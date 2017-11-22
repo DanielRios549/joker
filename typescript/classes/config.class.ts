@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class Config {
+class Config {
     public baseUrl:string = $('head').attr('data-url');
     public cookieId:string = $('head').attr('data-cookie');
     

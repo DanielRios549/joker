@@ -34,13 +34,9 @@
 		if($loginCheck == true) {
 			//Verify if the session is invalid to device
 
-			if(($_SESSION['USER_AGENT'] !== $sessionAgent) or ($_SESSION['USER_ADDRESS'] !== $sessionAddress)) {
-				header("Location:" .  $baseUrl . getLink('logoff', false));
+			if(($_SESSION['USER_ADDRESS'] !== $sessionAddress) or ($_SESSION['USER_AGENT'] !== $sessionAgent)) {
+				header("Location:" . getLink('logoff', false));
 			}
-
-			//echo $_COOKIE['PHPSESSID'];
-
-			//Configure the premium features
 
 			if($premiumCheck == true) {
 				require 'premiumUser.php';

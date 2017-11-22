@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class Comments extends Ajax {
+class Comments extends Ajax {
     makeComment():void {
         var comment = $("#commentInput").val();
         var checkComment = (comment as any).trim();

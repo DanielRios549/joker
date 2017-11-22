@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class AdminMenu {
+class AdminMenu {
     //Set the menu open and close
 
 	toggleMenu(header:string):void {

@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class UserOthers {
+class UserOthers {
     /**
 	 * hide the replies
 	 */

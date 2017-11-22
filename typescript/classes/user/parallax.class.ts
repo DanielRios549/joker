@@ -5,16 +5,16 @@
  ***************************************************************
 */
 
-export class Parallax {
+class Parallax {
     //Effect of external index
 
 	parallaxHome():void {
-		var parallaxIn:string = '#descImage > img';
-		var parallaxOut:string = '#contentSlider > article > div > img';
+		var parallaxOut:string = '#descImage > img';
+		var parallaxIn:string = '#contentSlider > article > div > img';
 
-		if ($(this).scrollTop() < 450) {
-			//$(parallaxIn).css("top" , (window.pageYOffset / 2) + 'px');
+		if ($(document).scrollTop() < 450) {
 			$(parallaxOut).css("top" , (window.pageYOffset / 2) + 'px');
+			$(parallaxIn).css("top" , (window.pageYOffset / 2) + 'px');
 		}
 	}
 
@@ -95,7 +95,7 @@ export class Parallax {
 		}
 	}
 
-	posterParalax(image):void {
+	posterParalax(image:string):void {
 		var $poster = $(image);
 		var $shine = $poster.find('.shine');
 		var $layer = $poster.find('*[class*="layer-"]');

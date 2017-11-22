@@ -74,7 +74,7 @@
 		unset($_SESSION['image']);
 		unset($_SESSION['USER_AGENT']);
 		unset($_SESSION['USER_ADDRESS']);
-		setcookie("rememberLogin", "", time()-3600);
+		//setcookie("rememberLogin", "", time()-3600);
 
 		session_regenerate_id();
 	}

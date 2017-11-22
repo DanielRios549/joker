@@ -5,16 +5,16 @@
  ***************************************************************
 */
 
-export class Ajax {
+class Ajax {
     public ajaxFile:string = 'ajax/ajaxRequisitions.php';
     
     //function for simple ajax, without sent and received datas, if you want to receive and/or send datas, create anoter one
 
-    changeUrl(url):void {
+    changeUrl(url:string):void {
         history.pushState({}, '', url);
     }
 
-    getPage(page:string, parameters:any, callback:any):void {
+    getPage(page:string, parameters:string, callback:any):void {
         var request = new XMLHttpRequest();
         
         request.open('POST', page, true);

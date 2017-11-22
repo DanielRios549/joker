@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class Follow extends Ajax {
+class Follow extends Ajax {
     followUser():void {
         var button = $(this);
 

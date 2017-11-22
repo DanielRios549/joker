@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-export class Slide {
+class Slide {
     slideIndex():void {
 		if($(this).scrollTop() < 200) {
 			if(($('.imageShow') as any).next().size()) {
@@ -26,11 +26,11 @@ export class Slide {
 		}
 	}
 
-	changeIndex(slider):void {
+	changeIndex(slider:string):void {
 		//Index buttons
 
 		$(slider).on('click', '.changeHide', function() {
-			clearInterval(intervalId);
+			//clearInterval(intervalId);
 
 			$('.changeShow').removeClass('changeShow').addClass('changeHide');
 			$(this).removeClass('changeHide').addClass('changeShow');
@@ -45,7 +45,7 @@ export class Slide {
 		//Previous button
 
 		$(slider).on('click', '#previousImage', function() {
-			clearInterval(intervalId);
+			//clearInterval(intervalId);
 
 			if(($('.imageShow') as any).prev().size()) {
 				$('.imageShow').removeClass('imageShow').addClass('imageHide').prev().removeClass('imageHide').addClass('imageShow');
@@ -65,7 +65,7 @@ export class Slide {
 		//Next button
 
 		$(slider).on('click', '#nextImage', function() {
-			clearInterval(intervalId);
+			//clearInterval(intervalId);
 
 			if(($('.imageShow') as any).next().size()) {
 				$('.imageShow').removeClass('imageShow').addClass('imageHide').next().removeClass('imageHide').addClass('imageShow');

@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "noImplicitThis": true,
+        //"noImplicitThis": true,
         "target": "es5",
-        "module": "AMD",
+        "module": "none",
         "outFile": "jokerScript.js"
     }
 }
