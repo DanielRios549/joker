@@ -17,8 +17,8 @@ var scriptsDir = 'javascript/';
 //Files
 
 var styles = [
-    'css/sass/userSite/userStyle.scss',
-    'css/sass/adminSite/adminStyle.scss'
+    'sass/userSite/userStyle.scss',
+    'sass/adminSite/adminStyle.scss'
 ];
 
 var scripts = [
