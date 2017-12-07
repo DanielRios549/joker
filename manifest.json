@@ -1,0 +1,17 @@
+{
+    "short_name": "Joker",
+    "name": "Joker",
+    "description": "A simply way to use Joker without installing an app",
+    "start_url": "index.php?launcher=true",
+    "theme_color": "#2d1152",
+    "background_color": "#141414",
+    "display": "standalone",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "joker.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ]
+}

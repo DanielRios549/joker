@@ -5,6 +5,20 @@
  ***************************************************************
 */
 
+//Service worker init
+
+if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function(registration) {
+        console.log('ServiceWorker registration successful');
+    })
+    .catch(function(error) {
+        console.log('ServiceWorker registration failed', error);
+    });
+    navigator.serviceWorker.oncontrollerchange = function() {
+        console.log('Refresh to see the newest content');
+    }
+}
+
 //Change class of header of all page
 
 $(document).ready(function() {
