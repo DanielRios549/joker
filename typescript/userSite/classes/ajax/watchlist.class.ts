@@ -5,7 +5,7 @@
  ***************************************************************
 */
 
-class Watchlist {
+class Watchlist extends Ajax {
     addWatchList():void {
         var dataId = $(this).attr('data-id');
         

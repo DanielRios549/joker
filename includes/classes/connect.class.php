@@ -18,7 +18,7 @@
 		public function __construct() {
 			$url = 	$_SERVER['HTTP_HOST'];
 
-			if(($url == 'localhost') or ($url == '127.0.0.1')) {
+			if(($url == 'localhost') or ($url == '127.0.0.1') or ($url == '192.168.1.3')) {
 				$name = 'joker';
 				$user = 'root';
 				$pass = 'cftwy549';
@@ -29,7 +29,7 @@
 				$name = 'joker';
 				$user = 'root';
 				$pass = 'atomoinc2014';
-				$host = 'localhost';
+				$host = '192.168.1.3';
 				$config = 'config_prod';
 			}
 

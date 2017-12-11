@@ -12,7 +12,7 @@
 	}
 	if($onlyBody == false) {
 ?>
-<main class="interface ajaxReplace">
+<main data-page="search" class="interface ajaxReplace">
 <?php }?>
 	<section class="search mainSection">
 		<?php $contentArray = array('contentCategory' => 'producer', 'dateAdd' => false, 'querySearch' => $searchQuery, 'page' => false); require $contentDir . 'showContent.php'; if($contentClass -> contentHide == false) {?>

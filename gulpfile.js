@@ -6,10 +6,10 @@ var browserSync = require('browser-sync');
 var uglify = require('gulp-uglify');
 var maps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
+var merge = require('merge-stream');
 
-var tsConfig = ts.createProject('tsconfig.json', {
-    //noImplicitAny: true
-});
+var tsConfigUser = ts.createProject('typescript/userSite/tsconfig.json');
+var tsConfigAdmin = ts.createProject('typescript/adminSite/tsconfig.json');
 
 var stylesDir = 'css/';
 var scriptsDir = 'javascript/';
@@ -22,8 +22,8 @@ var styles = [
 ];
 
 var scripts = [
-    'typescript/**/*.ts',
-    //'typescript/jokerScript.ts',
+    ['typescript/userSite/**/*.ts', 'typescript/config/**/*.ts'],
+    ['typescript/adminSite/**/*.ts', 'typescript/config/**/*.ts']
 ];
 
 //execute the task inside the array only with 'gulp' command
@@ -53,11 +53,19 @@ gulp.task('dep', function() {
 //Compile Typescript into Javascript
 
 gulp.task('ts', function() {
-    return gulp.src(scripts)
+    var userScript =  gulp.src(scripts[0])
     .pipe(maps.init())
-    .pipe(tsConfig())
+    .pipe(tsConfigUser())
     .pipe(maps.write())
     .pipe(gulp.dest(scriptsDir));
+
+    var adminScript =  gulp.src(scripts[1])
+    .pipe(maps.init())
+    .pipe(tsConfigAdmin())
+    .pipe(maps.write())
+    .pipe(gulp.dest(scriptsDir));
+
+    return merge(userScript, adminScript);
 });
 
 //Watch all files including all that are imported, than complile using 'ts' task
@@ -69,10 +77,17 @@ gulp.task('tswatch', function() {
 //minify only the javascript
 
 gulp.task('tsmin', function() {
-    return gulp.src(scripts)
-    .pipe(tsConfig())
+    var userScript =  gulp.src(scripts[0])
+    .pipe(tsConfigUser())
     .pipe(uglify())
     .pipe(gulp.dest(scriptsDir));
+
+    var adminScript =  gulp.src(scripts[1])
+    .pipe(tsConfigAdmin())
+    .pipe(uglify())
+    .pipe(gulp.dest(scriptsDir));
+
+    return merge(userScript, adminScript);
 });
 
 //Compile only style file with the same name, the imports will be added on file compilled

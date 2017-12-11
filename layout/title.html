@@ -13,7 +13,7 @@
 if($contentVerify -> rowCount() == 1) {
 	if($onlyBody == false) {
 ?>
-<main class="interface ajaxReplace">
+<main data-page="title" class="interface ajaxReplace">
 <?php }?>
 	<section class="title mainSection">
 		<article id="imageBack">
@@ -191,21 +191,6 @@ if($contentVerify -> rowCount() == 1) {
 		</article>
 		<script lang="text/javascript">
 			$(window).ready(function() {
-				userScript.tabSelect();
-
-				userScript.hideReply(".commentGroup");
-				userScript.episodeSelect("#seasonBrowse");
-				
-				$('#contentSortcuts').on('click', '.addWatchList', userAjax.addWatchList);
-				$('#contentSortcuts').on('click', '.removeWatchList', userAjax.removeWatchList);
-
-				$('#commentFormDiv').on('click', '#commentSubmit', userAjax.makeComment);
-				$('#commentOptionsDiv').on('click', '#buttonEdit', userAjax.editComment);
-				$('#commentOptionsDiv').on('click', '#buttonDelete', userAjax.deleteComment);
-
-				userScript.disableEnable();
-				//posterParalax('#contentImage');
-
 				<?php if($onlyBody == true) {?>
 					$('title').empty().text("<?php echo $titleFile;?>");
 				<?php }?>

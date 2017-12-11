@@ -19,7 +19,7 @@ class Index {
             parallax.parallaxHome();
         });
 
-        userOthers.tabSelect(true);
+        userOthers.tabSelect(false);
 
         //Connected
 

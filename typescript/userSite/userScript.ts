@@ -7,9 +7,16 @@
 
 //Service worker init
 
-if('serviceWorker' in navigator) {
+//import {Index} from './pages/index';
+
+/*if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').then(function(registration) {
         console.log('ServiceWorker registration successful');
+        /*new ShowNotification(
+            'Joker',
+            'ServiceWorker registration successful',
+            'ServiceWorker'
+        );
     })
     .catch(function(error) {
         console.log('ServiceWorker registration failed', error);
@@ -17,11 +24,13 @@ if('serviceWorker' in navigator) {
     navigator.serviceWorker.oncontrollerchange = function() {
         console.log('Refresh to see the newest content');
     }
-}
+}*/
 
 //Change class of header of all page
 
 $(document).ready(function() {
+    let thisPage = $('main').attr('data-page');
+
     $(window).on('scroll', function() {
         var topDiv = $('#topDiv');
 
@@ -39,5 +48,8 @@ $(document).ready(function() {
             scrollTop: 0
         },500);
     });
-    var IndexEvents = new Index();
+    if(thisPage == 'index')
+        new Index();
+    if(thisPage == 'title')
+        new Title();
 });

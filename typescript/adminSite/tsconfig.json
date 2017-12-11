@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "target": "es5",
+        "module": "none",
+        "outFile": "adminScript.js"
+    }
+}
