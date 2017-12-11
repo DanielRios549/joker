@@ -96,23 +96,4 @@
         <button type="submit" name="submit" id="submit" class="submitButton"><span class="submitSpan"><?php echo 'Add ' . ucfirst(MENU_GROUP);?></span></button>
     </fieldset>
 </form>
-<script lang="text/javascript">
-	$(document).ready(function() {
-        userScript = new userScript();
-        adminScript = new adminScript();
-        $('.formAdd').on('click', '.openFieldset', function() {
-			$(this).toggleClass('fieldsetOpen');
-        })
-		.on('click', '.openFieldsetVideo', function() {
-            var video = document.getElementById("selectedVideo");
-
-			if(!video.paused) {
-                video.pause();
-			}
-		});
-
-        userScript.closeMessage('.userError', '#errorMsgClose');
-		adminScript.showSelectedFile('.formFieldset');
-	});
-</script>
 <?php }?>

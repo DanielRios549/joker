@@ -17,7 +17,7 @@
     <article id="mediaHolder"></article>
 </section>
 
-<script type="text/javascript" src="<?php echo $baseUrl . 'player/file.js'?>"></script>
+<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/file.js'?>"></script>
 <script type="text/javascript" src="<?php echo $baseUrl . 'player/bitmovin/bitmovinplayer.js';?>"></script>
 
 <script type="text/javascript">
@@ -25,6 +25,7 @@
         checkFormats(false);
     });
     function playerConfig() {
+        baseUrl = $('head').attr('data-url');
         var conf = {
             key: "d4371e6b-7405-4388-a79d-3b9edf9418fa",
             bitmovin: false,

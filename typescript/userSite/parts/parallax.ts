@@ -21,9 +21,8 @@ class Parallax {
 	parallaxHeaderUser():void {
 		//Effect of header of profile page
 
-		var imgDiv = $('#userHeaderImg');
-
-		if ($(this).scrollTop() < 210) {
+		if ($(document).scrollTop() < 210) {
+			var imgDiv = $('#userHeaderImg');
 			$(imgDiv).css("top" , (window.pageYOffset / 2.6) + 'px');
 		}
 
@@ -32,7 +31,7 @@ class Parallax {
 		var userHeader = $('#userHeader');
 		var userHeaderImg = $('#userHeaderImg');
 
-		if ($(this).scrollTop() >= 210) {
+		if ($(document).scrollTop() >= 210) {
 			userHeader.removeClass('userHeader');
 			userHeader.addClass('userHeaderFixed');
 			userHeaderImg.removeClass('userHeaderImg');
@@ -51,18 +50,18 @@ class Parallax {
 
 		var img = document.getElementById('userImgFigure');
 
-		if ($(this).scrollTop() < 210) {
-			img.style.width = (150 - $(this).scrollTop() / 2.1) + 'px';
-			img.style.height = (150 - $(this).scrollTop() / 2.1) + 'px';
-			img.style.left = (0 + $(this).scrollTop() / 4.2) + 'px';
-			img.style.top = (-120 + $(this).scrollTop() / 5.2) + 'px';
+		if ($(document).scrollTop() < 210) {
+			img.style.width = (150 - $(document).scrollTop() / 2.9) + 'px';
+			img.style.height = (150 - $(document).scrollTop() / 2.9) + 'px';
+			img.style.left = (0 + $(document).scrollTop() / 4.9) + 'px';
+			img.style.top = (-120 + $(document).scrollTop() / 5.7) + 'px';
 		}
 
 		//Change class of user image of profile page
 
 		var userImg = $('#userImgFigure');
 
-		if ($(this).scrollTop() >= 210) {
+		if ($(document).scrollTop() >= 210) {
 			userImg.removeClass('userImgFigure');
 			userImg.addClass('userImgFigureFixed');
 		}
@@ -77,15 +76,15 @@ class Parallax {
 
 		var name = document.getElementById('userNameDiv');
 
-		if ($(this).scrollTop() < 210) {
-			name.style.left = (220 - $(this).scrollTop() / 3.75) + 'px';
+		if ($(document).scrollTop() < 210) {
+			name.style.left = (220 - $(document).scrollTop() / 3.75) + 'px';
 		}
 
 		//Change class of user name div
 
 		var userName = $('#userNameDiv');
 
-		if ($(this).scrollTop() >= 210) {
+		if ($(document).scrollTop() >= 210) {
 			userName.removeClass('userNameDiv');
 			userName.addClass('userNameDivFixed');
 		}

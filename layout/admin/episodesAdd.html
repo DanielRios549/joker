@@ -45,21 +45,4 @@
         </fieldset>
     </form>
 </section>
-<script lang="text/javascript">
-	$(document).ready(function() {
-        $('.formAdd').on('click', '.openFieldset', function() {
-			$(this).toggleClass('fieldsetOpen');
-        })
-		.on('click', '.openFieldsetVideo', function() {
-            var video = document.getElementById("selectedVideo");
-
-			if(!video.paused) {
-                video.pause();
-			}
-		});
-
-        userScript.closeMessage('.userError', '#errorMsgClose');
-		showSelectedFile('.formFieldset');
-	});
-</script>
 <?php }?>

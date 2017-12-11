@@ -13,10 +13,10 @@
 ?>
 <script type="text/javascript">
 	$(document).ready(function() {
-		autoPlay = false;
+		
 	});
 </script>
-<div id="managerOptions">
+<div id="managerOptions" data-autoplay="false">
 	<a class="managerLink" href="<?php echo $addPageLink;?>"><?php echo langCode('admin_add');?></a>
 	<div id="advancedClose" class="searchAdvancedClose"><?php echo langCode('admin_advanced_search');?></div>
 </div>
@@ -248,21 +248,14 @@
 		<?php require 'managerOption.html';?>
 	</div>
 </div>
+<?php if(MENU_GROUP != 'live') {?>
 <script lang="text/javascript">
 	$(document).ready(function() {
-		adminScript = new adminScript();
-		$('.formAdd').on('click', '.openFieldset', function() {
-			$(this).toggleClass('fieldsetOpen');
-		});
-		<?php if(MENU_GROUP != 'live') {?>
 		$('.formAdd').on('click', '.openFieldsetVideo', function() {
 			if(!video.paused) {
 				playPause();
 			}
 		});
-		<?php }?>
-		adminScript.advancedOptions($("#managerOptions"), $("#advancedSearchDiv"));
-		adminScript.showSelectedFile('.formFieldset');
 	});
 </script>
-<?php }?>
+<?php }}?>

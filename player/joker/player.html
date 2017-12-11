@@ -129,25 +129,6 @@
     </article>
 </section>
 
-<script type="text/javascript" src="<?php echo $baseUrl . 'player/file.js'?>"></script>
-<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/dashScript.js'?>"></script>
-<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/mouseStop.js'?>"></script>
-<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/jokerPlayer.js'?>"></script>
-
-<script type="text/javascript">
-    //'use strict'
-    $(document).ready(function() {
-         checkFormats(true);
-    });
-    function playerConfig() {
-        var config = {
-            autoplay: autoPlay,
-            source: {
-                dash: dataSource,
-                //hls: "hls.m3u8"
-            },
-        };
-        //console.log(config);
-        showPlayer(config);
-    }
-</script>
+<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/libraries/dashScript.js'?>"></script>
+<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/libraries/mouseStop.js'?>"></script>
+<script type="text/javascript" src="<?php echo $baseUrl . 'player/joker/playerScript.js'?>"></script>

@@ -1,11 +1,11 @@
-/*
+/* 
  ***************************************************************
  | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 
-function checkFormats(videoTag) {
+function checkFormats(videoTag:boolean) {
     contentType = document.getElementById("watchInterface").getAttribute("data-type");
     dataId = document.getElementById("watchInterface").getAttribute("data-id");
     dataDash = document.getElementById("watchInterface").getAttribute("data-dash");
@@ -28,9 +28,9 @@ function checkFormats(videoTag) {
     dashFileExists = false;
     hlsFileExists = false;
 
-    videoName = 'output_dash';
-    dashExtension = 'mpd';
-    hlsExtension = 'm3u8';
+    var videoName:string = 'output_dash';
+    var dashExtension:string = 'mpd';
+    var hlsExtension:string = 'm3u8';
 
     if(videoTag == true) {
         mediaHolder.innerHTML = "<video id='videoTag'></video>";
@@ -41,25 +41,25 @@ function checkFormats(videoTag) {
         window.MediaSource = window.MediaSource || window.WebKitMediaSource;
 
         if (window.MediaSource) {
-            dataSource = videoPath + '/' +  videoName + '.' + dashExtension;
-            dashFileExists = true;
-            videoReadyToUse = true;
+            var dataSource:string = videoPath + '/' +  videoName + '.' + dashExtension;
+            var dashFileExists = true;
+            var videoReadyToUse = true;
 
-            playerConfig();
+            playerConfig(dataSource, videoReadyToUse);
         }
         else {
             alert('The MediaSource API is not available on this platform e/ou browser.');
         }
     }
     else if(dataHls == 'yes') {
-        dataSource = videoPath + '/' + videoName +  '.' + hlsExtension;
-        hlsFileExists = true;
-        videoReadyToUse = true;
+        var dataSource = videoPath + '/' + videoName +  '.' + hlsExtension;
+        var hlsFileExists = true;
+        var videoReadyToUse = true;
 
-        playerConfig();
+        playerConfig(dataSource, videoReadyToUse);
     }
     else {
         alert("Error to import the video file...");
-        videoReadyToUse = false;
+        var videoReadyToUse = false;
     }
 }

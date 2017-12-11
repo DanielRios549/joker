@@ -12,7 +12,7 @@
 	}
 	if($adminCheck == true) {
 ?>
-<section class="interface managerInterface bodyMenuOpened">
+<main data-page="manager" class="interface managerInterface bodyMenuOpened">
 	<?php require 'parts/pageAddress.html';?>
 	<div id="managerOptions">
 		<div id="advancedClose" class="searchAdvancedClose"><?php echo langCode('admin_advanced_search');?></div>
@@ -20,5 +20,5 @@
 	<div id="advancedSearchDiv" class="advancedSearchHide">
 		
 	</div>
-</section>
+</main>
 <?php }?>

@@ -10,6 +10,7 @@ var merge = require('merge-stream');
 
 var tsConfigUser = ts.createProject('typescript/userSite/tsconfig.json');
 var tsConfigAdmin = ts.createProject('typescript/adminSite/tsconfig.json');
+var tsConfigPlayer = ts.createProject('typescript/player/tsconfig.json');
 
 var stylesDir = 'css/';
 var scriptsDir = 'javascript/';
@@ -22,8 +23,9 @@ var styles = [
 ];
 
 var scripts = [
-    ['typescript/userSite/**/*.ts', 'typescript/config/**/*.ts'],
-    ['typescript/adminSite/**/*.ts', 'typescript/config/**/*.ts']
+    'typescript/userSite/**/*.ts',
+    'typescript/adminSite/**/*.ts',
+    'typescript/player/**/*.ts'
 ];
 
 //execute the task inside the array only with 'gulp' command
@@ -65,7 +67,13 @@ gulp.task('ts', function() {
     .pipe(maps.write())
     .pipe(gulp.dest(scriptsDir));
 
-    return merge(userScript, adminScript);
+    var playerScript =  gulp.src(scripts[2])
+    .pipe(maps.init())
+    .pipe(tsConfigPlayer())
+    .pipe(maps.write())
+    .pipe(gulp.dest('player/joker/'));
+
+    return merge(userScript, adminScript, playerScript);
 });
 
 //Watch all files including all that are imported, than complile using 'ts' task
@@ -104,7 +112,7 @@ gulp.task('sass', function() {
 //Watch all files including all that are imported, than complile using 'sass' task
 
 gulp.task('sasswatch', function() {
-    gulp.watch('css/sass/**/*.scss', ['sass']);
+    gulp.watch('sass/**/*.scss', ['sass']);
 });
 
 //minify only the css

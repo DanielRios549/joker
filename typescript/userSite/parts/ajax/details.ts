@@ -38,7 +38,8 @@ class Details extends Ajax {
             var filter:any = $(data).children();
             //console.log(data);
             $('.titleDetailsOpen').find('.sectionContent').html(filter);
-            new Title();
+            var titleEvents = new Title();
+            titleEvents.title();
         });
         super.changeUrl(contentLink);
     }

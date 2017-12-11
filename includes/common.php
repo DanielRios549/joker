@@ -94,7 +94,7 @@
 
 		if(ADMIN_PAGE == 'no') {
 			if((CONNECTED_PAGE == 'yes') and ($loginCheck == false)) {
-				header("Location:" . $baseUrl . langCode("login_link"));
+				header("Location:" . $baseUrl . 'login_link');
 			}
 			if(THIS_PAGE == 'category') {
 				$categoryQuery = @$_GET['c'];

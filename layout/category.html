@@ -56,12 +56,6 @@
 <?php }?>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.contentFigure').on('click', '.addWatchList', userAjax.addWatchList);
-        	$('.contentFigure').on('click', '.removeWatchList', userAjax.removeWatchList);
-
-		$('.contentGroup').on('click', '.content', userAjax.showDetails);
-		$('.contentContainer').on('click', '.closeButton', userAjax.closeDetails);
-		
 		<?php if($onlyBody == true) {?>
 			 $('title').empty().text("<?php echo $titleFile;?>");
 		<?php }?>

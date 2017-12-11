@@ -584,7 +584,6 @@ $responsiveVariables: (
                 height: 40px;
                 width: 40px;
                 cursor: pointer;
-                margin-right: calc(160px - 40px);
                 
                 ~ #menuBt {
                     background: rgba(0, 0, 0, .5);
@@ -603,10 +602,10 @@ $responsiveVariables: (
         #menuBt {
             background: url($imageDir + 'menu.png') no-repeat;
             position: relative;
+            left: 20px;
             height: 40px;
             width: 40px;
             cursor: pointer;
-            margin-right: calc(160px - 40px);
         }
         #headerCenter {
             box-shadow: 2px 0 2px rgba(0,0,0,.5);

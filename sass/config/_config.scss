@@ -7,7 +7,7 @@
 //css4 defines if will be used native variables, compatibility defines if there will be compatibility with old browsers
 
 $css4: true;
-$compatibility: false;
+$compatibility: true;
 
 //New W3C standard
 
@@ -29,13 +29,26 @@ $tablet: 1032;
 $mobile: 775;
 $mobileSmall: 599;
 
-/*$colorLightGray: #d6d6d6;
-$colorGray: #2d1152;//#464646
-$colorDarkGray: #222222;
-$colorButtonGray: #9aa4a5;
-$colorBlack: #101010;
-$colorBlue: #4e297e;//#2cafec
-$colorWhite: #f1f1f1;*/
+$responsiveVariables: (
+  --loginAlign: row nowrap,
+  --loginMiddleBorderLeft: 3px dashed #464646,
+  --loginMiddleBorderTop: 0,
+  --loginDivWidth: 50%,
+  --titleContentAlign: row nowrap,
+  --titleDivLeftWidth: 25%,
+  --titleDivLeftJustify: flex-start,
+  --titleDivRightWidth: 100%,
+  --titleDivRightJustify: flex-start,
+  --titleTabHeaderJustify: flex-start,
+  --settingsDivLeftWidth: 30%,
+  --settingsDivRightWidth: 65%,
+  --settingsGroupAlign: column wrap,
+  --settingsAlignOptions: row nowrap,
+  --settingsAlign: space-around,
+  --settingsJustify: space-around,
+  --detailsHeight: 400px,
+  --detailsLeftHeight: 100%,
+);
 
 //These are global variables, there is a lot of them especific to make responsive design on the especifics files
 
@@ -86,8 +99,11 @@ $variables: (
     @if(map-has-key($variables, $variable)) {
       @return map-get($variables, $variable);
     }
-    @if(map-has-key($responsiveVariables, $variable)) {
+    @else if(map-has-key($responsiveVariables, $variable)) {
       @return map-get($responsiveVariables, $variable);
+    }
+    @else {
+      @return unquote('var(' + $variable + ')');
     }
   }
 }

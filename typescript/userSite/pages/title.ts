@@ -6,7 +6,7 @@
 */
 
 class Title {
-    constructor() {
+    title() {
         var userOthers = new UserOthers();
         var watchlist = new Watchlist();
         var comments = new Comments();

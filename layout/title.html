@@ -189,13 +189,13 @@ if($contentVerify -> rowCount() == 1) {
 				</div>
 			</div>
 		</article>
+		<?php if($onlyBody == true) {?>
 		<script lang="text/javascript">
 			$(window).ready(function() {
-				<?php if($onlyBody == true) {?>
-					$('title').empty().text("<?php echo $titleFile;?>");
-				<?php }?>
+				$('title').empty().text("<?php echo $titleFile;?>");
 			});
 		</script>
+		<?php }?>
 	</section>
 <?php if($onlyBody == false) {?>
 </main>

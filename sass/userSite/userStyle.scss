@@ -28,7 +28,7 @@
     #itemHome {
         position: relative;
         height: 100%;
-        width: 200px;
+        width: 150px;
         flex: 0 0 auto;
 
         a {
@@ -376,6 +376,7 @@
         width: 40px;
         height: 40px;
         cursor: pointer;
+        z-index: 101;
 
         @extend %alignCenter;
 
@@ -643,7 +644,7 @@
     }
     #footerCopy {
         position: absolute;
-        right: 5%;
+        right: 60px;
         bottom: 20px;
 
         #spanCopy {

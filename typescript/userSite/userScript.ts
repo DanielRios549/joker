@@ -29,7 +29,14 @@
 //Change class of header of all page
 
 $(document).ready(function() {
-    let thisPage = $('main').attr('data-page');
+    // Get the page and instance the pages classes
+
+    let thisPage:string = $('main').attr('data-page');
+    let index = new Index();
+    let profile = new Profile();
+    let title = new Title();
+
+    //Make the header be fixed when scrolling down, actually with no use
 
     $(window).on('scroll', function() {
         var topDiv = $('#topDiv');
@@ -42,14 +49,31 @@ $(document).ready(function() {
         }
     });
 
+    //Show the "Go to top" buuton when scrolling down
+
     $('#footer').on("click", "#topDiv", function(event) {
         event.preventDefault();
         $('html, body').animate({
             scrollTop: 0
         },500);
     });
-    if(thisPage == 'index')
-        new Index();
-    if(thisPage == 'title')
-        new Title();
+
+    //Add the events according the page
+
+    if(thisPage == 'index') {
+        index.index();
+    }
+    else if(thisPage == 'title') {
+        title.title();
+    }
+    else if(thisPage == 'profile') {
+        profile.follow();
+
+        $(this).on('scroll', function() {
+            profile.parallax();
+        });
+    }
+    else if(thisPage == 'category' || 'search') {
+        index.details();
+    }
 });
