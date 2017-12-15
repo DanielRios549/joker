@@ -34,7 +34,7 @@ function checkFormats(videoTag:boolean) {
 
     if(videoTag == true) {
         mediaHolder.innerHTML = "<video id='videoTag'></video>";
-	    video = document.getElementById('videoTag');
+		video = document.getElementById('videoTag');
     }
 
     if(dataDash == 'yes') {

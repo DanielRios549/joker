@@ -7,7 +7,10 @@
 
 //firt function after chooseFormat
 
-function showPlayer(configObject:any, ready:boolean) {
+/// <reference path="../../../node_modules/dashjs/index.d.ts"/>
+/// <reference path="../../../node_modules/@types/webtorrent/index.d.ts"/>
+
+function showPlayer(configObject:any, ready:boolean):void {
 	if(ready == true) {
 		config = configObject;
 		dash = config.source.dash || false;
@@ -32,6 +35,7 @@ function showPlayer(configObject:any, ready:boolean) {
 		setVolume = document.getElementById('volumeSliderDiv');
 		episodesButton = document.getElementById('episodesButton');
 		fullScreen = document.getElementById('fullScreenButton');
+		videoStats = document.getElementById('videoStats');
 
 		if(autoplay == true) {
 			$(buttonPlay).removeClass("playBtn").addClass('playBtn2');
@@ -62,13 +66,14 @@ function showPlayer(configObject:any, ready:boolean) {
 	}
 }
 
-function startVideo() {
+function startVideo():void {
 	buttonPlay.removeEventListener("click", startVideo);
 	video.removeEventListener("click", startVideo);
 	videoLoad.removeEventListener("click", startVideo);
 
 	if (dash != false) {
-		loadVideoDash();
+		//loadVideoDash();
+		loadVideoTorrent();
 	}
 	else if(hls != false) {
 		loadVideoHls();
@@ -79,16 +84,35 @@ function startVideo() {
 	}
 }
 
-function loadVideoDash() {
-	var player = dashjs.MediaPlayer();
-	var dashPlayer = player.create();
-	//dashPlayer.getDebug().setLogToBrowserConsole(false)
-    dashPlayer.initialize(videoTag, dash, autoplay);
+function loadVideoTorrent():void {
+	//var WebTorrent = require('webtorrent');
+	var client = new WebTorrent();
+	//var torrentId = videoPath + '/video_720p.torrent'
+	var torrentId = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent';
+	
+	client.add(torrentId, function (torrent:any) {
+		var file = torrent.files.find(function (file:any) {
+			return file.name.endsWith('.mp4');
+		});
 
-	//console.log();
-    addEvents();
+		file.renderTo('video#videoTag');
+
+		//console.log(file.getBlobURL());
+	});
+
+	addEvents();
 }
 
-function loadVideoHls() {
+function loadVideoDash():void {
+	var player = dashjs.MediaPlayer();
+	var dashPlayer = player.create();
+	dashPlayer.getDebug().setLogToBrowserConsole(false);
+	dashPlayer.initialize(video, dash, autoplay);
+	
+	addEvents();
+	//createQualities();
+}
+
+function loadVideoHls():void {
 	console.log("Using HLS");
 }

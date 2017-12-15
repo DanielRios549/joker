@@ -32,7 +32,6 @@
 	data-link="<?php echo @$liveUrl?>">
 
 	<?php require 'player/' . $videoPlayer . '/player.html';?>
-
-	<script type="text/javascript" src="<?php echo $scriptDir . 'userScript.js';?>"></script>
+	<script type="text/javascript" src="<?php echo 'player/' . $videoPlayer . '/libraries/webtorrent.js';?>"></script>
 </main>
 <?php }?>

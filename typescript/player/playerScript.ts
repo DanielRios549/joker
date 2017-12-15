@@ -33,6 +33,7 @@ function playerConfig(dataSource:string, ready:boolean) {
 		   //hls: "hls.m3u8"
 	   },
    };
+
    //console.log(config);
    showPlayer(config, ready);
 }
