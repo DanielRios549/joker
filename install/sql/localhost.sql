@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 30, 2017 at 03:32 PM
--- Server version: 5.7.19-0ubuntu0.16.04.1
--- PHP Version: 7.0.22-0ubuntu0.16.04.1
+-- Generation Time: Apr 14, 2020 at 08:09 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `joker`
 --
-CREATE DATABASE IF NOT EXISTS `joker` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `joker`;
 
 -- --------------------------------------------------------
 
@@ -109,7 +109,7 @@ INSERT INTO `config_dev` (`config_id`, `type`, `name`, `value`) VALUES
 (2, 'text', 'atomoBaseUrl', 'joker/'),
 (3, 'text', 'adminDir', 'admin/'),
 (4, 'text', 'adminLayoutDir', '../layout/admin/'),
-(5, 'text', 'directPath', '/var/www/html/joker/'),
+(5, 'text', 'directPath', '/opt/lampp/htdocs/joker/'),
 (6, 'text', 'layoutDir', 'layout/'),
 (8, 'text', 'imageDir', 'images/'),
 (9, 'text', 'styleDir', 'css/'),
@@ -121,7 +121,8 @@ INSERT INTO `config_dev` (`config_id`, `type`, `name`, `value`) VALUES
 (17, 'text', 'userImageFolder', '/joker/images/user/'),
 (18, 'bool', 'allowNewUser', 'yes'),
 (19, 'select', 'streamPlayer', 'joker'),
-(20, 'select', 'livePlayer', 'dailymotion');
+(20, 'select', 'livePlayer', 'dailymotion'),
+(21, 'bool', 'allowSaveLogin', 'no');
 
 -- --------------------------------------------------------
 
@@ -448,7 +449,11 @@ INSERT INTO `language` (`language_id`, `name`, `en_US`, `pt_BR`) VALUES
 (198, 'serie', 'Serie', 'Série'),
 (199, 'live', 'Live', 'Live'),
 (200, 'feedbacks', 'Feedbacks', 'Feedbacks'),
-(201, 'more_info', 'More Info', 'Mais informações');
+(201, 'more_info', 'More Info', 'Mais informações'),
+(202, 'manager', 'Manager', 'Gerenciador'),
+(203, 'change', 'Change', 'Mudar'),
+(204, 'add', 'Add', 'Adicionar'),
+(205, 'episodes_add', 'Add Episode', 'Adicionar Episódio');
 
 -- --------------------------------------------------------
 
@@ -655,71 +660,85 @@ ALTER TABLE `watchlist`
 --
 ALTER TABLE `comment`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `comment_reply`
 --
 ALTER TABLE `comment_reply`
   MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `config_admin`
 --
 ALTER TABLE `config_admin`
   MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `config_dev`
 --
 ALTER TABLE `config_dev`
-  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- AUTO_INCREMENT for table `config_prod`
 --
 ALTER TABLE `config_prod`
   MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
   MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `content_episodes`
 --
 ALTER TABLE `content_episodes`
   MODIFY `episode_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `email`
 --
 ALTER TABLE `email`
   MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
   MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
 --
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `user_restore`
 --
 ALTER TABLE `user_restore`
   MODIFY `restore_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `watched`
 --
 ALTER TABLE `watched`
   MODIFY `watched_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `watchlist`
 --
 ALTER TABLE `watchlist`
   MODIFY `wish_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=464;
+
 --
 -- Constraints for dumped tables
 --
@@ -777,6 +796,7 @@ ALTER TABLE `watched`
 ALTER TABLE `watchlist`
   ADD CONSTRAINT `watchlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `watchlist_ibfk_2` FOREIGN KEY (`content_id`) REFERENCES `content` (`content_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
