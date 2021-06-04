@@ -1,8 +1,8 @@
 ## Joker Stream Website
 
-**This is a project I started in 2014 to practice, it was started without using Git and I stop working on it in 2017.**
+**This is a project I started in 2014 to practice, it was started without using Git and I stop working on it in 2017. Going back now, maybe changing the purpose of it.**
 
-**This is unfinished project, A lot of parts are unfinished and do not work properly, I keep the code here because I spent too much time on it and the code can help someone else.**
+**This is an unfinished project, A lot of parts are unfinished and do not work properly, I keep the code here because I spent too much time on it and the code can help someone else, including myself.**
 
 ### IMPORTANT
 
