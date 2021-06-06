@@ -1,13 +1,21 @@
 ## Joker Stream Website
 
-**This is a project I started in 2014 to practice, it was started without using Git and I stop working on it in 2017. Going back now, maybe changing the purpose of it.**
+**This is a project I started in 2014 to practice, it was started without using Git, and since 2017 I stopped working on it going back in 2021, so it needs a lot of improvements.**
 
-**This is an unfinished project, A lot of parts are unfinished and do not work properly, I keep the code here because I spent too much time on it and the code can help someone else, including myself.**
+**This is an unfinished project, A lot of parts are unfinished and do not work properly. Use the install page to install the database.**
 
 ### IMPORTANT
 
-**The vídeos folder ("media/movies" and 'media/series) are both untracked due to its size. They will be created after the first addition.**
+**The videos folder ("media/movies" and 'media/series) are both untracked due to its size. They will be created after the first addition. The script to create the videos does not work properly, so you can make them by yourself to test purposes.**
 
+### Improvements
+
+- [ ] Update NPM to Yarn.
+- [ ] Fix Gulp tasks, possibly changing from another one.
+- [ ] Update the addition script.
+- [ ] Update password hash generation for a more secure one.
+- [ ] Fix showing content when there is no content to show.
+- [ ] Update Install page to identify if the database is already installed.
 
 ## Gulp tasks
 
