@@ -15,15 +15,19 @@
 		private $connection;
 		private $config;
 		
-		public function __construct($name, $user, $pass, $host, $charset, $page) {
-			$url = 	$_SERVER['HTTP_HOST'];
+		public function __construct() {
+			$name = DB_NAME;
+			$user = DB_USER;
+			$pass = DB_PASSWORD;
+			$host = DB_HOST;
+			$charset = DB_CHARSET;
 			$config = 'config';
 
 			try {
-				$selectDb = "mysql:host=$host;dbname=" . $name;
+				$selectDb = "mysql:host=$host;dbname=$name";
 				$con = new PDO($selectDb, $user, $pass);
 				$con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$con -> exec("SET CHARACTER SET " . $charset);
+				$con -> exec("SET CHARACTER SET $charset");
 
 				$this -> connection = $con;
 				$this -> config = $config;

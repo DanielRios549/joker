@@ -3,6 +3,9 @@ AddType application/x-httpd-php .html
 php_value upload_max_filesize 2048M
 php_value post_max_size 2048M
 
+php_flag  display_errors                  on
+php_flag  display_startup_errors          on
+
 Options All -Indexes
 
 RewriteEngine on

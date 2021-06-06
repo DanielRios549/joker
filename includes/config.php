@@ -26,15 +26,13 @@
 
 	if (THIS_PAGE != 'install') {
 
-		$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+		$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . '/';
 
 		$baseCon = true;
 
 		require 'connect.php';
 
 		require 'importComponents.php';
-
-		require 'install.php';
 
 		$getConfig = new GetConfig();
 

@@ -120,8 +120,8 @@
 			//Make the array for header and index content sections
 
 			$allCategories = getEnum('content', 'category');
-			$otherSections = array('watchlist', 'recent_add');
-			$allSections = array_merge($otherSections, $allCategories);
+			$firstSections = array('watchlist', 'recent_add');
+			$allSections = array_merge($firstSections, $allCategories);
 
 			//print_r($allSections);
 

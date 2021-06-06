@@ -167,7 +167,10 @@
                                 $userDirData = $userDirQuery -> fetch(PDO::FETCH_ASSOC);
 
                                 $userDir = $url . 'images/user/' . $userDirData['user_id'];
-                                mkdir($userDir);
+                                
+                                if(!is_dir($userDir)) {
+                                    mkdir($userDir);
+                                }
 
                                 if($admin == 'no') {
                                     //system('mkdir ' . $userDir);

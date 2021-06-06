@@ -12,7 +12,8 @@
 	
 	require_once 'classes/connect.class.php';
 
-	$connection = new Connect(DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_CHARSET, THIS_PAGE);
+	$connection = new Connect();
+	//$connection -> connect();
 
 	$connect = $connection -> getConnection();
 	$pdo = $connect;
