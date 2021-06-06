@@ -1,50 +1,28 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2015-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2015-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
+$formStep = $_GET['action'];
 ?>
-
 <section id="installInterface">
-	<form method="post" action="?go=submit" id="installForm">
-		<label for="baseUrl"><?php echo BASE_URL;?></label>
-		<input type="text" name="baseUrl" id="baseUrl" class="allInputs" maxlength=""/><br/>
-		
-		<label for="adminDir"><?php echo ADMIN_DIR;?></label>
-		<input type="text" name="adminDir" id="adminDir" class="allInputs" maxlength=""/><br/>
-		
-		<label for="adminLayoutDir"><?php echo ADMIN_LAYOUT_DIR;?></label>
-		<input type="text" name="adminLayoutDir" id="adminLayoutDir" class="allInputs" maxlength=""/><br/>
-		
-		<label for="layoutDir"><?php echo LAYOUT_DIR;?></label>
-		<input type="text" name="layoutDir" id="layoutDir" class="allInputs" maxlength=""/><br/>
-		
-		<label for="imageDir"><?php echo IMAGE_DIR;?></label>
-		<input type="text" name="imageDir" id="imageDir" class="allInputs" maxlength=""/><br/>
-		
-		<label for="styleDir"><?php echo STYLE_DIR;?></label>
-		<input type="text" name="styleDir" id="styleDir" class="allInputs" maxlength=""/><br/>
-		
-		<label for="scriptDir"><?php echo SCRIPT_DIR;?></label>
-		<input type="text" name="scriptDir" id="scriptDir" class="allInputs" maxlength=""/><br/>
-		
-		<label for="fontDir"><?php echo FONT_DIR;?></label>
-		<input type="text" name="fontDir" id="fontDir" class="allInputs" maxlength=""/><br/>
-		
-		<label for="dbHost"><?php echo DB_HOST;?></label>
-		<input type="text" name="dbHost" id="dbHost" class="allInputs" maxlength=""/><br/>
-		
-		<label for="dbUser"><?php echo DB_USER;?></label>
-		<input type="text" name="dbUser" id="dbUser" class="allInputs" maxlength=""/><br/>
-		
-		<label for="dbPassword"><?php echo BD_PASSWORD;?></label>
-		<input type="password" name="dbPassword" id="dbPassword" class="allInputs" maxlength=""/><br/>
-		
-		<label for="dbName"><?php echo BD_NAME;?></label>
-		<input type="text" name="dbName" id="dbName" class="allInputs" maxlength=""/>
-		
-		<input type="submit" value="Alterar dados em config.php"/>
+<?php if (!isset($formStep)) {?>
+	
+	<p><?php echo INFO;?></p>
+	<p><?php echo DATABASE_INFO;?> <span><?php echo DB_NAME;?></span>. </p>
+	<form method="post" action="?action=install" id="firstForm">
+		<input type="submit" name="second" value="<?php echo START;?>"/>
 	</form>
+<?php } else if ($formStep == 'install') {
+	$siteUrl = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+	$baseSiteUrl = $_SERVER['HTTP_HOST'] . '/install/';
+
+	if ($baseSiteUrl != $siteUrl) {
+		$explodeUrl = strpos($_SERVER['REQUEST_URI'], '/', 1);
+		$subFolder = substr($_SERVER['REQUEST_URI'], 1, $explodeUrl);
+	}
+	$install = new Install(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, $subFolder);
+}?>
 </section>

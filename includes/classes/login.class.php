@@ -1,7 +1,7 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -89,7 +89,7 @@
                                     $verifyToken -> execute();
                                     
                                     if($verifyToken -> rowCount() == 0) {
-                                        $setRememberLogin = $pdo -> prepare("INSERT INTO user_restore(user_id, location, session) VALUES (:user, :loginInfo, :session)");
+                                        $setRememberLogin = $pdo -> prepare("INSERT INTO user_restore(user, location, session) VALUES (:user, :loginInfo, :session)");
                                         $setRememberLogin -> bindValue(":user", $_SESSION['user_id']);
                                         $setRememberLogin -> bindValue(":loginInfo", $rememberToken);
                                         $setRememberLogin -> bindValue(":session", session_id());

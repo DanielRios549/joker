@@ -1,7 +1,7 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -32,7 +32,6 @@
 	//Import the  classes
 	
 	require_once $classesDir . 'getConfig.class.php';
-    require_once $classesDir . 'install.class.php';
 	require_once $classesDir . 'lang.class.php';
 	require_once $classesDir . 'loginCheck.class.php';
 	require_once $classesDir . 'premiumCheck.class.php';

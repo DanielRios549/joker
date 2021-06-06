@@ -1,7 +1,7 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -24,7 +24,7 @@
         if($ajaxAction == 'addWatchList') {
             if($ajaxId != false) {
                 try {
-                    $query = $pdo -> prepare("INSERT INTO watchlist (user_id, content_id) VALUES (:session, :ajax)");
+                    $query = $pdo -> prepare("INSERT INTO watchlist (user, content) VALUES (:session, :ajax)");
                     $query -> bindValue(":session", $userSessionId);
                     $query -> bindValue(":ajax", $ajaxId);
 
@@ -49,7 +49,7 @@
         elseif($ajaxAction == 'removeWatchList') {
             if($ajaxId != false) {
                 try {
-                    $query = $pdo -> prepare("DELETE FROM watchlist WHERE user_id = :session AND content_id = :ajax");
+                    $query = $pdo -> prepare("DELETE FROM watchlist WHERE user = :session AND content = :ajax");
                     $query -> bindValue(":session", $userSessionId);
                     $query -> bindValue(":ajax", $ajaxId);
                     $query -> execute();

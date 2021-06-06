@@ -1,7 +1,7 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -20,16 +20,9 @@
 	
 	/* Install Page */
 	
-	define ('BASE_URL' , 'Link básico do site');
-	define ('ADMIN_DIR' , 'Link para o index do Admin');
-	define ('ADMIN_LAYOUT_DIR' , 'Link para o HTML do Admin');
-	define ('LAYOUT_DIR' , 'Link para o HTML do site');
-	define ('IMAGE_DIR' , 'Link da pasta de imagens');
-	define ('STYLE_DIR' , 'Link da pasta de Stilos CSS');
-	define ('SCRIPT_DIR' , 'Link da pasta de JavaScript');
-	define ('FONT_DIR' , 'Link da pasta de arquivos de Fonte');
-	define ('DB_HOST' , 'Host do Servidor');
-	define ('DB_USER' , 'Usuário do Servidor');
-	define ('BD_PASSWORD' , 'Senha do Servidor');
-	define ('BD_NAME' , 'Nome do Banco de Dados');
+	define ('SUB_FOLDER' , 'Digite abaixo a subpasta onde o site está. Deixe vazia se for na raiz.');
+	define ('INSTALL', 'Instalar');
+	define ('START', 'Continuar');
+	define ('INFO', 'Você está prestes a instalar o banco de dados.');
+	define ('DATABASE_INFO', 'De acordo com o arquivo de configuração, o banco de dados será o');
 ?>

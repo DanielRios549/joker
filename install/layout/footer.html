@@ -1,15 +1,29 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2015-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2015-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 ?>
-
 <footer id="footer">
 	<div id="divFooterCopy">
 		<p id="footerCopy">&copy Copyright, Todos os direitos reservados.</p>
+	</div>
+	<div>
+		<img src="../images/atomoLogoMedio.png" alt="logo"/>
+	</div>
+	<div id="langChanger">
+		<div id="langForm">
+			<form method="post" action="">
+				<select name="installLangSelect" onchange="this.form.submit()">
+					<optgroup label="<?php echo LANGS;?>">
+						<option value="en_US"<?php echo $selectedEn;?>><span><?php echo EN_US;?></span></option>
+						<option value="pt_BR"<?php echo $selectedPt;?>><span><?php echo PT_BR;?></span></option>
+					</optgroup>
+				</select>
+			</form>
+		</div>
 	</div>
 </footer>
 </body>

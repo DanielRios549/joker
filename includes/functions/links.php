@@ -1,7 +1,7 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -13,7 +13,6 @@
     function getLink($type, $id) {
         global $baseUrl;
         global $adminDir;
-        global $atomoBaseUrl;
         global $imageDir;
         
         if($type == 'userProfile') {
@@ -53,16 +52,16 @@
             $link = $baseUrl . 'settings';
         }
         elseif($type == 'about') {
-            $link = $atomoBaseUrl . 'about';
+            $link = $baseUrl . 'about';
         }
         elseif($type == 'advertise') {
-            $link = $atomoBaseUrl . 'advertise';
+            $link = $baseUrl . 'advertise';
         }
         elseif($type == 'jobs') {
-            $link = $atomoBaseUrl . 'jobs';
+            $link = $baseUrl . 'jobs';
         }
         elseif($type == 'contact') {
-            $link = $atomoBaseUrl . 'contact';
+            $link = $baseUrl . 'contact';
         }
 
         //Admin Pages

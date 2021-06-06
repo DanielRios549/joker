@@ -1,7 +1,7 @@
 <?php
 /*
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -56,7 +56,7 @@
 
 							$removeFollow2 = $pdo -> exec("DELETE FROM follow WHERE follow = $getRemove");
 
-							$removeRestore = $pdo -> exec("DELETE FROM user_restore WHERE user_id = $getRemove");
+							$removeRestore = $pdo -> exec("DELETE FROM user_restore WHERE user = $getRemove");
 
 							$removeWatched = $pdo -> exec("DELETE FROM watched WHERE user = $getRemove");
 

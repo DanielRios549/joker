@@ -1,7 +1,7 @@
 <?php
 /*
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -10,53 +10,66 @@
 		header("Location:" . $base . "404");
 	}
 
-	$currentServerUrl  = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+	// Database information, for the site to connect and install before that.
 
-	$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+	define ('DB_NAME', 'joker');
 
-	$baseCon = true;
+	define ('DB_USER', 'root');
 
-	require 'connect.php';
+	define ('DB_PASSWORD', '');
 
-	require 'importComponents.php';
+	define ('DB_HOST', 'localhost');
 
-	require 'install.php';
+	define ('DB_CHARSET', 'utf8');
 
-	$getConfig = new GetConfig();
+	//Keeps hierarchy if the page is not the installer
 
-	$allowNewUser = $getConfig -> configQuery('allowNewUser');
+	if (THIS_PAGE != 'install') {
 
-	$allowSaveLogin = $getConfig -> configQuery('allowSaveLogin');
+		$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-	$baseUrl = $currentServerUrl . $getConfig -> configQuery('subFolder');
+		$baseCon = true;
 
-	$directPath = $getConfig -> configQuery('directPath');
+		require 'connect.php';
 
-	$atomoBaseUrl = $getConfig -> configQuery('atomoBaseUrl');
+		require 'importComponents.php';
 
-	$adminDir = $baseUrl . $getConfig -> configQuery('adminDir');
+		require 'install.php';
 
-	$adminLayoutDir = $getConfig -> configQuery('adminLayoutDir');
+		$getConfig = new GetConfig();
 
-	$layoutDir = $getConfig -> configQuery('layoutDir');
+		$allowNewUser = $getConfig -> configQuery('allowNewUser');
 
-	$imageDir = $baseUrl . $getConfig -> configQuery('imageDir');
+		$allowSaveLogin = $getConfig -> configQuery('allowSaveLogin');
 
-	$styleDir = $baseUrl . $getConfig -> configQuery('styleDir');
+		$baseUrl = $thisUrl . $getConfig -> configQuery('subFolder');
 
-	$scriptDir = $baseUrl . $getConfig -> configQuery('scriptDir');
+		$directPath = $getConfig -> configQuery('directPath');
 
-	$fontDir = $baseUrl . $getConfig -> configQuery('fontDir');
+		$adminDir = $baseUrl . $getConfig -> configQuery('adminDir');
 
-	$verificationEmail = $getConfig -> configQuery('verificationEmail');
+		$adminLayoutDir = $getConfig -> configQuery('adminLayoutDir');
 
-	$mediaImageFolder = $getConfig -> configQuery('mediaImageFolder');
+		$layoutDir = $getConfig -> configQuery('layoutDir');
 
-	$userImageFolder = $getConfig -> configQuery('userImageFolder');
+		$imageDir = $baseUrl . $getConfig -> configQuery('imageDir');
 
-	$streamPlayer = $getConfig -> configQuery('streamPlayer');
+		$styleDir = $baseUrl . $getConfig -> configQuery('styleDir');
 
-	$livePlayer = $getConfig -> configQuery('livePlayer');
+		$scriptDir = $baseUrl . $getConfig -> configQuery('scriptDir');
 
-	require 'common.php';
+		$fontDir = $baseUrl . $getConfig -> configQuery('fontDir');
+
+		$verificationEmail = $getConfig -> configQuery('verificationEmail');
+
+		$mediaImageFolder = $getConfig -> configQuery('mediaImageFolder');
+
+		$userImageFolder = $getConfig -> configQuery('userImageFolder');
+
+		$streamPlayer = $getConfig -> configQuery('streamPlayer');
+
+		$livePlayer = $getConfig -> configQuery('livePlayer');
+
+		require 'common.php';
+	}
 ?>

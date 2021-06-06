@@ -1,7 +1,7 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author : Daniel Rios.
  ***************************************************************
 */
@@ -10,7 +10,7 @@
 		header("Location:" .  $base . "404");
 	}
      try {
-          $continueQuery = $pdo -> prepare("SELECT content, type, continueContent, percent FROM watched WHERE user = :user");
+          $continueQuery = $pdo -> prepare("SELECT content, type, content_episode, percent FROM watched WHERE user = :user");
           $continueQuery -> bindValue(":user", $userId);
 
           if($continueQuery -> execute()) {

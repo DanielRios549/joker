@@ -1,24 +1,18 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2015-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2015-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 ?>
-
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="Install Page, configure the database before start using the site."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="icon" href="../images/favicon.png"/>
+	<link rel="stylesheet" href="css/style.css"/>
+</head>
 <body>
-<div id="header">
-	<div id="langChanger">
-		<div id="langForm">
-			<form method="post" action="">
-				<select name="installLangSelect" onchange="this.form.submit()">
-					<optgroup label="<?php echo LANGS;?>">
-						<option value="en_US"<?php echo $selectedEn;?>><span><?php echo EN_US;?></span></option>
-						<option value="pt_BR"<?php echo $selectedPt;?>><span><?php echo PT_BR;?></span></option>
-					</optgroup>
-				</select>
-			</form>
-		</div>
-	</div>
-</div>

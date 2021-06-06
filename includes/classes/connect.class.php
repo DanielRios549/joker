@@ -1,7 +1,7 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -15,29 +15,15 @@
 		private $connection;
 		private $config;
 		
-		public function __construct() {
+		public function __construct($name, $user, $pass, $host, $charset, $page) {
 			$url = 	$_SERVER['HTTP_HOST'];
-
-			if(($url == 'localhost') or ($url == '127.0.0.1') or ($url == '192.168.1.3')) {
-				$name = 'joker';
-				$user = 'root';
-				$pass = '';
-				$host = '127.0.0.1';
-				$config = 'config_dev';
-			}
-			else {
-				$name = 'joker';
-				$user = 'root';
-				$pass = 'atomoinc2014';
-				$host = '192.168.1.3';
-				$config = 'config_prod';
-			}
+			$config = 'config';
 
 			try {
-				$selectDb = "mysql:host=" . $host . ";dbname=" . $name;
+				$selectDb = "mysql:host=$host;dbname=" . $name;
 				$con = new PDO($selectDb, $user, $pass);
 				$con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$con -> exec("SET CHARACTER SET utf8");
+				$con -> exec("SET CHARACTER SET " . $charset);
 
 				$this -> connection = $con;
 				$this -> config = $config;
@@ -46,10 +32,7 @@
 				//print_r($con);
 			}
 			catch(PDOException $error) {
-				//echo 'PDO Error';
-				echo "<html><head><meta charset='UTF-8'/><style>.dbError{font:2em Calibri, sans-serif;color:#464646}.dbError .dbErrorSpan{font:2em CalibriItatic, sans-serif;color:#464646}</style></head><body><p class='dbError'>"
-				. $error -> getMessage() . "</p><br/><p class='dbError'>DB ERROR: Não foi possível conectar com o servidor no host<span class='dbErrorSpan'>"
-				. $host . "</span></p></body><html>";
+				header("Location:" . "install");
 			}
 		}
 		public function getConnection() {
