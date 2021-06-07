@@ -10,6 +10,7 @@
 
 ### Improvements
 
+- [ ] Change translation from database to gettext.
 - [ ] Update NPM to Yarn.
 - [ ] Fix Gulp tasks, possibly changing from another one.
 - [ ] Update the addition script.
