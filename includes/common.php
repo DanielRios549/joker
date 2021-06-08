@@ -1,13 +1,13 @@
 <?php
 /*
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseUrl)) {
-		require '../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
 	else {
 		session_name('login');
@@ -29,7 +29,9 @@
 
 		//Get the HTML file
 
-		$bodyFile = basename($_SERVER['PHP_SELF'],'.php') . '.html';
+		if(!defined('NO_LAYOUT_PAGE')) {
+			$bodyFile = basename($_SERVER['PHP_SELF'],'.php') . '.html';
+		}
 
 		if($loginCheck == true) {
 			//Verify if the session is invalid to device
@@ -100,7 +102,7 @@
 				$categoryQuery = @$_GET['c'];
 
 				if(!isset($categoryQuery) or $categoryQuery == '') {
-					header("Location:" . $baseUrl . '404');
+					ShowError::notFound('query');
 				}
 				else {
 					DEFINE('CATEGORY_TITLE' , langCode(categoryName($categoryQuery)));
@@ -110,7 +112,7 @@
 				$searchQuery = @$_GET['q'];
 
 				if(!isset($searchQuery) or $searchQuery == '') {
-					header("Location:" . $baseUrl . '404');
+					ShowError::notFound('query');
 				}
 				else {
 					DEFINE('SEARCH_TITLE' , $searchQuery);
@@ -135,12 +137,12 @@
 
 			//Define the layout file
 
-			$contentDir = 'includes/';
+			$contentDir = @$base . 'includes/';
 			require $layoutDir . 'body.html';
 		}
 		elseif(ADMIN_PAGE == 'yes') {
 			if($adminCheck == false) {
-				header("Location:" .  $baseUrl . "404");
+				ShowError::notFound('admin');
 			}
 			elseif($adminCheck == true) {
 				require 'admin.php';
@@ -149,7 +151,8 @@
 
 				require 'page.php';
 
-				$contentDir = '../includes/';
+				$contentDir = @$base . '../includes/';
+				
 				require $adminLayoutDir . 'body.html';
 			}
 		}

@@ -1,13 +1,13 @@
 <?php
 /*
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseCon)) {
-		require '../../../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../../../';
+		require $base . '404.php';
 	}
 
     class Settings extends Connect {
@@ -16,7 +16,7 @@
 		public function getConfig($type) {
 			$pdo = $this -> getConnection();
 			$table = $this -> getConfigTable();
-			//global $thisUrl;
+			//global $thisDomain;
 
 			$getValues = $pdo -> prepare("SELECT * FROM $table WHERE type = :type");
 			$getValues -> bindValue(':type', $type);

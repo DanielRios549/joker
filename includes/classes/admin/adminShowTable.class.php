@@ -1,13 +1,13 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseCon)) {
-		require '../../../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../../../';
+		require $base . '404.php';
 	}
 
 	class AdminShow extends Connect {
@@ -29,7 +29,7 @@
 		
 		public function content($page, $type, $lang) {
 			$pdo = $this -> getConnection();
-			global $thisUrl;
+			global $thisDomain;
 
 			//all manager pages
 
@@ -44,7 +44,7 @@
 				$this -> itemEdit = $getEdit;
 				$this -> itemRemove = $getRemove;
 				$this -> itemEpisode = $getEpisode;
-				$positionUrl = strpos($thisUrl, '?');
+				$positionUrl = strpos($thisDomain, '?');
 
 				//Get the limit items and order, both are in the same form 
 
@@ -52,13 +52,13 @@
 					$limit = 10;
 					$order = 1;
 					$this -> linkPage = "?p=";
-					$newUrl = substr($thisUrl, 0, $positionUrl);
+					$newUrl = substr($thisDomain, 0, $positionUrl);
 				}
 				elseif(($getLimit == 10) and ($getOrder == 1)) {
 					$limit = 10;
 					$order = 1;
 					$this -> linkPage = "?p=";
-					$newUrl = substr($thisUrl, 0, $positionUrl);
+					$newUrl = substr($thisDomain, 0, $positionUrl);
 				}
 				else {
 					$limit = $getLimit;
@@ -66,11 +66,11 @@
 
 					if($page == 'admin_series_manager') {
 						$this -> linkPage = "?l=" . $limit . "&o=" . $order . "&p=";
-						$newUrl = substr($thisUrl, 0, $positionUrl) . "?l=" . $limit . "&o=" . $order . "&p=" . $getPage;
+						$newUrl = substr($thisDomain, 0, $positionUrl) . "?l=" . $limit . "&o=" . $order . "&p=" . $getPage;
 					}
 					else {
 						$this -> linkPage = "?l=" . $limit . "&o=" . $order . "&p=";
-						$newUrl = substr($thisUrl, 0, $positionUrl) . "?l=" . $limit . "&o=" . $order . "&p=" . $getPage;
+						$newUrl = substr($thisDomain, 0, $positionUrl) . "?l=" . $limit . "&o=" . $order . "&p=" . $getPage;
 					}
 				}
 

@@ -1,7 +1,7 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
@@ -11,5 +11,9 @@
 	
 	define('CONNECTED_PAGE' , 'no');
 	
-	require 'includes/config.php';
+	$bodyFile = '404.html';
+	
+	define ('NO_LAYOUT_PAGE', 'yes');
+	
+	require @$base . 'includes/config.php';
 ?>

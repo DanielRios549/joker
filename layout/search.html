@@ -2,13 +2,13 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseUrl)) {
-		require '../_redirect.php';
-		header("Location:" .  $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
 	if($onlyBody == false) {
 ?>
@@ -33,7 +33,7 @@
 				<?php }?>
 			</ul>
 		</article>
-		<?php } $contentArray = array('contentCategory' => 'name', 'dateAdd' => false, 'querySearch' => $searchQuery, 'page' => false); require $contentDir . 'showContent.php';?>
+		<?php } if($totalSearch >= 1) { $contentArray = array('contentCategory' => 'name', 'dateAdd' => false, 'querySearch' => $searchQuery, 'page' => false); require $contentDir . 'showContent.php';?>
 		<article id="headerContainer">
 			<header id="searchHeader">
 				<h2 id="searchResult">
@@ -48,7 +48,6 @@
 				</h2>
 			</header>
 		</article>
-		<?php if($totalSearch >= 1) {?>
 		<article class="contentContainer">
 			<div class="contentDiv">
 				<div class="contentGroup">

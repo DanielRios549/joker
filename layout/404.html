@@ -2,15 +2,17 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseUrl)) {
-		require '../_redirect.php';
-		header("Location:" .  $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
+	else {
 ?>
 <main data-page="404" class="interface ajaxReplace">
 	<img class="errorImage" src="<?php echo $imageDir . 'error404.png';?>" />
 </main>
+<?php }?>

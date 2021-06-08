@@ -1,13 +1,13 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseUrl)) {
-		require '../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
 
 	//If the user is logged
@@ -18,13 +18,13 @@
 		//If doesn't exist the id get
 		
 		if($contentPage == false) {
-			header("Location:" . $baseUrl . "404");
+			ShowError::notFound();
 		}
 
 		//If exist the id get
 
 		elseif($contentPage == '') {
-			header("Location:" . $baseUrl . "404");
+			ShowError::notFound();
 		}
 		else {
 			if($adminCheck == true) {
@@ -46,7 +46,7 @@
 			}
 			
 			if($contentVerify -> rowCount() !== 1) {
-				header("Location:" . $baseUrl . "404");
+				ShowError::notFound();
 			}
 			elseif($contentVerify -> rowCount() == 1) {
 				try {

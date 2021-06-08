@@ -6,8 +6,8 @@
  ***************************************************************
 */
      if(!isset($baseUrl)) {
-		require '../_redirect.php';
-		header("Location:" .  $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
      try {
           $continueQuery = $pdo -> prepare("SELECT content, type, content_episode, percent FROM watched WHERE user = :user");

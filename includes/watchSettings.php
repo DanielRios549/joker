@@ -1,13 +1,13 @@
 <?php
 /*
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseUrl)) {
-		require '../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
 
     //If the user is logged
@@ -23,13 +23,13 @@
 		//If doesn't exist the id get
 
 		if($contentPage == false) {
-			header("Location:" . $baseUrl . "404");
+			ShowError::notFound('query');
 		}
 
 		//If exist the id get
 
         elseif($contentPage == '') {
-			header("Location:" . $baseUrl . "404");
+			ShowError::notFound('query');
 		}
 		else {
             if($adminCheck == true) {
@@ -58,7 +58,7 @@
 			//verify if the content exits
 
             if($contentVerify -> rowCount() !== 1) {
-				header("Location:" . $baseUrl . "404");
+				ShowError::notFound();
 			}
 			elseif($contentVerify -> rowCount() == 1) {
                 //set the player
@@ -120,10 +120,10 @@
                     }
 
                     if($contentReference == false) {
-                        header("Location:" . $baseUrl . "404");
+                        ShowError::notFound('query');
                     }
                     elseif($contentReference == '') {
-                        header("Location:" . $baseUrl . "404");
+                        ShowError::notFound('query');
                     }
                     elseif($contentReference != '') {
                         $contentQuery = $pdo -> prepare("SELECT c.content_id, e.episode_id, e.season, e.episode, e.$cookieLang FROM content AS c INNER JOIN content_episodes AS e ON c.content_id = e.episode_ref WHERE e.episode_id = :contentReference AND c.content_id = :content AND e.active = 'yes'");
@@ -132,7 +132,7 @@
                         $contentQuery -> execute();
 
                         if($contentQuery -> rowCount() == 0) {
-                            header("Location:" . $baseUrl . "404");
+                            ShowError::notFound();
                         }
                         elseif($contentQuery -> rowCount() == 1) {
                             $contentFetch = $contentQuery -> fetch(PDO::FETCH_ASSOC);

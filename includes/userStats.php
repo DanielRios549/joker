@@ -1,13 +1,13 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseUrl)) {
-		require '../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
 	
 	if($loginCheck == true) {
@@ -39,11 +39,11 @@
 	
 	if(isset($userPage)) {
 		if($userVerify -> rowCount() !== 1) {
-			header("Location:" . $baseUrl . "404");
+			ShowError::notFound();
 		}
 		elseif($userVerify -> rowCount() == 1) {
             //if(($userPage == 1) and ($userConnected != 1)) {
-				//header("Location:" . $baseUrl . "404");
+				//ShowError::notFound();
             //}
 			$userData = $userVerify -> fetch(PDO::FETCH_ASSOC);
 			

@@ -1,6 +1,6 @@
 ## Joker Stream Website
 
-**This is a project I started in 2014 to practice, it was started without using Git, and since 2017 I stopped working on it going back in 2021, so it needs a lot of improvements.**
+**This is a project I started in 2014 to practice, it was started without using Git, and since 2017 I stopped working on it, going back in 2021, so it needs a lot of improvements.**
 
 **This is an unfinished project, A lot of parts are unfinished and do not work properly. Use the install page to install the database.**
 
@@ -17,6 +17,7 @@
 - [ ] Update password hash generation for a more secure one.
 - [ ] Fix showing content when there is no content to show.
 - [ ] Update Install page to identify if the database is already installed.
+- [x] Show 404/403 error instead of redirecting the pages.
 
 ## Gulp tasks
 

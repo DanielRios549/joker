@@ -42,13 +42,13 @@
              http://www.streamovie.com.br/404
         </loc>
         <loc>
-             http://www.streamovie.com.br/404.php
+             http://www.streamovie.com.br/includes/classes/abstract/showError.class.php
         </loc>
         <loc>
              http://streamovie.com.br/404
         </loc>
         <loc>
-             http://streamovie.com.br/404.php
+             http://streamovie.com.br/includes/classes/abstract/showError.class.php
         </loc>
         <lastmod>2016-05-15</lastmod>
         <priority>0.5</priority>

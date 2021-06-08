@@ -10,19 +10,19 @@ Options All -Indexes
 
 RewriteEngine on
 #RewriteCond %{HTTP_REFERER} !^$
-#RewriteCond %{HTTP_REFERER} !^http(s)?://()?localhost/joker/ [NC]
+#RewriteCond %{HTTP_REFERER} !^http(s)?://()?index.php [NC]
 #RewriteRule \.(jpg|png|gif|mp4|webm)$ - [NC,F,L]
 
 #Errors Pages
-
-#ErrorDocument 403 http://localhost/joker/403
-#ErrorDocument 404 http://localhost/joker/404
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^404()$ 404.php [NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^403()$ 403.php [NC,L]
+
+ErrorDocument 403 /404.php
+ErrorDocument 404 /404.php
 
 #Home Page
 

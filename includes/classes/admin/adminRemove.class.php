@@ -6,8 +6,8 @@
  ***************************************************************
 */
 	if(!isset($baseCon)) {
-		require '../../../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../../../';
+		require $base . '404.php';
 	}
 
     class AdminRemove extends Connect {

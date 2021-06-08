@@ -6,68 +6,71 @@
  ***************************************************************
 */
 	if(!defined('THIS_PAGE')) {
-		require '../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
+	else {
 
-	// Database information, for the site to connect and install before that.
+		$thisProtocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
 
-	define ('DB_NAME', 'joker');
+		$thisDomain = $thisProtocol . $_SERVER['SERVER_NAME'] . '/';
 
-	define ('DB_USER', 'root');
+		// Database information, for the site to connect and install before that.
 
-	define ('DB_PASSWORD', '');
+		define ('DB_NAME', 'joker');
 
-	define ('DB_HOST', 'localhost');
+		define ('DB_USER', 'root');
 
-	define ('DB_CHARSET', 'utf8');
+		define ('DB_PASSWORD', '');
 
-	//Keeps hierarchy if the page is not the installer
+		define ('DB_HOST', 'localhost');
 
-	if (THIS_PAGE != 'install') {
+		define ('DB_CHARSET', 'utf8');
 
-		$thisUrl = 'http://' . $_SERVER['SERVER_NAME'] . '/';
+		//Keeps hierarchy if the page is not the installer
 
-		$baseCon = true;
+		if (THIS_PAGE != 'install') {
+			$baseCon = true;  # Used to validate the components files, they are called before setting up
 
-		require 'connect.php';
+			require_once 'connect.php';
 
-		require 'importComponents.php';
+			require_once 'importComponents.php';
 
-		$getConfig = new GetConfig();
+			$getConfig = new GetConfig();
 
-		$allowNewUser = $getConfig -> configQuery('allowNewUser');
+			$baseUrl = $thisDomain . $getConfig -> configQuery('subFolder');
+			
+			$adminDir = $baseUrl . 'admin/';
 
-		$allowSaveLogin = $getConfig -> configQuery('allowSaveLogin');
+			$imageDir = $baseUrl . 'images/';
 
-		$baseUrl = $thisUrl . $getConfig -> configQuery('subFolder');
+			$styleDir = $baseUrl . 'css/';
 
-		$directPath = $getConfig -> configQuery('directPath');
+			$scriptDir = $baseUrl . 'javascript/';
 
-		$adminDir = $baseUrl . $getConfig -> configQuery('adminDir');
+			$fontDir = $baseUrl . 'fonts/';
 
-		$adminLayoutDir = $getConfig -> configQuery('adminLayoutDir');
+			$layoutDir = @$base . 'layout/';
 
-		$layoutDir = $getConfig -> configQuery('layoutDir');
+			$adminLayoutDir = @$base . '../layout/admin/';
 
-		$imageDir = $baseUrl . $getConfig -> configQuery('imageDir');
+			$allowNewUser = $getConfig -> configQuery('allowNewUser');
 
-		$styleDir = $baseUrl . $getConfig -> configQuery('styleDir');
+			$allowSaveLogin = $getConfig -> configQuery('allowSaveLogin');
 
-		$scriptDir = $baseUrl . $getConfig -> configQuery('scriptDir');
+			$verificationEmail = $getConfig -> configQuery('verificationEmail');
 
-		$fontDir = $baseUrl . $getConfig -> configQuery('fontDir');
+			$directPath = $getConfig -> configQuery('directPath');
 
-		$verificationEmail = $getConfig -> configQuery('verificationEmail');
+			$mediaImageFolder = $getConfig -> configQuery('mediaImageFolder');
 
-		$mediaImageFolder = $getConfig -> configQuery('mediaImageFolder');
+			$userImageFolder = $getConfig -> configQuery('userImageFolder');
 
-		$userImageFolder = $getConfig -> configQuery('userImageFolder');
+			$streamPlayer = $getConfig -> configQuery('streamPlayer');
 
-		$streamPlayer = $getConfig -> configQuery('streamPlayer');
+			$livePlayer = $getConfig -> configQuery('livePlayer');
 
-		$livePlayer = $getConfig -> configQuery('livePlayer');
-
-		require 'common.php';
+			require_once 'common.php';
+		}
 	}
 ?>

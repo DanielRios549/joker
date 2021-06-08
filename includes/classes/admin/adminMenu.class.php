@@ -1,13 +1,13 @@
 <?php
 /* 
  ***************************************************************
- | Copyright (c) 2014-2015 Atomo.com. All rights reserved.
+ | Copyright (c) 2014-2021 Atomo.com. All rights reserved.
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
 	if(!isset($baseCon)) {
-		require '../../../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../../../';
+		require $base . '404.php';
 	}
 	class AdminMenu {
 		public $page;

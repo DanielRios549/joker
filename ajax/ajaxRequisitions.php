@@ -5,20 +5,21 @@
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
-    define ('THIS_PAGE' , 'ajax');
-    
-    define ('ADMIN_PAGE' , 'both');
-    
-    require '../includes/config.php';
+    //This page first need to verify if the method exists.
     
     $ajaxAction = isset($_GET['ajaxAction']) ? $_GET['ajaxAction'] : false;
     $ajaxId = isset($_GET['ajaxId']) ? $_GET['ajaxId'] : false;
     $userSessionId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : false;
     
     if(($ajaxAction == false) or  ($ajaxId == false) or ($userSessionId == false)) {
-        header("Location:" . $baseUrl. '404');
+		$base = '../';
+        require '../includes/config.php';
     }
     elseif(($ajaxAction != false) and  ($ajaxId != false) and ($userSessionId != false)) {
+        define ('THIS_PAGE' , 'ajax');
+        define ('ADMIN_PAGE' , 'both');
+        require '../includes/config.php';
+
         //add the movie to watchlist
         
         if($ajaxAction == 'addWatchList') {
@@ -187,7 +188,8 @@
         //What else
 
         else {
-            header($baseUrl . '404');
+            $base = '../';
+            require $base . '404.php';
         }
     }
 ?>

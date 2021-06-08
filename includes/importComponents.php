@@ -6,8 +6,8 @@
  ***************************************************************
 */
 	if(!isset($baseCon)) {
-		require '../_redirect.php';
-		header("Location:" . $base . "404");
+		$base = '../';
+		require $base . '404.php';
 	}
 
 	$functionsDir = 'functions/';
@@ -31,6 +31,8 @@
 
 	//Import the  classes
 	
+    require_once $classesDir . 'abstract/dash.class.php';
+	require_once $classesDir . 'abstract/showError.class.php';
 	require_once $classesDir . 'getConfig.class.php';
 	require_once $classesDir . 'lang.class.php';
 	require_once $classesDir . 'loginCheck.class.php';
@@ -45,7 +47,6 @@
 	require_once $classesDir . 'verifyFollow.class.php';
 	require_once $classesDir . 'userTitle.class.php';
 	require_once $classesDir . 'userMenu.class.php';
-    require_once $classesDir . 'abstract/dash.class.php';
 	require_once $classesDir . 'admin/adminTitle.class.php';
 	require_once $classesDir . 'admin/adminMenu.class.php';
 	require_once $classesDir . 'admin/adminCreate.class.php';
