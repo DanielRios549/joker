@@ -18,11 +18,11 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^404()$ 404.php [NC,L]
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^403()$ 403.php [NC,L]
+RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
+RewriteRule ^(.*)$ - [E=BASE:%1]
 
-ErrorDocument 403 /404.php
-ErrorDocument 404 /404.php
+ErrorDocument 403 /%{ENV:BASE}404.php
+ErrorDocument 404 /%{ENV:BASE}404.php
 
 #Home Page
 

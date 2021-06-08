@@ -17,7 +17,7 @@
 - [ ] Update password hash generation for a more secure one.
 - [ ] Fix showing content when there is no content to show.
 - [ ] Update Install page to identify if the database is already installed.
-- [x] Show 404/403 error instead of redirecting the pages.
+- [x] Show 404 error instead of redirecting the pages.
 
 ## Gulp tasks
 
