@@ -40,7 +40,7 @@
                     //Indentify the user on the datasabe.
 
                     try {
-                        $loginEmail = $pdo -> prepare("SELECT * FROM user WHERE email = :login AND password = :password");
+                        $loginEmail = $pdo -> prepare("SELECT * FROM user WHERE (email = :login OR username = :login) AND password = :password");
                         $loginEmail -> bindValue(":login", $userLogin, PDO::PARAM_STR);
                         $loginEmail -> bindValue(":password", $userPassword, PDO::PARAM_STR);
                         $loginEmail -> execute();

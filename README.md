@@ -15,9 +15,11 @@
 - [ ] Fix Gulp tasks, possibly changing from another one.
 - [ ] Update the addition script.
 - [ ] Update password hash generation for a more secure one.
-- [ ] Fix showing content when there is no content to show.
+- [x] Fix showing content when there is no content to show.
+- [ ] Fix showing content when there is nothing featured to show.
 - [ ] Update Install page to identify if the database is already installed.
 - [x] Show 404 error instead of redirecting the pages.
+- [ ] Fix footer position when body does not show anything.
 
 ## Gulp tasks
 

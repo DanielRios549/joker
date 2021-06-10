@@ -16,13 +16,6 @@ $formStep = @$_GET['action'];
 		<input type="submit" name="second" value="<?php echo START;?>"/>
 	</form>
 <?php } else if ($formStep == 'install') {
-	$siteUrl = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-	$baseSiteUrl = $_SERVER['HTTP_HOST'] . '/install/';
-
-	if ($baseSiteUrl != $siteUrl) {
-		$explodeUrl = strpos($_SERVER['REQUEST_URI'], '/', 1);
-		$subFolder = substr($_SERVER['REQUEST_URI'], 1, $explodeUrl);
-	}
-	$install = new Install(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, $subFolder);
+	$install = new Install(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME);
 }?>
 </section>

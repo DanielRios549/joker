@@ -9,9 +9,7 @@
 	
 	define ("ADMIN_PAGE" ,"no");
 	
-	define('CONNECTED_PAGE' , 'no');
-	
-	$bodyFile = '404.html';
+	define ('CONNECTED_PAGE' , 'no');
 	
 	define ('NO_LAYOUT_PAGE', 'yes');
 	

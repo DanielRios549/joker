@@ -80,7 +80,7 @@
 		<div id="previousImage"></div>
 		<div id="nextImage"></div>
 
-		<div id="changeDiv">
+		<article id="changeDiv">
 		<?php $pointerNumber = 1; do {if($pointerNumber > 1){$changeShow = 'changeHide';}else{$changeShow = 'changeShow';}?>
 			<div class="<?php echo $changeShow;?>"></div>
 		<?php $pointerNumber ++;} while($pointerNumber <= $totalSearch);?>
@@ -89,12 +89,6 @@
 	</section>
 	<section class="home mainSection">
 		<?php } foreach($allSections as $allSections => $categoryContent) {
-			if($key['active'] == 'yes') {
-				$currentActive = 'active';
-			}
-			elseif($key['active'] == 'no') {
-				$currentActive = 'inactive';
-			}
 			if($categoryContent == 'watchlist') {
 				$contentArray = array(
 					'contentCategory' => 'watchlist',
@@ -123,8 +117,7 @@
 				$watchListId = false;
 			}
 			require $contentDir . 'showContent.php';
-			if($contentClass -> contentHide == false) {
-		?>
+			if($contentClass -> contentHide == false) {?>
 		<article <?php if($watchListId == true) {echo 'id="watchListDiv"';}?>class="contentContainer">
 			<?php if($categoryContent == 'watchlist') {?>
 			<p class="contentDivHeader"><?php echo ucfirst(langCode('my')) . ' ' . langCode('watch_list');?></p>

@@ -129,7 +129,7 @@
 				
 				//Define the watchlist button
 				
-				$watchListQuery = $pdo -> prepare("SELECT * FROM watchlist WHERE user_id=:session AND content_id = :contentPage");
+				$watchListQuery = $pdo -> prepare("SELECT * FROM watchlist WHERE user = :session AND content = :contentPage");
 				$watchListQuery -> bindValue(":session", $_SESSION['user_id']);
 				$watchListQuery -> bindValue(":contentPage", $contentPage);
 				$watchListQuery -> execute();

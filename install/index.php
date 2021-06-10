@@ -6,8 +6,16 @@
  ***************************************************************
 */
 	define ('THIS_PAGE' , 'install');
-
-	$baseCon = True;
 	
-	require 'config.php';
+	require '../includes/config.php';
+
+	require 'lang/lang_config.php';
+
+	require 'class/install.class.php';
+	
+	require 'layout/header.html';
+	
+	require 'layout/install.html';
+	
+	require 'layout/footer.html';
 ?>

@@ -20,7 +20,7 @@
 			
 			if(($contentId != false) and ($user != false)) {
 				try {
-					$query = $pdo -> prepare("SELECT * FROM watchlist WHERE content_id = :id AND user_id = :user");
+					$query = $pdo -> prepare("SELECT * FROM watchlist WHERE content = :id AND user = :user");
 					$query -> bindValue(":id", $contentId);
 					$query -> bindValue(":user", $user);
 					$query -> execute();

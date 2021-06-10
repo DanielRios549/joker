@@ -5,6 +5,10 @@
  | @ Author	: Daniel Rios.
  ***************************************************************
 */
+	if(!defined('THIS_PAGE')) {
+		$base = '../../';
+		require $base . '404.php';
+	}
 
 $lang = @$_POST['installLangSelect'];
 $selectedEn = '';

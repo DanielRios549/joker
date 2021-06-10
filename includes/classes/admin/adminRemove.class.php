@@ -60,7 +60,7 @@
 
 							$removeWatched = $pdo -> exec("DELETE FROM watched WHERE user = $getRemove");
 
-							$removeWatchlist = $pdo -> exec("DELETE FROM watchlist WHERE user_id = $getRemove");
+							$removeWatchlist = $pdo -> exec("DELETE FROM watchlist WHERE user = $getRemove");
 
 							if($pdo -> commit()) {
 								$removeUser = $pdo -> prepare("DELETE FROM user WHERE user_id = :user");
@@ -140,7 +140,7 @@
 
 							$removeWatched = $pdo -> exec("DELETE FROM watched WHERE content = $getRemove");
 
-							$removeWatchlist = $pdo -> exec("DELETE FROM watchlist WHERE content_id = $getRemove");
+							$removeWatchlist = $pdo -> exec("DELETE FROM watchlist WHERE content = $getRemove");
 
 							if($pdo -> commit()) {
 								$removeContent = $pdo -> prepare("DELETE FROM content WHERE content_id = :content");

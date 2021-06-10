@@ -32,6 +32,9 @@
 		if(!defined('NO_LAYOUT_PAGE')) {
 			$bodyFile = basename($_SERVER['PHP_SELF'],'.php') . '.html';
 		}
+		else if(NO_LAYOUT_PAGE == 'yes') {
+			$bodyFile = '404.html';
+		}
 
 		if($loginCheck == true) {
 			//Verify if the session is invalid to device
@@ -51,10 +54,6 @@
 			$userId = @$_SESSION['user_id'];
 			$endFirstName = strpos($_SESSION['name'], ' ');
 			$firstName = substr($_SESSION['name'], 0, $endFirstName);
-
-			//Make the continue watching
-
-			require 'continueWatching.php';
 		}
 		else {
 			//Create user or do the login
