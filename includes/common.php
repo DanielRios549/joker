@@ -39,21 +39,23 @@
 		if($loginCheck == true) {
 			//Verify if the session is invalid to device
 
-			if(($_SESSION['USER_ADDRESS'] !== $sessionAddress) or ($_SESSION['USER_AGENT'] !== $sessionAgent)) {
-				header("Location:" . getLink('logoff', false));
-			}
+			if(THIS_PAGE != 'logoff') {
+				if(($_SESSION['USER_ADDRESS'] !== $sessionAddress) or ($_SESSION['USER_AGENT'] !== $sessionAgent)) {
+					header("Location:" . getLink('logoff', false));
+				}
 
-			if($premiumCheck == true) {
-				require_once 'premiumUser.php';
-			}
+				if($premiumCheck == true) {
+					require_once 'premiumUser.php';
+				}
 
-			if(THIS_PAGE == 'login') {
-				header("Location:" . $baseUrl);
-			}
+				if(THIS_PAGE == 'login') {
+					header("Location:" . $baseUrl);
+				}
 
-			$userId = @$_SESSION['user_id'];
-			$endFirstName = strpos($_SESSION['name'], ' ');
-			$firstName = substr($_SESSION['name'], 0, $endFirstName);
+				$userId = @$_SESSION['user_id'];
+				$endFirstName = strpos($_SESSION['name'], ' ');
+				$firstName = substr($_SESSION['name'], 0, $endFirstName);
+			}
 		}
 		else {
 			//Create user or do the login
@@ -99,13 +101,13 @@
 			$contentDir = @$base . 'includes/';
 			
 			if((CONNECTED_PAGE == 'yes') and ($loginCheck == false)) {
-				header("Location:" . $baseUrl . 'login_link');
+				header("Location:" . $baseUrl . 'login');
 			}
 			if(THIS_PAGE == 'category') {
 				$categoryQuery = @$_GET['c'];
 
 				if(!isset($categoryQuery) or $categoryQuery == '') {
-					ShowError::notFound('query');
+					ShowError::notFound();
 				}
 				else {
 					DEFINE('CATEGORY_TITLE' , langCode(categoryName($categoryQuery)));
@@ -115,7 +117,7 @@
 				$searchQuery = @$_GET['q'];
 
 				if(!isset($searchQuery) or $searchQuery == '') {
-					ShowError::notFound('query');
+					ShowError::notFound();
 				}
 				else {
 					DEFINE('SEARCH_TITLE' , $searchQuery);
