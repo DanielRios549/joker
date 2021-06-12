@@ -56,7 +56,7 @@
             echo "Adding Tables...";
 
             try {
-                $tables = $this -> create -> exec("CREATE TABLE IF NOT EXISTS config (
+                $this -> create -> exec("CREATE TABLE IF NOT EXISTS config (
                         config_id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         type enum('text','bool','select') DEFAULT NULL,
                         name varchar(5000) NOT NULL,
@@ -75,7 +75,7 @@
                         active enum('no','yes') NOT NULL DEFAULT 'no',
                         name varchar(60) NOT NULL,
                         username varchar(60) NOT NULL,
-                        email varchar(60) NOT NULL,
+                        email varchar(60) UNIQUE KEY NOT NULL,
                         password varchar(40) NOT NULL,
                         category enum('user','admin') NOT NULL DEFAULT 'user',
                         premium enum('no','yes') NOT NULL DEFAULT 'no',
@@ -172,7 +172,7 @@
 
         private function foreignKeys() {
             try {
-                $key1 = $this -> create -> exec("ALTER TABLE config_admin ADD FOREIGN KEY (user) REFERENCES user(user_id);
+                $this -> create -> exec("ALTER TABLE config_admin ADD FOREIGN KEY (user) REFERENCES user(user_id);
                     ALTER TABLE content_episodes ADD FOREIGN KEY (episode_ref) REFERENCES content(content_id);
                     ALTER TABLE comment ADD FOREIGN KEY (content) REFERENCES content(content_id);
                     ALTER TABLE comment ADD FOREIGN KEY (user) REFERENCES user(user_id);
@@ -185,8 +185,8 @@
                     ALTER TABLE watched ADD FOREIGN KEY (user) REFERENCES user(user_id);
                     ALTER TABLE watchlist ADD FOREIGN KEY (user) REFERENCES user(user_id);
                     ALTER TABLE watchlist ADD FOREIGN KEY (content) REFERENCES content(content_id);
-                    ALTER TABLE user_restore ADD FOREIGN KEY (user) REFERENCES user(user_id);
-                ");
+                    ALTER TABLE user_restore ADD FOREIGN KEY (user) REFERENCES user(user_id);"
+                );
                 $this -> configData();
             }
             catch (PDOException $error) {

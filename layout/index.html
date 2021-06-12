@@ -49,10 +49,25 @@
 				</div>
 			</article>
 		</section>
-	<?php } elseif($loginCheck == true) { $contentArray = array('contentCategory' => 'feature', 'dateAdd' => false, 'querySearch' => false, 'page' => false); require $contentDir . 'showContent.php'; if($contentClass -> contentHide == false){?>
+	<?php } elseif($loginCheck == true) {
+		$contentArray = array(
+			'contentCategory' => 'feature', 
+			'dateAdd' => false,
+			'querySearch' => false,
+			'page' => false
+		);
+		
+		require $contentDir . 'showContent.php';
+		if($contentClass -> contentHide == false) {
+	?>
 	<section id="contentSlider">
 		<article id="imageDiv">
-			<?php $contentNumber = 1; foreach($addRow as $showContent => $key) {if($contentNumber > 1){$imageShow = 'imageHide';}else{$imageShow = 'imageShow';}?>
+			<?php $contentNumber = 1;
+			foreach($addRow as $showContent => $key) {
+				if($contentNumber > 1) {
+					$imageShow = 'imageHide';}else{$imageShow = 'imageShow';
+				}
+			?>
 			<div class="<?php echo $imageShow;?>">
 				<?php $watchId = $key['content_id']; require $contentDir . 'verifyContent.php';?>
 				<span class="<?php echo $watchListAction;?>" data-type="<?php echo $key['type'];?>" data-id="<?php echo $watchId;?>">
@@ -81,14 +96,15 @@
 		<div id="nextImage"></div>
 
 		<article id="changeDiv">
-		<?php $pointerNumber = 1; do {if($pointerNumber > 1){$changeShow = 'changeHide';}else{$changeShow = 'changeShow';}?>
-			<div class="<?php echo $changeShow;?>"></div>
-		<?php $pointerNumber ++;} while($pointerNumber <= $totalSearch);?>
+			<?php $pointerNumber = 1; do {if($pointerNumber > 1){$changeShow = 'changeHide';}else{$changeShow = 'changeShow';}?>
+				<div class="<?php echo $changeShow;?>"></div>
+			<?php $pointerNumber ++;} while($pointerNumber <= $totalSearch);?>
 		</article>
 		<?php }?>
 	</section>
+	<?php }?>
 	<section class="home mainSection">
-		<?php } foreach($allSections as $allSections => $categoryContent) {
+		<?php foreach($allSections as $allSections => $categoryContent) {
 			if($categoryContent == 'watchlist') {
 				$contentArray = array(
 					'contentCategory' => 'watchlist',
@@ -118,7 +134,7 @@
 			}
 			require $contentDir . 'showContent.php';
 			if($contentClass -> contentHide == false) {?>
-		<article <?php if($watchListId == true) {echo 'id="watchListDiv"';}?>class="contentContainer">
+		<article <?php if($watchListId == true) {echo 'id="watchListDiv"';}?> class="contentContainer">
 			<?php if($categoryContent == 'watchlist') {?>
 			<p class="contentDivHeader"><?php echo ucfirst(langCode('my')) . ' ' . langCode('watch_list');?></p>
 			<?php } elseif($categoryContent == 'recent_add') {?>

@@ -17,15 +17,15 @@
 
 		//Define the language
 
-		require 'lang/langConfig.php';
+		require_once 'lang/langConfig.php';
 
 		//Get the session info
 
-		require 'sessionInfo.php';
+		require_once 'sessionInfo.php';
 
 		//Verify if the user is connected, configure the stats and identify if is a user or a admin
 
-		require 'connectUser.php';
+		require_once 'connectUser.php';
 
 		//Get the HTML file
 
@@ -44,7 +44,7 @@
 			}
 
 			if($premiumCheck == true) {
-				require 'premiumUser.php';
+				require_once 'premiumUser.php';
 			}
 
 			if(THIS_PAGE == 'login') {
@@ -58,42 +58,46 @@
 		else {
 			//Create user or do the login
 
-			require 'user.php';
+			require_once 'user.php';
 		}
 
 		//Active the user
 
-		require 'activeUser.php';
+		require_once 'activeUser.php';
 
 		//Check the user style
 
 		//Configure the Stats in profile page
 
 		if(THIS_PAGE == 'profile') {
-			require 'userStats.php';
+			require_once 'userStats.php';
 		}
 
 		//Configure the settings page
 
 		if(THIS_PAGE == 'settings') {
-			require 'userSettings.php';
+			require_once 'userSettings.php';
 		}
 
 		//Configure the title page
 
 		if(THIS_PAGE == 'title') {
-			require 'titleSettings.php';
+			require_once 'titleSettings.php';
 		}
 
 		//Configure the watch page
 
 		if(THIS_PAGE == 'watch') {
-			require 'watchSettings.php';
+			require_once 'watchSettings.php';
 		}
+
+		$allCategories = getEnum('content', 'category');
 
 		//Import the body file. Head, Header and Footer are onlys, but the body not
 
 		if(ADMIN_PAGE == 'no') {
+			$contentDir = @$base . 'includes/';
+			
 			if((CONNECTED_PAGE == 'yes') and ($loginCheck == false)) {
 				header("Location:" . $baseUrl . 'login_link');
 			}
@@ -120,7 +124,6 @@
 
 			//Make the array for header and index content sections
 
-			$allCategories = getEnum('content', 'category');
 			$firstSections = array('watchlist', 'recent_add');
 			$allSections = array_merge($firstSections, $allCategories);
 
@@ -132,27 +135,24 @@
 
 			//Configure the titles and menus
 
-			require 'page.php';
+			require_once 'page.php';
 
-			//Define the layout file
-
-			$contentDir = @$base . 'includes/';
-			require $layoutDir . 'body.html';
+			require_once $layoutDir . 'body.html';
 		}
 		elseif(ADMIN_PAGE == 'yes') {
+			$contentDir = @$base . '../includes/';
+
 			if($adminCheck == false) {
 				ShowError::notFound('admin');
 			}
 			elseif($adminCheck == true) {
-				require 'admin.php';
+				require_once 'admin.php';
 
 				//Configure the titles and menus
 
-				require 'page.php';
-
-				$contentDir = @$base . '../includes/';
+				require_once 'page.php';
 				
-				require $adminLayoutDir . 'body.html';
+				require_once $adminLayoutDir . 'body.html';
 			}
 		}
 		//$forceFinalError = new FakeClass();

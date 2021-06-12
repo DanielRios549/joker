@@ -10,7 +10,6 @@
 		$base = '../../';
 		require $base . '404.php';
 	}
-	
 	$langClass = new Lang();
 
 	$selectedEn = '';
@@ -53,25 +52,27 @@
 	$forceEnglish = $langClass -> langSelect('en_US');
 
 	//function used to write the texts
+	
+	if(!function_exists('langCode')) {
+		function langCode($name) {
+			global $thisLang;
+			global $forceEnglish;
+			global $cookieLang;
+			$langPrefer = $thisLang[$name][$cookieLang];
 
-	function langCode($name) {
-		global $thisLang;
-		global $forceEnglish;
-		global $cookieLang;
-		$langPrefer = $thisLang[$name][$cookieLang];
+			if($langPrefer != '') {
+				$langName = $langPrefer;
+			}
+			else {
+				$langName = $forceEnglish[$name]['en_US'];
+			}
 
-		if($langPrefer != '') {
-			$langName = $langPrefer;
-		}
-		else {
-			$langName = $forceEnglish[$name]['en_US'];
-		}
-
-		if($langName == '') {
-			return $name;
-		}
-		else {
-			return $langName;
+			if($langName == '') {
+				return $name;
+			}
+			else {
+				return $langName;
+			}
 		}
 	}
 	//echo langCode('test');

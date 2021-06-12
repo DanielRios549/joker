@@ -31,7 +31,7 @@
 	//Content for search
 	
 	if(THIS_PAGE == 'search') {
-		$contentClass -> showContent($contentArray['contentCategory'], $contentArray['dateAdd'], $contentArray['querySearch'],  '', $_SESSION['user_id'], $adminCheck);
+		$contentClass -> showContent($contentArray['contentCategory'], $contentArray['dateAdd'], $contentArray['querySearch'], '', $_SESSION['user_id'], $adminCheck);
 				
 		$showContent = $contentClass -> contentInfo;
 		$addRow = $contentClass -> contentRow;

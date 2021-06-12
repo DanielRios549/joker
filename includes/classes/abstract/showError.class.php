@@ -6,13 +6,13 @@
  ***************************************************************
 */
     abstract class ShowError {
-        public static function notFound($method) {
+        public static function notFound($method = 'query') {
             define ('ERROR_PAGE', '404');
             global $baseUrl, $imageDir, $styleDir;
             $baseDir = __DIR__ . '/../../../';
             
             if($method == 'admin') {
-                global $adminCheck, $loginCheck, $thisDomain, $titleFile, $searchQuery, $scriptDir, $allCategories;
+                global $adminCheck, $loginCheck, $thisDomain, $titleFile, $allCategories, $contentDir, $firstName;
                 require $baseDir . 'layout/globalHead.html';
                 require $baseDir . 'layout/header.html';
                 require $baseDir . 'layout/404.html';
