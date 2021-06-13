@@ -94,12 +94,11 @@
 		<?php if($totalSearch > 1) {?>
 		<div id="previousImage"></div>
 		<div id="nextImage"></div>
-
-		<article id="changeDiv">
+		<div id="changeDiv">
 			<?php $pointerNumber = 1; do {if($pointerNumber > 1){$changeShow = 'changeHide';}else{$changeShow = 'changeShow';}?>
 				<div class="<?php echo $changeShow;?>"></div>
 			<?php $pointerNumber ++;} while($pointerNumber <= $totalSearch);?>
-		</article>
+		</div>
 		<?php }?>
 	</section>
 	<?php }?>

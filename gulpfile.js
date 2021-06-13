@@ -1,8 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var watch = require('watch');
 var rename = require('gulp-rename');
-var browserSync = require('browser-sync');
 var uglify = require('gulp-uglify');
 var maps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
@@ -29,34 +27,36 @@ var scripts = [
     './typescript/player/**/*.ts'
 ];
 
-//execute the task inside the array only with 'gulp' command
-
-gulp.task('default', ['sass', 'ts']);
-
-//Execute all minifies tasks, run this task before the commit and mainly, before the push
-
-gulp.task('prod', ['sassmin', 'tsmin']);
-
 //Task to copy only components the project needs
 
 gulp.task('dep', function() {
-    var jQuery = gulp.src('./node_modules/jquery/dist/jquery.min.js')
+    // Jquery
+
+    gulp.src('./node_modules/jquery/dist/jquery.min.js')
     .pipe(rename('jquery.js'))
     .pipe(gulp.dest(scriptsDir + 'libraries/'));
 
-    var webTorrent = gulp.src('./node_modules/webtorrent/webtorrent.min.js')
+    //WebTorrent
+
+    gulp.src('./node_modules/webtorrent/webtorrent.min.js')
     .pipe(rename('webtorrent.js'))
     .pipe(gulp.dest(playerDir + 'libraries/'));
 
-    var dashJS = gulp.src('./node_modules/dashjs/dist/dash.all.min.js')
+    //DashJS
+
+    gulp.src('./node_modules/dashjs/dist/dash.all.min.js')
     .pipe(rename('dashScript.js'))
     .pipe(gulp.dest(playerDir + 'libraries/'));
 
-    var fontAwesome = gulp.src('./node_modules/font-awesome/fonts/FontAwesome.otf')
+    //Font Awesome
+
+    gulp.src('./node_modules/font-awesome/fonts/FontAwesome.otf')
     .pipe(rename('fontAwesome.otf'))
     .pipe(gulp.dest(fontsDir + 'icons/'));
 
-    var fontVariables = gulp.src('./node_modules/font-awesome/scss/_variables.scss')
+    //Icons Variables
+
+    gulp.src('./node_modules/font-awesome/scss/_variables.scss')
     .pipe(rename('_fontIcon.txt'))
     .pipe(gulp.dest('./'));
 });
@@ -64,19 +64,19 @@ gulp.task('dep', function() {
 //Compile Typescript into Javascript
 
 gulp.task('ts', function() {
-    /*var userScript =  gulp.src(scripts[0])
+    gulp.src(scripts[0])
     .pipe(maps.init())
     .pipe(tsConfigUser())
     .pipe(maps.write())
     .pipe(gulp.dest(scriptsDir));
 
-    var adminScript =  gulp.src(scripts[1])
+    gulp.src(scripts[1])
     .pipe(maps.init())
     .pipe(tsConfigAdmin())
     .pipe(maps.write())
-    .pipe(gulp.dest(scriptsDir));*/
+    .pipe(gulp.dest(scriptsDir));
 
-    var playerScript =  gulp.src(scripts[2])
+    gulp.src(scripts[2])
     .pipe(maps.init())
     .pipe(tsConfigPlayer())
     .pipe(maps.write())
@@ -86,7 +86,7 @@ gulp.task('ts', function() {
 //Watch all files including all that are imported, than complile using 'ts' task
 
 gulp.task('tswatch', function() {
-    gulp.watch('typescript/**/*.ts', ['ts']);
+    gulp.watch('typescript/**/*.ts', gulp.parallel('ts'));
 });
 
 //minify only the javascript
@@ -122,7 +122,7 @@ gulp.task('sass', function() {
 //Watch all files including all that are imported, than complile using 'sass' task
 
 gulp.task('sasswatch', function() {
-    gulp.watch('sass/**/*.scss', ['sass']);
+    gulp.watch('sass/**/*.scss', gulp.parallel('sass'));
 });
 
 //minify only the css
@@ -133,13 +133,6 @@ gulp.task('sassmin', function() {
     .pipe(gulp.dest(stylesDir));
 });
 
-//Use to sync the web browser
+//Execute all minifies tasks, run this task before the commit and mainly, before the push
 
-gulp.task('sync', function() {
-    browserSync({
-        proxy: '127.0.0.1/joker',
-        port: 6767,
-        open: true,
-        notify: false
-    });
-});
+gulp.task('prod', gulp.series('sassmin', 'tsmin'));
