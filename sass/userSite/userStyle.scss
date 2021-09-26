@@ -279,7 +279,7 @@
 }
 .interface {
     position: relative;
-    min-height: 300px;
+    min-height: inherit;
     width: 100%;
     z-index: 98;
     overflow: hidden;
@@ -324,7 +324,7 @@
     .title {
         position: relative;
         width: 100%;
-        min-height: 400px;
+        height: 100%;
         z-index: 98;
         display: flex;
 
@@ -357,6 +357,7 @@
 }
 #footer {
     position: relative;
+    bottom: 0;
     width: 100%;
     z-index: 99;
 

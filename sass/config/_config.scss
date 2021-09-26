@@ -139,6 +139,12 @@ For all Browser:
 
 //Font imports and mixins/placeholders
 
+body {
+  position: relative;
+  min-height: 80vh;
+  width: 99vw;
+}
+
 @import '../config/fonts';
 
 @import '../config/allMixins';
